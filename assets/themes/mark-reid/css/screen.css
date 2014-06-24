@@ -67,7 +67,7 @@ sup { line-height: 1ex; }
 
 
 #site {
-	max-width: 65%;
+	max-width: 75%;
 	margin: 1.5em 1em 3em auto;
 	line-height:1.5em;
 }
@@ -505,12 +505,12 @@ img.maruku-png { }
   
 #left {
 	position:absolute;
-	max-width: 35%;
+	max-width: 25%;
 	margin: 0 auto 1em 1em;
 }
 .navbar1 {
 	margin:5px 0px 50px 0;
-	width:25em;
+	width:83%;
 	background-color: rgba(249, 249, 249, 0.8);
 	box-shadow: 0px 0px 4px rgba(50, 118, 177, 0.6);
 }
