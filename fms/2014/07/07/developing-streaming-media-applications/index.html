@@ -1,0 +1,345 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>developing streaming media applications &larr; </title>
+   <meta name="author" content="lsj" />
+
+   <link rel="start" href="/" />
+
+	
+	
+	
+  	<link rel="alternate" type="application/atom+xml" href="http://feeds.feedburner.com/feedname" title="RSS feed" />
+	
+	
+
+   <!-- syntax highlighting CSS -->
+   <link rel="stylesheet" href="/assets/themes/mark-reid/css/syntax.css" type="text/css" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="/assets/themes/mark-reid/css/screen.css" type="text/css" />
+
+</head>
+
+<body id="">
+
+
+<div id="header" >
+    <h1>
+    	<a href="/" title="alonepig's blog" >alonepig's blog</a>
+		<!--     	<span class="byline">&larr; <a href="/">lsj</a></span> -->
+    </h1>
+    <ul class="nav">
+      <li><a class="home" href="/">Home</a></li>
+      <li><a  href="/archive.html">Archive</a></li>
+      <li><a  href="/pages.html">Pages</a></li>
+      <li><a  href="/categories.html">Categories</a></li>
+      <li><a  href="/tags.html">Tags</a></li>
+      <li><a  href="/about.html">About</a></li>
+    </ul>
+  </div>
+</div>
+
+<div id="left">
+
+     <strong>Tag Clound</strong><br />
+     <div class="navbar1" >
+     	
+    		<a href="tags.html#intro-ref" id="1" class="__tag" style="margin: 5px">intro</a>
+  		
+    		<a href="tags.html#beginner-ref" id="2" class="__tag" style="margin: 5px">beginner</a>
+  		
+    		<a href="tags.html#jekyll-ref" id="3" class="__tag" style="margin: 5px">jekyll</a>
+  		
+    		<a href="tags.html#tutorial-ref" id="4" class="__tag" style="margin: 5px">tutorial</a>
+  		
+    		<a href="tags.html#FMS-ref" id="5" class="__tag" style="margin: 5px">FMS</a>
+  		
+     </div>
+     
+<!-- 	<strong>Blogroll</strong><br /> -->
+<!-- 	<div class="navbar1" > -->
+<!--      	<ul > -->
+<!--      		<li><a href="" target="_blank" ><span >github.com</span></a></li> -->
+<!--      	</ul> -->
+<!-- 	</div> -->
+	
+	<strong>Find Me</strong><br />
+	<div class="navbar1" >
+	<ul >
+          <li><a href="https://github.com/alonepig" target="_blank" title="Github"><span class="fa fa-github fa-lg">Github</span></a></li>
+          <li><a href="http://www.douban.com/people/alonepig" target="_blank" title="douban"><span>豆瓣</span></a></li>
+          <li><a href="http://weibo.com/" target="_blank" title="Weibo"><span>知乎</span></a></li>
+     </ul>
+     </div>
+     
+</div>
+
+
+<div id="site">
+  
+  
+<div id="page">
+	
+  <h1 class="emphnext">developing streaming media applications</h1>
+  <ul class="tag_box inline">
+  
+  
+
+
+  
+     
+    	<li><a href="/tags.html#FMS-ref">FMS <span>12</span></a></li>
+    
+  
+
+
+
+  </ul>
+
+  <h4>开发流媒体应用</h4>
+
+<h5>连接服务器</h5>
+
+<h5>管理连接</h5>
+
+<h5>流媒体文件</h5>
+
+<h5>检查视频文件</h5>
+
+<h5>处理错误</h5>
+
+<h5>使用播放列表</h5>
+
+<h5>动态流</h5>
+
+<h5>当连接断掉时重连流</h5>
+
+<h6>重连ActionScript API</h6>
+
+<ul>
+<li><p>NetStream.attach(connection:NetConnection)</p></li>
+<li><p>NetStreamPlayTransitions.RESUME</p></li>
+<li><p>NetStreamPlayTransitions.APPEND<em>AND</em>WAIT</p></li>
+<li><p>NetConnection.Connect.Closed</p></li>
+</ul>
+
+<p>使用这个事件来重连流</p>
+
+<ul>
+<li>NetConnection.Connect.NetworkChange</li>
+</ul>
+
+<p>通知客户端网络连接改变了。</p>
+
+<h6>使用ActionScript API重连流</h6>
+
+<p>当NetConnection由于网络改变关闭，流会使用存在的缓存播放一会。同时，客户端代码重连服务器来恢复播放流。</p>
+
+<p><strong>重连单一流</strong></p>
+
+<ol>
+<li><p>调用NetConnection.call()连接服务器A</p></li>
+<li><p>创建一个NetStream。设置NetStream.bufferTime使得其有足够的数据在连接断开后播放一会儿。</p></li>
+<li><p>调用NetStream.play2()，使用NetStreamPlayTransitions.RESET来播放&quot;myStream&quot;。</p></li>
+<li><p>监听NetConnection的&quot;NetConnection.Connect.Closed&quot;事件，如果流断掉了则重连服务器。</p></li>
+<li><p>调用NetStream.attach(connection:NetConnection)函数使NetStream附加到新的连接上。</p></li>
+<li><p>调用NetStream.play2()，使用NetStreamPlayTransitions.RESUME来播放&quot;myStream&quot;。</p></li>
+<li><p>如果你想重连的话，不要调用NetConnection.close()或NetStream.close()。</p></li>
+</ol>
+
+<p><strong>重连播放列表</strong></p>
+
+<p><strong>服务器负载均衡</strong></p>
+
+<ol>
+<li><p>调用NetStream.attch(connection:NetConnection)来连接其他的服务器</p></li>
+<li><p>成功连接后，调用以前连接上的NetConnection.close()，防止数据泄露。</p></li>
+<li><p>调用 NetStream.play2() 并设置 NetStreamPlayOptions.transition 的值以执行恢复。将其余的 NetStreamPlayOptions 属性设置为最初调用 NetStream.play() 或 NetStream.play2() 时使用的值以启动流。</p></li>
+</ol>
+
+<p><strong>监控网络接口改变</strong></p>
+
+<p><strong>监控移动设备上的连接</strong></p>
+
+<p><strong>监控RTMPS或RTMPT连接</strong></p>
+
+<h6>授权插件事件和属性</h6>
+
+<h6>服务器日志</h6>
+
+<p>下面的事件在流重连时会写入AMS日志文件中：
+<table>
+    <tr>
+        <td>事件</td>
+        <td>目录</td>
+        <td>描述</td>
+    </tr>
+    <tr>
+        <td>connect</td>
+        <td>session</td>
+        <td>重新建立连接后</td>
+    </tr>
+    <tr>
+        <td>play</td>
+        <td>stream</td>
+        <td>流恢复播放</td>
+    </tr>
+    <tr>
+        <td>stop</td>
+        <td>stream</td>
+        <td>流停止播放</td>
+    </tr>
+</table></p>
+
+<h5>快速切换流</h5>
+
+<h5>快速搜索</h5>
+
+<h5>检测带宽</h5>
+
+<h6>ActionScript3.0 本地带宽检测</h6>
+
+<p>NetConnect.call(&quot;checkBandWidth&quot;, null);</p>
+
+<p>Application.xml允许带宽检测</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;BandwidthDetection enabled=&quot;true&quot;&gt;
+&lt;MaxRate&gt;-1&lt;/MaxRate&gt;
+&lt;DataSize&gt;16384&lt;/DataSize&gt;
+&lt;MaxWait&gt;2&lt;/MaxWait&gt;
+&lt;/BandwidthDetection&gt;
+</code></pre></div>
+<p>监听事件，必须实现onBWCheck和onBWDone两个函数：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">class Client {
+    public function onBWCheck(... rest):Number {
+        return 0;
+    }
+    public function onBWDone(... rest):void {
+        var bandwidthTotal:Number;
+        if (rest.length &gt; 0){
+            bandwidthTotal = rest[0];
+            // This code runs
+            // when the bandwidth check is complete.
+            trace(&quot;bandwidth = &quot; + bandwidthTotal + &quot; Kbps.&quot;);
+        }
+    }
+}
+</code></pre></div>
+<p>onBWCheck()函数是必须的。该函数返回一个值，即使是0，也表明告诉服务器客户端接收到了数据，你可以调用onBWCheck()了。</p>
+
+<p>服务器会在检测带宽之后调用onBWDone()函数。它有四个参数。第一个表示带宽(Kbps)。第二个、第三个还没用到，第四个表示延迟</p>
+
+<h6>服务器端初始化带宽检测</h6>
+<div class="highlight"><pre><code class="language-text" data-lang="text">application.onConnect = function (clientObj){
+    this.acceptConnection(clientObj);
+    clientObj.checkBandwidth();
+}
+</code></pre></div>
+<p>不需要在客户端手动调用checkBandwidth()函数</p>
+
+<p><strong>在应用级别禁用带宽检测</strong></p>
+
+<ul>
+<li><p>修改配置文件rootinstall/applications/applicationname/Application.xml</p>
+
+<p><Application>
+    <Client>
+        <BandwidthDetection enabled="false">
+        </BandwidthDetection>
+    </Client>
+</Application></p></li>
+<li><p>修改rootinstall/conf/<em>defaultRoot/</em>defaultVHost/Application.xml</p>
+
+<p><Application>
+    ...
+    <Client>
+        ...
+        <BandwidthDetection enabled="false">
+        </BandwidthDetection>
+        ...
+    </Client>
+    ...
+</Application></p></li>
+</ul>
+
+<h5>检测流长度</h5>
+
+
+  <address class="signature">
+    <a class="author" href="/">lsj</a> 
+    <span class="date">07 July 2014</span>
+    <span class="location"></span>
+  </address>
+  
+  
+	<div class='cloud'>
+		<a style='font-size: 70%' href='/tags.html#tutorial'>tutorial</a>
+<a style='font-size: 70%' href='/tags.html#beginner'>beginner</a>
+<a style='font-size: 170%' href='/tags.html#FMS'>FMS</a>
+<a style='font-size: 70%' href='/tags.html#jekyll'>jekyll</a>
+<a style='font-size: 70%' href='/tags.html#intro'>intro</a>
+
+	</div>
+	
+  <div class="prev-next">
+  
+    <a href="/fms/2014/07/07/securing-applications" class="next" title="securing applications">Next Post &rarr;</a>
+  
+  
+    <a href="/fms/2014/07/07/developing-social-applications" class="prev" title="developing social applications">&larr; Earlier Post</a>
+  
+  </div>
+  
+</div><!-- End Page -->
+
+	
+
+
+
+
+  <!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1926112"></script>
+<!-- UY END -->
+
+
+
+
+
+  
+  <div id="footer">
+  	<address>
+  		<span class="copyright">
+  			Content by <a href="/info/site.html">lsj</a>. Design by 
+  			<a href="http://mark.reid.name/">Mark Reid</a>
+  			<br/>
+  			(<a rel="licence" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Some rights reserved</a>)			
+  		</span>
+  		<span class="engine">
+  			Powered by <a href="http://github.com/mojombo/jekyll/" title="A static, minimalist CMS">Jekyll</a>
+  		</span>
+  	</address>
+  </div>
+  
+</div>
+
+
+
+<!--[if IE 6]>
+<script type="text/javascript"> 
+	/*Load jQuery if not already loaded*/ if(typeof jQuery == 'undefined'){ document.write("<script type=\"text/javascript\"   src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js\"></"+"script>"); var __noconflict = true; } 
+	var IE6UPDATE_OPTIONS = {
+		icons_path: "http://static.ie6update.com/hosted/ie6update/images/"
+	}
+</script>
+<script type="text/javascript" src="http://static.ie6update.com/hosted/ie6update/ie6update.js"></script>
+<![endif]-->
+
+  
+</body>
+</html>
+

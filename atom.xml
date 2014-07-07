@@ -4,13 +4,2194 @@
  <title>alonepig's blog</title>
  <link href="http://alonepig.github.io/" rel="self"/>
  <link href="http://alonepig.github.io"/>
- <updated>2014-06-24T23:21:22+08:00</updated>
+ <updated>2014-07-07T17:56:16+08:00</updated>
  <id>http://alonepig.github.io</id>
  <author>
    <name>lsj</name>
    <email>alonelsj@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>working with live video</title>
+   <link href="http://alonepig.github.io/fms/2014/07/07/working-with-live-video"/>
+   <updated>2014-07-07T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/fms/2014/07/07/working-with-live-video</id>
+   <content type="html">&lt;h4&gt;使用实时视频&lt;/h4&gt;
+
+&lt;h5&gt;捕获实时流&lt;/h5&gt;
+
+&lt;h6&gt;使用Flash Media Live Encoder捕获视频&lt;/h6&gt;
+
+&lt;h6&gt;实例：自定义视频捕获应用&lt;/h6&gt;
+
+&lt;h5&gt;添加DVR特征&lt;/h5&gt;
+
+&lt;h5&gt;添加元数据&lt;/h5&gt;
+
+&lt;h6&gt;关于元数据&lt;/h6&gt;
+
+&lt;p&gt;元数据流媒体让用户有机会获得他们正在查看的信息媒体。元数据可以包含关于视频的信息,例如标题、版权信息、视频的时间,或创建日期。客户端可以使用元数据来设置宽度和高度的视频播放器&lt;/p&gt;
+
+&lt;h6&gt;向实时流发送元数据&lt;/h6&gt;
+
+&lt;p&gt;客户端中使用send发送元数据&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;NetStream.send(@setDataFrame, onMetaData [, metadata]);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;onMetaData参数指定回调函数。你可以使用多个数据关键帧，每个数据关键帧必须使用唯一的监听器(如onMetaData1..)&lt;/p&gt;
+
+&lt;p&gt;metadata参数可以是Object或Array类型。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;var metaData:Object = new Object();
+metaData.title = &amp;quot;myStream&amp;quot;;
+metaData.width = 400;
+metaData.height = 200;
+ns.send(&amp;quot;@setDataFrame&amp;quot;, &amp;quot;onMetaData&amp;quot;, metaData);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;清空元数据：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;ns.send(&amp;quot;@clearDataFrame&amp;quot;, &amp;quot;onMetaData&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;为了在服务器端添加元数据，使用以下代码：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;s = Stream.get(&amp;quot;myStream&amp;quot;);
+metaData = new Object();
+metaData.title = &amp;quot;myStream&amp;quot;;
+metaData.width = 400;
+metaData.height = 200;
+s.send(&amp;quot;@setDataFrame&amp;quot;, &amp;quot;onMetaData&amp;quot;, metaData);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;服务器端情况元数据:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;.send(&amp;quot;@clearDataFrame&amp;quot;, &amp;quot;onMetaData&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h6&gt;检索元数据&lt;/h6&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;netstream.client = this;
+
+function onMetaData(info:Object):void {
+    var key:String;
+    for (key in info) {
+        trace(key + &amp;quot;: &amp;quot; + info[key]);
+    }
+}   
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h6&gt;实例：向实时视频添加元数据&lt;/h6&gt;
+
+&lt;p&gt;这个客户端应用有以下功能：&lt;/p&gt;
+
+&lt;p&gt;· 捕获和编码视频&lt;/p&gt;
+
+&lt;p&gt;· 显示捕获的视频&lt;/p&gt;
+
+&lt;p&gt;· 流从客户端到服务器端&lt;/p&gt;
+
+&lt;p&gt;· 发送元数据到服务器，客户端播放流时服务器发送元数据到客户端&lt;/p&gt;
+
+&lt;p&gt;· 显示来自服务器的流&lt;/p&gt;
+
+&lt;p&gt;· 显示元数据&lt;/p&gt;
+
+&lt;p&gt;参考 nstall/documentation/smaples/metadata&lt;/p&gt;
+
+&lt;h6&gt;Flash Media Live Encoder 元数据属性&lt;/h6&gt;
+
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;元数据属性名&lt;/td&gt;
+        &lt;td&gt;数据类型&lt;/td&gt;
+        &lt;td&gt;描述&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;lastkeyframetimestamp&lt;/td&gt;
+        &lt;td&gt;Number&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;width&lt;/td&gt;
+        &lt;td&gt;Number&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;height&lt;/td&gt;
+        &lt;td&gt;Number&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;videodatarate&lt;/td&gt;
+        &lt;td&gt;Number&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;audiodatarate&lt;/td&gt;
+        &lt;td&gt;Number&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;framerate&lt;/td&gt;
+        &lt;td&gt;Number&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;creationdate&lt;/td&gt;
+        &lt;td&gt;String&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;createdby&lt;/td&gt;
+        &lt;td&gt;String&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;audiocodecid&lt;/td&gt;
+        &lt;td&gt;Number&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;videocodecid&lt;/td&gt;
+        &lt;td&gt;Number&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;audiodelay&lt;/td&gt;
+        &lt;td&gt;Number&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;h6&gt;被录制的实时流的元数据属性&lt;/h6&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;ns.publish(&amp;quot;myCamera&amp;quot;, &amp;quot;record&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;如果你录制流，AMS会添加如下表格中的元数据：&lt;/p&gt;
+
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;元数据属性名&lt;/td&gt;
+        &lt;td&gt;数据类型&lt;/td&gt;
+        &lt;td&gt;描述&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;audiocodecid&lt;/td&gt;
+        &lt;td&gt;Number&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;canSeekToEnd&lt;/td&gt;
+        &lt;td&gt;Boolean&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;createdby&lt;/td&gt;
+        &lt;td&gt;String&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;duration&lt;/td&gt;
+        &lt;td&gt;Number&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;creationdate&lt;/td&gt;
+        &lt;td&gt;String&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;videocodecid&lt;/td&gt;
+        &lt;td&gt;Number&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    
+&lt;/table&gt;
+
+&lt;h5&gt;捕获来自Flash Media Live Encoder的时间码&lt;/h5&gt;
+
+&lt;h5&gt;以RAW格式发布实时流&lt;/h5&gt;
+
+&lt;h5&gt;不同服务器间的多点发布&lt;/h5&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>securing applications</title>
+   <link href="http://alonepig.github.io/fms/2014/07/07/securing-applications"/>
+   <updated>2014-07-07T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/fms/2014/07/07/securing-applications</id>
+   <content type="html"></content>
+ </entry>
+ 
+ <entry>
+   <title>developing streaming media applications</title>
+   <link href="http://alonepig.github.io/fms/2014/07/07/developing-streaming-media-applications"/>
+   <updated>2014-07-07T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/fms/2014/07/07/developing-streaming-media-applications</id>
+   <content type="html">&lt;h4&gt;开发流媒体应用&lt;/h4&gt;
+
+&lt;h5&gt;连接服务器&lt;/h5&gt;
+
+&lt;h5&gt;管理连接&lt;/h5&gt;
+
+&lt;h5&gt;流媒体文件&lt;/h5&gt;
+
+&lt;h5&gt;检查视频文件&lt;/h5&gt;
+
+&lt;h5&gt;处理错误&lt;/h5&gt;
+
+&lt;h5&gt;使用播放列表&lt;/h5&gt;
+
+&lt;h5&gt;动态流&lt;/h5&gt;
+
+&lt;h5&gt;当连接断掉时重连流&lt;/h5&gt;
+
+&lt;h6&gt;重连ActionScript API&lt;/h6&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;NetStream.attach(connection:NetConnection)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;NetStreamPlayTransitions.RESUME&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;NetStreamPlayTransitions.APPEND&lt;em&gt;AND&lt;/em&gt;WAIT&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;NetConnection.Connect.Closed&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;使用这个事件来重连流&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;NetConnection.Connect.NetworkChange&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;通知客户端网络连接改变了。&lt;/p&gt;
+
+&lt;h6&gt;使用ActionScript API重连流&lt;/h6&gt;
+
+&lt;p&gt;当NetConnection由于网络改变关闭，流会使用存在的缓存播放一会。同时，客户端代码重连服务器来恢复播放流。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;重连单一流&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;调用NetConnection.call()连接服务器A&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;创建一个NetStream。设置NetStream.bufferTime使得其有足够的数据在连接断开后播放一会儿。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;调用NetStream.play2()，使用NetStreamPlayTransitions.RESET来播放&amp;quot;myStream&amp;quot;。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;监听NetConnection的&amp;quot;NetConnection.Connect.Closed&amp;quot;事件，如果流断掉了则重连服务器。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;调用NetStream.attach(connection:NetConnection)函数使NetStream附加到新的连接上。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;调用NetStream.play2()，使用NetStreamPlayTransitions.RESUME来播放&amp;quot;myStream&amp;quot;。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;如果你想重连的话，不要调用NetConnection.close()或NetStream.close()。&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;重连播放列表&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;服务器负载均衡&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;调用NetStream.attch(connection:NetConnection)来连接其他的服务器&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;成功连接后，调用以前连接上的NetConnection.close()，防止数据泄露。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;调用 NetStream.play2() 并设置 NetStreamPlayOptions.transition 的值以执行恢复。将其余的 NetStreamPlayOptions 属性设置为最初调用 NetStream.play() 或 NetStream.play2() 时使用的值以启动流。&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;监控网络接口改变&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;监控移动设备上的连接&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;监控RTMPS或RTMPT连接&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h6&gt;授权插件事件和属性&lt;/h6&gt;
+
+&lt;h6&gt;服务器日志&lt;/h6&gt;
+
+&lt;p&gt;下面的事件在流重连时会写入AMS日志文件中：
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;事件&lt;/td&gt;
+        &lt;td&gt;目录&lt;/td&gt;
+        &lt;td&gt;描述&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;connect&lt;/td&gt;
+        &lt;td&gt;session&lt;/td&gt;
+        &lt;td&gt;重新建立连接后&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;play&lt;/td&gt;
+        &lt;td&gt;stream&lt;/td&gt;
+        &lt;td&gt;流恢复播放&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;stop&lt;/td&gt;
+        &lt;td&gt;stream&lt;/td&gt;
+        &lt;td&gt;流停止播放&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;&lt;/p&gt;
+
+&lt;h5&gt;快速切换流&lt;/h5&gt;
+
+&lt;h5&gt;快速搜索&lt;/h5&gt;
+
+&lt;h5&gt;检测带宽&lt;/h5&gt;
+
+&lt;h6&gt;ActionScript3.0 本地带宽检测&lt;/h6&gt;
+
+&lt;p&gt;NetConnect.call(&amp;quot;checkBandWidth&amp;quot;, null);&lt;/p&gt;
+
+&lt;p&gt;Application.xml允许带宽检测&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;lt;BandwidthDetection enabled=&amp;quot;true&amp;quot;&amp;gt;
+&amp;lt;MaxRate&amp;gt;-1&amp;lt;/MaxRate&amp;gt;
+&amp;lt;DataSize&amp;gt;16384&amp;lt;/DataSize&amp;gt;
+&amp;lt;MaxWait&amp;gt;2&amp;lt;/MaxWait&amp;gt;
+&amp;lt;/BandwidthDetection&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;监听事件，必须实现onBWCheck和onBWDone两个函数：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;class Client {
+    public function onBWCheck(... rest):Number {
+        return 0;
+    }
+    public function onBWDone(... rest):void {
+        var bandwidthTotal:Number;
+        if (rest.length &amp;gt; 0){
+            bandwidthTotal = rest[0];
+            // This code runs
+            // when the bandwidth check is complete.
+            trace(&amp;quot;bandwidth = &amp;quot; + bandwidthTotal + &amp;quot; Kbps.&amp;quot;);
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;onBWCheck()函数是必须的。该函数返回一个值，即使是0，也表明告诉服务器客户端接收到了数据，你可以调用onBWCheck()了。&lt;/p&gt;
+
+&lt;p&gt;服务器会在检测带宽之后调用onBWDone()函数。它有四个参数。第一个表示带宽(Kbps)。第二个、第三个还没用到，第四个表示延迟&lt;/p&gt;
+
+&lt;h6&gt;服务器端初始化带宽检测&lt;/h6&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;application.onConnect = function (clientObj){
+    this.acceptConnection(clientObj);
+    clientObj.checkBandwidth();
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;不需要在客户端手动调用checkBandwidth()函数&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;在应用级别禁用带宽检测&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;修改配置文件rootinstall/applications/applicationname/Application.xml&lt;/p&gt;
+
+&lt;p&gt;&lt;Application&gt;
+    &lt;Client&gt;
+        &lt;BandwidthDetection enabled=&quot;false&quot;&gt;
+        &lt;/BandwidthDetection&gt;
+    &lt;/Client&gt;
+&lt;/Application&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;修改rootinstall/conf/&lt;em&gt;defaultRoot/&lt;/em&gt;defaultVHost/Application.xml&lt;/p&gt;
+
+&lt;p&gt;&lt;Application&gt;
+    ...
+    &lt;Client&gt;
+        ...
+        &lt;BandwidthDetection enabled=&quot;false&quot;&gt;
+        &lt;/BandwidthDetection&gt;
+        ...
+    &lt;/Client&gt;
+    ...
+&lt;/Application&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5&gt;检测流长度&lt;/h5&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>developing social applications</title>
+   <link href="http://alonepig.github.io/fms/2014/07/07/developing-social-applications"/>
+   <updated>2014-07-07T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/fms/2014/07/07/developing-social-applications</id>
+   <content type="html"></content>
+ </entry>
+ 
+ <entry>
+   <title>building peer assisted networking applications</title>
+   <link href="http://alonepig.github.io/fms/2014/07/07/building-peer-assisted-networking-applications"/>
+   <updated>2014-07-07T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/fms/2014/07/07/building-peer-assisted-networking-applications</id>
+   <content type="html"></content>
+ </entry>
+ 
+ <entry>
+   <title>getting started developing applications</title>
+   <link href="http://alonepig.github.io/fms/2014/07/04/getting-started-developing-applications"/>
+   <updated>2014-07-04T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/fms/2014/07/04/getting-started-developing-applications</id>
+   <content type="html">&lt;h4&gt;开始开发应用&lt;/h4&gt;
+
+&lt;h5&gt;应用结构&lt;/h5&gt;
+
+&lt;p&gt;典型的AMS应用有以下部分：&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Client&lt;/strong&gt; 客户端显示用户界面，如控制视频的播放、停止。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Client-side ActionScript&lt;/strong&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Video or audio files&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Camera or Microphone&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Server-Side ActionScript&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h5&gt;设置开发环境&lt;/h5&gt;
+
+&lt;p&gt;你可以使用任何版本的AMS来开发和测试应用。为了写客户端代码，可以使用Flash Professional，Flash Builder等。
+任何文本编辑器写服务器端代码。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;设置开发环境:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;1、安装AMS&lt;/p&gt;
+
+&lt;p&gt;2、验证是否安装成功&lt;/p&gt;
+
+&lt;p&gt;3、安装Flash Professional或Flash Builder或Flex SDK&lt;/p&gt;
+
+&lt;p&gt;4、捕获和编码视频&lt;/p&gt;
+
+&lt;p&gt;a 连接一个摄像头或麦克风&lt;/p&gt;
+
+&lt;p&gt;b 下载和安装Adobe Media Live Encoder&lt;/p&gt;
+
+&lt;h5&gt;实例：Hello World应用&lt;/h5&gt;
+
+&lt;h6&gt;概要&lt;/h6&gt;
+
+&lt;p&gt;&lt;strong&gt;提示：&lt;/strong&gt; 以下内容不能在Adobe Media Streaming Server中使用，因为你不能在这个版本上写服务器端代码&lt;/p&gt;
+
+&lt;p&gt;这个例子展示了客户端的简单通讯。实例文件在rootinstall/documentation/samples/Hello World文件夹。&lt;/p&gt;
+
+&lt;h6&gt;写用户接口&lt;/h6&gt;
+
+&lt;h6&gt;写客户端脚本&lt;/h6&gt;
+
+&lt;p&gt;package {
+import flash.display.MovieClip;
+import flash.net.Responder;
+import flash.net.NetConnection;
+import flash.events.NetStatusEvent;
+import flash.events.MouseEvent;
+public class HelloWorld extends MovieClip {&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;public function HelloWorld() {
+    textLbl.text = &amp;quot;&amp;quot;;
+    connectBtn.label = &amp;quot;Connect&amp;quot;;
+    connectBtn.addEventListener(MouseEvent.CLICK, connectHandler);
+}
+
+public function connectHandler(event:MouseEvent):void {
+    if (connectBtn.label == &amp;quot;Connect&amp;quot;) {
+        trace(&amp;quot;Connecting...&amp;quot;);
+        nc = new NetConnection();
+        // Connect to the server.
+        nc.connect(&amp;quot;rtmp://localhost/HelloWorld&amp;quot;);
+        // Call the server&amp;#39;s client function serverHelloMsg, in HelloWorld.asc.
+        nc.call(&amp;quot;serverHelloMsg&amp;quot;, myResponder, &amp;quot;World&amp;quot;);
+        connectBtn.label = &amp;quot;Disconnect&amp;quot;;
+    } else {
+        trace(&amp;quot;Disconnecting...&amp;quot;);
+        // Close the connection.
+        nc.close();
+        connectBtn.label = &amp;quot;Connect&amp;quot;;
+        textLbl.text = &amp;quot;&amp;quot;;
+    }
+}
+
+private function onReply(result:Object):void {
+    trace(&amp;quot;onReply received value: &amp;quot; + result);
+    textLbl.text = String(result);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;}
+}&lt;/p&gt;
+
+&lt;h6&gt;写服务器端脚本&lt;/h6&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;application.onConnect = function( client ) {
+    client.serverHelloMsg = function( helloStr ) {
+    return &amp;quot;Hello, &amp;quot; + helloStr + &amp;quot;!&amp;quot;;
+}
+application.acceptConnection( client );
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h6&gt;编译和运行应用&lt;/h6&gt;
+
+&lt;p&gt;1、运行服务器&lt;/p&gt;
+
+&lt;p&gt;2、编译客户端文件&lt;/p&gt;
+
+&lt;p&gt;3、测试。&lt;/p&gt;
+
+&lt;h5&gt;创建应用的概要&lt;/h5&gt;
+
+&lt;h6&gt;客户端代码&lt;/h6&gt;
+
+&lt;h6&gt;服务器端代码&lt;/h6&gt;
+
+&lt;p&gt;一般来说，有如下需求的时候服务器端需要写代码：&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Authenticate clients&lt;/strong&gt; 权限验证&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Implement connection logic&lt;/strong&gt; 实现连接的逻辑&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Update clients&lt;/strong&gt; 通过调用远程方法来更新客户端的共享数据&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Connect to other server&lt;/strong&gt;  向某个应用或数据库调用web service或socket&lt;/p&gt;
+
+&lt;p&gt;服务器端的代码入口为main.asc或yourApplicationName.asc。&lt;/p&gt;
+
+&lt;p&gt;该文件应在应用的主目录中，或scripts子目录中。&lt;/p&gt;
+
+&lt;p&gt;rootinstall/applications/appName&lt;/p&gt;
+
+&lt;p&gt;rootinstall/applications/appName/scripts&lt;/p&gt;
+
+&lt;p&gt;默认情况下，应用文件夹在安装目录的的applications文件中，也可以在fms.ini或Vhost.xml文件中设置VHOST.APPSDIR。
+在Vhost.xml文件中，编辑AppsDir。&lt;/p&gt;
+
+&lt;h5&gt;测试应用&lt;/h5&gt;
+
+&lt;h6&gt;测试和调试客户端脚本&lt;/h6&gt;
+
+&lt;h6&gt;测试和调试服务器端脚本&lt;/h6&gt;
+
+&lt;p&gt;使用trace()，输出相关数据。日志信息也会保存在rootinstall/logs/&lt;em&gt;defaultVHost&lt;/em&gt;/yourApplicationName/yourInstanceName/application.xx.log文件中&lt;/p&gt;
+
+&lt;p&gt;使用管理员控制台。修改.asc文件之后，需要重启应用才会生效。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;使用管理员控制台调试&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;可调式行和可调试会话数由Application.xml配置文件的AllowDebugDefault和MaxPendingDebugConnections决定。默认情况下，是不可调试的。
+也可以使用服务器端代码开启调试：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;application.allowDebug = true;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h5&gt;部署应用&lt;/h5&gt;
+
+&lt;h6&gt;注册应用&lt;/h6&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;myNetConnection.connect(&amp;quot;rtmp://fms.examples.com/myApplication&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h6&gt;复制服务器端脚本文件到服务器&lt;/h6&gt;
+
+&lt;h6&gt;复制多媒体文件&lt;/h6&gt;
+
+&lt;h6&gt;复制客户端文件到web服务器&lt;/h6&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>communication between client and server</title>
+   <link href="http://alonepig.github.io/fms/2014/07/04/communication-between-client-and-server"/>
+   <updated>2014-07-04T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/fms/2014/07/04/communication-between-client-and-server</id>
+   <content type="html">&lt;h4&gt;一、客户端呼叫服务器&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;服务器main.asc代码：&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;Client.prototype.serverFun1 = function(value)
+{
+    return &amp;quot;value=&amp;quot; +value;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;客户端代码：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;
+&lt;mx:Application xmlns:mx=&quot;http://www.adobe.com/2006/mxml&quot; layout=&quot;absolute&quot; 
+    fontSize=&quot;12&quot; creationComplete=&quot;init()&quot;&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;lt;mx:Script&amp;gt;
+    &amp;lt;![CDATA[    
+    import mx.controls.Alert;
+
+    private var netConnection:NetConnection;
+    private var responder:Responder;
+    private var appServer:String=&amp;quot;rtmp://127.0.0.1/TestCode1&amp;quot;;
+
+    private function init():void
+    {
+        netConnection = new NetConnection();
+        netConnection.connect(appServer);
+        netConnection.client=this;
+    }
+
+    private function onClick(evt:MouseEvent):void
+    {
+        responder = new Responder(OkFun,ErrorFun);
+        netConnection.call(&amp;quot;serverFun1&amp;quot;,responder,&amp;quot;va&amp;quot;);
+    }
+
+    private function OkFun(re:String):void
+    {
+        Alert.show(re);
+    }
+
+    private function ErrorFun(info:Object):void
+    {
+        Alert.show( &amp;quot;error: &amp;quot; + info.description );
+        Alert.show( &amp;quot;error: &amp;quot; + info.code );
+    }
+
+    ]]&amp;gt;
+&amp;lt;/mx:Script&amp;gt;
+&amp;lt;mx:Button x=&amp;quot;43&amp;quot; y=&amp;quot;65&amp;quot; label=&amp;quot;调用服务器&amp;quot; id=&amp;quot;btn&amp;quot; click=&amp;quot;onClick(event)&amp;quot;/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;/mx:Application&quot;&gt;/mx:Application&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;代码说明：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Responder 类提供了一个对象，该对象是NetConnection.call()中回调函数。&lt;/p&gt;
+
+&lt;p&gt;NetConnection.call的参数分别表示：服务器端方法名、处理服务器的返回值函数(可选对象)、传递给服务器的参数&lt;/p&gt;
+
+&lt;h4&gt;二、服务器端呼叫指定的客户端&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;服务器main.asc代码：&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;var handlerObject = function() {};
+
+handlerObject.prototype.onResult = function( result )
+{
+    trace( result );
+};
+
+handlerObject.prototype.onStatus = function( info )
+{
+    trace( &amp;quot;error: &amp;quot; + info.description );
+    trace( &amp;quot;error: &amp;quot; + info.code );
+};
+
+application.onConnect = function( client )
+{
+    this.acceptConnection( client );
+    var msg = &amp;quot;Hello client, your IP is: &amp;quot; + client.ip;
+    client.call( &amp;quot;asyncServerCall&amp;quot;, new handlerObject, msg );
+};
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;客户端代码：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;
+&lt;mx:Application xmlns:mx=&quot;http://www.adobe.com/2006/mxml&quot; layout=&quot;absolute&quot; 
+    fontSize=&quot;12&quot; creationComplete=&quot;init()&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;mx:Script&quot;&gt;mx:Script&lt;/a&gt;
+    &amp;lt;![CDATA[
+        import mx.controls.Alert;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;    private var netConnection:NetConnection;
+    private var appServer:String=&amp;quot;rtmp://192.168.0.249/TestCode1&amp;quot;;
+
+    private function init():void
+    {
+        netConnection = new NetConnection();
+        netConnection.connect(appServer);
+        netConnection.client=this;
+    }
+
+    public function asyncServerCall( msg:String ) : String 
+       {
+           Alert.show( msg );
+           return &amp;quot;I got your message Thanks Server!&amp;quot;;
+       }
+
+]]&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;/mx:Script&quot;&gt;/mx:Script&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/mx:Application&quot;&gt;/mx:Application&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;代码说明：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Client.call(methodName, [resultObj, [p1, ..., pN]]) 在Flash客户机上异步的执行一个方法，并把值从Flash客户机返回到服务器。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;参数：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;resultObj：客户端的方法名&lt;/p&gt;
+
+&lt;p&gt;[resultObj, [p1, ..., pN]]： 当发送者期待一个来自客户机的返回值时需要这个参数。如果参数被传递但没有返回值被期待的话，则传递值null。结果对象可以是你定义的任何对象，并且，为了有用起见，这个结果对象应该有两个方法-onResult和onStatus，这些方法会在结果到达时被调用。如果远端方法的调用是成功的，则resultObj.onResult会被调用；否则，resultObj.onStatus被触发。&lt;/p&gt;
+
+&lt;h4&gt;三、服务端呼叫所有客户端(广播)&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;服务器main.asc代码：&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;application.onConnect = function(currentClient)
+{
+    application.acceptConnection(currentClient);
+    application.broadcastMsg(&amp;quot;showServerMsg&amp;quot;,application.clients.length );
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;客户端代码：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;
+&lt;mx:Application xmlns:mx=&quot;http://www.adobe.com/2006/mxml&quot; layout=&quot;absolute&quot;
+ fontSize=&quot;12&quot; creationComplete=&quot;init()&quot;&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;lt;mx:Script&amp;gt;
+    &amp;lt;![CDATA[
+
+    import mx.controls.Alert;
+
+    private var netConnection:NetConnection;
+    private var appServer:String=&amp;quot;rtmp://192.168.0.249/TestCode1&amp;quot;;
+
+    private function init():void
+    {
+        netConnection = new NetConnection();
+        netConnection.connect(appServer);
+        netConnection.client=this;
+    }
+
+    public function showServerMsg( n:Number ) :void
+       {
+           var msg:String =&amp;quot;已经有&amp;quot;+n.toString()+&amp;quot;位用户连接&amp;quot;;
+           Alert.show( msg );
+       }
+
+    ]]&amp;gt;
+&amp;lt;/mx:Script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;/mx:Application&quot;&gt;/mx:Application&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;代码说明：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Application.broadcastMsg()：把一条消息广播到所有连接的客户机，给每个客户机广播。
+这个方法相当于遍历Application.clients数组并在每一个独立的客户机上调用Client.call()，但这个方法的效率更高。唯一不同的是当你调用broadcastMsg()时你不能指定一个响应对象。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt; //遍历客户端列表，分别call他们
+for(var i=0;i&amp;lt;application.clients.length;i++) {
+ application.clients[i].call(&amp;quot;showServerMsg&amp;quot;，application.clients.length);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;四、服务器端呼叫服务器端&lt;/h4&gt;
+
+&lt;p&gt;NetConnection.call(methodName, [resultObj, p1, ..., pN])&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>ams_config_admin_guide</title>
+   <link href="http://alonepig.github.io/fms/2014/07/03/ams_config_admin_guide"/>
+   <updated>2014-07-03T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/fms/2014/07/03/ams_config_admin_guide</id>
+   <content type="html">&lt;h4&gt;Adobe Media Server Configuration and Administration Guide&lt;/h4&gt;
+
+&lt;h5&gt;第一章、部署服务器&lt;/h5&gt;
+
+&lt;h6&gt;配置端口&lt;/h6&gt;
+
+&lt;p&gt;Adobe Media Server默认端口为1935和80.Adobe Media 管理员服务器端口为1111。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;端口要求&lt;/strong&gt;
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;端口号&lt;/td&gt;
+        &lt;td&gt;协议&lt;/td&gt;
+        &lt;td&gt;传输&lt;/td&gt;
+        &lt;td&gt;描述&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;1935&lt;/td&gt;
+        &lt;td&gt;TRMP/E&lt;/td&gt;
+        &lt;td&gt;TCP&lt;/td&gt;
+        &lt;td&gt;默认&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;1935&lt;/td&gt;
+        &lt;td&gt;RTMFP&lt;/td&gt;
+        &lt;td&gt;UDP&lt;/td&gt;
+        &lt;td&gt;默认&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;80&lt;/td&gt;
+        &lt;td&gt;RTMP/E,RTMTP,HTTP&lt;/td&gt;
+        &lt;td&gt;TCP&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;19350-65535&lt;/td&gt;
+        &lt;td&gt;RTMFP&lt;/td&gt;
+        &lt;td&gt;UDP&lt;/td&gt;
+        &lt;td&gt;
+        默认情况，客户端使用RTMFP协议，在1935和19350-65535端口上连接AMS。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;    &amp;lt;/td&amp;gt;
+&amp;lt;/tr&amp;gt;
+&amp;lt;tr&amp;gt;
+    &amp;lt;td&amp;gt;8134&amp;lt;/td&amp;gt;
+    &amp;lt;td&amp;gt;HTTP&amp;lt;/td&amp;gt;
+    &amp;lt;td&amp;gt;TCP&amp;lt;/td&amp;gt;
+    &amp;lt;td&amp;gt;&amp;lt;/td&amp;gt;
+&amp;lt;/tr&amp;gt;
+&amp;lt;tr&amp;gt;
+    &amp;lt;td&amp;gt;1111&amp;lt;/td&amp;gt;
+    &amp;lt;td&amp;gt;RTMP,HTTP&amp;lt;/td&amp;gt;
+    &amp;lt;td&amp;gt;TCP&amp;lt;/td&amp;gt;
+    &amp;lt;td&amp;gt;默认情况下，Flash Player，HTML客户端连接AMS管理员服务器的端口。&amp;lt;/td&amp;gt;
+&amp;lt;/tr&amp;gt;
+&amp;lt;tr&amp;gt;
+    &amp;lt;td&amp;gt;443&amp;lt;/td&amp;gt;
+    &amp;lt;td&amp;gt;RTMPS&amp;lt;/td&amp;gt;
+    &amp;lt;td&amp;gt;TCP&amp;lt;/td&amp;gt;
+    &amp;lt;td&amp;gt;&amp;lt;/td&amp;gt;
+&amp;lt;/tr&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;/table&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;配置IP地址和端口&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;1、打开rootinstall/conf/ams.ini。&lt;/p&gt;
+
+&lt;p&gt;2、编辑ADAPTOR.HOSTPORT参数，默认值为：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;ADAPTOR.HOSTPORT = :1935, 80
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;3、保存文件重启服务器。&lt;/p&gt;
+
+&lt;p&gt;Adaptor.xml配置文件中Adaptor/HostPortList/HostPort标签中使用ADAPTOR.HOSTPORT参数：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;lt;HostPort name=&amp;quot;edge1&amp;quot; ctl_channel=&amp;quot;localhost:19350&amp;quot;
+rtmfp=&amp;quot;${ADAPTOR.HOSTPORT}&amp;quot;&amp;gt;${ADAPTOR.HOSTPORT}&amp;lt;/HostPort&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h6&gt;为RTMFP配置IP地址和端口&lt;/h6&gt;
+
+&lt;p&gt;&lt;strong&gt;RTMFP连接流&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;1、RTMFP客户端在1935端口上连接AMS服务器进行UDP传输。&lt;/p&gt;
+
+&lt;p&gt;重要：RTMFP和RTMP/E 客户端使用同样的端口连接AMS。但，RTMFP使用UDP，RTMP/E使用TCP。&lt;/p&gt;
+
+&lt;p&gt;2、The amsedge process redirects the connection to an amscore process listening on a UDP port in the range 19350-65535&lt;/p&gt;
+
+&lt;p&gt;每一个amscore进程有自己的RTMFP监听器。每一个RTMFP监听器绑定一个UDP端口。当amscore进程开始时，监听器绑定一下可用的UDP端口(Adaptor.xml中Adaptor/RTMFP/Core?hostPortList/HostPort标签指定)。
+使用的端口的数量取决于amscore进程使用的数量。amscore进程使用的数量取决于应用程序实例是如何分布的。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;配置RTMFP重定向端口&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;1、打开rootinstall/conf/&lt;em&gt;defaultRoot&lt;/em&gt;/Adaptor.xml文件&lt;/p&gt;
+
+&lt;p&gt;2、编辑HostPort标签，默认情况为：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;lt;Adaptor&amp;gt;
+    ...
+    &amp;lt;RTMFP&amp;gt;
+    ...
+        &amp;lt;Core&amp;gt;
+            &amp;lt;HostPortList&amp;gt;
+                &amp;lt;HostPort&amp;gt;:19350-65535&amp;lt;/HostPort&amp;gt;
+            &amp;lt;/HostPortList&amp;gt;
+        &amp;lt;/Core&amp;gt;
+    &amp;lt;/RTMFP&amp;gt;
+&amp;lt;/Adaptor&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;3、If the RTMFP adaptor is behind a NAT, specify the in-front-of-NAT IP address that clients connect to in the public attribute of the HostPort element. The following example uses 12.34.56.78 for the in-front-of-NAT IP address:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;lt;HostPort public=&amp;quot;12.34.56.78:19350-65535&amp;quot;&amp;gt;:19350-65535&amp;lt;/HostPort&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;4、保存文件。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;关于HostPort&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;HostPort标签的值为以下格式：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;lt;value-of-HostPort&amp;gt; := [&amp;lt;host-port-range&amp;gt; [; &amp;lt;host-port-range&amp;gt; [; ... ] ] ]
+&amp;lt;host-port-range&amp;gt; := [&amp;lt;host&amp;gt;][:&amp;lt;port-range&amp;gt;[, &amp;lt;port-range&amp;gt; ] ]
+&amp;lt;port-range&amp;gt; := &amp;lt;start-port&amp;gt;[ - &amp;lt;end-port&amp;gt; ]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;下面的例子中，每一个监听器有两个端口集合：一个端口来自host1:2000-2010或host2:3000-3010，一个来自host2:5000或host2:2010-4000。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;配置服务器在NAT后的公共的IP地址&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;如果RTMFP适配器在NAT之后，指定客户端连接的HostPort标签public属性来设置in-front-of-NAT IP地址。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;lt;HostPort public=&amp;quot;&amp;lt;in-front-of-NAT-server-IP&amp;gt;:19350-65535&amp;quot;&amp;gt;:19350-65535&amp;lt;/HostPort&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;如果你不指定public属性，服务器不会知道in-front-of-NAT 地址。amdedge进程会重定向客户端到正确的端口，但它会告诉客户端behind-NAT地址，这个地址客户端不能接触。&lt;/p&gt;
+
+&lt;p&gt;Each HostPort element can specify a public address that corresponds to the specified port. This is the address that is advertised to clients for the given HostPort. To advertise an address, specify a value for the public attribute of the HostPort element. The public attribute has the same format as the HostPort element. The number of ports specified by the public attribute must equal the number of ports specified by the HostPort element. If the core listens on the n-th port of the HostPort value, the n-th port of the public attribute is advertised as its value.&lt;/p&gt;
+
+&lt;p&gt;例子中HostPortList使用public属性，如果核心监听器在host1:1005，它的公共广告地址在host2:4005。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;NAT和防火墙穿越&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;NAT(网络地址转换)和防火墙过滤可以阻止点对点的连接。在内部网应用程序中,您为了对整个网络进行控制,执行以下操作以确保客户可以创建点对点连接:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;允许在任何防火墙进行UDP通讯&lt;/li&gt;
+&lt;li&gt;使用IFTF BEHAVE工作组推荐的NAT或防火墙&lt;/li&gt;
+&lt;li&gt;Use the TURN proxy support in Flash Player to send traffic to a proxy in a DMZ that can comply with the previous recommendations. 
+See &lt;a href=&quot;http://www.adobe.com/devnet/adobe-media-server/articles/real-time-collaboration.html&quot;&gt;Best practices for real-time collaboration using Adobe Media Server.&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In an Internet application, the application developer must choose how to handle cases in which a firewall or NAT blocks a direct peer-to-peer connection. To create an application that works for connections that aren’t peer-to-peer, create a protocol fallback to client-server RTMP and/or RTMPT. To create an application that never relays media through the server (even though some clients may not see the media), don’t create a protocol fallback&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;理解NAT的类型&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Cone&lt;/strong&gt;    当想所有节点说话时重用同样的地址和端口&lt;/p&gt;
+
+&lt;p&gt;多 IP地址，对称的    向一个新节点说话时，使用新地址和端口&lt;/p&gt;
+
+&lt;p&gt;单一 IP地址，对称的 向一个新节点说话时，使用相同的地址和端口&lt;/p&gt;
+
+&lt;p&gt;理解NAT和防火墙的过滤行为很重要：&lt;/p&gt;
+
+&lt;p&gt;None    没有过滤功能的叫&amp;quot;full cone&amp;quot;&lt;/p&gt;
+
+&lt;p&gt;Address-restricted  节点限制在已经使用过的地址&lt;/p&gt;
+
+&lt;p&gt;Address and port-restricted 节点限制在已经使用过的地址和端口&lt;/p&gt;
+
+&lt;p&gt;In addition, some NAT and firewall behaviors aren&amp;#39;t easily defined. For example, a NAT could act as a symmetric NAT that preserves port numbers. When it runs out of resources, it could switch and act as a cone NAT.&lt;/p&gt;
+
+&lt;p&gt;In another example, a NAT could act as one type of NAT for the first client that connected to a server. It could act as a different type of NAT for the second client that tried to connect to the same server. In this case, a simple analysis can fail to predict whether a client can make a peer-to-peer connection.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;RTMFP连接检查&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;RTMFP发明家马修·考夫曼主持一个名为RTMFP连通性检查程序的网站http://cc.rtmfp.net/。使用这个网站,尝试确定一个客户机在一个特定的网络可以创建一个点对点连接。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;为HTTP流配置端口&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h6&gt;负载平衡&lt;/h6&gt;
+
+&lt;p&gt;&lt;strong&gt;部署服务器集群的工作流&lt;/strong&gt;&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;&lt;strong&gt;点对点网络应用的负载均衡&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h6&gt;部署边缘服务器&lt;/h6&gt;
+
+&lt;p&gt;&lt;strong&gt;部署边缘服务器的工作流&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;设置边缘服务器的缓存&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;连接到一个边缘服务器&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h6&gt;部署64位服务器&lt;/h6&gt;
+
+&lt;h5&gt;第二章、配置服务器&lt;/h5&gt;
+
+&lt;h6&gt;配置服务器虚拟映射&lt;/h6&gt;
+
+&lt;h6&gt;使用配置文件&lt;/h6&gt;
+
+&lt;h6&gt;配置性能特性&lt;/h6&gt;
+
+&lt;h6&gt;配置安全特性&lt;/h6&gt;
+
+&lt;h6&gt;执行常规配置任务&lt;/h6&gt;
+
+&lt;h6&gt;配置内容存储&lt;/h6&gt;
+
+&lt;h6&gt;配置Apache HTTP服务器&lt;/h6&gt;
+
+&lt;h6&gt;为Adobe HTTP动态流和Apple HTTP 实时流配置Apache&lt;/h6&gt;
+
+&lt;h6&gt;配置HTTP流失效备援&lt;/h6&gt;
+
+&lt;h6&gt;使用第三方的web服务器&lt;/h6&gt;
+
+&lt;h6&gt;配置差分服务(DiffServ)&lt;/h6&gt;
+
+&lt;h5&gt;第三章、使用管理员控制台&lt;/h5&gt;
+
+&lt;h6&gt;连接管理员控制台&lt;/h6&gt;
+
+&lt;h6&gt;检查应用&lt;/h6&gt;
+
+&lt;h6&gt;管理管理员&lt;/h6&gt;
+
+&lt;h6&gt;管理服务器&lt;/h6&gt;
+
+&lt;h5&gt;第四章、监控和管理日志文件&lt;/h5&gt;
+
+&lt;h6&gt;使用日志文件&lt;/h6&gt;
+
+&lt;h6&gt;访问日志&lt;/h6&gt;
+
+&lt;h6&gt;应用日志&lt;/h6&gt;
+
+&lt;h6&gt;诊断日志&lt;/h6&gt;
+
+&lt;h5&gt;第五章、管理服务器&lt;/h5&gt;
+
+&lt;h6&gt;开始和停止服务器&lt;/h6&gt;
+
+&lt;h6&gt;检查服务器状态&lt;/h6&gt;
+
+&lt;h6&gt;检查视频文件&lt;/h6&gt;
+
+&lt;h6&gt;在Linux上管理服务器&lt;/h6&gt;
+
+&lt;h6&gt;Scramble tool&lt;/h6&gt;
+
+&lt;h5&gt;第六章、使用管理员API&lt;/h5&gt;
+
+&lt;h6&gt;使用管理员API工作&lt;/h6&gt;
+
+&lt;h5&gt;第七章、XML配置文件参考&lt;/h5&gt;
+
+&lt;h6&gt;配置文件的版本从4.5到5.0.1发生的改变&lt;/h6&gt;
+
+&lt;h6&gt;配置文件的版本从4.0到4.5发生的改变&lt;/h6&gt;
+
+&lt;h6&gt;Adaptor.xml文件&lt;/h6&gt;
+
+&lt;h6&gt;Application.xml文件&lt;/h6&gt;
+
+&lt;h6&gt;Logger.xml文件&lt;/h6&gt;
+
+&lt;h6&gt;Server.xml文件&lt;/h6&gt;
+
+&lt;h6&gt;Users.xml文件&lt;/h6&gt;
+
+&lt;h6&gt;VHost.xml文件&lt;/h6&gt;
+
+&lt;h5&gt;第八章、诊断日志消息&lt;/h5&gt;
+
+&lt;h6&gt;诊断日志的消息ID&lt;/h6&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>server side actionscript language reference</title>
+   <link href="http://alonepig.github.io/fms/2014/07/01/server-side-actionscript-language-reference"/>
+   <updated>2014-07-01T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/fms/2014/07/01/server-side-actionscript-language-reference</id>
+   <content type="html">&lt;h4&gt;服务器端ActionScript语言参考手册&lt;/h4&gt;
+
+&lt;h5&gt;Adobe媒体服务器服务端的APIs&lt;/h5&gt;
+
+&lt;h5&gt;全局函数&lt;/h5&gt;
+
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;函数名&lt;/td&gt;
+        &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;clearInterval()&lt;/td&gt;
+        &lt;td&gt;停止调用setInterval()&lt;/td&gt;
+    &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;getGlobal()&lt;/td&gt;
+        &lt;td&gt;当secure.asc文件装载好后提供全局对象的访问&lt;/td&gt;
+    &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;load()&lt;/td&gt;
+        &lt;td&gt;装载服务器的asc文件到main.asc文件中，方便管理，不然可能会造成main.asc过大&lt;/td&gt;
+    &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;protectedObject()&lt;/td&gt;
+        &lt;td&gt;保护一个对象的方法&lt;/td&gt;
+    &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;setAttribute()&lt;/td&gt;
+        &lt;td&gt;防止某些方法和属性被枚举、修改和删除&lt;/td&gt;
+    &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;setInterval()&lt;/td&gt;
+        &lt;td&gt;指定一个时间间隔调用某方法，直到调用clearInterval()&lt;/td&gt;
+    &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;trace()&lt;/td&gt;
+        &lt;td&gt;计算表达式并显示结果&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;strong&gt;clearInterval()&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;停止调用setInterval()方法。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;参数：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;intervalID：setInterval()方法返回的标识符。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;实例：&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;function callback(){trace(&amp;quot;interval called&amp;quot;);}
+var intervalID;
+intervalID = setInterval(callback, 1000);
+//sometime later
+clearInterval(intervalID);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;getGlobal()&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;当secure.asc文件装载好后提供全局对象的访问&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;详细&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Adobe Media Server有两个脚本执行模式：安全和普通。在安全模式下，只有secure.asc文件被装载和执行(没有其他脚本被装载)。
+getGlobal()和protectedObject()函数都只适用于安全模式。这些函数非常强大，因为它们能够完全的访问脚本环境和创建系统对象。
+一旦secure.asc被装载，服务器切换到普通脚本执行状态直到应用被卸载。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;实例：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;var global = getGlobal();&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;load()&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;装载服务器端asc或js文件到main.asc文件。被装载的文件在main.asc文件成功装载后，application.onAppStart()调用之前编译运行。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;参数：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;filename：文件名&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;实例：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;load(&amp;quot;myLoadfile.asc&amp;quot;);&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;protectObject()&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;保护一个对象的方法。只能在main.asc中使用&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;参数：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;object：保护的对象&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;详细&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;实例：&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;var sysobj = {};
+sysobj._load = load; // Hide the load function
+load = null; // Make it unavailable unpriviliged code.
+sysobj.load = function(fname){
+// User-defined code to validate/modify fname
+return this._load(fname);
+}
+// Grab the global object.
+var global = getGlobal();
+// Now protect sysobj and make it available as
+// &amp;quot;system&amp;quot; globally. Also, set its attributes
+// so that it is read-only and not deletable.
+global[&amp;quot;system&amp;quot;] = protectObject(sysobj);
+setAttributes(global, &amp;quot;system&amp;quot;, false, true, true);
+// Now add a global load() function for compatibility.
+// Make it read-only and nondeletable.
+global[&amp;quot;load&amp;quot;] = function(path){
+return system.load(path);
+}
+setAttributes(global, &amp;quot;load&amp;quot;, false, true, true);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;setAttributes(object, propName, enumerable, readonly, permanent)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;参数：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;object：一个对象&lt;/p&gt;
+
+&lt;p&gt;propName:&lt;/p&gt;
+
+&lt;p&gt;enumerable:&lt;/p&gt;
+
+&lt;p&gt;readonly:&lt;/p&gt;
+
+&lt;p&gt;permanent:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;实例：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;setInterval(function, interval [, p1, ..., pN])&lt;/strong&gt;
+&lt;strong&gt;setInterval(object.method, interval [, p1, ..., pN])&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;参数：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;function：一个对象&lt;/p&gt;
+
+&lt;p&gt;object.method:&lt;/p&gt;
+
+&lt;p&gt;[, p1, ..., pN] &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;返回结果&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;实例：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;trace()&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;参数：&lt;/strong&gt;
+expression:&lt;/p&gt;
+
+&lt;h6&gt;Application&lt;/h6&gt;
+
+&lt;p&gt;&lt;strong&gt;属性摘要&lt;/strong&gt;
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;属性&lt;/td&gt;
+        &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;application.allowDebug&lt;/td&gt;
+        &lt;td&gt;一个布尔值，是否允许管理员使用管理员API approveDebugSession()方法访问应用&lt;/td&gt;
+    &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;application.clients&lt;/td&gt;
+        &lt;td&gt;只读，所有客户端列表&lt;/td&gt;
+    &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;application.config&lt;/td&gt;
+        &lt;td&gt;提供访问Application.xml配置文件的ApplicationObject元素&lt;/td&gt;
+    &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;application.hostname&lt;/td&gt;
+        &lt;td&gt;只读，主机名&lt;/td&gt;
+    &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;application.name&lt;/td&gt;
+        &lt;td&gt;只读，应用实例的名称&lt;/td&gt;
+    &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;application.server&lt;/td&gt;
+        &lt;td&gt;只读，服务器的平台和版本&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;函数摘要&lt;/strong&gt;
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;函数&lt;/td&gt;
+        &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;application.acceptConnection()&lt;/td&gt;
+        &lt;td&gt;接收连接&lt;/td&gt;
+    &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;application.broadcastMsg()&lt;/td&gt;
+        &lt;td&gt;广播&lt;/td&gt;
+    &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;application.clearSharedObjects()&lt;/td&gt;
+        &lt;td&gt;删除共享对象&lt;/td&gt;
+    &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;application.clearStream()&lt;/td&gt;
+        &lt;td&gt;清空录制的流文件&lt;/td&gt;
+    &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;application.denyPeerLookup()&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;application.disconnect()&lt;/td&gt;
+        &lt;td&gt;终止客户端连接&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;application.gc()&lt;/td&gt;
+        &lt;td&gt;垃圾回收&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;application.getStats()&lt;/td&gt;
+        &lt;td&gt;返回一个应用的状态&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;application.redirectConnection()&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;application.registerClass()&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;application.registerProxy()&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;application.rejectConnection()&lt;/td&gt;
+        &lt;td&gt;拒绝连接&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;application.sendPeerRedirect()&lt;/td&gt;
+        &lt;td&gt;当一个节点查找一个对象节点，这个函数发送一个地址数组给对象节点&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;application.shutdown()&lt;/td&gt;
+        &lt;td&gt;卸载应用实例&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;事件监听摘要&lt;/strong&gt;
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;事件监听器&lt;/td&gt;
+        &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;application.onAppStart()&lt;/td&gt;
+        &lt;td&gt;应用装载时调用&lt;/td&gt;
+    &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;application.onAppStop()&lt;/td&gt;
+        &lt;td&gt;应用卸载时调用&lt;/td&gt;
+    &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;application.onConnect()&lt;/td&gt;
+        &lt;td&gt;客户端调用NetConnection.connect()时被调用&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;application.onConnectAccept()&lt;/td&gt;
+        &lt;td&gt;连接成功后被调用&lt;/td&gt;
+    &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;application.onConnectReject()&lt;/td&gt;
+        &lt;td&gt;连接被拒绝时调用&lt;/td&gt;
+    &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;application.onDisconnect()&lt;/td&gt;
+        &lt;td&gt;客户端断开连接时被调用&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;application.onPeerLookup()&lt;/td&gt;
+        &lt;td&gt;服务器接收查找请求是被调用&lt;/td&gt;
+    &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;application.onPublish()&lt;/td&gt;
+        &lt;td&gt;发布流时被调用&lt;/td&gt;
+    &lt;/tr&gt;
+       &lt;tr&gt;
+        &lt;td&gt;application.onStatus()&lt;/td&gt;
+        &lt;td&gt;服务器处理消息出现错误的时候被调用&lt;/td&gt;
+    &lt;/tr&gt;
+       &lt;tr&gt;
+        &lt;td&gt;application.onUnpublish()&lt;/td&gt;
+        &lt;td&gt;当一个客户端停止发布流的时候被调用&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;&lt;/p&gt;
+
+&lt;h6&gt;ByteArray&lt;/h6&gt;
+
+&lt;p&gt;服务器端的ByteArray类等于客户端的ByteArray，除了一下几种情况：&lt;/p&gt;
+
+&lt;p&gt;下面两个方法在服务器端没有被实现：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ByteArray.inflate()&lt;/li&gt;
+&lt;li&gt;ByteArray.deflate()&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;ActionScript3.0 ByteArray使用int或uint数据类型时，服务器端使用Number数据类型。&lt;/p&gt;
+
+&lt;h6&gt;Client&lt;/h6&gt;
+
+&lt;p&gt;&lt;strong&gt;属性摘要&lt;/strong&gt;
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;属性&lt;/td&gt;
+        &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Client.agent&lt;/td&gt;
+        &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Client.audioSampleAccess&lt;/td&gt;
+        &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Client.farAddress&lt;/td&gt;
+        &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Client.farID&lt;/td&gt;
+        &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Client.farNonce&lt;/td&gt;
+        &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Client.id&lt;/td&gt;
+        &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Client.ip&lt;/td&gt;
+        &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Client.nearAddress&lt;/td&gt;
+        &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Client.nearID&lt;/td&gt;
+        &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Client.nearNonce&lt;/td&gt;
+        &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Client.pageUrl&lt;/td&gt;
+        &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Client.potentialNearAddresses&lt;/td&gt;
+        &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Client.protocol&lt;/td&gt;
+        &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Client.protocolVersion&lt;/td&gt;
+        &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Client.readAccess&lt;/td&gt;
+        &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Client.referrer&lt;/td&gt;
+        &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Client.reportedAddresses&lt;/td&gt;
+        &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Client.secure&lt;/td&gt;
+        &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Client.uri&lt;/td&gt;
+        &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Client.videoSampleAccess&lt;/td&gt;
+        &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Client.virtualKey&lt;/td&gt;
+        &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Client.writeAccess&lt;/td&gt;
+        &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;函数摘要&lt;/strong&gt;
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Client.call()&lt;/td&gt;
+        &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Client.checkBandwidth()&lt;/td&gt;
+        &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Client.getbandwidthLimit()&lt;/td&gt;
+        &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Client.getStats()&lt;/td&gt;
+        &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Client.introducePeer()&lt;/td&gt;
+        &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Client.ping()&lt;/td&gt;
+        &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Client.remoteMethod()&lt;/td&gt;
+        &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Client.__resolve()&lt;/td&gt;
+        &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Client.setBandwidthLimit()&lt;/td&gt;
+        &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;事件摘要&lt;/strong&gt;
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;函数&lt;/td&gt;
+        &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Client.onFarAddressChange()&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Client.onGroupLeave&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Client.onGroupJoin&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Client.onReportedAddressChange()&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;&lt;/p&gt;
+
+&lt;h6&gt;File&lt;/h6&gt;
+
+&lt;h6&gt;GroupSpecifier&lt;/h6&gt;
+
+&lt;h6&gt;GroupControl&lt;/h6&gt;
+
+&lt;h6&gt;LoadVars&lt;/h6&gt;
+
+&lt;h6&gt;Log&lt;/h6&gt;
+
+&lt;p&gt;日志类允许您创建一个日志对象,可以作为一个可选的参数传递给WebService类的构造函数。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;事件监听摘要&lt;/strong&gt;&lt;/p&gt;
+
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;事件监听器&lt;/td&gt;
+        &lt;td&gt;描述&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Log.onLog()&lt;/td&gt;
+        &lt;td&gt;当日志消息发送时被调用&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;strong&gt;Log 构造器&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;new Log([logLevel] [, logName])&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;参数&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;logLevel： 有以下几种值
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;值&lt;/td&gt;
+        &lt;td&gt;描述&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Log.BRIEF&lt;/td&gt;
+        &lt;td&gt;基本的生命周期事件，接收错误错误消息&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Log.VERBOSE&lt;/td&gt;
+        &lt;td&gt;所有的生命周期事件，接收错误错误消息&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Log.DEBUG&lt;/td&gt;
+        &lt;td&gt;Metrics and fine-grained events and errors are received&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;logName&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;可选参数，用于区分多个日志。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;实例&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;newLog = new Log();&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Log.onLog()&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;发送消息时调用&lt;/p&gt;
+
+&lt;h6&gt;MulticastStreamInfo&lt;/h6&gt;
+
+&lt;h6&gt;MulticastStreamIngest&lt;/h6&gt;
+
+&lt;h6&gt;NetConnection&lt;/h6&gt;
+
+&lt;h6&gt;NetGroup&lt;/h6&gt;
+
+&lt;h6&gt;NetGroupInfo&lt;/h6&gt;
+
+&lt;h6&gt;NetGroupReceiveMode&lt;/h6&gt;
+
+&lt;h6&gt;NetGroupReplicationStrategy&lt;/h6&gt;
+
+&lt;h6&gt;NetGroupSendMode&lt;/h6&gt;
+
+&lt;h6&gt;NetGroupSendResult&lt;/h6&gt;
+
+&lt;h6&gt;NetStream&lt;/h6&gt;
+
+&lt;h6&gt;ProxyStream&lt;/h6&gt;
+
+&lt;h6&gt;SharedObject&lt;/h6&gt;
+
+&lt;p&gt;SharedObject类让你在服务器和多个客户端之间共享储存数据。共享对象可以是临时的，也可以在应用关闭后持久化。
+你可以把他看作实时的数据传输设备。&lt;/p&gt;
+
+&lt;p&gt;下面的条目描述了在服务器端使用共享对象的方法：&lt;/p&gt;
+
+&lt;p&gt;1 保存和共享数据。一个共享对象可以在服务器和其他客户端之间检索。比如，你可以打开一个远程共享对象，比如一个电话列表，它在
+服务器上持久化了。无论哪个客户端作出改变，修改后的数据都可以同步到服务器和其他连接的客户端。&lt;/p&gt;
+
+&lt;p&gt;2 实时共享数据。&lt;/p&gt;
+
+&lt;p&gt;对于理解服务器端共享对象，下面的信息很重要：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;服务器端函数SharedObject.get()创建远程共享对象，没有创建本地共享对象的方法。本地共享对象保存在内存中，
+除非他们是持久的，这种情况才能保存到.sol文件中。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;保存在服务器端的远程共享对象的文件扩展名为.fso，它们保存在应用的子目录中。客户端的远程共享对象扩展名为.sor也保存在应用的子目录中。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;服务器共享对象可以是无持久化的(存在于应用实例的时间中)，或持久化(应用关闭后也能储存)。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;为了创建持久化共享对象，设置SharedObject.get()的persistence参数为true。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;3 每一个远程共享对象都被唯一的名字所标识，包含一组名字-值的键值对。就像其他的ActionScript对象。名字必须是唯一的字符串，值可以为任意的ActionScript数据类型。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;SharedObject.getProperty()获取服务器端远程共享对象的属性。SharedObject.setProperty()设置属性。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;SharedObject.clear()清除共享对象；application.clearSharedObjects()删除多个共享对象。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;服务器端共享对象可以属于当前应用程序实例或另一个应用程序实例。另一个应用程序实例可以在同一台服务器上或在一个不同的服务器上。
+属于不同的应用程序实例的共享对象引用被称为代理共享对象。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;SharedObject.lock()可以防止其他客户端修改共享对象。SharedObject.mark()发送change事件。&lt;/p&gt;
+
+&lt;p&gt;当你得到一个引用代理共享对象,对象的任何更改发送到拥有对象的实例。成功或失败的任何变化是由使用SharedObject.onSync()事件处理程序。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;属性摘要&lt;/strong&gt;
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;属性&lt;/td&gt;
+        &lt;td&gt;描述&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;SharedObject.autoCommit&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;SharedObject.isDirty&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;SharedObject.name&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;SharedObject.resyncDepth&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;SharedObject.version&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;函数摘要&lt;/strong&gt;
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;函数&lt;/td&gt;
+        &lt;td&gt;描述&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;SharedObject.clear()&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;SharedObject.close()&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;SharedObject.commit()&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;SharedObject.flush()&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;SharedObject.get()&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;SharedObject.getProperty()&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;SharedObject.getPropertyNames()&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;SharedObject.lock()&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;SharedObject.mark()&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;SharedObject.purge()&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;SharedObject.send()&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;SharedObject.setProperty()&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;SharedObject.size()&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;SharedObject.unlock()&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;事件监听摘要&lt;/strong&gt;
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;事件监听器&lt;/td&gt;
+        &lt;td&gt;描述&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;SharedObject.handlerName()&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;SharedObject.onStatus&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;SharedObject.onSync&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;&lt;/p&gt;
+
+&lt;h6&gt;SHA256&lt;/h6&gt;
+
+&lt;h6&gt;SOAPCall&lt;/h6&gt;
+
+&lt;h6&gt;SOAPFault&lt;/h6&gt;
+
+&lt;h6&gt;Stream&lt;/h6&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>getting_started_streaming_media</title>
+   <link href="http://alonepig.github.io/fms/2014/07/01/getting_started_streaming_media"/>
+   <updated>2014-07-01T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/fms/2014/07/01/getting_started_streaming_media</id>
+   <content type="html">&lt;h3&gt;目录&lt;/h3&gt;
+
+&lt;p&gt;一、支持的客户端，编码器，解码器和文件格式&lt;/p&gt;
+
+&lt;p&gt;二、预构建的媒体播放器&lt;/p&gt;
+
+&lt;p&gt;三、实时流媒体(HTTP)&lt;/p&gt;
+
+&lt;p&gt;四、实时流媒体(RTMP)&lt;/p&gt;
+
+&lt;p&gt;五、点播流媒体(HTTP)&lt;/p&gt;
+
+&lt;p&gt;六、点播流媒体(RTMP)&lt;/p&gt;
+
+&lt;p&gt;七、受保护的点播流媒体(pRTMP)&lt;/p&gt;
+
+&lt;p&gt;八、多播媒体(RTMFP)&lt;/p&gt;
+
+&lt;p&gt;九、Configure closed captioning&lt;/p&gt;
+
+&lt;p&gt;十、配置可交换的音频&lt;/p&gt;
+
+&lt;p&gt;十一、配置保护内容&lt;/p&gt;
+
+&lt;p&gt;十二、配置HTTP动态流和HTTP实时流&lt;/p&gt;
+
+&lt;p&gt;十三、HTTP流配置文件参考&lt;/p&gt;
+
+&lt;p&gt;十四、建立自定义媒体播放器&lt;/p&gt;
+
+&lt;p&gt;十五、Offline packaging&lt;/p&gt;
+
+&lt;p&gt;十六、流媒体问题的一些解决办法&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h5&gt;一、支持的客户端，编码器，解码器和文件格式&lt;/h5&gt;
+
+&lt;h6&gt;流服务支持的客户端和服务器&lt;/h6&gt;
+
+&lt;h5&gt;二、预构建的媒体播放器&lt;/h5&gt;
+
+&lt;h5&gt;三、实时流媒体(HTTP)&lt;/h5&gt;
+
+&lt;h5&gt;四、实时流媒体(RTMP)&lt;/h5&gt;
+
+&lt;h5&gt;五、点播流媒体(HTTP)&lt;/h5&gt;
+
+&lt;h5&gt;六、点播流媒体(RTMP)&lt;/h5&gt;
+
+&lt;h5&gt;七、受保护的点播流媒体(pRTMP)&lt;/h5&gt;
+
+&lt;h5&gt;八、多播媒体(RTMFP)&lt;/h5&gt;
+
+&lt;p&gt;&lt;strong&gt;关于多播服务&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;重要：&lt;/strong&gt; 多播服务(rootinstall/applications/multicast)不能运行在AMS标准版中。&lt;/p&gt;
+
+&lt;p&gt;多播服务是AMS多播解决方案的一部分。多播解决方案包括以下组件：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;多播配置工具(rootinstall/tools/multicast/configurator)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Flash Media Live Encoder&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;捕获、编码和发布实时视频&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;多播服务(rootinstall/applications/multicast)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;多播播放器(rootinstall/tools/multicast/multicastplayer)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;配置多播事件&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;1、打开rootinstall/tools/multicast/configurator/configurator.html。&lt;/p&gt;
+
+&lt;p&gt;2、选择多播类型：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Fusion(simultaneous, cooperative IP and P2P multicast)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;IP Multicast&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Peer to Peer&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Peer to Peer with Peer Discovery&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;3、对于Fusion和Peer to Peer，输入服务器名称(或IP地址)和多播应用的全路径，比如:rtmfp://ams.example.com/multicast。
+如果服务器配置的端口大于1935，需指定端口，比如：rtmfp://ams.example.com:1940/multicast。&lt;/p&gt;
+
+&lt;p&gt;4、输入流名字，比如，CorpAllHandsQ2_2010或livestream。&lt;/p&gt;
+
+&lt;p&gt;5、输入发布密码。&lt;/p&gt;
+
+&lt;p&gt;发布密码指定只有多播服务器才能在组内发布多播流，其他节点只能播放。&lt;/p&gt;
+
+&lt;p&gt;6、输入组名字。名字需要唯一。&lt;/p&gt;
+
+&lt;p&gt;7、对于IP Multicast 和Fusion，输入IP多播地址和端口。&lt;/p&gt;
+
+&lt;p&gt;8、(可选的)如果托管AMS的服务器有一个以上的网络接口卡(NIC)，在地址文本框中为一个NIC输入IP地址。AMS使用这个IP地址来决定发布时访问的接口。&lt;/p&gt;
+
+&lt;p&gt;9、(可选的)为了使用&lt;a href=&quot;http://en.wikipedia.org/wiki/Source-specific_multicast&quot;&gt;source-specific multicast&lt;/a&gt;，在对应的输入框输入IP地址和端口。&lt;/p&gt;
+
+&lt;p&gt;10、点击生成。多播配置工具产生以下内容：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;实时流的名字。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;F4M文件。为了观看此文件，点击观看Manifest文件。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;11、为了使用多播播放器，按照下面的步骤：&lt;/p&gt;
+
+&lt;p&gt;a 点击保存Manifest文件。&lt;/p&gt;
+
+&lt;p&gt;b 保存manifest.f4m文件到multicastplayer.html同目录。默认情况，在rootinstall/tools/multicast/multicastplayer。&lt;/p&gt;
+
+&lt;p&gt;12、为了使用Strobe Media Playback，打开配置器。在设置完成后，你将返回到配置并保存f4m文件到相同的文件夹下的作为Strobe Media Playback。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;使用Flash Media Live Encoder 发布流&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;1、打开Flash Media Live Encoder3.1或更高版本&lt;/p&gt;
+
+&lt;p&gt;2、从预设菜单中，选择一个单一的流。多播解决方案不支持multi-bitrate流。&lt;/p&gt;
+
+&lt;p&gt;3、对于AMS URL，输入多播服务的URL。如果你在同一台电脑测试，输入：rtmp://localhost/multicast&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt;Flash Media Live Encoder 连接AMS是通过RTMP协议传输的，不使用RTMFP。&lt;/p&gt;
+
+&lt;p&gt;4、将在多播配置工具中复制的发布流的名字粘贴。&lt;/p&gt;
+
+&lt;p&gt;5、点击开始。&lt;/p&gt;
+
+&lt;p&gt;6、打开管理员控制台，点击观看Applications&amp;gt;Clients。The RTMP client is the connection from FMLE to the server. The RTMFP client is a server-side peer established by the multicast service to republish the live stream into the target RTMFP Group&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;播放多播流&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;1、开打rootinstall/tools/multicast/multicastplayer/multicastplayer.html&lt;/p&gt;
+
+&lt;p&gt;2、为了在本地系统中运行Flash Player，右键屏幕，选择全局设置：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;在Flash Player帮助页，选择全局安全设置面板。点击Edit locations &amp;gt; Add location &amp;gt;Browse for folder。选择multicastplayer.swf文件所在目录。
+点击添加。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;在Flash Player设置管理器，选择高级点击Trusted Location Setting。点击添加，选择multicastplayer.swf文件所在目录。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;3、重新装载multicastplayer.html。点击运行点对点连接。&lt;/p&gt;
+
+&lt;p&gt;4、打开管理员控制台看客户端连接。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;用AMS样例播放器播放流&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;1、打开rootinstall/samples/videoPlayer/videoplayer.html&lt;/p&gt;
+
+&lt;p&gt;2、从rootinstall/tools/multicast/configurator复制t.f4m文件到rootinstall/smaples/videoPlayer文件夹。&lt;/p&gt;
+
+&lt;p&gt;3、在样例播放器中，在URL流文本框中输入manifest.f4m， 点击播放。&lt;/p&gt;
+
+&lt;p&gt;4、管理员控制台查看信息。&lt;/p&gt;
+
+&lt;h5&gt;九、Configure closed captioning&lt;/h5&gt;
+
+&lt;h5&gt;十、配置可交换的音频&lt;/h5&gt;
+
+&lt;h5&gt;十一、配置保护内容&lt;/h5&gt;
+
+&lt;h5&gt;十二、配置HTTP动态流和HTTP实时流&lt;/h5&gt;
+
+&lt;h5&gt;十三、HTTP流配置文件参考&lt;/h5&gt;
+
+&lt;h5&gt;十四、建立自定义媒体播放器&lt;/h5&gt;
+
+&lt;h6&gt;为实时或点播服务构建媒体播放器&lt;/h6&gt;
+
+&lt;p&gt;OSMF 播放器是基于Flash平台的开源播放器。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;连接流服务&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;跟所有AMS应用一样，通过NetConnection.connect()来连接，URI参数格式如下：&lt;/p&gt;
+
+&lt;p&gt;rtmp://ams-ip-or-dns/serviceName/[formatType:][instanceName/]fileOrStreamName&lt;/p&gt;
+
+&lt;p&gt;hostName AMS域名&lt;/p&gt;
+
+&lt;p&gt;serviceName 直播或点播&lt;/p&gt;
+
+&lt;p&gt;instanceName 如果客户端连接默认的实例，你可以省略或使用&lt;em&gt;definst&lt;/em&gt;。&lt;/p&gt;
+
+&lt;p&gt;fotmatType mp3文件则用mp3:,对mp4/f4v文件，则用mp4:，flv文件不做要求。&lt;/p&gt;
+
+&lt;p&gt;fileOrStreamName 文件名或路径，如my&lt;em&gt;video.mp4或subdir/subdir2/my&lt;/em&gt;video.mp4。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;不支持的ActionScript API&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;对于实时和点播服务，客户端不能使用 SharedObject.getRemote()&lt;/p&gt;
+
+&lt;p&gt;你不能编辑服务端的代码。但可以通过NetConnection.call()来调用服务器端的方法。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;允许从指定的域连接&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;默认情况，可以从任何域连接。&lt;/p&gt;
+
+&lt;p&gt;rootinstall/applications/live 或 rootinstall/applications/vod 文件夹：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;添加一个swf客户端的域，编辑allowedSWFdomains.txt文件。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;添加一个HTML客户端的域，编辑allowedHTMLdomains.txt文件。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;访问音频和视频的原始数据&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;ActionScript中通过BitmapData.draw()和SoundMixer.computeSpectrum()方法访问数据。&lt;/p&gt;
+
+&lt;p&gt;默认情况下，AMS阻止你访问流。为了访问，需要做以下事情：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;将rootinstall/smaple/applications/live 或 rootinstall/smaple/applications/vod的main.far和main.asc文件复制到rootinstall/applications/live 或 rootinstall/applications/vod&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;去掉下面两行的注释：&lt;/p&gt;
+
+&lt;p&gt;//p&lt;em&gt;client.audioSampleAccess = &amp;quot;/&amp;quot;;
+//p&lt;/em&gt;client.videoSampleAccess = &amp;quot;/&amp;quot;;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;流服务API&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;getStreamLength(streamObj)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;返回流的长度。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;实例&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;nc.call(&amp;quot;getStreamLength&amp;quot;, returnObj, &amp;quot;sample_video&amp;quot;);&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;getPageUrl()&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;返回客户端Swf的URL&lt;/p&gt;
+
+&lt;p&gt;//嵌套在html中
+getPageUrl 返回： http://www.example.com/trace.html&lt;/p&gt;
+
+&lt;p&gt;//没有嵌套在html中
+getPageUrl 返回： http://www.example.com/trace.swf&lt;/p&gt;
+
+&lt;p&gt;这个值必须是http地址。由于安全原因，本地地址不会显示。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;实例&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;nc.call(&amp;quot;getPageUrl&amp;quot;, returnObj);&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;getReferrer()&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;返回SWF文件的URL或服务器连接源自哪里&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;实例&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;myNetConnection.call(&amp;quot;getReferrer&amp;quot;, returnObj);&lt;/p&gt;
+
+&lt;h6&gt;构建动态的HTTP流媒体播放器&lt;/h6&gt;
+
+&lt;p&gt;&lt;strong&gt;使用OSMF&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;理解HTTP动态流的应用结构&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;流媒体使用Adobe HDS需要Adobe媒体Manifest文件(.f4m)。&lt;/p&gt;
+
+&lt;p&gt;manifest文件包含的信息媒体资源或多播流中的每个流的事件的信息。这些信息包括媒体的位置、DRM额外头数据,媒体引导信息,自适应流比特率等。&lt;/p&gt;
+
+&lt;p&gt;为了产生文件，HTTP模块会执行以下步骤：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;结合请求URL和HttpStreamingLiveEventPath指令来定位实时事件&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;从Event.xml和multi-lvevel manifest文件总检索元数据&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;为了流录制文件(.stream)扫描事件目录&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;检索每一个流文件对应的内容。每一个.stream文件都来自manifest文件的&lt;media&gt;标签&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;从.meta文件检索元数据&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;为引导信息和DRM额外头数据创建链接(如果内容是安全的)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;返回生成manifest文档&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;在rootinstall/applications/livepkgr/streams/&lt;em&gt;definst&lt;/em&gt;文件夹，实时打包器以流的名字创建文件夹：livestream1，livestream2。实时打包器
+在每个文件夹中创建了以下文件：&lt;/p&gt;
+
+&lt;p&gt;· livestream#.bootstrap&lt;/p&gt;
+
+&lt;p&gt;· livestream#.control&lt;/p&gt;
+
+&lt;p&gt;· livestream#.meta&lt;/p&gt;
+
+&lt;p&gt;· livestream#.Seg#.f4f&lt;/p&gt;
+
+&lt;p&gt;· livestream#.Seg#.f4x&lt;/p&gt;
+
+&lt;p&gt;下表描述了每个文件类型：
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;文件&lt;/td&gt;
+        &lt;td&gt;描述&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;livestream#Seg#.f4f&lt;/td&gt;
+        &lt;td&gt;A segment. The Live Packager outputs one or more F4F files. Each file contains a segment of the source file. Each segment contains the fragmented (and optionally protected) content.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;livestream#Seg#.f4x&lt;/td&gt;
+        &lt;td&gt;An index file listing the fragment offsets in each .f4f file. The Live Packager outputs one or more F4X files. The HTTP Origin Module uses this file to deliver fragments.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;livestream#.meta&lt;/td&gt;
+        &lt;td&gt;Contains the stream metadata (bitrate, screen size, and so on).&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;livestream#.bootstrap&lt;/td&gt;
+        &lt;td&gt;Contains the bootstrap information for the stream.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;livestream#.control&lt;/td&gt;
+        &lt;td&gt;Contains internal metadata that the Live Packager uses to manage stream state.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;livestream#.drmmeta&lt;/td&gt;
+        &lt;td&gt;Contains additional header information when a stream is encrypted for use with Adobe Access.&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;&lt;/p&gt;
+
+&lt;p&gt;以下是Apache配置HTTP动态流的时候这些文件的URL请求格式：
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;请求格式&lt;/td&gt;
+        &lt;td&gt;描述&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Fragment&lt;/td&gt;
+        &lt;td&gt;http://&lt;host&gt;/&lt;location-tag-alias&gt;/streams/&lt;app-name&gt;/streams/&lt;app-instance&gt;/&lt;stream name&gt;Seg&lt;segment #&gt;-Frag&lt;fragment #&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Bootstrap(.bootstrap)&lt;/td&gt;
+        &lt;td&gt;http://&lt;host&gt;/&lt;location-tag-alias&gt;/streams/&lt;app-name&gt;/streams/&lt;app-instance&gt;/&lt;stream name&gt;.bootstrap&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;流录制文件&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;流记录文件(.stream)是一个XML文档,其中包含的物理位置。服务器创建流记录文件时传入流与实时事件相关联。服务器创建的文件的名称在以下位置进行编码&lt;/p&gt;
+
+&lt;p&gt;applications/appname/events/appinstancename/eventname/MTg1ODAyNigwNg=.stream&lt;/p&gt;
+
+&lt;p&gt;.stream文件格式如下：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
+&amp;lt;stream xmlns=&amp;quot;http://www.adobe.com/liveevent/1.0&amp;quot;&amp;gt;
+    &amp;lt;type&amp;gt;
+        f4f
+    &amp;lt;/type&amp;gt;
+    &amp;lt;name&amp;gt;
+        livestream
+    &amp;lt;/name&amp;gt;
+    &amp;lt;path&amp;gt;
+        C:\Program Files\Adobe\Adobe Media Server 5\applications\myapp\streams\_definst_\livestream
+    &amp;lt;/path&amp;gt;
+&amp;lt;/stream&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;.f4m manifest文件实例&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h5&gt;十五、Offline packaging&lt;/h5&gt;
+
+&lt;h5&gt;十六、流媒体问题的一些解决办法&lt;/h5&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Learning AMS</title>
+   <link href="http://alonepig.github.io/fms/2014/06/24/learning-ams"/>
+   <updated>2014-06-24T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/fms/2014/06/24/learning-ams</id>
+   <content type="html">&lt;h3&gt;Adobe Media Server开发笔记&lt;/h3&gt;
+
+&lt;p&gt;一、adobemediaserver&lt;em&gt;5.0.3&lt;/em&gt;install 总结&lt;/p&gt;
+
+&lt;p&gt;二、dev_guide使用手册：开始使用流媒体&lt;/p&gt;
+
+&lt;p&gt;三、dev_guide使用手册：内容保护&lt;/p&gt;
+
+&lt;p&gt;四、dev_guide使用手册：开始开发应用&lt;/p&gt;
+
+&lt;p&gt;五、dev_guide使用手册：开发流媒体应用&lt;/p&gt;
+
+&lt;p&gt;六、dev_guide使用手册：使用实时流&lt;/p&gt;
+
+&lt;p&gt;七、dev_guide使用手册：构建点对点的网络应用&lt;/p&gt;
+
+&lt;p&gt;八、dev_guide使用手册：开发社交应用&lt;/p&gt;
+
+&lt;p&gt;九、dev_guide使用手册：应用安全&lt;/p&gt;
+
+&lt;p&gt;十、dev_guide使用手册：开发插件&lt;/p&gt;
+
+&lt;p&gt;十一、客户端和服务器端通讯的方法&lt;/p&gt;
+
+&lt;p&gt;十二、administrationapi介绍&lt;/p&gt;
+
+&lt;p&gt;十四、(ams&lt;em&gt;config&lt;/em&gt;admin 手册)[]&lt;/p&gt;
+
+&lt;p&gt;十五、Server-Side ActionScript语言参考 &lt;/p&gt;
+
+&lt;p&gt;十三、H264编码的使用&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>adobemediaserver_5.0.3_install 总结</title>
+   <link href="http://alonepig.github.io/fms/2014/06/24/adobemediaserver_503_install-"/>
+   <updated>2014-06-24T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/fms/2014/06/24/adobemediaserver_503_install-</id>
+   <content type="html">&lt;h3&gt;一、安装服务&lt;/h3&gt;
+
+&lt;h6&gt;准备安装Adobe媒体服务器&lt;/h6&gt;
+
+&lt;p&gt;1、部署情况：可以部署到单一的电脑上，也可以是复杂的集群边缘服务器。&lt;/p&gt;
+
+&lt;p&gt;2、选择是否安装Apache Http服务，默认是安装的。&lt;/p&gt;
+
+&lt;p&gt;3、安装之前确认序列号。&lt;/p&gt;
+
+&lt;h6&gt;准备升级Adobe媒体服务器&lt;/h6&gt;
+
+&lt;p&gt;1、备份数据&lt;/p&gt;
+
+&lt;p&gt;复制下面的文件夹：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;applications/
+conf/
+licenses/
+modules/
+webroot/
+Apache2.2/conf
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;2、卸载原来的AMS&lt;/p&gt;
+
+&lt;p&gt;3、安装新的AMS&lt;/p&gt;
+
+&lt;h3&gt;二、验证安装&lt;/h3&gt;
+
+&lt;p&gt;http://localhost 进入测试页面&lt;/p&gt;
+
+&lt;p&gt;http://localhost/ams_adminConsole.htm  管理后台&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Jekyll Introduction</title>

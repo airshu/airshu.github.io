@@ -1,0 +1,448 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>ams_config_admin_guide &larr; </title>
+   <meta name="author" content="lsj" />
+
+   <link rel="start" href="/" />
+
+	
+	
+	
+  	<link rel="alternate" type="application/atom+xml" href="http://feeds.feedburner.com/feedname" title="RSS feed" />
+	
+	
+
+   <!-- syntax highlighting CSS -->
+   <link rel="stylesheet" href="/assets/themes/mark-reid/css/syntax.css" type="text/css" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="/assets/themes/mark-reid/css/screen.css" type="text/css" />
+
+</head>
+
+<body id="">
+
+
+<div id="header" >
+    <h1>
+    	<a href="/" title="alonepig's blog" >alonepig's blog</a>
+		<!--     	<span class="byline">&larr; <a href="/">lsj</a></span> -->
+    </h1>
+    <ul class="nav">
+      <li><a class="home" href="/">Home</a></li>
+      <li><a  href="/archive.html">Archive</a></li>
+      <li><a  href="/pages.html">Pages</a></li>
+      <li><a  href="/categories.html">Categories</a></li>
+      <li><a  href="/tags.html">Tags</a></li>
+      <li><a  href="/about.html">About</a></li>
+    </ul>
+  </div>
+</div>
+
+<div id="left">
+
+     <strong>Tag Clound</strong><br />
+     <div class="navbar1" >
+     	
+    		<a href="tags.html#intro-ref" id="1" class="__tag" style="margin: 5px">intro</a>
+  		
+    		<a href="tags.html#beginner-ref" id="2" class="__tag" style="margin: 5px">beginner</a>
+  		
+    		<a href="tags.html#jekyll-ref" id="3" class="__tag" style="margin: 5px">jekyll</a>
+  		
+    		<a href="tags.html#tutorial-ref" id="4" class="__tag" style="margin: 5px">tutorial</a>
+  		
+    		<a href="tags.html#FMS-ref" id="5" class="__tag" style="margin: 5px">FMS</a>
+  		
+     </div>
+     
+<!-- 	<strong>Blogroll</strong><br /> -->
+<!-- 	<div class="navbar1" > -->
+<!--      	<ul > -->
+<!--      		<li><a href="" target="_blank" ><span >github.com</span></a></li> -->
+<!--      	</ul> -->
+<!-- 	</div> -->
+	
+	<strong>Find Me</strong><br />
+	<div class="navbar1" >
+	<ul >
+          <li><a href="https://github.com/alonepig" target="_blank" title="Github"><span class="fa fa-github fa-lg">Github</span></a></li>
+          <li><a href="http://www.douban.com/people/alonepig" target="_blank" title="douban"><span>豆瓣</span></a></li>
+          <li><a href="http://weibo.com/" target="_blank" title="Weibo"><span>知乎</span></a></li>
+     </ul>
+     </div>
+     
+</div>
+
+
+<div id="site">
+  
+  
+<div id="page">
+	
+  <h1 class="emphnext">ams_config_admin_guide</h1>
+  <ul class="tag_box inline">
+  
+  
+
+
+  
+     
+    	<li><a href="/tags.html#FMS-ref">FMS <span>12</span></a></li>
+    
+  
+
+
+
+  </ul>
+
+  <h4>Adobe Media Server Configuration and Administration Guide</h4>
+
+<h5>第一章、部署服务器</h5>
+
+<h6>配置端口</h6>
+
+<p>Adobe Media Server默认端口为1935和80.Adobe Media 管理员服务器端口为1111。</p>
+
+<p><strong>端口要求</strong>
+<table>
+    <tr>
+        <td>端口号</td>
+        <td>协议</td>
+        <td>传输</td>
+        <td>描述</td>
+    </tr>
+    <tr>
+        <td>1935</td>
+        <td>TRMP/E</td>
+        <td>TCP</td>
+        <td>默认</td>
+    </tr>
+    <tr>
+        <td>1935</td>
+        <td>RTMFP</td>
+        <td>UDP</td>
+        <td>默认</td>
+    </tr>
+    <tr>
+        <td>80</td>
+        <td>RTMP/E,RTMTP,HTTP</td>
+        <td>TCP</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>19350-65535</td>
+        <td>RTMFP</td>
+        <td>UDP</td>
+        <td>
+        默认情况，客户端使用RTMFP协议，在1935和19350-65535端口上连接AMS。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">    &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;8134&lt;/td&gt;
+    &lt;td&gt;HTTP&lt;/td&gt;
+    &lt;td&gt;TCP&lt;/td&gt;
+    &lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;1111&lt;/td&gt;
+    &lt;td&gt;RTMP,HTTP&lt;/td&gt;
+    &lt;td&gt;TCP&lt;/td&gt;
+    &lt;td&gt;默认情况下，Flash Player，HTML客户端连接AMS管理员服务器的端口。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;443&lt;/td&gt;
+    &lt;td&gt;RTMPS&lt;/td&gt;
+    &lt;td&gt;TCP&lt;/td&gt;
+    &lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+</code></pre></div>
+<p></table></p>
+
+<p><strong>配置IP地址和端口</strong></p>
+
+<p>1、打开rootinstall/conf/ams.ini。</p>
+
+<p>2、编辑ADAPTOR.HOSTPORT参数，默认值为：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">ADAPTOR.HOSTPORT = :1935, 80
+</code></pre></div>
+<p>3、保存文件重启服务器。</p>
+
+<p>Adaptor.xml配置文件中Adaptor/HostPortList/HostPort标签中使用ADAPTOR.HOSTPORT参数：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;HostPort name=&quot;edge1&quot; ctl_channel=&quot;localhost:19350&quot;
+rtmfp=&quot;${ADAPTOR.HOSTPORT}&quot;&gt;${ADAPTOR.HOSTPORT}&lt;/HostPort&gt;
+</code></pre></div>
+<h6>为RTMFP配置IP地址和端口</h6>
+
+<p><strong>RTMFP连接流</strong></p>
+
+<p>1、RTMFP客户端在1935端口上连接AMS服务器进行UDP传输。</p>
+
+<p>重要：RTMFP和RTMP/E 客户端使用同样的端口连接AMS。但，RTMFP使用UDP，RTMP/E使用TCP。</p>
+
+<p>2、The amsedge process redirects the connection to an amscore process listening on a UDP port in the range 19350-65535</p>
+
+<p>每一个amscore进程有自己的RTMFP监听器。每一个RTMFP监听器绑定一个UDP端口。当amscore进程开始时，监听器绑定一下可用的UDP端口(Adaptor.xml中Adaptor/RTMFP/Core?hostPortList/HostPort标签指定)。
+使用的端口的数量取决于amscore进程使用的数量。amscore进程使用的数量取决于应用程序实例是如何分布的。</p>
+
+<p><strong>配置RTMFP重定向端口</strong></p>
+
+<p>1、打开rootinstall/conf/<em>defaultRoot</em>/Adaptor.xml文件</p>
+
+<p>2、编辑HostPort标签，默认情况为：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;Adaptor&gt;
+    ...
+    &lt;RTMFP&gt;
+    ...
+        &lt;Core&gt;
+            &lt;HostPortList&gt;
+                &lt;HostPort&gt;:19350-65535&lt;/HostPort&gt;
+            &lt;/HostPortList&gt;
+        &lt;/Core&gt;
+    &lt;/RTMFP&gt;
+&lt;/Adaptor&gt;
+</code></pre></div>
+<p>3、If the RTMFP adaptor is behind a NAT, specify the in-front-of-NAT IP address that clients connect to in the public attribute of the HostPort element. The following example uses 12.34.56.78 for the in-front-of-NAT IP address:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;HostPort public=&quot;12.34.56.78:19350-65535&quot;&gt;:19350-65535&lt;/HostPort&gt;
+</code></pre></div>
+<p>4、保存文件。</p>
+
+<p><strong>关于HostPort</strong></p>
+
+<p>HostPort标签的值为以下格式：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;value-of-HostPort&gt; := [&lt;host-port-range&gt; [; &lt;host-port-range&gt; [; ... ] ] ]
+&lt;host-port-range&gt; := [&lt;host&gt;][:&lt;port-range&gt;[, &lt;port-range&gt; ] ]
+&lt;port-range&gt; := &lt;start-port&gt;[ - &lt;end-port&gt; ]
+</code></pre></div>
+<p>下面的例子中，每一个监听器有两个端口集合：一个端口来自host1:2000-2010或host2:3000-3010，一个来自host2:5000或host2:2010-4000。</p>
+
+<p><strong>配置服务器在NAT后的公共的IP地址</strong></p>
+
+<p>如果RTMFP适配器在NAT之后，指定客户端连接的HostPort标签public属性来设置in-front-of-NAT IP地址。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;HostPort public=&quot;&lt;in-front-of-NAT-server-IP&gt;:19350-65535&quot;&gt;:19350-65535&lt;/HostPort&gt;
+</code></pre></div>
+<p>如果你不指定public属性，服务器不会知道in-front-of-NAT 地址。amdedge进程会重定向客户端到正确的端口，但它会告诉客户端behind-NAT地址，这个地址客户端不能接触。</p>
+
+<p>Each HostPort element can specify a public address that corresponds to the specified port. This is the address that is advertised to clients for the given HostPort. To advertise an address, specify a value for the public attribute of the HostPort element. The public attribute has the same format as the HostPort element. The number of ports specified by the public attribute must equal the number of ports specified by the HostPort element. If the core listens on the n-th port of the HostPort value, the n-th port of the public attribute is advertised as its value.</p>
+
+<p>例子中HostPortList使用public属性，如果核心监听器在host1:1005，它的公共广告地址在host2:4005。</p>
+
+<p><strong>NAT和防火墙穿越</strong></p>
+
+<p>NAT(网络地址转换)和防火墙过滤可以阻止点对点的连接。在内部网应用程序中,您为了对整个网络进行控制,执行以下操作以确保客户可以创建点对点连接:</p>
+
+<ul>
+<li>允许在任何防火墙进行UDP通讯</li>
+<li>使用IFTF BEHAVE工作组推荐的NAT或防火墙</li>
+<li>Use the TURN proxy support in Flash Player to send traffic to a proxy in a DMZ that can comply with the previous recommendations. 
+See <a href="http://www.adobe.com/devnet/adobe-media-server/articles/real-time-collaboration.html">Best practices for real-time collaboration using Adobe Media Server.</a></li>
+</ul>
+
+<p>In an Internet application, the application developer must choose how to handle cases in which a firewall or NAT blocks a direct peer-to-peer connection. To create an application that works for connections that aren’t peer-to-peer, create a protocol fallback to client-server RTMP and/or RTMPT. To create an application that never relays media through the server (even though some clients may not see the media), don’t create a protocol fallback</p>
+
+<p><strong>理解NAT的类型</strong></p>
+
+<p><strong>Cone</strong>    当想所有节点说话时重用同样的地址和端口</p>
+
+<p>多 IP地址，对称的    向一个新节点说话时，使用新地址和端口</p>
+
+<p>单一 IP地址，对称的 向一个新节点说话时，使用相同的地址和端口</p>
+
+<p>理解NAT和防火墙的过滤行为很重要：</p>
+
+<p>None    没有过滤功能的叫&quot;full cone&quot;</p>
+
+<p>Address-restricted  节点限制在已经使用过的地址</p>
+
+<p>Address and port-restricted 节点限制在已经使用过的地址和端口</p>
+
+<p>In addition, some NAT and firewall behaviors aren&#39;t easily defined. For example, a NAT could act as a symmetric NAT that preserves port numbers. When it runs out of resources, it could switch and act as a cone NAT.</p>
+
+<p>In another example, a NAT could act as one type of NAT for the first client that connected to a server. It could act as a different type of NAT for the second client that tried to connect to the same server. In this case, a simple analysis can fail to predict whether a client can make a peer-to-peer connection.</p>
+
+<p><strong>RTMFP连接检查</strong></p>
+
+<p>RTMFP发明家马修·考夫曼主持一个名为RTMFP连通性检查程序的网站http://cc.rtmfp.net/。使用这个网站,尝试确定一个客户机在一个特定的网络可以创建一个点对点连接。</p>
+
+<p><strong>为HTTP流配置端口</strong></p>
+
+<h6>负载平衡</h6>
+
+<p><strong>部署服务器集群的工作流</strong></p>
+
+<hr>
+
+<p><strong>点对点网络应用的负载均衡</strong></p>
+
+<h6>部署边缘服务器</h6>
+
+<p><strong>部署边缘服务器的工作流</strong></p>
+
+<p><strong>设置边缘服务器的缓存</strong></p>
+
+<p><strong>连接到一个边缘服务器</strong></p>
+
+<h6>部署64位服务器</h6>
+
+<h5>第二章、配置服务器</h5>
+
+<h6>配置服务器虚拟映射</h6>
+
+<h6>使用配置文件</h6>
+
+<h6>配置性能特性</h6>
+
+<h6>配置安全特性</h6>
+
+<h6>执行常规配置任务</h6>
+
+<h6>配置内容存储</h6>
+
+<h6>配置Apache HTTP服务器</h6>
+
+<h6>为Adobe HTTP动态流和Apple HTTP 实时流配置Apache</h6>
+
+<h6>配置HTTP流失效备援</h6>
+
+<h6>使用第三方的web服务器</h6>
+
+<h6>配置差分服务(DiffServ)</h6>
+
+<h5>第三章、使用管理员控制台</h5>
+
+<h6>连接管理员控制台</h6>
+
+<h6>检查应用</h6>
+
+<h6>管理管理员</h6>
+
+<h6>管理服务器</h6>
+
+<h5>第四章、监控和管理日志文件</h5>
+
+<h6>使用日志文件</h6>
+
+<h6>访问日志</h6>
+
+<h6>应用日志</h6>
+
+<h6>诊断日志</h6>
+
+<h5>第五章、管理服务器</h5>
+
+<h6>开始和停止服务器</h6>
+
+<h6>检查服务器状态</h6>
+
+<h6>检查视频文件</h6>
+
+<h6>在Linux上管理服务器</h6>
+
+<h6>Scramble tool</h6>
+
+<h5>第六章、使用管理员API</h5>
+
+<h6>使用管理员API工作</h6>
+
+<h5>第七章、XML配置文件参考</h5>
+
+<h6>配置文件的版本从4.5到5.0.1发生的改变</h6>
+
+<h6>配置文件的版本从4.0到4.5发生的改变</h6>
+
+<h6>Adaptor.xml文件</h6>
+
+<h6>Application.xml文件</h6>
+
+<h6>Logger.xml文件</h6>
+
+<h6>Server.xml文件</h6>
+
+<h6>Users.xml文件</h6>
+
+<h6>VHost.xml文件</h6>
+
+<h5>第八章、诊断日志消息</h5>
+
+<h6>诊断日志的消息ID</h6>
+
+
+  <address class="signature">
+    <a class="author" href="/">lsj</a> 
+    <span class="date">03 July 2014</span>
+    <span class="location"></span>
+  </address>
+  
+  
+	<div class='cloud'>
+		<a style='font-size: 70%' href='/tags.html#intro'>intro</a>
+<a style='font-size: 70%' href='/tags.html#tutorial'>tutorial</a>
+<a style='font-size: 170%' href='/tags.html#FMS'>FMS</a>
+<a style='font-size: 70%' href='/tags.html#jekyll'>jekyll</a>
+<a style='font-size: 70%' href='/tags.html#beginner'>beginner</a>
+
+	</div>
+	
+  <div class="prev-next">
+  
+    <a href="/fms/2014/07/04/communication-between-client-and-server" class="next" title="communication between client and server">Next Post &rarr;</a>
+  
+  
+    <a href="/fms/2014/07/01/server-side-actionscript-language-reference" class="prev" title="server side actionscript language reference">&larr; Earlier Post</a>
+  
+  </div>
+  
+</div><!-- End Page -->
+
+	
+
+
+
+
+  <!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1926112"></script>
+<!-- UY END -->
+
+
+
+
+
+  
+  <div id="footer">
+  	<address>
+  		<span class="copyright">
+  			Content by <a href="/info/site.html">lsj</a>. Design by 
+  			<a href="http://mark.reid.name/">Mark Reid</a>
+  			<br/>
+  			(<a rel="licence" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Some rights reserved</a>)			
+  		</span>
+  		<span class="engine">
+  			Powered by <a href="http://github.com/mojombo/jekyll/" title="A static, minimalist CMS">Jekyll</a>
+  		</span>
+  	</address>
+  </div>
+  
+</div>
+
+
+
+<!--[if IE 6]>
+<script type="text/javascript"> 
+	/*Load jQuery if not already loaded*/ if(typeof jQuery == 'undefined'){ document.write("<script type=\"text/javascript\"   src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js\"></"+"script>"); var __noconflict = true; } 
+	var IE6UPDATE_OPTIONS = {
+		icons_path: "http://static.ie6update.com/hosted/ie6update/images/"
+	}
+</script>
+<script type="text/javascript" src="http://static.ie6update.com/hosted/ie6update/ie6update.js"></script>
+<![endif]-->
+
+  
+</body>
+</html>
+
