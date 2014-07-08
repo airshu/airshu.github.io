@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-   <title>building peer assisted networking applications &larr; </title>
+   <title>building peer assisted networking applications  </title>
    <meta name="author" content="lsj" />
 
    <link rel="start" href="/" />
@@ -68,15 +68,17 @@
 <!--      	</ul> -->
 <!-- 	</div> -->
 	
+	<!--
 	<strong>Find Me</strong><br />
 	<div class="navbar1" >
 	<ul >
           <li><a href="https://github.com/alonepig" target="_blank" title="Github"><span class="fa fa-github fa-lg">Github</span></a></li>
           <li><a href="http://www.douban.com/people/alonepig" target="_blank" title="douban"><span>豆瓣</span></a></li>
-          <li><a href="http://weibo.com/" target="_blank" title="Weibo"><span>知乎</span></a></li>
+          <li><a href="http://www.zhihu.com/people/alonepig" target="_blank" ><span>知乎</span></a></li>
      </ul>
      </div>
      
+     -->
 </div>
 
 
@@ -101,7 +103,81 @@
 
   </ul>
 
-  
+  <h4>构建对等的网络应用</h4>
+
+<h5>RTMFP</h5>
+
+<h6>关于节点ID</h6>
+
+<p>每个客户端都有一个节点ID。</p>
+
+<p>NetConnection.nearID为客户端节点ID，NetConnection.farID为服务器节点ID。</p>
+
+<p>同理在服务器中，client.nearID为服务器节点ID，client.farID为客户端节点ID。</p>
+
+<p>NetConnection.nearID和client.farID值一样，NetConnection.farID和client.nearID值一样。</p>
+
+<p>服务器端还有NetConnection.nearID和NetConnection.farID属性，包含了RTMFP连接的所有节点ID。</p>
+
+<h6>RTMFP上的单一传播，广播，多点发布</h6>
+
+<p>虽然RTMFP经常在对等网络应用中使用，你也可以使用RTMFP在单一传播、广播、多点发布上。简单的替换RTMP协议即可：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">netconnection.connect(&quot;rtmfp://fms.exmaple.com/vod&quot;);
+</code></pre></div>
+<p>为了在多点发布中使用RTMFP，创建一个服务器端的NetConnection，使用RTMFP URL连接目标服务器。</p>
+
+<h5>RTMFP 组</h5>
+
+<p><strong>Peer</strong> 组的成员，也叫&quot;node&quot;。</p>
+
+<p><strong>Group</strong> </p>
+
+<p><strong>Bootstrapping</strong> 为了加入组，连接至少一个组成员。</p>
+
+<h6>创建一个组</h6>
+
+<ol>
+<li><p>连接AMS
+NetConnection.connect(&quot;rtmfp://fms.exmaple.com/p2pexample/test1&quot;);</p></li>
+<li><p>在&quot;NetConnection.Connect.Success&quot;中，使用GroupSpecifier类来额创建一个groupspec</p>
+
+<p>// Called in the &quot;NetConnection.Connect.Success&quot; case in the NetStatusEvent handler.
+private function OnConnect():void{
+    connected = true;
+    // Create a GroupSpecifier object to pass to the NetGroup constructor.
+    // The GroupSpecifier determines the properties of the group
+    var groupSpecifier:GroupSpecifier;
+    groupSpecifier = new GroupSpecifier(&quot;com.example.p2papp&quot;);
+    groupSpecifier.postingEnabled = true;
+    groupSpecifier.multicastEnabled = true;
+    // The serverChannel lets the server do auto-bootstrapping
+    groupSpecifier.serverChannelEnabled = true;
+    netGroup = new NetGroup(netConnection, groupSpecifier.groupspecWithAuthorizations());
+    netGroup.addEventListener(NetStatusEvent.NET_STATUS, NetStatusHandler);
+}</p></li>
+<li><p>在&quot;NetGroup.Connect.Success&quot;中，你可以手动或自动引导节点。</p></li>
+</ol>
+
+<h6>向组里引导一个节点</h6>
+
+<h6>服务端的RTMFP组</h6>
+
+<h6>Flash Player 对等节点网络应用安全对话框</h6>
+
+<h6>关于RRMFP组的ActionScript类</h6>
+
+<h6>向组里发送一个消息</h6>
+
+<h6>直接向某个节点发送消息</h6>
+
+<h6>Replicate an object within a group</h6>
+
+<h6>多播</h6>
+
+<h6>对等网络应用实例</h6>
+
+<h5>Distribute peer introductions across servers</h5>
+
 
   <address class="signature">
     <a class="author" href="/">lsj</a> 

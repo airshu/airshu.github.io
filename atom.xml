@@ -4,7 +4,7 @@
  <title>alonepig's blog</title>
  <link href="http://alonepig.github.io/" rel="self"/>
  <link href="http://alonepig.github.io"/>
- <updated>2014-07-07T17:56:16+08:00</updated>
+ <updated>2014-07-08T23:36:07+08:00</updated>
  <id>http://alonepig.github.io</id>
  <author>
    <name>lsj</name>
@@ -401,7 +401,81 @@ function onMetaData(info:Object):void {
    <link href="http://alonepig.github.io/fms/2014/07/07/building-peer-assisted-networking-applications"/>
    <updated>2014-07-07T00:00:00+08:00</updated>
    <id>http://alonepig.github.io/fms/2014/07/07/building-peer-assisted-networking-applications</id>
-   <content type="html"></content>
+   <content type="html">&lt;h4&gt;构建对等的网络应用&lt;/h4&gt;
+
+&lt;h5&gt;RTMFP&lt;/h5&gt;
+
+&lt;h6&gt;关于节点ID&lt;/h6&gt;
+
+&lt;p&gt;每个客户端都有一个节点ID。&lt;/p&gt;
+
+&lt;p&gt;NetConnection.nearID为客户端节点ID，NetConnection.farID为服务器节点ID。&lt;/p&gt;
+
+&lt;p&gt;同理在服务器中，client.nearID为服务器节点ID，client.farID为客户端节点ID。&lt;/p&gt;
+
+&lt;p&gt;NetConnection.nearID和client.farID值一样，NetConnection.farID和client.nearID值一样。&lt;/p&gt;
+
+&lt;p&gt;服务器端还有NetConnection.nearID和NetConnection.farID属性，包含了RTMFP连接的所有节点ID。&lt;/p&gt;
+
+&lt;h6&gt;RTMFP上的单一传播，广播，多点发布&lt;/h6&gt;
+
+&lt;p&gt;虽然RTMFP经常在对等网络应用中使用，你也可以使用RTMFP在单一传播、广播、多点发布上。简单的替换RTMP协议即可：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;netconnection.connect(&amp;quot;rtmfp://fms.exmaple.com/vod&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;为了在多点发布中使用RTMFP，创建一个服务器端的NetConnection，使用RTMFP URL连接目标服务器。&lt;/p&gt;
+
+&lt;h5&gt;RTMFP 组&lt;/h5&gt;
+
+&lt;p&gt;&lt;strong&gt;Peer&lt;/strong&gt; 组的成员，也叫&amp;quot;node&amp;quot;。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Group&lt;/strong&gt; &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Bootstrapping&lt;/strong&gt; 为了加入组，连接至少一个组成员。&lt;/p&gt;
+
+&lt;h6&gt;创建一个组&lt;/h6&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;连接AMS
+NetConnection.connect(&amp;quot;rtmfp://fms.exmaple.com/p2pexample/test1&amp;quot;);&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;在&amp;quot;NetConnection.Connect.Success&amp;quot;中，使用GroupSpecifier类来额创建一个groupspec&lt;/p&gt;
+
+&lt;p&gt;// Called in the &amp;quot;NetConnection.Connect.Success&amp;quot; case in the NetStatusEvent handler.
+private function OnConnect():void{
+    connected = true;
+    // Create a GroupSpecifier object to pass to the NetGroup constructor.
+    // The GroupSpecifier determines the properties of the group
+    var groupSpecifier:GroupSpecifier;
+    groupSpecifier = new GroupSpecifier(&amp;quot;com.example.p2papp&amp;quot;);
+    groupSpecifier.postingEnabled = true;
+    groupSpecifier.multicastEnabled = true;
+    // The serverChannel lets the server do auto-bootstrapping
+    groupSpecifier.serverChannelEnabled = true;
+    netGroup = new NetGroup(netConnection, groupSpecifier.groupspecWithAuthorizations());
+    netGroup.addEventListener(NetStatusEvent.NET_STATUS, NetStatusHandler);
+}&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;在&amp;quot;NetGroup.Connect.Success&amp;quot;中，你可以手动或自动引导节点。&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h6&gt;向组里引导一个节点&lt;/h6&gt;
+
+&lt;h6&gt;服务端的RTMFP组&lt;/h6&gt;
+
+&lt;h6&gt;Flash Player 对等节点网络应用安全对话框&lt;/h6&gt;
+
+&lt;h6&gt;关于RRMFP组的ActionScript类&lt;/h6&gt;
+
+&lt;h6&gt;向组里发送一个消息&lt;/h6&gt;
+
+&lt;h6&gt;直接向某个节点发送消息&lt;/h6&gt;
+
+&lt;h6&gt;Replicate an object within a group&lt;/h6&gt;
+
+&lt;h6&gt;多播&lt;/h6&gt;
+
+&lt;h6&gt;对等网络应用实例&lt;/h6&gt;
+
+&lt;h5&gt;Distribute peer introductions across servers&lt;/h5&gt;
+</content>
  </entry>
  
  <entry>
@@ -2122,31 +2196,31 @@ getPageUrl 返回： http://www.example.com/trace.swf&lt;/p&gt;
    <id>http://alonepig.github.io/fms/2014/06/24/learning-ams</id>
    <content type="html">&lt;h3&gt;Adobe Media Server开发笔记&lt;/h3&gt;
 
-&lt;p&gt;一、adobemediaserver&lt;em&gt;5.0.3&lt;/em&gt;install 总结&lt;/p&gt;
+&lt;p&gt;一、[adobemediaserver&lt;em&gt;5.0.3&lt;/em&gt;install 总结]&lt;/p&gt;
 
-&lt;p&gt;二、dev_guide使用手册：开始使用流媒体&lt;/p&gt;
+&lt;p&gt;二、[dev_guide使用手册：开始使用流媒体]&lt;/p&gt;
 
-&lt;p&gt;三、dev_guide使用手册：内容保护&lt;/p&gt;
+&lt;p&gt;三、[dev_guide使用手册：内容保护]&lt;/p&gt;
 
-&lt;p&gt;四、dev_guide使用手册：开始开发应用&lt;/p&gt;
+&lt;p&gt;四、[dev_guide使用手册：开始开发应用]&lt;/p&gt;
 
-&lt;p&gt;五、dev_guide使用手册：开发流媒体应用&lt;/p&gt;
+&lt;p&gt;五、[dev_guide使用手册：开发流媒体应用]&lt;/p&gt;
 
-&lt;p&gt;六、dev_guide使用手册：使用实时流&lt;/p&gt;
+&lt;p&gt;六、&lt;a href=&quot;http://alonepig.tk/fms/2014/07/07/working-with-live-video/&quot;&gt;dev_guide使用手册：使用实时流&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;七、dev_guide使用手册：构建点对点的网络应用&lt;/p&gt;
+&lt;p&gt;七、[dev_guide使用手册：构建点对点的网络应用]&lt;/p&gt;
 
-&lt;p&gt;八、dev_guide使用手册：开发社交应用&lt;/p&gt;
+&lt;p&gt;八、[dev_guide使用手册：开发社交应用]&lt;/p&gt;
 
-&lt;p&gt;九、dev_guide使用手册：应用安全&lt;/p&gt;
+&lt;p&gt;九、[dev_guide使用手册：应用安全]&lt;/p&gt;
 
-&lt;p&gt;十、dev_guide使用手册：开发插件&lt;/p&gt;
+&lt;p&gt;十、[dev_guide使用手册：开发插件]&lt;/p&gt;
 
-&lt;p&gt;十一、客户端和服务器端通讯的方法&lt;/p&gt;
+&lt;p&gt;十一、[客户端和服务器端通讯的方法]&lt;/p&gt;
 
-&lt;p&gt;十二、administrationapi介绍&lt;/p&gt;
+&lt;p&gt;十二、[administrationapi介绍]&lt;/p&gt;
 
-&lt;p&gt;十四、(ams&lt;em&gt;config&lt;/em&gt;admin 手册)[]&lt;/p&gt;
+&lt;p&gt;十四、&lt;a href=&quot;&quot;&gt;ams&lt;em&gt;config&lt;/em&gt;admin 手册&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;十五、Server-Side ActionScript语言参考 &lt;/p&gt;
 
