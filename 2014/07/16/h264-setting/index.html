@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-   <title>Learning AMS  </title>
+   <title>h264 setting  </title>
    <meta name="author" content="lsj" />
 
    <link rel="start" href="/" />
@@ -79,15 +79,13 @@
   
 <div id="page">
 	
-  <h1 class="emphnext">Learning AMS</h1>
+  <h1 class="emphnext">h264 setting</h1>
   <ul class="tag_box inline">
   
   
 
 
   
-     
-    	<li><a href="/tags.html#FMS-ref">FMS <span>12</span></a></li>
     
   
 
@@ -95,42 +93,107 @@
 
   </ul>
 
-  <h3>Adobe Media Server开发笔记</h3>
+  <p><strong>什么是H264</strong></p>
 
-<p>一、[adobemediaserver<em>5.0.3</em>install 总结]</p>
+<p>H.264，或称MPEG-4第十部分（AVC,Advanced Video Coding），是由国际电信标准化部门ITU-T和国际标准化组织ISO/IEC于2003年共同推出的最新一代的视频压缩标准。
+与就标准相比，它能够在更低带宽下提供优质视频。</p>
 
-<p>二、[dev_guide使用手册：开始使用流媒体]</p>
+<p><strong>H264和Flash Player</strong></p>
 
-<p>三、[dev_guide使用手册：内容保护]</p>
+<p>Flash Player9 就支持了H264回播。Flash Player应该播放 .mp4, .m4v, .m4a, .mov, .3gp文件。H264使用.flv扩展名，也使用新的扩展名。</p>
 
-<p>四、[dev_guide使用手册：开始开发应用]</p>
+<table>
+    <tr>
+        <td>文件扩展名</td>
+        <td>FTYP</td>
+        <td>MIME 类型</td>
+        <td>描述</td>
+    </tr>
+    <tr>
+        <td>.4v</td>
+        <td>'F4V'</td>
+        <td>video/mp4</td>
+        <td>视频</td>
+    </tr>
+    <tr>
+        <td>.f4p</td>
+        <td>'F4P'</td>
+        <td>video/mp4</td>
+        <td>受保护的媒体</td>
+    </tr>
+    <tr>
+        <td>.f4a</td>
+        <td>'F4A'</td>
+        <td>audio/mp4</td>
+        <td>Flash Player音频</td>
+    </tr>
+    <tr>
+        <td>.f4b</td>
+        <td>'F4B'</td>
+        <td>audio/mp4</td>
+        <td>Flash Player有声读物</td>
+    </tr>
+</table>
 
-<p>五、[dev_guide使用手册：开发流媒体应用]</p>
+<p><br/></p>
 
-<p>六、<a href="http://alonepig.tk/fms/2014/07/07/working-with-live-video/">dev_guide使用手册：使用实时流</a></p>
+<p><strong>H264编码参数</strong></p>
 
-<p>七、[dev_guide使用手册：构建点对点的网络应用]</p>
+<p>Profile：对视频压缩特性的描述，表示不同的画质级别。目前有21种标准，但AS中只支持2种选择。</p>
 
-<p>八、[dev_guide使用手册：开发社交应用]</p>
+<p><img src="http://cainiaoxiaoxiao.u.qiniudn.com/1279272306301.jpg" alt=""></p>
 
-<p>九、[dev_guide使用手册：应用安全]</p>
+<p>Level：对视频本身特性的描述(码率、分辨率、fps)</p>
 
-<p>十、[dev_guide使用手册：开发插件]</p>
+<p><img src="http://cainiaoxiaoxiao.u.qiniudn.com/2222.png" alt=""></p>
 
-<p>十一、[客户端和服务器端通讯的方法]</p>
+<p>在直播中使用H264编码：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">var cam:camera = Camera.getCamera();
+var ns:netStream = new NetStream(nc);
+ns.client = this;
+ns.addEventListener(NetStatusEvent.NET_STATUS, onNetStatus); 
 
-<p>十二、[administrationapi介绍]</p>
+var h264Settings:H264VideoStreamSettings = new H264VideoStreamSettings();
+h264Settings.setProfileLevel(H264Profile.MAIN, H264Level.LEVEL_3_1);
+// 以下方法暂无效，不知道adobe什么时候才实现，用Camera对应的API代替
+//h264Settings.setQuality(0,90);
+//h264Settings.setKeyFrameInterval(15);
+//h264Settings.setMode(width, height, fps);
 
-<p>十四、<a href="">ams<em>config</em>admin 手册</a></p>
+ns.videoStreamSettings = h264Settings;
+ns.attachCamera(cam);
+ns.publish(&quot;4:mplivestream.f4v&quot;);
+</code></pre></div>
+<p><strong>setProfileLevel(profile:String, level:String)</strong></p>
 
-<p>十五、Server-Side ActionScript语言参考 </p>
+<p>H264Profile 类是用于设置 H264VideoStreamSettings 类的配置文件的常数值的枚举。(目前只支持两种)</p>
 
-<p>十三、H264编码的使用</p>
+<p>public static const BASELINE:String = &quot;baseline&quot;</p>
+
+<p>用于H.264/AVC基线配置文件的常数。这是 H264VideoStreamSettings 类的默认值。
+支持I/P帧，只支持无交错(Progressive)和CAVLC，一般用于低阶或需要额外容错的应用，比如视频通话、手机视频等；</p>
+
+<p>public static const MAIN:String = &quot;main&quot;</p>
+
+<p>用于 H.264/AVC 主配置文件的常数。 
+提高I/P/B帧，支持无交错(Progressive)和交错(interlaced)，同样提供对于CAVLC和CABAC的支持</p>
+
+<p>H264Level 类是用于设置 H264VideoStreamSettings 类的级别的常数值的枚举。 </p>
+
+<p><br/><br/></p>
+
+<p>参考：</p>
+
+<p>http://en.wikipedia.org/wiki/H264</p>
+
+<p>http://www.adobe.com/devnet/adobe-media-server/articles/h264_encoding.html</p>
+
+<p>http://www.adobe.com/devnet/adobe-media-server/articles/encoding-live-video-h264.html</p>
 
 
   <address class="signature">
     <a class="author" href="/">lsj</a> 
-    <span class="date">24 June 2014</span>
+    <span class="date">16 July 2014</span>
     <span class="location"></span>
   </address>
   
@@ -142,10 +205,8 @@
 	
   <div class="prev-next">
   
-    <a href="/fms/2014/07/01/getting_started_streaming_media" class="next" title="getting_started_streaming_media">Next Post &rarr;</a>
   
-  
-    <a href="/fms/2014/06/24/adobemediaserver_503_install-" class="prev" title="adobemediaserver_5.0.3_install 总结">&larr; Earlier Post</a>
+    <a href="/2014/07/16/air-develop-ios-app" class="prev" title="air develop ios app">&larr; Earlier Post</a>
   
   </div>
   

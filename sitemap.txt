@@ -9,6 +9,8 @@ http://alonepig.github.io/rss.xml
 http://alonepig.github.io/sitemap.txt
 http://alonepig.github.io/tags.html
 
+http://alonepig.github.io/2014/07/16/h264-setting
+http://alonepig.github.io/2014/07/16/air-develop-ios-app
 http://alonepig.github.io/fms/2014/07/07/working-with-live-video
 http://alonepig.github.io/fms/2014/07/07/securing-applications
 http://alonepig.github.io/fms/2014/07/07/developing-streaming-media-applications
@@ -21,4 +23,3 @@ http://alonepig.github.io/fms/2014/07/01/server-side-actionscript-language-refer
 http://alonepig.github.io/fms/2014/07/01/getting_started_streaming_media
 http://alonepig.github.io/fms/2014/06/24/learning-ams
 http://alonepig.github.io/fms/2014/06/24/adobemediaserver_503_install-
-http://alonepig.github.io/lessons/2011/12/29/jekyll-introduction
