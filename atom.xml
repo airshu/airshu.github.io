@@ -4,7 +4,7 @@
  <title>alonepig's blog</title>
  <link href="http://alonepig.github.io/" rel="self"/>
  <link href="http://alonepig.github.io"/>
- <updated>2014-07-16T14:04:23+08:00</updated>
+ <updated>2014-07-18T16:11:43+08:00</updated>
  <id>http://alonepig.github.io</id>
  <author>
    <name>lsj</name>
@@ -13,10 +13,10 @@
 
  
  <entry>
-   <title>h264 setting</title>
-   <link href="http://alonepig.github.io/2014/07/16/h264-setting"/>
-   <updated>2014-07-16T00:00:00+08:00</updated>
-   <id>http://alonepig.github.io/2014/07/16/h264-setting</id>
+   <title>about h264 setting</title>
+   <link href="http://alonepig.github.io/2014/07/18/about-h264-setting"/>
+   <updated>2014-07-18T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/2014/07/18/about-h264-setting</id>
    <content type="html">&lt;p&gt;&lt;strong&gt;什么是H264&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;H.264，或称MPEG-4第十部分（AVC,Advanced Video Coding），是由国际电信标准化部门ITU-T和国际标准化组织ISO/IEC于2003年共同推出的最新一代的视频压缩标准。
@@ -117,10 +117,235 @@ ns.publish(&amp;quot;4:mplivestream.f4v&amp;quot;);
  </entry>
  
  <entry>
+   <title>params on live</title>
+   <link href="http://alonepig.github.io/fms/2014/07/17/params-on-live"/>
+   <updated>2014-07-17T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/fms/2014/07/17/params-on-live</id>
+   <content type="html">&lt;h4&gt;直播过程中NetStream、Camera、Microphone的参数设置&lt;/h4&gt;
+
+&lt;p&gt;在直播过程中，参数的设置非常重要，它关乎着使用了多少带宽，画面的流畅度等。自己在使用的过程中总结了一些经验，若有不对之处，望看官能指出。&lt;/p&gt;
+
+&lt;h6&gt;关于bufferTime&lt;/h6&gt;
+
+&lt;p&gt;bufferTime是NetStream的属性，表示缓冲的时间，默认值为0.1秒。在直播中如果设置为0则会出现卡顿的现象，要是设置的值较大，则等待的时间较长。
+有一个比较好的办法，在开始连接的时候设置一个较小的值(如0.1)，等到缓冲区填满时(&amp;quot;NetStream.Buffer.Full&amp;quot;)，再设置大点(3秒或4秒)。接收到
+&amp;quot;NetStream.Buffer.Empty&amp;quot;时再设置回初始值。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;private function onNetStreamStatusHandler(event:NetStatusEvent):void
+{
+    switch(event.info.code)
+    {
+        case &amp;quot;NetStream.Buffer.Full&amp;quot;:
+            _ns.bufferTime = 3;
+            break;
+        case &amp;quot;NetStream.Buffer.Empty&amp;quot;:
+            _ns.bufferTime = 0.1;
+            break;
+    }
+}   
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h5&gt;关于Camera.setQuality(bandwidth:int, quality:int)方法&lt;/h5&gt;
+
+&lt;p&gt;帮助文档中说的很轻快，这个方法是用来设置每秒的最大带宽或当前输出视频输入信号所需的画面质量。&lt;/p&gt;
+
+&lt;p&gt;使用此方法可以指定输出视频输入信号的哪一方面对于您的应用程序更重要：是带宽使用率还是图片品质。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;要表示带宽使用率更为重要，请将一个值传递给 bandwidth 并将 0 传递给 quality。运行时将在指定的带宽内以可能的最高质量传输视频。如有必要，运行时将降低画面质量以避免超出指定的带宽。通常，随着运动的增加，质量将降低。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;要表示品质更为重要，请将 0 传递给 bandwidth 并将一个数值传递给 quality。运行时使用所需数量的带宽来保持指定的质量。如有必要，运行时将降低帧速率以保持画面质量。通常，随着运动的增加，带宽的使用率也将增加。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;要指定带宽和品质同等重要，请为这两个参数都传递数值。运行时将传输达到指定质量并且不超过指定带宽的视频。如有必要，运行时将降低帧速率以保持画面质量，而不会超出指定的带宽。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;这里对于带宽bandwidth要重点理解。这里以每秒字节数(bps)为单位。但我们日常生活中常用到的是Kb/s、Mb/s，表示每秒传输多少兆、多少千字节。它们的转换关系是：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;8 bit = 1 Byte = 1/1024 k = 1/1024/1024 M
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;因此，2Mb的带宽最多只有200多K的下载速度就是这样得来的。&lt;/p&gt;
+
+&lt;p&gt;在调试过程中，可以将bandwidth值设置为0，看看当前设置需要多少的带宽才能保持品质。&lt;/p&gt;
+
+&lt;h5&gt;关于Camera.setMode(width:int, height:int, fps:Number, favorArea:Boolean = true)&lt;/h5&gt;
+
+&lt;p&gt;将摄像头的捕获模式设置为最符合指定要求的本机模式。如果摄像头没有与您传递的所有参数相匹配的本机模式，运行时将选择与所请求的模式最接近的合成捕获模式。此操作可能涉及裁切图像和删除帧。&lt;/p&gt;
+
+&lt;p&gt;默认情况下，运行时根据需要删除一些帧以保持图像大小。要将删除的帧数降至最低（即使这意味着减小图像大小），请为 favorArea 参数传递 false。&lt;/p&gt;
+
+&lt;p&gt;在选择本机模式时，运行时将设法尽量保持所请求的高宽比。例如，如果发出 myCam.setMode(400, 400, 30) 命令，并且摄像头上可用的最大宽度和高度值分别为 320 和 288，则运行时将宽度和高度都设置为 288；通过将这些属性设置为相同的值，运行时可以保持所请求的 1:1 高宽比。&lt;/p&gt;
+
+&lt;p&gt;要确定在运行时选择与所请求的值最匹配的模式后分配给这些属性的值，请使用 width、height 和 fps 属性。&lt;/p&gt;
+
+&lt;p&gt;网络上流传一些关于setMode的设置，说带宽的大致算法是：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;视频宽度 x 视频高度 x 播放速率 (fps) = 总的带宽( bits/sec)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;然后给出了一组推荐的参数设置：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;1 : //如果使用的是1M以上的宽度的话，可以选用如下设置：
+2 : Camera.setMode(320,240,15);
+3 : Camera.setQuality(144,000,85 );
+4 : Microphone.setRate(22);
+5 : //总的消耗带宽：1,196 kbps = 144kbyte
+
+1 : //786 kbps宽带：
+2 : Camera.setMode(240,180,12);
+3 : Camera.setQuality(64,800,85 );
+4 : Microphone.setRate(22);
+5 : //总的消耗带宽：562 kbps = 70kbyte
+
+1 : //384 kbps宽带：
+2 : Camera.setMode(192,144,7);
+3 : Camera.setQuality(24,192,85 );
+4 : Microphone.setRate(11);
+5 : //总的消耗带宽：216 kbps = 27kbyte
+
+1 : //56 kbps 拨号：
+2 : Camera.setMode(80,60,8);
+3 : Camera.setQuality(4,800,85 );
+4 : Microphone.setRate(8);
+5 : //总的消耗带宽：54 kbps = 7kbyte
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;自己经过了如下测试：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;设置setQuality(0, 85); 然后setMode设置为以上值&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h5&gt;setLoopback(compress:Boolean=false)&lt;/h5&gt;
+
+&lt;p&gt;指定在本地查看摄像头时是否使用压缩视频流。此方法仅在使用 Flash Media Server 传输视频时适用；如果将 compress 设置为 true，则可以更精确地看到在用户实时查看视频时向用户呈现视频的方式。&lt;/p&gt;
+
+&lt;p&gt;虽然压缩流在用于测试（如预览视频品质设置）时很有用，但对它进行处理要花很大的代价，因为对本地视图并不只是进行压缩处理；就像通过实时连接进行传输那样，需要对视频进行压缩和编辑以进行传输，然后要对其进行解压缩处理以供本地查看。&lt;/p&gt;
+
+&lt;p&gt;这个方法的作用感觉就是让用户感受最终传输的流的效果。应根据需求来决定是否需要设置。&lt;/p&gt;
+
+&lt;h5&gt;setKeyFrameInterval(keyFrameInterval:int)&lt;/h5&gt;
+
+&lt;p&gt;指定进行完整传输而不由视频压缩算法进行插值处理的视频帧（称为关键帧）。此方法仅在使用 Flash Media Server 传输视频时适用。&lt;/p&gt;
+
+&lt;p&gt;Flash 视频压缩算法通过只传输自视频的上一帧以来的更改内容来压缩视频；这些部分被视为插补帧。可以根据前一帧的内容插补视频帧。但是，关键帧是完整的视频帧；它并不是根据前面的帧插补的。&lt;/p&gt;
+
+&lt;p&gt;要确定如何设置 keyFrameInterval 参数的值，请考虑带宽使用率和视频播放辅助功能。例如，为 keyFrameInterval 指定较高的值（以较低的频率发送关键帧）可降低带宽使用率。但是，这可能会增加在视频某一特定点上定位播放头所需的时间量；可能需要插补更多以前的视频帧才能继续播放视频。&lt;/p&gt;
+
+&lt;p&gt;反之，为 keyFrameInterval 指定较低的值（以较高的频率发送关键帧）会提高带宽使用率（因为会更频繁地传输所有的视频帧），但可能会减少在已录制视频内搜索特定视频帧所需的时间量。&lt;/p&gt;
+
+&lt;p&gt;这个方法,如果不需要录播视频，那么可以把值设置的高一点来节省带宽。&lt;/p&gt;
+
+&lt;h5&gt;setUseEchoSuppression(useEchoSuppression:Boolean)&lt;/h5&gt;
+
+&lt;p&gt;指定是否使用音频编解码器的回音抑制功能。除非用户已经在 Flash Player 的“麦克风设置”面板中选择了“降低回音”，否则默认值为 false。&lt;/p&gt;
+
+&lt;p&gt;回音抑制是指降低音频回馈效果，当扬声器发出的声音由同一系统上的麦克风拾取时，将导致音频回馈。（这不同于回音消除，后者会完全移除反馈。在调用 getEnhancedMicrophone() 方法以使用回音消除功能时，将忽略 setUseEchoSuppression() 方法。）&lt;/p&gt;
+
+&lt;p&gt;通常情况下，当通过扬声器（而不是耳机）播放所捕获的声音时，建议使用回音抑制。如果您的 SWF 文件允许用户指定声音输出设备，则当他们指定使用扬声器并且还将使用麦克风时，您可能需要调用 Microphone.setUseEchoSuppression(true)。&lt;/p&gt;
+
+&lt;p&gt;用户也可以在 Flash Player 的“麦克风设置”面板中调整这些设置。&lt;/p&gt;
+
+&lt;h5&gt;setLoopBack(state:Boolean=true)&lt;/h5&gt;
+
+&lt;p&gt;将麦克风捕获的音频传送到本地扬声器。如果将本地麦克风的声音传递到本地扬声器，则会存在创建音频回馈循环的风险，这可能导致非常大的振鸣声，并且可能会损坏声音硬件。使用参数值true调用Microphone.setUseEchoSuppression()方法可降低发生音频回馈的风险，但不会完全消除该风险。建议始终在调用Mecrophone.setLoopback(true)之前调用Microphone.setUseEchoSuppression(true)，除非确信用户使用耳机来播放声音，或者使用除扬声器外的设备。在FMS直播中需设置false，不然会有吵杂声。&lt;/p&gt;
+
+&lt;h5&gt;setSilenceLevel(silenceLevel:Number, timeout:int=-1)&lt;/h5&gt;
+
+&lt;p&gt;设置可认定为有声的最低音量输入水平，以及实际静音前需经历的无声时间长度(可选)。此方法用于优化带宽。
+     * 要完全禁止麦克风检测声音，请为selenceLevel传递值1000；这样就对不会调度activity事件了。
+     * 要确定麦克风当前所检测的音量，请使用Microphone.activityLevel。
+Speex具有语音活动检测功能(VAD)，在未检测到语音时将自动减少带宽。使用Speex编码器时，建议将静音级别设置为0.&lt;/p&gt;
+
+&lt;p&gt;第一个参数： 激活麦克风并调度activity事件所需的音量。可接收值的范围为0到100。
+第二个参数： 在没有活动的情况下经历过的毫秒数，必须经历这么长的时间，Flash Player才会认为声音已停止并调度dispatch事件。&lt;/p&gt;
+
+&lt;h5&gt;framesPerPacket&lt;/h5&gt;
+
+&lt;p&gt;在一个包（消息）中传输的 Speex 语音帧的数目。每帧长 20 ms。默认值为每个包两帧。&lt;/p&gt;
+
+&lt;p&gt;消息中包含的 Speex 帧越多，需要的带宽就越小，但发送消息延迟的时间就越长。Speex 帧越少，需要的带宽就越大，而延迟的时间就会越短。&lt;/p&gt;
+
+&lt;h5&gt;gain&lt;/h5&gt;
+
+&lt;p&gt;麦克风放大信号的程度。有效值0到100。默认值为50。&lt;/p&gt;
+
+&lt;h5&gt;codec&lt;/h5&gt;
+
+&lt;p&gt;用于压缩音频的编解码器。可用编解码器为 Nellymoser（默认值）和 Speex。枚举类 SoundCodec 包含各种对 codec 属性有效的值。&lt;/p&gt;
+
+&lt;p&gt;如果使用 Nellymoser 编解码器，可使用 Microphone.rate() 设置采样率。如果使用 Speex 编解码器，则采样率会设置为 16 kHz。&lt;/p&gt;
+
+&lt;p&gt;Speex 具有语音活动检测功能 (VAD)，在未检测到语音时将自动减小带宽。使用 Speex 编解码器时，Adobe 建议将静音级别设置为 0。要设置静音级别，请使用 Microphone.setSilenceLevel() 方法。&lt;/p&gt;
+
+&lt;h5&gt;rate&lt;/h5&gt;
+
+&lt;p&gt;麦克风捕获声音时使用的速率，单位是 kHz。可接受的值为 5、8、11、22 和 44。如果您的声音捕获设备支持 8 kHz，则默认值为 8 kHz。否则，默认值是您的声音捕获设备支持的高于 8 kHz 的下一个可用捕获级别，通常为 11 kHz。 &lt;/p&gt;
+
+&lt;p&gt;注意：实际速率与下表中注明的 rate 值稍有不同：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;rate 值    实际频率
+44  44,100 Hz
+22  22,050 Hz
+11  11,025 Hz
+8   8,000 Hz
+5   5,512 Hz
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h5&gt;encodeQuality&lt;/h5&gt;
+
+&lt;p&gt;使用 Speex 编解码器时的编码语音品质。可能值为从 0 到 10 的值。默认值为 6。数字越大，表示品质越高，但需要更多的带宽，如下表所示。列出的比特率值表示净比特率，并不包括信息分包开销。&lt;/p&gt;
+
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;品质值&lt;/td&gt;
+        &lt;td&gt;所需的比特率(KB/秒)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;3.95&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;1&lt;/td&gt;
+        &lt;td&gt;5.57&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;2&lt;/td&gt;
+        &lt;td&gt;7.75&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;3&lt;/td&gt;
+        &lt;td&gt;9.80&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;4&lt;/td&gt;
+        &lt;td&gt;12.8&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;5&lt;/td&gt;
+        &lt;td&gt;16.8&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;6&lt;/td&gt;
+        &lt;td&gt;20.6&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;7&lt;/td&gt;
+        &lt;td&gt;23.8&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;8&lt;/td&gt;
+        &lt;td&gt;27.8&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;9&lt;/td&gt;
+        &lt;td&gt;34.2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;10&lt;/td&gt;
+        &lt;td&gt;42.2&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;h5&gt;noiseSuppressionLevel&lt;/h5&gt;
+
+&lt;p&gt;Speex 编码器使用的最大噪音衰减分贝数（负数）。如果启用，则在从 Microphone 捕获的声音进行 Speex 压缩之前应用噪音抑制。设置为 0 以禁用噪音抑制。默认启用噪音抑制，最大衰减为 -30 dB。选择 Nellymoser 编解码器时被忽略。&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
    <title>air develop ios app</title>
-   <link href="http://alonepig.github.io/2014/07/16/air-develop-ios-app"/>
+   <link href="http://alonepig.github.io/air/2014/07/16/air-develop-ios-app"/>
    <updated>2014-07-16T00:00:00+08:00</updated>
-   <id>http://alonepig.github.io/2014/07/16/air-develop-ios-app</id>
+   <id>http://alonepig.github.io/air/2014/07/16/air-develop-ios-app</id>
    <content type="html">&lt;p&gt;记录使用AIR开发IOS应用中的点点滴滴&lt;/p&gt;
 
 &lt;p&gt;&lt;br/&gt;&lt;/p&gt;
@@ -196,6 +421,12 @@ ns.publish(&amp;quot;4:mplivestream.f4v&amp;quot;);
 &lt;p&gt;http://blogs.adobe.com/airodynamics/2012/11/07/deploying-air-apps-on-iphone-5/&lt;/p&gt;
 
 &lt;p&gt;http://zengrong.net/post/1752.htm/comment-page-1#comment-16642&lt;/p&gt;
+
+&lt;p&gt;2.不同的版本需要添加不同的Icon。不然在上传ipa文件时会有警告或直接报错。&lt;/p&gt;
+
+&lt;p&gt;ERROR ITMS-9000: &amp;quot;Missing required icon file. The bundle does not contain an app icon for iPhone / iPod touch of exactly &amp;#39;57x57&amp;#39; pixels, in .png fomat for iOS versions &amp;lt; 7.0.&amp;quot;&lt;/p&gt;
+
+&lt;p&gt;这时候，你应该根据提示来添加不同尺寸的icon。&lt;/p&gt;
 
 &lt;p&gt;&lt;br/&gt;&lt;/p&gt;
 
@@ -414,7 +645,224 @@ function onMetaData(info:Object):void {
    <link href="http://alonepig.github.io/fms/2014/07/07/securing-applications"/>
    <updated>2014-07-07T00:00:00+08:00</updated>
    <id>http://alonepig.github.io/fms/2014/07/07/securing-applications</id>
-   <content type="html"></content>
+   <content type="html">&lt;h4&gt;应用安全&lt;/h4&gt;
+
+&lt;h5&gt;资源访问权限&lt;/h5&gt;
+
+&lt;p&gt;&lt;strong&gt;关于访问控制&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;当用户访问服务器的时候，默认情况下能访问所有的流和共享对象。你可以使用服务端的ActionScript创建动态访问控制列表。&lt;/p&gt;
+
+&lt;p&gt;当一个客户端连接服务器，服务器脚本会传递一个Client对象。每个Client对象有readAccess和writeAccess属性。你可以使用这些属性来控制访问权限。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;实现动态访问控制&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;clent.readAccess和client.writeAccess属性为字符串类型，值包含了用分号隔开的字符串。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;client.readAccess = &amp;quot;appStreams;/appSO/&amp;quot;;
+client.writeAccess = &amp;quot;appStreams/public/;appSO/public/&amp;quot;;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;默认值为&amp;quot;/&amp;quot;，表示可以访问所有的流和共享对象。&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;允许访问流&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;在main.asc中，添加onConnect()函数来指定目录文件夹：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;application.onConnect = function(client, name) {
+    // give this new client the same name as passed in
+    client.name = name;
+    // give write access
+    client.writeAccess = &amp;quot;appStreams/public/&amp;quot;;
+    // accept the new client&amp;#39;s connection
+    application.acceptConnection(client);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;拒绝访问流&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;application.onConnect = function(client, name) {
+    ...
+    // deny write access to the server
+    client.writeAccess = &amp;quot;&amp;quot;;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;指定访问共享对象&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;指定共享对象的名字&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;application.onConnect = function(client, name) {
+    ...
+    client.writeAccess = &amp;quot;appSO/public/&amp;quot;;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h5&gt;客户端权限&lt;/h5&gt;
+
+&lt;h6&gt;使用Client对象属性&lt;/h6&gt;
+
+&lt;p&gt;&lt;strong&gt;检查客户端IP地址&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;client.ip，如果需要，可以拒绝客户端连接：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;if (client.ip.indexOf(&amp;quot;60.120&amp;quot;) !=0) {
+    application.rejectConnection(client, {&amp;quot;Access Denied&amp;quot;} );
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;检查原始URL&lt;/strong&gt; &lt;/p&gt;
+
+&lt;p&gt;在main.asc中，client.referrer表示拒绝访问的URL列表。确保连接的客户端是来自你期望的地方。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;referrerList = {};
+referrerList[&amp;quot;http://www.example.com&amp;quot;] = true;
+referrerList[&amp;quot;http://www.abc.com&amp;quot;] = true;
+
+if (!referrerList[client.referrer]) {
+    application.rejectConnection(client, {&amp;quot;Access Denied&amp;quot;} );
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;使用唯一的key&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;1.客户端中，创建一个唯一的key：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;var keyDate = String(new Date().getTime());
+var keyNum = String(Math.random());
+var uniqueKey = keyDate + keyNum;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;2.发送到服务器：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;nc.connect(&amp;quot;rtmp://www.example.com/someApplication&amp;quot;, uniqueKey);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;3.下面的代码在所有的连接中寻找唯一的key。如果key丢失或者已经存在，则拒绝连接。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;application.onConnect = function( pClient, uniqueKey ) {
+    if ( uniqueKey != undefined ) { 
+    // require a unique key with connection request
+        if ( clientKeyList[uniqueKey] == undefined ) {
+        // first time -- allow connection
+            pClient.uniqueKey = uniqueKey;
+            clientKeyList[uniqueKey] = pClient;
+            this.acceptConnection(pClient);
+        } else {
+            trace( &amp;quot;Connection rejected&amp;quot; );
+            this.rejectConnection(pClient);
+        }
+    }
+}
+application.onDisconnect = function( pClient ) {
+    delete clientKeyList[pClient.uniqueKey];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;使用访问插件&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;使用Flash Player版本&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;有两种方法访问这个值：&lt;/p&gt;
+
+&lt;p&gt;虚拟的key： 配置服务器重新映射基于Flash播放器客户端的流&lt;/p&gt;
+
+&lt;p&gt;Client.agent 服务器端代码：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;application.onConnect = function( pClient ) {
+    var platform = pClient.agent.split(&amp;quot; &amp;quot;);
+    var versionMajor = platform[1].split(&amp;quot;,&amp;quot;)[0];
+    var versionMinor = platform[1].split(&amp;quot;,&amp;quot;)[1];
+    var versionBuild = platform[1].split(&amp;quot;,&amp;quot;)[2];
+}
+
+// output example
+// Client.agent: WIN 9,0,45,0
+// platform[0]: &amp;quot;WIN&amp;quot;
+// versionMajor: 9
+// versionMinor: 0
+// versionBuild: 45
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;验证连接的swf文件&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;在swf文件连接应用之前，你可以配置服务器来验证客户端swf的权限。验证swf的作用是为了防止有人自己创建swf来访问你的资源。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;指定域时，允许或拒绝连接&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;如果你知道合法客户端来自的域，则可以使用一个白名单。相反的，你也可以使用黑名单。&lt;/p&gt;
+
+&lt;p&gt;在Adaptor.xml文件添加域列表。&lt;/p&gt;
+
+&lt;p&gt;也可以在服务器端代码中保存。下面的例子中，文件bannedIPList.txt包含了不需要的IP地址：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;// bannedIPList.txt file contents:
+// 192.168.0.1
+// 128.493.33.0
+
+function getBannedIPList() {
+    var bannedIPFile = new File (&amp;quot;bannedIPList.txt&amp;quot;) ;
+    bannedIPFile.open(&amp;quot;text&amp;quot;,&amp;quot;read&amp;quot;);
+    application.bannedIPList = bannedIPFile.readAll();
+    bannedIPFile.close();
+    delete bannedIPFile;
+}
+
+application.onConnect = function(pClient) {
+    var isIPOK = true;
+    getBannedIPList();
+    for (var index=0; index&amp;lt;this.bannedIPList.length; index++) {
+        var currentIP = this.bannedIPList[index];
+        if (pClient.ip == currentIP) {
+            isIPOK = false;
+            trace(&amp;quot;ip was rejected&amp;quot;);
+            break;
+        }
+    }
+
+    if (isIPOK) {
+        this.acceptConnection(pClient);
+    } else {
+        this.rejectConnection(pClient);
+    }
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;此外，你也能检查来自特殊域的请求来的太快：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;application.VERIFY_TIMEOUT_VALUE = 2000;
+Client.prototype.verifyTimeOut = function() {
+    trace (&amp;quot;&amp;gt;&amp;gt;&amp;gt;&amp;gt; Closing Connection&amp;quot;)
+    clearInterval(this.$verifyTimeOut);
+    application.disconnect(this);
+}
+
+function VerifyClientHandler(pClient) {
+    this.onResult = function (pClientRet) {
+        // if the client returns the correct key, then clear timer
+        if (pClientRet.key == pClient.verifyKey.key) {
+            trace(&amp;quot;Connection Passed&amp;quot;);
+            clearInterval(pClient.$verifyTimeOut);
+        }
+    }
+}
+
+application.onConnect = function(pClient) {
+    this.acceptConnection(pClient);
+    // create a random key and package within an Object
+    pClient.verifyKey = ({key: Math.random()});
+
+    // send the key to the client
+    pClient.call(&amp;quot;verifyClient&amp;quot;,
+        new VerifyClientHandler(pClient),
+        pClient.verifyKey);
+
+    // set a wait timer
+    pClient.$verifyTimeOut = setInterval(pClient,
+        $verifyTimeOut,
+        this.VERIFY_TIMEOUT_VALUE,
+        pClient);
+}
+
+application.onDisconnect = function(pClient) {
+    clearInterval(pClient.$verifyTimeOut);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h5&gt;用户权限&lt;/h5&gt;
+
+&lt;h6&gt;使用额外资源的权限&lt;/h6&gt;
+
+&lt;p&gt;对于有限的观众来说，这是他们使用数据库等资源的有效的凭证(登录和密码)。&lt;/p&gt;
+
+&lt;p&gt;1.swf向连接请求提供要给用户认证。&lt;/p&gt;
+
+&lt;p&gt;客户端一般提供账号和密码：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;var sUsername = &amp;quot;someUsername&amp;quot;;
+var sPassword = &amp;quot;somePassword&amp;quot;;
+nc.connect(&amp;quot;rtmp://server/secure1/&amp;quot;, sUsername, sPassword);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;2.AMS验证凭证。&lt;/p&gt;
+
+&lt;p&gt;你可以使用WebService、LoadVars、XML、NetServices等技术来做验证。&lt;/p&gt;
+</content>
  </entry>
  
  <entry>
@@ -608,6 +1056,15 @@ function onMetaData(info:Object):void {
 
 &lt;h5&gt;RTMFP&lt;/h5&gt;
 
+&lt;p&gt;Flash Player10和AIR1.5支持实时媒体流协议(RTMFP)。RTMFP是建立在UDP协议上的。RTMP是建立在TCP协议上的。UDP提供了更低的延迟。
+它能够在两个客户端之间直接传输。&lt;/p&gt;
+
+&lt;p&gt;RTMFP提供了以下特征：NAT/firewall traversal, congestion control 和 prioritization， IP地址， mobility， partial reliability。&lt;/p&gt;
+
+&lt;p&gt;RTMFP使用了128位加密传输。为了播放RTMFP的流，客户端必须知道发布者的节点ID。节点ID是一个256位的发布者标识符。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.adobe.com/devnet/adobe-media-server/articles/real-time-collaboration.html&quot;&gt;Best practices for real-time collaboration using Adobe Media Server&lt;/a&gt;&lt;/p&gt;
+
 &lt;h6&gt;关于节点ID&lt;/h6&gt;
 
 &lt;p&gt;每个客户端都有一个节点ID。&lt;/p&gt;
@@ -629,17 +1086,29 @@ function onMetaData(info:Object):void {
 
 &lt;h5&gt;RTMFP 组&lt;/h5&gt;
 
-&lt;p&gt;&lt;strong&gt;Peer&lt;/strong&gt; 组的成员，也叫&amp;quot;node&amp;quot;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Peer&lt;/strong&gt; 节点，组的成员，也叫&amp;quot;node&amp;quot;。一个节点就是一个Flash Player或AIR客户端。&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Group&lt;/strong&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Group&lt;/strong&gt; 1个或多个RTMFP节点组成的集合。&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Bootstrapping&lt;/strong&gt; 为了加入组，连接至少一个组成员。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Bootstrapping&lt;/strong&gt; 为了加入组，连接至少一个组成员。你可以写应用逻辑来使得要给客户端加入一个组，或者可以请求AMS自动引导客户端。&lt;/p&gt;
+
+&lt;p&gt;组里的节点可以不经过服务器进行数据传输。节点可以共享数据。&lt;/p&gt;
+
+&lt;p&gt;使用ActionScript3 GroupSpecifier类来定义组的&amp;quot;groupspec&amp;quot;。传递给NetGroup和NetStream的构造函数。使用NetGroup类管理组和发送ActionScript对象。使用
+NetStream类来多播音频和视频。&lt;/p&gt;
+
+&lt;p&gt;Groupspecs字符串以&amp;quot;G:&amp;quot;开头，后面接着一串十六进制的数字。&lt;/p&gt;
 
 &lt;h6&gt;创建一个组&lt;/h6&gt;
 
 &lt;ol&gt;
-&lt;li&gt;&lt;p&gt;连接AMS
-NetConnection.connect(&amp;quot;rtmfp://fms.exmaple.com/p2pexample/test1&amp;quot;);&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;连接AMS
+NetConnection.connect(&amp;quot;rtmfp://fms.exmaple.com/p2pexample/test1&amp;quot;);&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;注意：如果Adaptor.xml文件将RTMFP禁用了，客户端会接收&amp;quot;NetConnection.Connect.Failed&amp;quot;状态。   &lt;/p&gt;
+
+&lt;ol&gt;
 &lt;li&gt;&lt;p&gt;在&amp;quot;NetConnection.Connect.Success&amp;quot;中，使用GroupSpecifier类来额创建一个groupspec&lt;/p&gt;
 
 &lt;p&gt;// Called in the &amp;quot;NetConnection.Connect.Success&amp;quot; case in the NetStatusEvent handler.
@@ -661,19 +1130,207 @@ private function OnConnect():void{
 
 &lt;h6&gt;向组里引导一个节点&lt;/h6&gt;
 
+&lt;p&gt;连接到服务器后，一个节点必须被加入到一个组里，这个技术叫做&amp;quot;bootstrapping&amp;quot;。Bootstrapping允许同一个组的成员互相可见。&lt;/p&gt;
+
+&lt;p&gt;为了加入一个组，客户端必须知道组定义的GroupSpecifier。如果两个客户端使用相同的GroupSpecifier，但从不联系，则他们在不同的组。如果两个组有联系，
+那他们会合并为一个大组。&lt;/p&gt;
+
+&lt;p&gt;每一个客户端都有一个节点ID。客户端和服务器端都可以访问节点ID。&lt;/p&gt;
+
+&lt;p&gt;RTMFP中的节点可以使用以下的方法进行引导：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;服务器自动引导。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;当客户端进行RTMFP连接时，服务器使用相同的NetGroup引导他们。客户端需要设置：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;GroupSpecifier.serverChannelEnabled为true。
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;手动引导&lt;/p&gt;
+
+&lt;p&gt;调用NetGroup.addNeighbor()方法。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;LAN节点发现&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;使用GroupSpecifier类可以激活局域网节点发现。局域网节点发现允许ERMFP NetConnection和NetStream、NetGroup对象自动定位节点和加入组的子组。
+下面的代码展示了如果激活LAN节点发现：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;var nc = new NetConnection();
+// Protocol must be RTMFP
+nc.connect(&amp;quot;rtmfp://fms.example.com/appname/appinstance&amp;quot;);
+var gs = new GroupSpecifier(&amp;quot;com.example.discovery-test&amp;quot;);
+// Must be enabled for LAN peer discovery to work
+gs.ipMulticastMemberUpdatesEnabled = true;
+// Multicast address over which to exchange peer discovery.
+gs.addIPMulticastAddress(&amp;quot;224.0.0.255:30000&amp;quot;);
+// Additional GroupSpecifier configuration...
+var ns = new NetStream(nc, gs.toString());  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h6&gt;服务端的RTMFP组&lt;/h6&gt;
+
+&lt;p&gt;使用服务器端的ActionScript来创建一个RTMFP连接。一个服务器端的netConnection是一个虚拟的Flash客户端。它有自己的RTMFP栈。&lt;/p&gt;
+
+&lt;p&gt;注意：服务器端的ActionScript不支持直接在节点之间创建连接。&lt;/p&gt;
 
 &lt;h6&gt;Flash Player 对等节点网络应用安全对话框&lt;/h6&gt;
 
+&lt;p&gt;当groupsec传递给了NetStream或NetGroup。Flash Player会显示一个&amp;quot;对等互助网络&amp;quot;对话框。该对话框询问用户是否可以使用它们的连接在节点之间共享数据。&lt;/p&gt;
+
+&lt;p&gt;如果用户点击允许，对话框就不会在出现。如果用户不允许，所有节点特征将不能使用。你可以使用RTMFP订阅一个纯净的本地IP多播流，这种情况下，对话框不会出现。&lt;/p&gt;
+
+&lt;p&gt;当使用IP多播时(没有对等网络的功能)，你可以禁用安全对话框，设置GroupSpecifier.peerToPeerDisabled属性为true。默认为false。&lt;/p&gt;
+
 &lt;h6&gt;关于RRMFP组的ActionScript类&lt;/h6&gt;
+
+&lt;p&gt;使用下面的ActionScript类和服务器端ActionScript类来创建RTMFP应用：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;NetConnection&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;GroupSpecifier&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;NetGroup：管理RTMFP组。该类属性提供了组成员的信息&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;NetGroupInfo：指定传输质量。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;NetStream：&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;NetStreamMulticastInfo：NetStream.multicastinfo 返回当前Qos状态的NetStreamMulticastInfo对象。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h6&gt;向组里发送一个消息&lt;/h6&gt;
 
+&lt;p&gt;调用NetGroup.post()方法广播一个ActionScript消息。使用&amp;quot;NetGroup.Posting.Notify&amp;quot;接收。&lt;/p&gt;
+
+&lt;p&gt;这个方法类似于服务器端的Application.broadcastMsg()。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;GroupSpecifier.postingEnabled属性必须为true。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;接收NetGroup.Neighbor.Connect事件早于你调用post()&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;消息使用AMF序列化。一个消息可以是任何形式的AMF对象。不能是MovieClip。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;消息传输是无序的。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;post()方法返回一个消息ID或null或error。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;post()方法发送一个NetStatusEvent事件&amp;quot;NetGroup.Posting.Notify&amp;quot;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;实例：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;private function OnConnect():void{
+    StatusMessage(&amp;quot;Connected\n&amp;quot;);
+    connected = true;
+    // Create a GroupSpecifier object to pass to the NetGroup constructor.
+    // The GroupSpecifier determines the properties of the group
+    var groupSpecifier:GroupSpecifier;
+    groupSpecifier = new GroupSpecifier(&amp;quot;com.aslrexample/&amp;quot; + groupNameText.text);
+    groupSpecifier.postingEnabled = true;
+    groupSpecifier.serverChannelEnabled = true;
+    netGroup = new NetGroup(netConnection, groupSpecifier.groupspecWithAuthorizations());
+    netGroup.addEventListener(NetStatusEvent.NET_STATUS, NetStatusHandler);
+    StatusMessage(&amp;quot;Join \&amp;quot;&amp;quot; + groupSpecifier.groupspecWithAuthorizations() + &amp;quot;\&amp;quot;\n&amp;quot;);
+}
+// Called when you the chatText field has focus and you press Enter.
+private function DoPost(e:ComponentEvent):void{
+    if(joinedGroup){
+        // Build the message to post.
+        var message:Object = new Object;
+        message.user = userNameText.text;
+        message.text = chatText.text;
+        message.sequence = sequenceNumber++;
+        message.sender = netConnection.nearID;
+        // Post the message to the group.
+        netGroup.post(message);
+        StatusMessage(&amp;quot;==&amp;gt; &amp;quot; + chatText.text + &amp;quot;\n&amp;quot;)
+    } else {
+        StatusMessage(&amp;quot;Click Connect before sending a chat message&amp;quot;);
+    }
+    ClearChatText();
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h6&gt;直接向某个节点发送消息&lt;/h6&gt;
 
-&lt;h6&gt;Replicate an object within a group&lt;/h6&gt;
+&lt;p&gt;客户端能直接向组里的一个节点发送消息而不经过服务器。这个特征叫做directed routing。&lt;/p&gt;
+
+&lt;p&gt;下面是服务器端directed routing API：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Netgroup.sendToAllNeighbors()&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;NetGroup.sendToNearest()&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;NetGroup.sendToNeighbor()&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;NetGroup.sendToAllNeighbors()&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;NetGroup.sendToNearest()&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;NetGroup.sendToNeighbor()&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h6&gt;在组里复制一个对象&lt;/h6&gt;
+
+&lt;p&gt;客户端可以在组里发送ActionScript对象。这个特征叫做object replication(对象复制)。使用该特征可以复制工作空间，创建白板，传输文件，同步节点操作等。&lt;/p&gt;
+
+&lt;p&gt;使用以下客户端API：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;NetGroup.addHaveObjects()&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;NetGroup.addWantObjects()&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;NetGroup.denyRequestedObject()&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;NetGroup.removeHaveObjects()&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;NetGroup.removeWantObjects()&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;NetGroup.writeRequestedObject()&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;使用以下服务器端API：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ByteArray 类&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;File.readBytes()&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;File.writeBytes()&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h6&gt;多播&lt;/h6&gt;
+
+&lt;p&gt;多播是向一个组里的多用户分配视频和音频。服务器不向客户端发送数据。多播允许部分发布者发送大量的数据。为了多播媒体，向NetStream构造器传递groupspec。对多播数据调用NetStream.publish()
+或NetStream.play()。&lt;/p&gt;
+
+&lt;p&gt;AMS支持应用级别的多播和IP多播。你可以对一个流同时使用应用多播和IP多播，这种情况叫做multicast fusion(多播融合)。&lt;/p&gt;
+
+&lt;p&gt;关于多播，需要理解的地方：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;任何数量的流都可以在组内被发布。However, this practice is not recommended because each group member consumes and relays all streams, even if the streams aren’t playing at that specific client&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;同名的流可以在组内被发布。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;发布者可以调用NetStream.send()来向组里注入数据。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;When a client is in an RTMFP group in which a live multicast stream is playing, the client may act as a relay point for that stream to some number of direct neighbors. To control this number, use the
+NetStream.multicastPushNeighborLimit
+property. The default value is to 4. All the peers within a group work
+co-operatively to get the stream to each other. Each client is not pulling the stream from the server independently. For this reason, consider the expected average client uplink capacity when selecting the bitrate for the multicast stream you publish. Choosing a bitrate that&amp;#39;s too high may result in peers not being able to relay the stream smoothly.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;应用级别多播&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;By default, the peer-to-peer mesh distributes streams published into an RTMFP group&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;IP 多播&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;IP多播使用路由器发送数据到指定的IP地址。&lt;/p&gt;
+
+&lt;p&gt;为了发布流到IP多播地址，在发布前调用服务器端方法：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;NetStream.setIPMulticastPublishAddress()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;所有的订阅节点必须添加IP多播地址。GroupSpecifier.addIPMulticastAddress()&lt;/p&gt;
+
+&lt;p&gt;默认情况下，应用级别多播和IP多播是并行的。这个技术叫做&amp;quot;fusion multicast&amp;quot;。为了运行IP多播而不用应用级别多播，设置以下属性：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;GroupSpecifier.peerToPeerDisabled=true
+
+//关闭点对点多播
+GroupSpecifier.multicastEnabled=true 
+
+调用GroupSpecifier.addIPMulticastAddress()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;Source-specific IP multicast&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;创建客户端无服务器的RTMFP连接&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;融合多播&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;检查多播服务的质量&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Prevent the server from unloading an application&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Ingest, convert, and record a multicast stream&lt;/strong&gt;&lt;/p&gt;
 
 &lt;h6&gt;对等网络应用实例&lt;/h6&gt;
 

@@ -51,6 +51,10 @@
      	
     		<a href="tags.html#FMS-ref" id="1" class="__tag" style="margin: 5px">FMS</a>
   		
+    		<a href="tags.html#AIR-ref" id="2" class="__tag" style="margin: 5px">AIR</a>
+  		
+    		<a href="tags.html#IOS-ref" id="3" class="__tag" style="margin: 5px">IOS</a>
+  		
      </div>
      
 <!-- 	<strong>Blogroll</strong><br /> -->
@@ -87,7 +91,7 @@
 
   
      
-    	<li><a href="/tags.html#FMS-ref">FMS <span>12</span></a></li>
+    	<li><a href="/tags.html#FMS-ref">FMS <span>13</span></a></li>
     
   
 
@@ -98,6 +102,15 @@
   <h4>构建对等的网络应用</h4>
 
 <h5>RTMFP</h5>
+
+<p>Flash Player10和AIR1.5支持实时媒体流协议(RTMFP)。RTMFP是建立在UDP协议上的。RTMP是建立在TCP协议上的。UDP提供了更低的延迟。
+它能够在两个客户端之间直接传输。</p>
+
+<p>RTMFP提供了以下特征：NAT/firewall traversal, congestion control 和 prioritization， IP地址， mobility， partial reliability。</p>
+
+<p>RTMFP使用了128位加密传输。为了播放RTMFP的流，客户端必须知道发布者的节点ID。节点ID是一个256位的发布者标识符。</p>
+
+<p><a href="http://www.adobe.com/devnet/adobe-media-server/articles/real-time-collaboration.html">Best practices for real-time collaboration using Adobe Media Server</a></p>
 
 <h6>关于节点ID</h6>
 
@@ -120,17 +133,29 @@
 
 <h5>RTMFP 组</h5>
 
-<p><strong>Peer</strong> 组的成员，也叫&quot;node&quot;。</p>
+<p><strong>Peer</strong> 节点，组的成员，也叫&quot;node&quot;。一个节点就是一个Flash Player或AIR客户端。</p>
 
-<p><strong>Group</strong> </p>
+<p><strong>Group</strong> 1个或多个RTMFP节点组成的集合。</p>
 
-<p><strong>Bootstrapping</strong> 为了加入组，连接至少一个组成员。</p>
+<p><strong>Bootstrapping</strong> 为了加入组，连接至少一个组成员。你可以写应用逻辑来使得要给客户端加入一个组，或者可以请求AMS自动引导客户端。</p>
+
+<p>组里的节点可以不经过服务器进行数据传输。节点可以共享数据。</p>
+
+<p>使用ActionScript3 GroupSpecifier类来定义组的&quot;groupspec&quot;。传递给NetGroup和NetStream的构造函数。使用NetGroup类管理组和发送ActionScript对象。使用
+NetStream类来多播音频和视频。</p>
+
+<p>Groupspecs字符串以&quot;G:&quot;开头，后面接着一串十六进制的数字。</p>
 
 <h6>创建一个组</h6>
 
 <ol>
-<li><p>连接AMS
-NetConnection.connect(&quot;rtmfp://fms.exmaple.com/p2pexample/test1&quot;);</p></li>
+<li>连接AMS
+NetConnection.connect(&quot;rtmfp://fms.exmaple.com/p2pexample/test1&quot;);</li>
+</ol>
+
+<p>注意：如果Adaptor.xml文件将RTMFP禁用了，客户端会接收&quot;NetConnection.Connect.Failed&quot;状态。   </p>
+
+<ol>
 <li><p>在&quot;NetConnection.Connect.Success&quot;中，使用GroupSpecifier类来额创建一个groupspec</p>
 
 <p>// Called in the &quot;NetConnection.Connect.Success&quot; case in the NetStatusEvent handler.
@@ -152,19 +177,207 @@ private function OnConnect():void{
 
 <h6>向组里引导一个节点</h6>
 
+<p>连接到服务器后，一个节点必须被加入到一个组里，这个技术叫做&quot;bootstrapping&quot;。Bootstrapping允许同一个组的成员互相可见。</p>
+
+<p>为了加入一个组，客户端必须知道组定义的GroupSpecifier。如果两个客户端使用相同的GroupSpecifier，但从不联系，则他们在不同的组。如果两个组有联系，
+那他们会合并为一个大组。</p>
+
+<p>每一个客户端都有一个节点ID。客户端和服务器端都可以访问节点ID。</p>
+
+<p>RTMFP中的节点可以使用以下的方法进行引导：</p>
+
+<ul>
+<li>服务器自动引导。</li>
+</ul>
+
+<p>当客户端进行RTMFP连接时，服务器使用相同的NetGroup引导他们。客户端需要设置：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">GroupSpecifier.serverChannelEnabled为true。
+</code></pre></div>
+<ul>
+<li><p>手动引导</p>
+
+<p>调用NetGroup.addNeighbor()方法。</p></li>
+<li><p>LAN节点发现</p></li>
+</ul>
+
+<p>使用GroupSpecifier类可以激活局域网节点发现。局域网节点发现允许ERMFP NetConnection和NetStream、NetGroup对象自动定位节点和加入组的子组。
+下面的代码展示了如果激活LAN节点发现：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">var nc = new NetConnection();
+// Protocol must be RTMFP
+nc.connect(&quot;rtmfp://fms.example.com/appname/appinstance&quot;);
+var gs = new GroupSpecifier(&quot;com.example.discovery-test&quot;);
+// Must be enabled for LAN peer discovery to work
+gs.ipMulticastMemberUpdatesEnabled = true;
+// Multicast address over which to exchange peer discovery.
+gs.addIPMulticastAddress(&quot;224.0.0.255:30000&quot;);
+// Additional GroupSpecifier configuration...
+var ns = new NetStream(nc, gs.toString());  
+</code></pre></div>
 <h6>服务端的RTMFP组</h6>
+
+<p>使用服务器端的ActionScript来创建一个RTMFP连接。一个服务器端的netConnection是一个虚拟的Flash客户端。它有自己的RTMFP栈。</p>
+
+<p>注意：服务器端的ActionScript不支持直接在节点之间创建连接。</p>
 
 <h6>Flash Player 对等节点网络应用安全对话框</h6>
 
+<p>当groupsec传递给了NetStream或NetGroup。Flash Player会显示一个&quot;对等互助网络&quot;对话框。该对话框询问用户是否可以使用它们的连接在节点之间共享数据。</p>
+
+<p>如果用户点击允许，对话框就不会在出现。如果用户不允许，所有节点特征将不能使用。你可以使用RTMFP订阅一个纯净的本地IP多播流，这种情况下，对话框不会出现。</p>
+
+<p>当使用IP多播时(没有对等网络的功能)，你可以禁用安全对话框，设置GroupSpecifier.peerToPeerDisabled属性为true。默认为false。</p>
+
 <h6>关于RRMFP组的ActionScript类</h6>
+
+<p>使用下面的ActionScript类和服务器端ActionScript类来创建RTMFP应用：</p>
+
+<ul>
+<li><p>NetConnection</p></li>
+<li><p>GroupSpecifier</p></li>
+<li><p>NetGroup：管理RTMFP组。该类属性提供了组成员的信息</p></li>
+<li><p>NetGroupInfo：指定传输质量。</p></li>
+<li><p>NetStream：</p></li>
+<li><p>NetStreamMulticastInfo：NetStream.multicastinfo 返回当前Qos状态的NetStreamMulticastInfo对象。</p></li>
+</ul>
 
 <h6>向组里发送一个消息</h6>
 
+<p>调用NetGroup.post()方法广播一个ActionScript消息。使用&quot;NetGroup.Posting.Notify&quot;接收。</p>
+
+<p>这个方法类似于服务器端的Application.broadcastMsg()。</p>
+
+<ul>
+<li><p>GroupSpecifier.postingEnabled属性必须为true。</p></li>
+<li><p>接收NetGroup.Neighbor.Connect事件早于你调用post()</p></li>
+<li><p>消息使用AMF序列化。一个消息可以是任何形式的AMF对象。不能是MovieClip。</p></li>
+<li><p>消息传输是无序的。</p></li>
+<li><p>post()方法返回一个消息ID或null或error。</p></li>
+<li><p>post()方法发送一个NetStatusEvent事件&quot;NetGroup.Posting.Notify&quot;</p></li>
+</ul>
+
+<p>实例：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">private function OnConnect():void{
+    StatusMessage(&quot;Connected\n&quot;);
+    connected = true;
+    // Create a GroupSpecifier object to pass to the NetGroup constructor.
+    // The GroupSpecifier determines the properties of the group
+    var groupSpecifier:GroupSpecifier;
+    groupSpecifier = new GroupSpecifier(&quot;com.aslrexample/&quot; + groupNameText.text);
+    groupSpecifier.postingEnabled = true;
+    groupSpecifier.serverChannelEnabled = true;
+    netGroup = new NetGroup(netConnection, groupSpecifier.groupspecWithAuthorizations());
+    netGroup.addEventListener(NetStatusEvent.NET_STATUS, NetStatusHandler);
+    StatusMessage(&quot;Join \&quot;&quot; + groupSpecifier.groupspecWithAuthorizations() + &quot;\&quot;\n&quot;);
+}
+// Called when you the chatText field has focus and you press Enter.
+private function DoPost(e:ComponentEvent):void{
+    if(joinedGroup){
+        // Build the message to post.
+        var message:Object = new Object;
+        message.user = userNameText.text;
+        message.text = chatText.text;
+        message.sequence = sequenceNumber++;
+        message.sender = netConnection.nearID;
+        // Post the message to the group.
+        netGroup.post(message);
+        StatusMessage(&quot;==&gt; &quot; + chatText.text + &quot;\n&quot;)
+    } else {
+        StatusMessage(&quot;Click Connect before sending a chat message&quot;);
+    }
+    ClearChatText();
+}
+</code></pre></div>
 <h6>直接向某个节点发送消息</h6>
 
-<h6>Replicate an object within a group</h6>
+<p>客户端能直接向组里的一个节点发送消息而不经过服务器。这个特征叫做directed routing。</p>
+
+<p>下面是服务器端directed routing API：</p>
+
+<ul>
+<li><p>Netgroup.sendToAllNeighbors()</p></li>
+<li><p>NetGroup.sendToNearest()</p></li>
+<li><p>NetGroup.sendToNeighbor()</p></li>
+<li><p>NetGroup.sendToAllNeighbors()</p></li>
+<li><p>NetGroup.sendToNearest()</p></li>
+<li><p>NetGroup.sendToNeighbor()</p></li>
+</ul>
+
+<h6>在组里复制一个对象</h6>
+
+<p>客户端可以在组里发送ActionScript对象。这个特征叫做object replication(对象复制)。使用该特征可以复制工作空间，创建白板，传输文件，同步节点操作等。</p>
+
+<p>使用以下客户端API：</p>
+
+<ul>
+<li><p>NetGroup.addHaveObjects()</p></li>
+<li><p>NetGroup.addWantObjects()</p></li>
+<li><p>NetGroup.denyRequestedObject()</p></li>
+<li><p>NetGroup.removeHaveObjects()</p></li>
+<li><p>NetGroup.removeWantObjects()</p></li>
+<li><p>NetGroup.writeRequestedObject()</p></li>
+</ul>
+
+<p>使用以下服务器端API：</p>
+
+<ul>
+<li><p>ByteArray 类</p></li>
+<li><p>File.readBytes()</p></li>
+<li><p>File.writeBytes()</p></li>
+</ul>
 
 <h6>多播</h6>
+
+<p>多播是向一个组里的多用户分配视频和音频。服务器不向客户端发送数据。多播允许部分发布者发送大量的数据。为了多播媒体，向NetStream构造器传递groupspec。对多播数据调用NetStream.publish()
+或NetStream.play()。</p>
+
+<p>AMS支持应用级别的多播和IP多播。你可以对一个流同时使用应用多播和IP多播，这种情况叫做multicast fusion(多播融合)。</p>
+
+<p>关于多播，需要理解的地方：</p>
+
+<ul>
+<li><p>任何数量的流都可以在组内被发布。However, this practice is not recommended because each group member consumes and relays all streams, even if the streams aren’t playing at that specific client</p></li>
+<li><p>同名的流可以在组内被发布。</p></li>
+<li><p>发布者可以调用NetStream.send()来向组里注入数据。</p></li>
+<li><p>When a client is in an RTMFP group in which a live multicast stream is playing, the client may act as a relay point for that stream to some number of direct neighbors. To control this number, use the
+NetStream.multicastPushNeighborLimit
+property. The default value is to 4. All the peers within a group work
+co-operatively to get the stream to each other. Each client is not pulling the stream from the server independently. For this reason, consider the expected average client uplink capacity when selecting the bitrate for the multicast stream you publish. Choosing a bitrate that&#39;s too high may result in peers not being able to relay the stream smoothly.</p></li>
+</ul>
+
+<p><strong>应用级别多播</strong></p>
+
+<p>By default, the peer-to-peer mesh distributes streams published into an RTMFP group</p>
+
+<p><strong>IP 多播</strong></p>
+
+<p>IP多播使用路由器发送数据到指定的IP地址。</p>
+
+<p>为了发布流到IP多播地址，在发布前调用服务器端方法：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">NetStream.setIPMulticastPublishAddress()
+</code></pre></div>
+<p>所有的订阅节点必须添加IP多播地址。GroupSpecifier.addIPMulticastAddress()</p>
+
+<p>默认情况下，应用级别多播和IP多播是并行的。这个技术叫做&quot;fusion multicast&quot;。为了运行IP多播而不用应用级别多播，设置以下属性：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">GroupSpecifier.peerToPeerDisabled=true
+
+//关闭点对点多播
+GroupSpecifier.multicastEnabled=true 
+
+调用GroupSpecifier.addIPMulticastAddress()
+</code></pre></div>
+<h1></h1>
+
+<p><strong>Source-specific IP multicast</strong></p>
+
+<p><strong>创建客户端无服务器的RTMFP连接</strong></p>
+
+<p><strong>融合多播</strong></p>
+
+<p><strong>检查多播服务的质量</strong></p>
+
+<p><strong>Prevent the server from unloading an application</strong></p>
+
+<p><strong>Ingest, convert, and record a multicast stream</strong></p>
 
 <h6>对等网络应用实例</h6>
 
@@ -179,7 +392,9 @@ private function OnConnect():void{
   
   
 	<div class='cloud'>
-		<a style='font-size: NaN%' href='/tags.html#FMS'>FMS</a>
+		<a style='font-size: 70%' href='/tags.html#AIR'>AIR</a>
+<a style='font-size: 170%' href='/tags.html#FMS'>FMS</a>
+<a style='font-size: 70%' href='/tags.html#IOS'>IOS</a>
 
 	</div>
 	

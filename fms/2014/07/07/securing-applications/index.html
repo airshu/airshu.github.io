@@ -51,6 +51,10 @@
      	
     		<a href="tags.html#FMS-ref" id="1" class="__tag" style="margin: 5px">FMS</a>
   		
+    		<a href="tags.html#AIR-ref" id="2" class="__tag" style="margin: 5px">AIR</a>
+  		
+    		<a href="tags.html#IOS-ref" id="3" class="__tag" style="margin: 5px">IOS</a>
+  		
      </div>
      
 <!-- 	<strong>Blogroll</strong><br /> -->
@@ -87,7 +91,7 @@
 
   
      
-    	<li><a href="/tags.html#FMS-ref">FMS <span>12</span></a></li>
+    	<li><a href="/tags.html#FMS-ref">FMS <span>13</span></a></li>
     
   
 
@@ -95,7 +99,224 @@
 
   </ul>
 
-  
+  <h4>应用安全</h4>
+
+<h5>资源访问权限</h5>
+
+<p><strong>关于访问控制</strong></p>
+
+<p>当用户访问服务器的时候，默认情况下能访问所有的流和共享对象。你可以使用服务端的ActionScript创建动态访问控制列表。</p>
+
+<p>当一个客户端连接服务器，服务器脚本会传递一个Client对象。每个Client对象有readAccess和writeAccess属性。你可以使用这些属性来控制访问权限。</p>
+
+<p><strong>实现动态访问控制</strong></p>
+
+<p>clent.readAccess和client.writeAccess属性为字符串类型，值包含了用分号隔开的字符串。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">client.readAccess = &quot;appStreams;/appSO/&quot;;
+client.writeAccess = &quot;appStreams/public/;appSO/public/&quot;;
+</code></pre></div>
+<p>默认值为&quot;/&quot;，表示可以访问所有的流和共享对象。</p>
+
+<p><em>允许访问流</em></p>
+
+<p>在main.asc中，添加onConnect()函数来指定目录文件夹：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">application.onConnect = function(client, name) {
+    // give this new client the same name as passed in
+    client.name = name;
+    // give write access
+    client.writeAccess = &quot;appStreams/public/&quot;;
+    // accept the new client&#39;s connection
+    application.acceptConnection(client);
+}
+</code></pre></div>
+<p><em>拒绝访问流</em></p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">application.onConnect = function(client, name) {
+    ...
+    // deny write access to the server
+    client.writeAccess = &quot;&quot;;
+}
+</code></pre></div>
+<p><em>指定访问共享对象</em></p>
+
+<p>指定共享对象的名字</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">application.onConnect = function(client, name) {
+    ...
+    client.writeAccess = &quot;appSO/public/&quot;;
+}
+</code></pre></div>
+<h5>客户端权限</h5>
+
+<h6>使用Client对象属性</h6>
+
+<p><strong>检查客户端IP地址</strong></p>
+
+<p>client.ip，如果需要，可以拒绝客户端连接：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">if (client.ip.indexOf(&quot;60.120&quot;) !=0) {
+    application.rejectConnection(client, {&quot;Access Denied&quot;} );
+}
+</code></pre></div>
+<p><strong>检查原始URL</strong> </p>
+
+<p>在main.asc中，client.referrer表示拒绝访问的URL列表。确保连接的客户端是来自你期望的地方。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">referrerList = {};
+referrerList[&quot;http://www.example.com&quot;] = true;
+referrerList[&quot;http://www.abc.com&quot;] = true;
+
+if (!referrerList[client.referrer]) {
+    application.rejectConnection(client, {&quot;Access Denied&quot;} );
+}
+</code></pre></div>
+<p><strong>使用唯一的key</strong></p>
+
+<p>1.客户端中，创建一个唯一的key：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">var keyDate = String(new Date().getTime());
+var keyNum = String(Math.random());
+var uniqueKey = keyDate + keyNum;
+</code></pre></div>
+<p>2.发送到服务器：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">nc.connect(&quot;rtmp://www.example.com/someApplication&quot;, uniqueKey);
+</code></pre></div>
+<p>3.下面的代码在所有的连接中寻找唯一的key。如果key丢失或者已经存在，则拒绝连接。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">application.onConnect = function( pClient, uniqueKey ) {
+    if ( uniqueKey != undefined ) { 
+    // require a unique key with connection request
+        if ( clientKeyList[uniqueKey] == undefined ) {
+        // first time -- allow connection
+            pClient.uniqueKey = uniqueKey;
+            clientKeyList[uniqueKey] = pClient;
+            this.acceptConnection(pClient);
+        } else {
+            trace( &quot;Connection rejected&quot; );
+            this.rejectConnection(pClient);
+        }
+    }
+}
+application.onDisconnect = function( pClient ) {
+    delete clientKeyList[pClient.uniqueKey];
+}
+</code></pre></div>
+<p><strong>使用访问插件</strong></p>
+
+<p><strong>使用Flash Player版本</strong></p>
+
+<p>有两种方法访问这个值：</p>
+
+<p>虚拟的key： 配置服务器重新映射基于Flash播放器客户端的流</p>
+
+<p>Client.agent 服务器端代码：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">application.onConnect = function( pClient ) {
+    var platform = pClient.agent.split(&quot; &quot;);
+    var versionMajor = platform[1].split(&quot;,&quot;)[0];
+    var versionMinor = platform[1].split(&quot;,&quot;)[1];
+    var versionBuild = platform[1].split(&quot;,&quot;)[2];
+}
+
+// output example
+// Client.agent: WIN 9,0,45,0
+// platform[0]: &quot;WIN&quot;
+// versionMajor: 9
+// versionMinor: 0
+// versionBuild: 45
+</code></pre></div>
+<p><strong>验证连接的swf文件</strong></p>
+
+<p>在swf文件连接应用之前，你可以配置服务器来验证客户端swf的权限。验证swf的作用是为了防止有人自己创建swf来访问你的资源。</p>
+
+<p><strong>指定域时，允许或拒绝连接</strong></p>
+
+<p>如果你知道合法客户端来自的域，则可以使用一个白名单。相反的，你也可以使用黑名单。</p>
+
+<p>在Adaptor.xml文件添加域列表。</p>
+
+<p>也可以在服务器端代码中保存。下面的例子中，文件bannedIPList.txt包含了不需要的IP地址：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">// bannedIPList.txt file contents:
+// 192.168.0.1
+// 128.493.33.0
+
+function getBannedIPList() {
+    var bannedIPFile = new File (&quot;bannedIPList.txt&quot;) ;
+    bannedIPFile.open(&quot;text&quot;,&quot;read&quot;);
+    application.bannedIPList = bannedIPFile.readAll();
+    bannedIPFile.close();
+    delete bannedIPFile;
+}
+
+application.onConnect = function(pClient) {
+    var isIPOK = true;
+    getBannedIPList();
+    for (var index=0; index&lt;this.bannedIPList.length; index++) {
+        var currentIP = this.bannedIPList[index];
+        if (pClient.ip == currentIP) {
+            isIPOK = false;
+            trace(&quot;ip was rejected&quot;);
+            break;
+        }
+    }
+
+    if (isIPOK) {
+        this.acceptConnection(pClient);
+    } else {
+        this.rejectConnection(pClient);
+    }
+
+}
+</code></pre></div>
+<p>此外，你也能检查来自特殊域的请求来的太快：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">application.VERIFY_TIMEOUT_VALUE = 2000;
+Client.prototype.verifyTimeOut = function() {
+    trace (&quot;&gt;&gt;&gt;&gt; Closing Connection&quot;)
+    clearInterval(this.$verifyTimeOut);
+    application.disconnect(this);
+}
+
+function VerifyClientHandler(pClient) {
+    this.onResult = function (pClientRet) {
+        // if the client returns the correct key, then clear timer
+        if (pClientRet.key == pClient.verifyKey.key) {
+            trace(&quot;Connection Passed&quot;);
+            clearInterval(pClient.$verifyTimeOut);
+        }
+    }
+}
+
+application.onConnect = function(pClient) {
+    this.acceptConnection(pClient);
+    // create a random key and package within an Object
+    pClient.verifyKey = ({key: Math.random()});
+
+    // send the key to the client
+    pClient.call(&quot;verifyClient&quot;,
+        new VerifyClientHandler(pClient),
+        pClient.verifyKey);
+
+    // set a wait timer
+    pClient.$verifyTimeOut = setInterval(pClient,
+        $verifyTimeOut,
+        this.VERIFY_TIMEOUT_VALUE,
+        pClient);
+}
+
+application.onDisconnect = function(pClient) {
+    clearInterval(pClient.$verifyTimeOut);
+}
+</code></pre></div>
+<h5>用户权限</h5>
+
+<h6>使用额外资源的权限</h6>
+
+<p>对于有限的观众来说，这是他们使用数据库等资源的有效的凭证(登录和密码)。</p>
+
+<p>1.swf向连接请求提供要给用户认证。</p>
+
+<p>客户端一般提供账号和密码：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">var sUsername = &quot;someUsername&quot;;
+var sPassword = &quot;somePassword&quot;;
+nc.connect(&quot;rtmp://server/secure1/&quot;, sUsername, sPassword);
+</code></pre></div>
+<p>2.AMS验证凭证。</p>
+
+<p>你可以使用WebService、LoadVars、XML、NetServices等技术来做验证。</p>
+
 
   <address class="signature">
     <a class="author" href="/">lsj</a> 
@@ -105,7 +326,9 @@
   
   
 	<div class='cloud'>
-		<a style='font-size: NaN%' href='/tags.html#FMS'>FMS</a>
+		<a style='font-size: 170%' href='/tags.html#FMS'>FMS</a>
+<a style='font-size: 70%' href='/tags.html#IOS'>IOS</a>
+<a style='font-size: 70%' href='/tags.html#AIR'>AIR</a>
 
 	</div>
 	
