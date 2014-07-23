@@ -5,10 +5,63 @@
         <description>alonepig's blog - lsj</description>
         <link>http://alonepig.github.io</link>
         <link>http://alonepig.github.io</link>
-        <lastBuildDate>2014-07-18T16:11:43+08:00</lastBuildDate>
-        <pubDate>2014-07-18T16:11:43+08:00</pubDate>
+        <lastBuildDate>2014-07-23T15:16:28+08:00</lastBuildDate>
+        <pubDate>2014-07-23T15:16:28+08:00</pubDate>
         <ttl>1800</ttl>
 
+
+        <item>
+                <title>Error #2032：流错误</title>
+                <description>&lt;p&gt;Error #2032：流错误。 URL:xxx/xxx/xxx 的问题总结：&lt;/p&gt;
+
+&lt;p&gt;使用URLLoader或HttpService装载文件的时候，有时候会出现以上错误。于是开始找寻解决办法，经过搜索，发现很多人都遇到过这个问题，但又是不同的情况。
+现整理一份解决办法，希望能帮到后来人。&lt;/p&gt;
+
+&lt;h6&gt;一.由于IE缓存造成的。&lt;/h6&gt;
+
+&lt;p&gt;使用HttpService时，在IE中第一次调用后会缓存资源，下次再使用的时候就会用原来的资源，而出现问题。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;lt;mx:HTTPService id=&amp;quot;accountsRequest&amp;quot;
+      method=&amp;quot;POST&amp;quot; url=&amp;quot;accounts.php&amp;quot;
+      result=&amp;quot;assignUsersData(event)&amp;quot; fault=&amp;quot;onErrorLoad(event)&amp;quot;&amp;gt;
+&amp;lt;/mx:HTTPService&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;解决办法是在url的地址后面加一个变量：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;private function changePage(pageIdValue : Number) : void 
+{
+      var rnd : Number = Math.round(Math.random()*1000);
+      accountsRequest.url = &amp;quot;accounts.php?foo=&amp;quot; + rnd;
+      accountsRequest.send();
+      pageId = pageIdValue; 
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h6&gt;二、可能是IIS造成的，需要设置。进入IIS管理目录，选择MIME类型，然后通过添加菜单，添加一个新的MIME映射，文件拓展名填你需要的，MIME类型填application/octet-stream（可选）。&lt;/h6&gt;
+
+&lt;p&gt;保存设置后，重新启动IIS服务器。&lt;/p&gt;
+
+&lt;h6&gt;三、如果显示的是Error #2032: 流错误。 URL: xxx/xxx/xxx/xxx.swf，则可能需要修改项目设置。&lt;/h6&gt;
+
+&lt;p&gt;修改模块项目的Flex Build Path，取消Use local debug runtime shared libraries when debugging复选框，这样，模块就不会去加载本地的rsls，而是回去加载adobe提供的rsls。&lt;/p&gt;
+
+&lt;p&gt;其他解决办法(仅供参考)：&lt;/p&gt;
+
+&lt;p&gt;1.修改UrlRequest的contentType属性，设置为text/xml。 我是通过该方法解决问题的，但具体原因还是不明。&lt;/p&gt;
+
+&lt;p&gt;2.修改UrlRequest的method，由POST改成GET。此方法未经验证，因为method原本默认的就是GET。&lt;/p&gt;
+
+&lt;p&gt;如果以上方法都不能解决问题，可以监听HTTPStatusEvent.HTTP&lt;em&gt;STATUS(AIR中卫HTTPStatusEvent.HTTP&lt;/em&gt;RESPONSE_STATUS)事件，可以获得更多的信息来找寻答案。&lt;/p&gt;
+
+&lt;p&gt;参考：&lt;/p&gt;
+
+&lt;p&gt;http://jabbypanda.com/blog/2006/11/mxhttpservice-calls-are-cached-in-ie-6-unnecessary/&lt;/p&gt;
+
+&lt;p&gt;http://hydra1983.blog.163.com/blog/static/111750372011020104951205/&lt;/p&gt;
+
+&lt;p&gt;http://www.judahfrangipane.com/blog/2007/02/15/error-2032-stream-error/&lt;/p&gt;
+</description>
+                <link>http://alonepig.github.io/actionscript/2014/07/23/stream-error-2032</link>
+                <guid>http://alonepig.github.io/actionscript/2014/07/23/stream-error-2032</guid>
+                <pubDate>2014-07-23T00:00:00+08:00</pubDate>
+        </item>
 
         <item>
                 <title>about h264 setting</title>
@@ -333,6 +386,10 @@ Speex具有语音活动检测功能(VAD)，在未检测到语音时将自动减�
 &lt;h5&gt;noiseSuppressionLevel&lt;/h5&gt;
 
 &lt;p&gt;Speex 编码器使用的最大噪音衰减分贝数（负数）。如果启用，则在从 Microphone 捕获的声音进行 Speex 压缩之前应用噪音抑制。设置为 0 以禁用噪音抑制。默认启用噪音抑制，最大衰减为 -30 dB。选择 Nellymoser 编解码器时被忽略。&lt;/p&gt;
+
+&lt;p&gt;参考：&lt;/p&gt;
+
+&lt;p&gt;http://www.adobe.com/cn/devnet/flashplayer/articles/acoustic-echo-cancellation.html&lt;/p&gt;
 </description>
                 <link>http://alonepig.github.io/fms/2014/07/17/params-on-live</link>
                 <guid>http://alonepig.github.io/fms/2014/07/17/params-on-live</guid>
@@ -3075,11 +3132,13 @@ getPageUrl 返回： http://www.example.com/trace.swf&lt;/p&gt;
 
 &lt;p&gt;十二、[administrationapi介绍]&lt;/p&gt;
 
-&lt;p&gt;十四、&lt;a href=&quot;&quot;&gt;ams&lt;em&gt;config&lt;/em&gt;admin 手册&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;十三、&lt;a href=&quot;&quot;&gt;ams&lt;em&gt;config&lt;/em&gt;admin 手册&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;十五、Server-Side ActionScript语言参考 &lt;/p&gt;
+&lt;p&gt;十四、Server-Side ActionScript语言参考 &lt;/p&gt;
 
-&lt;p&gt;十三、H264编码的使用&lt;/p&gt;
+&lt;p&gt;十五、H264编码的使用&lt;/p&gt;
+
+&lt;p&gt;十六、(优化参数(画质、延迟、带宽等))[]&lt;/p&gt;
 </description>
                 <link>http://alonepig.github.io/fms/2014/06/24/learning-ams</link>
                 <guid>http://alonepig.github.io/fms/2014/06/24/learning-ams</guid>

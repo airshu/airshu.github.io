@@ -9,6 +9,7 @@ http://alonepig.github.io/rss.xml
 http://alonepig.github.io/sitemap.txt
 http://alonepig.github.io/tags.html
 
+http://alonepig.github.io/actionscript/2014/07/23/stream-error-2032
 http://alonepig.github.io/2014/07/18/about-h264-setting
 http://alonepig.github.io/fms/2014/07/17/params-on-live
 http://alonepig.github.io/air/2014/07/16/air-develop-ios-app
