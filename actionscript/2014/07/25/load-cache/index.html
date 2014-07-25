@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-   <title>Tags  </title>
+   <title>load的缓存  </title>
    <meta name="author" content="lsj" />
 
    <link rel="start" href="/" />
@@ -146,232 +146,15 @@ table{border:0}
   
 <div id="page">
 	
-<h1 class="emphnext">Tags</h1>
-
-
-
-<ul class="tag_box inline">
-    
+  <h1 class="emphnext">load的缓存</h1>
+  <ul class="tag_box inline">
+  
   
 
 
   
-     
-    	<li><a href="/tags.html#fms-ref">fms <span>13</span></a></li>
-     
-    	<li><a href="/tags.html#air-ref">air <span>1</span></a></li>
-     
-    	<li><a href="/tags.html#ios-ref">ios <span>1</span></a></li>
      
     	<li><a href="/tags.html#actionscript-ref">actionscript <span>2</span></a></li>
-     
-    	<li><a href="/tags.html#error-ref">error <span>1</span></a></li>
-    
-  
-
-
-
-</ul>
-
-
- 
-  <h2 id="fms-ref">fms</h2>
-  <ul>
-      
-    
-
-
-  
-    
-      
-      	
-      	<li><a href="/fms/2014/07/17/params-on-live">params on live</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/fms/2014/07/07/working-with-live-video">working with live video</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/fms/2014/07/07/securing-applications">securing applications</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/fms/2014/07/07/developing-streaming-media-applications">developing streaming media applications</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/fms/2014/07/07/developing-social-applications">developing social applications</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/fms/2014/07/07/building-peer-assisted-networking-applications">building peer assisted networking applications</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/fms/2014/07/04/getting-started-developing-applications">getting started developing applications</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/fms/2014/07/04/communication-between-client-and-server">communication between client and server</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/fms/2014/07/03/ams_config_admin_guide">ams_config_admin_guide</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/fms/2014/07/01/server-side-actionscript-language-reference">server side actionscript language reference</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/fms/2014/07/01/getting_started_streaming_media">getting_started_streaming_media</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/fms/2014/06/24/learning-ams">Learning AMS</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/fms/2014/06/24/adobemediaserver_503_install-">adobemediaserver_5.0.3_install 总结</a></li>
-      	
-      
-    
-  
-
-
-
-  </ul>
- 
-  <h2 id="air-ref">air</h2>
-  <ul>
-      
-    
-
-
-  
-    
-      
-      	
-      	<li><a href="/air/2014/07/16/air-develop-ios-app">air develop ios app</a></li>
-      	
-      
-    
-  
-
-
-
-  </ul>
- 
-  <h2 id="ios-ref">ios</h2>
-  <ul>
-      
-    
-
-
-  
-    
-      
-      	
-      	<li><a href="/air/2014/07/16/air-develop-ios-app">air develop ios app</a></li>
-      	
-      
-    
-  
-
-
-
-  </ul>
- 
-  <h2 id="actionscript-ref">actionscript</h2>
-  <ul>
-      
-    
-
-
-  
-    
-      
-      	
-      	<li><a href="/actionscript/2014/07/25/load-cache">load的缓存</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/actionscript/2014/07/23/stream-error-2032">Error #2032：流错误</a></li>
-      	
-      
-    
-  
-
-
-
-  </ul>
- 
-  <h2 id="error-ref">error</h2>
-  <ul>
-      
-    
-
-
-  
-    
-      
-      	
-      	<li><a href="/actionscript/2014/07/23/stream-error-2032">Error #2032：流错误</a></li>
-      	
-      
     
   
 
@@ -379,9 +162,71 @@ table{border:0}
 
   </ul>
 
+  <p>有时候，在使用URLLoader装载资源的时候，会发现装载不到最新的资源。可以使用以下代码测试：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">call();
 
+private function call():void
+{
+    if(urlLoader)
+    {
+        urlLoader.load(urlRequest); 
+        return;
+    }
+    urlLoader = new URLLoader();                  
+    urlRequest = new URLRequest(_url);  
 
+    urlLoader.load(urlRequest);  
+
+    urlLoader.addEventListener(Event.COMPLETE, urlLoaderCompleteHandler);
+}
+
+private function urlLoaderCompleteHandler(event:Event):void
+{
+    setTimeout(call, 2000);
+}
+</code></pre></div>
+<p>用charles或相关工具监听请求，你会发现，只会发一次请求。这说明第二次就使用了缓存。</p>
+
+<p>为了解决该问题，只需要在url后添加一个参数，使得URL的地址每次都是唯一的即可。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">urlRequest = new URLRequest(_url + &quot;?t=&quot; + (new Date()).time);  
+</code></pre></div>
+
+  <address class="signature">
+    <a class="author" href="/">lsj</a> 
+    <span class="date">25 July 2014</span>
+    <span class="location"></span>
+  </address>
+  
+  
+	<div class='cloud'>
+		<a style='font-size: 97%' href='/tags.html#actionscript'>actionscript</a>
+<a style='font-size: 70%' href='/tags.html#air'>air</a>
+<a style='font-size: 70%' href='/tags.html#error'>error</a>
+<a style='font-size: 170%' href='/tags.html#fms'>fms</a>
+<a style='font-size: 70%' href='/tags.html#ios'>ios</a>
+
+	</div>
+	
+  <div class="prev-next">
+  
+  
+    <a href="/actionscript/2014/07/23/stream-error-2032" class="prev" title="Error #2032：流错误">&larr; Earlier Post</a>
+  
+  </div>
+  
 </div><!-- End Page -->
+
+	
+
+
+
+
+  <!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1926112"></script>
+<!-- UY END -->
+
+
 
 
 

@@ -4,13 +4,48 @@
  <title>alonepig's blog</title>
  <link href="http://alonepig.github.io/" rel="self"/>
  <link href="http://alonepig.github.io"/>
- <updated>2014-07-23T15:16:28+08:00</updated>
+ <updated>2014-07-25T17:03:05+08:00</updated>
  <id>http://alonepig.github.io</id>
  <author>
    <name>lsj</name>
    <email>alonelsj@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>load的缓存</title>
+   <link href="http://alonepig.github.io/actionscript/2014/07/25/load-cache"/>
+   <updated>2014-07-25T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/actionscript/2014/07/25/load-cache</id>
+   <content type="html">&lt;p&gt;有时候，在使用URLLoader装载资源的时候，会发现装载不到最新的资源。可以使用以下代码测试：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;call();
+
+private function call():void
+{
+    if(urlLoader)
+    {
+        urlLoader.load(urlRequest); 
+        return;
+    }
+    urlLoader = new URLLoader();                  
+    urlRequest = new URLRequest(_url);  
+
+    urlLoader.load(urlRequest);  
+
+    urlLoader.addEventListener(Event.COMPLETE, urlLoaderCompleteHandler);
+}
+
+private function urlLoaderCompleteHandler(event:Event):void
+{
+    setTimeout(call, 2000);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;用charles或相关工具监听请求，你会发现，只会发一次请求。这说明第二次就使用了缓存。&lt;/p&gt;
+
+&lt;p&gt;为了解决该问题，只需要在url后添加一个参数，使得URL的地址每次都是唯一的即可。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;urlRequest = new URLRequest(_url + &amp;quot;?t=&amp;quot; + (new Date()).time);  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
+ </entry>
  
  <entry>
    <title>Error #2032：流错误</title>
@@ -49,7 +84,7 @@
 
 &lt;p&gt;其他解决办法(仅供参考)：&lt;/p&gt;
 
-&lt;p&gt;1.修改UrlRequest的contentType属性，设置为text/xml。 我是通过该方法解决问题的，但具体原因还是不明。&lt;/p&gt;
+&lt;p&gt;1.修改UrlRequest的contentType属性，设置为text/xml。 &lt;/p&gt;
 
 &lt;p&gt;2.修改UrlRequest的method，由POST改成GET。此方法未经验证，因为method原本默认的就是GET。&lt;/p&gt;
 
