@@ -4,13 +4,498 @@
  <title>alonepig's blog</title>
  <link href="http://alonepig.github.io/" rel="self"/>
  <link href="http://alonepig.github.io"/>
- <updated>2014-07-25T17:03:05+08:00</updated>
+ <updated>2014-07-30T17:37:19+08:00</updated>
  <id>http://alonepig.github.io</id>
  <author>
    <name>lsj</name>
    <email>alonelsj@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>swf文件格式</title>
+   <link href="http://alonepig.github.io/actionscript/2014/07/30/swf-file-format"/>
+   <updated>2014-07-30T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/actionscript/2014/07/30/swf-file-format</id>
+   <content type="html">&lt;p&gt;关于swf的文件格式，除了官方的文档，也有许多的资料可以参考。在这里只是做一个总结，具体内容请参阅最后给出的链接。&lt;/p&gt;
+
+&lt;p&gt;学习swf的格式，首先你要了解swf的组成，它是有许多的标签按照一定的规则构成。它有自己定义的单位，就像int、number一样。可以查阅官方的文档或http://www.the-labs.com/MacromediaFlash/SWF-Spec/SWFfilereference.html来了解基本的数据类型和标签类型。&lt;/p&gt;
+
+&lt;p&gt;到最新的版本，已有的标签如下：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;Tag-value     Tag-name
+0            End
+1         ShowFrame
+2         DefineShape
+4         PlaceObject
+5         RemoveObject
+6         DefineBits
+7         DefineButton
+8         JPEGTables
+9         SetBackgroundColor
+10     DefineFont
+11     DefineText
+12     DoAction
+13     DefineFontInfo
+14     DefineSound
+15     StartSound
+17     DefineButtonSound
+18     SoundStreamHead
+19     SoundStreamBlock
+20     DefineBitsLossless
+21     DefineBitsJPEG2
+22     DefineShape2
+23     DefineButtonCxform
+24     Protect
+26     PlaceObject2
+28     RemoveObject2
+32     DefineShape3
+33     DefineText2
+34     DefineButton2
+35     DefineBitsJPEG3
+36     DefineBitsLossless2
+37     DefineEditText
+39     DefineSprite
+43     FrameLabel
+45     SoundStreamHead2
+46     DefineMorphShape
+48     DefineFont2
+56     ExportAssets
+57     ImportAssets
+58     EnableDebugger
+59     DoInitAction
+60     DefineVideoStream
+61     VideoFrame
+62     DefineFontInfo2
+64     EnableDebugger2
+65     ScriptLimits
+66     SetTabIndex
+69     FileAttributes
+70     PlaceObject3
+71     ImportAssets2
+73     DefineFontAlignZones
+74     CSMTextSettings
+75     DefineFont3
+76     SymbolClass
+77     Metadata
+78     DefineScalingGrid
+82     DoABC
+83     DefineShape4
+84     DefineMorphShape2
+86     DefineSceneAndFrameLabelData
+87     DefineBinaryData
+88     DefineFontName
+89     StartSound2
+90     DefineBitsJPEG4
+91     DefineFont4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;然后，你需要弄明白这个规则。swf是由头和身体两部分组成。&lt;/p&gt;
+
+&lt;p&gt;参考(A simple .swf file and it’s below the line representation)[http://blog.csdn.net/qdlgx/article/details/2868504]，你将明白头是怎么构成的，标签又是按照什么顺序排列的。&lt;/p&gt;
+
+&lt;p&gt;再然后，就是指令集了。AVM虚拟机有自己的指令集。详情参考http://www.adobe.com/content/dam/Adobe/en/devnet/actionscript/articles/avm2overview.pdf&lt;/p&gt;
+
+&lt;p&gt;下面总结出的ABC文件结构：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;abcFile
+{
++ minor_version: u16    最低swf版本
++ major_version: u16    最高swf版本
++ method_count: u30     方法数量
++ metadata_count: u30   元数据数量
++ class_count: u30          类数量
++ script_count: u30         脚本数量
++ method_body_count: u30      方法体数量
++ constant_pool: cpool_info      常量池
++ method: method_info (Array)      方法集合
++ metadata: metadata_info (Array)      元数据集合
++ instance: instance_info (Array)      实例集合
++ class: class_info (Array)      类集合
++ script: script_info (Array)      脚本集合
++ method_body: method_body_info (Array)      方法体集合
+}
+
+
+
+cpool_info
+{
++ int_count: u30      整形数量
++ uint_count: u30      无符号整形数量
++ double_count: u30      双精度型数量     
++ string_count: u30      字符串数量
++ namespace_count: u30      命名空间数量
++ ns_set_count: u30      命名空间集合数量
++ multiname_count: u30      复合名字数量
++ string: string_info (Array)      字符串集合
++ namespace: namespace_info (Array)      命名空间集合
++ ns_set: ns_set_info (Array)      命名空间的集合关系
++ multiname: multiname_info (Array)      复合名字集合
+}
+
+namespace_info
+{
++ CONSTANT_Namespace: u8 = 0x08
++ CONSTANT_PackageNamespace: u8 = 0x16
++ CONSTANT_PackageInternalNs: u8 = 0x17
++ CONSTANT_ProtectedNamespace: u8 = 0x18
++ CONSTANT_ExplicitNamespace: u8 = 0x19
++ CONSTANT_StaticProtectedNs: u8 = 0x1A
++ CONSTANT_PrivateNs: u8 = 0x05
++ kind: u8      类型，有6种常量类型
++ name：u30      string集合的下标，为0的话则是空字符串
+}
+
+ns_set_info
+{
++ count: u30      数量
++ ns: u30 (Array)      each ns is an integer that indexes into the namespace array of the constant pool
+}
+
+multiname_info
+{
++ kind: u8      类型
++ CONSTANT_QName: u8 = 0x07
++ CONSTANT_QNameA: u8 = 0x0D
++ CONSTANT_RTQName: u8 = 0x0F
++ CONSTANT_RTQNameA: u8 = 0x10
++ CONSTANT_RTQNameL: u8 = 0x11
++ CONSTANT_RTQNameLA: u8 = 0x12
++ CONSTANT_Multiname: u8 = 0x09
++ CONSTANT_MultinameA: u8 = 0x0E
++ CONSTANT_MultinameL: u8 = 0x1B
++ CONSTANT_MultinameLA: u8 = 0x1C
++ data: u8 (Array)      可变长数据(根据不同类型得到不同的数据)
+}
+
+multiname_kind_QName
+{
++ ns: u30      namespace集合的索引
++ name: u30      string集合的索引
+}
+
+multiname_kind_RTQName
+{
++ name: u30      string集合的索引
+}
+
+multiname_kind_RTQNameL
+{
+}
+
+multiname_kind_Multiname
+{
++ u30 name      string集合的索引
++ u30 ns_set      ns_set集合的索引
+}
+
+multiname_kind_MultinameL
+{
++ u30 ns_set      ns_set集合的索引
+}
+
+
+method_info
+{
++ u30 param_count      参数的数量
++ u30 return_type      指向multiname索引
++ u30 param_type[param_count]      每一个条目指向multiname集合的索引
++ u30 name      string集合的索引
++ u8 flags      为以下常量类型，提供关于方法的额外信息
++ option_info options      只有在flag为HAS_OPTIONAL时才会出现
++ param_info param_names      只有在flag为HAS_PARAM_NAMES才会出现
++ NEED_ARGUMENTS: u8 = 0x01      Suggests to the run-time that an “arguments” object (as specified by the ActionScript 3.0 Language Reference) be created. Must not be used together with NEED_REST
++ NEED_ACTIVATION: u8 = 0x02      Must be set if this method uses the newactivation opcode
++ NEED_REST: u8 = 0x04      This flag creates an ActionScript 3.0 rest arguments array. Must not be used with NEED_ARGUMENTS
++ HAS_OPTIONAL: u8 = 0x08      Must be set if this method has optional parameters and the options field is present in this method_info structure
++ SET_DXNS: u8 = 0x40      Must be set if this method has optional parameters and the options field is present in this method_info structure
++ HAS_PARAM_NAMES: u8 = 0x80      Must be set when the param_names field is present in this method_info structure
+}
+
+option_info
+{
++ u30 option_count
++ option_detail option[option_count]
+}
+
+option_detail
+{
++ u30 val      有kind类型来指向常量池中不同类型集合的索引，如0x03表示整形集合的索引
++ u8 kind      类型，对应kind_constants
+}
+
+kind_constants
+{
++ CONSTANT_Int: u8 = 0x03
++ CONSTANT_UInt: u8 = 0x04
++ CONSTANT_Double: u8 = 0x06
++ CONSTANT_Utf8: u8 = 0x01
++ CONSTANT_True: u8 = 0x0B
++ CONSTANT_False: u8 = 0x0A
++ CONSTANT_Null: u8 = 0x0C
++ CONSTANT_Undefined: u8 = 0x00
++ CONSTANT_Namespace: u8 = 0x08
++ CONSTANT_PackageNamespace: u8 = 0x16
++ CONSTANT_PackageInternalNs: u8 = 0x17
++ CONSTANT_ProtectedNamespace: u8 = 0x18
++ CONSTANT_ExplicitNamespace: u8 = 0x19
++ CONSTANT_StaticProtectedNs: u8 = 0x1A
++ CONSTANT_PrivateNs: u8 = 0x05
+}
+
+
+metadata_info
+{
++ u30 name      string集合的索引
++ u30 item_count      items条目的数量
++ item_info items[item_count]      
+}
+
+item_info
+{
++ u30 key
++ u30 value
+}
+The item_info entry consists of item_count elements that are interpreted as key/value pairs of indices into the string table of the constant pool
+
+
+instance_info
+{
++ CONSTANT_ClassSealed: u8 = 0x01      The class is sealed: properties can not be dynamically added to instances of the class
++ CONSTANT_ClassFinal: u8 = 0x02      The class is final: it cannot be a base class for any other class
++ CONSTANT_ClassInterface: u8 = 0x04      The class is an interface
++ CONSTANT_ClassProtectedNs: u8 = 0x08      The class uses its protected namespace and the protectedNs field is present in the interface_info structure
++ u30 name      multiname索引，类名
++ u30 super_name      基类的名字，multiname索引
++ u8 flags      常量类型
++ u30 protectedNs      flags为CONSTANT_ClassProtectedNs时才出现， namespace索引
++ u30 intrf_count      interface长度
++ u30 interface[intrf_count]      interface的条目包含multiname索引
++ u30 iinit      abcFile中method的索引
++ u30 trait_count      trait长度
++ traits_info trait[trait_count]      
+}
+
+traits_info
+{
++ Trait_Slot: u8 = 0
++ Trait_Method: u8 = 1
++ Trait_Getter: u8 = 2
++ Trait_Setter: u8 = 3
++ Trait_Class: u8 = 4
++ Trait_Function: u8 = 5
++ Trait_Const: u8 = 6
++ ATTR_Final: u8 = 0x1
++ ATTR_Override: u8 = 0x2
++ ATTR_Metadata: u8 = 0x4
++ name: u30      multiname索引，不能为0
++ kind: u8      两个四位字段，低四位决定trait的类型，高四位构成trait的属性(有点不明白)
++ data: u8 (Array)      有trait的类型决定
++ metadata_count: u30      metadata长度
++ metadata: u30 (Array)      
+}
+
+trait_slot
+{
++ u30 slot_id
++ u30 type_name      multiname索引
++ u30 vindex      
++ u8 vkind      kind_constant索引，当vindex不为0时存在
+}
+Trait_Slot或Trait_Const类型为trait_slot
+
+
+trait_class
+{
++ u30 slot_id      确定trait的位置
++ u30 classi      abcFile的class集合索引
+}
+Trait_Class类型为trait_class
+
+trait_function
+{
++ u30 slot_id
++ u30 function      abcFile中method索引
+}
+Trait_Function类型为trait_function
+
+trait_method
+{
++ u30 disp_id
++ u30 method      abcFile中method索引
+}
+Trait_Method、Trait_Getter、Trait_Setter类型为trai_method
+
+
+class_info
+{
++ u30 cinit      method索引
++ u30 trait_count
++ traits_info traits[trait_count]
+}
+
+script_info
+{
++ u30 init      method索引
++ u30 trait_count
++ traits_info trait[trait_count]
+}
+
+
+method_body_info
+{
++ method: u30      abcFile中method索引
++ max_stack: u30
++ local_count: u30      最大本地寄存器索引+1
++ init_scope_depth: u30
++ max_scope_depth: u30
++ code_length: u30
++ code: u8      保存AVM2指令
++ exception_count: u30
++ exception: exception_info (Array)
++ trait_count: u30
++ trait: traits_info (Array)
+}
+
+exception_info
+{
++ u30 from      代码范围
++ u30 to
++ u30 target      跳转目标
++ u30 exc_type      错误类型, 常量表中 string 索引, 0=所有错误
++ u30 var_name      异常的变量名, 常量表中 string 索引
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;授之以鱼不如授之以渔，由于自己的水平有限，也没有完成弄懂里面的所有东西。在此，只是记录自己的学习过程。除了下面参考的资料，个人觉得最好的学习方法还是找到一个比较好的解析swf开源项目，通过阅读源码来理解(可参考swfinvestigator、as3crypto、JPEXS等)。有任何问题，欢迎跟我探讨。&lt;/p&gt;
+
+&lt;p&gt;参考：&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.the-labs.com/MacromediaFlash/SWF-Spec/SWFfilereference.html&quot;&gt;SWF File Reference&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.the-labs.com/MacromediaFlash/SWF-Spec/SWFfileformat.html&quot;&gt;SWF File Format Specification&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.adobe.com/content/dam/Adobe/en/devnet/actionscript/articles/avm2overview.pdf&quot;&gt;AVM指令集概要&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://blog.csdn.net/qdlgx/article/details/2868504&quot;&gt;一个例子分析swf格式&lt;/a&gt;&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>mm.cfg</title>
+   <link href="http://alonepig.github.io/actionscript/2014/07/30/mmcfg"/>
+   <updated>2014-07-30T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/actionscript/2014/07/30/mmcfg</id>
+   <content type="html">&lt;p&gt;对于AS程序猿，mm.cfg一定不陌生。因为它真的很强大。&lt;/p&gt;
+
+&lt;p&gt;根据官方文档介绍，你可以使用mm.cfg文件来配置调试版Flash Player的版本。能够将trace语句输出到日志文件中。如果系统中没有这个文件，在相应目录创建一个就好了。&lt;/p&gt;
+
+&lt;p&gt;下面的表格显示了不同系统中mm.cfg的位置。&lt;/p&gt;
+
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;操作系统&lt;/td&gt;
+        &lt;td&gt;位置&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Macintosh OS X&lt;/td&gt;
+        &lt;td&gt;Flash Player首先会检查用户根目录(~)。如果没有发现，则检查/Library/Application Support/Macromedia&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Windows 2000/XP&lt;/td&gt;
+        &lt;td&gt;
+            %HOMEDRIVE%\%HOMEPATH%
+            默认路径是c:\Documents and settings\username
+        &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Windows Vista Windows 7&lt;/td&gt;
+        &lt;td&gt;
+            %HOMEDRIVE%\%HOMEPATH%
+            默认路径是c:\Users\username
+        &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Linux&lt;/td&gt;
+        &lt;td&gt;/home/username&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;p&gt;mm.cfg其实就是包含若干键值对的文本文件。&lt;/p&gt;
+
+&lt;p&gt;下面的表格介绍了一些重要的属性：&lt;/p&gt;
+
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;属性&lt;/td&gt;
+        &lt;td&gt;描述&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;ErrorReportingEnable&lt;/td&gt;
+        &lt;td&gt;能够输出错误消息。设置为1表示在调试版本的Flash Player的错误信息可以输出到日志文件中。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;TraceOutputFileEnable&lt;/td&gt;
+        &lt;td&gt;是否可以输出trace的内容，如果设置为1，则日志文件中会显示所有trace的内容。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;PreloadSWF&lt;/td&gt;
+        &lt;td&gt;预加载的swf路径，这个非常有用，下面详细介绍&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;p&gt;除了以上简单介绍的，还有许多其他的参数可以配置。请参考：&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jpauclair.net/2010/02/10/mmcfg-treasure/&quot;&gt;http://jpauclair.net/2010/02/10/mmcfg-treasure&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;现在来详细谈谈PreloadSWF的作用，再看下面的内容之前可以先看看这篇文章：&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://kanefan.duapp.com/?p=204&quot;&gt;http://kanefan.duapp.com/?p=204&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;看完之后就会知道有多强大了。好了，现在总结一下它的作用：&lt;/p&gt;
+
+&lt;p&gt;1.可以预加载到目标swf文件中，这样就可以获取该swf的一些信息了。比如，可以知道这个swf有多大，帧率是多少。更强的地方在于它能直接获取到loaderContentInfo里的ByteArray，是不是想到了什么？！！ 是这样的，直接通过预加载就可以将最终的swf文件导出来，完全不用管它运行前将swf加壳、切分很多块。因为，我们已经直接获取到了最终的文件。&lt;/p&gt;
+
+&lt;p&gt;2.它可以获取到浏览器传过来的flashvars信息，是不是想到了很多页游的一些初始化信息都是从浏览器传过来的。通过增加一些代码，就能获取到这些信息了，是不是非常方便。&lt;/p&gt;
+
+&lt;p&gt;3.还可以跟monsterDebugger、Adobe Scrout等调试工具配合，来看看swf内部运行的数据。&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Flash 游戏破解</title>
+   <link href="http://alonepig.github.io/actionscript/2014/07/29/crack-flash-game"/>
+   <updated>2014-07-29T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/actionscript/2014/07/29/crack-flash-game</id>
+   <content type="html">&lt;p&gt;学习编程最好的办法之一就是阅读别人的优秀代码，学习AS最好的方法之一就是阅读别人写的优秀的AS代码。当然，优秀的源码太多，在github一搜就能找到大把的开源项目。但，作为曾经的页游从业者。阅读优秀游戏的源码更是成长速度的方法之一。&lt;/p&gt;
+
+&lt;p&gt;因此，本人也开始了学习破解页游的方法。经过长时间的摸索，自己掌握了一套自己的破解方法。在此，仅供参考。也在此声明，破解只是为了学习优秀的编程思想，对于那种破解之后修改UI后作为自己游戏或转手卖钱的行径，表示鄙视之。&lt;/p&gt;
+
+&lt;p&gt;以下会分为三个部分来介绍破解之道。基础篇介绍需要用到的相关知识，工具篇包含了在破解过程中使用的工具，实战篇将找一款游戏进行实战破解。&lt;/p&gt;
+
+&lt;h4&gt;基础篇&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;AS编程基础：这个很重要，如果你连基本的AS语法都不清楚，那就算将源码赤裸裸的摆在您面前，您也看不懂啦！所以，你需要会这个。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;swf格式结构、AVM指令集：adobe是公开了swf的格式的，你需要找到swf&lt;em&gt;file&lt;/em&gt;format&lt;em&gt;spec&lt;/em&gt;v10和avm2overview两份文档，如果您真的读明白了，那读完后自己应该能写出一个解析swf的工具了。
+需要了解这个的原因是，大部分的页游都会采用一些加密的方法来保护他们的swf文件，而只要你掌握了这个，那么万变不离其宗啦！请参考(另一篇)[http://alonepig.github.io/posts/2014-07-30-swf-file-format.html]&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;mm.cfg：这个文件非常强大，非常有作用。您可以搜索相关的资料了解，也可以查看本人的介绍。关于mm.cfg，请参考(另一篇)[http://alonepig.github.io/posts/2014-07-30-mmcfg.html]：&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4&gt;工具篇&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;硕思闪客精灵：这个软件最大的优点是能显示出各种资源(Sound、Shape、Image等等)。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;ActionScript View：这个就是大大有名的ASV了，有很多好用的功能，比如替换常量池的常量，导出swf的资源。相对于硕思闪客，该软件导出的AS源码错误更少一些。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;FlashDecompiler：界面跟硕思闪客相似。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;AS3 Sorcerer：另一款破解软件。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;JPEXS：这是一款开源的java项目，强烈推荐。首先，它是开源的(好处太多，自行领会)。再次，功能也很强大。可以显示代码对应的指令集。支持动态修改。有很多结构被修改后的swf文件，我都是通过它来解析成功的。而且，阅读它的源码，你会更加容易理解swf结构和指令集。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Adobe Scrout CC：这是adobe的一款debug软件，可以查看运行中的swf的各种状态。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Monster Debugger：另一款调试工具。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;WinHex：十六进制查看工具。刚您了解了swf结构后，用该工具打开一个swf，就能手动解析里面的数据了。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Firefox HttpFox插件： 这个火狐插件是用来找到网页中swf、游戏资源地址的&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Fiddler：一款网络监控软件，强大的功能是可以将网络上的文件替换成本地的文件运行。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4&gt;实战篇&lt;/h4&gt;
+</content>
+ </entry>
  
  <entry>
    <title>load的缓存</title>
