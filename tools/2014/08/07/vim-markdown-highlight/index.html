@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-   <title>Pages  </title>
+   <title>windows下的VIM 编辑markdown语法高亮  </title>
    <meta name="author" content="lsj" />
 
    <link rel="start" href="/" />
@@ -152,96 +152,126 @@ table{border:0}
   
 <div id="page">
 	
-<h1 class="emphnext">Pages</h1>
-
-
-
-<h2>All Pages</h2>
-<ul>
-
-
+  <h1 class="emphnext">windows下的VIM 编辑markdown语法高亮</h1>
+  <ul class="tag_box inline">
+  
+  
 
 
   
-    
-      
-      	
-      	<li><a href="/about.html">About</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/archive.html">Archive</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/atom.xml">Atom Feed</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/categories.html">Categories</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/index.html">alonepig的技术博客</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li class="active"><a href="/pages.html" class="active">Pages</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/rss.xml">RSS Feed</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/sitemap.txt">Sitemap</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/tags.html">Tags</a></li>
-      	
-      
+     
+    	<li><a href="/tags.html#vim-ref">vim <span>1</span></a></li>
     
   
 
 
 
-</ul>
+  </ul>
+
+  <p>Windows使用VIM编辑markdown的语法高亮设置</p>
+
+<p><strong>安装git</strong>：</p>
+
+<p><strong>安装curl</strong>：</p>
+
+<p>在git的安装目录的cmd件夹下的cmd件夹下新建curl.cmd件，复制以下内容：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">@rem Do not use &quot;echo off&quot; to not affect any child calls.
+@setlocal
+
+@rem Get the abolute path to the parent directory, which is assumed to be the
+@rem Git installation root.
+@for /F &quot;delims=&quot; %%I in (&quot;%~dp0..&quot;) do @set git_install_root=%%~fI
+@set PATH=%git_install_root%\bin;%git_install_root%\mingw\bin;%PATH%
+
+@if not exist &quot;%HOME%&quot; @set HOME=%HOMEDRIVE%%HOMEPATH%
+@if not exist &quot;%HOME%&quot; @set HOME=%USERPROFILE%
+
+@curl.exe %*
+</code></pre></div>
+<p>在命令行中输入curl --version检查是否正确。</p>
+
+<p><strong>安装Vundle</strong></p>
+
+<p>命令行进入用户目录，(一定要选择用户目录，win7下在C:/Users/xxx/，自己在其他地方clone后不能正确安装，配置文件中rtp和path设置绝对路径貌似没有效果，囧~)，克隆Vundle：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ git clone https://github.com/gmarik/Vundle.vim.git 
+</code></pre></div>
+<p>编辑vim安装目录下的vimrc的配置文件，将以下内容添加到文件的最前面：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">set nocompatible              &quot; be iMproved, required
+filetype off                  &quot; required
+
+set rtp+=~/vimfiles/bundle/Vundle.vim/
+let path=&#39;~/vimfiles/bundle&#39;
+call vundle#begin(path)
+
+&quot; let Vundle manage Vundle, required
+Plugin &#39;gmarik/Vundle.vim&#39;
+
+Plugin &#39;godlygeek/tabular&#39;
+Plugin &#39;plasticboy/vim-markdown&#39;
+
+call vundle#end()            &quot; required
+filetype plugin indent on    &quot; required
+</code></pre></div>
+<p>这里的rtp和path要对应Vundle的目录，不然会找不到后面的命令。</p>
+
+<p><strong>安装插件</strong></p>
+
+<p>进入vim命令行状态，输入PluginInstall 安装vim-markdown插件</p>
+
+<p>除此之外还有以下命令可以使用：</p>
+
+<p>PluginList   查看插件列表</p>
+
+<p>PluginSearch foo 查询foo插件</p>
+
+<p>PluginClean     移除不需要的插件</p>
+
+<p>参考：</p>
+
+<p>https://github.com/gmarik/Vundle.vim</p>
+
+<p>https://github.com/gmarik/Vundle.vim/wiki/Vundle-for-Windows</p>
 
 
+  <address class="signature">
+    <a class="author" href="/">lsj</a> 
+    <span class="date">07 August 2014</span>
+    <span class="location"></span>
+  </address>
+  
+  
+	<div class='cloud'>
+		<a style='font-size: 133%' href='/tags.html#actionscript'>actionscript</a>
+<a style='font-size: 170%' href='/tags.html#fms'>fms</a>
+<a style='font-size: 70%' href='/tags.html#ios'>ios</a>
+<a style='font-size: 70%' href='/tags.html#air'>air</a>
+<a style='font-size: 70%' href='/tags.html#vim'>vim</a>
+<a style='font-size: 113%' href='/tags.html#swf'>swf</a>
+<a style='font-size: 113%' href='/tags.html#crack'>crack</a>
+<a style='font-size: 70%' href='/tags.html#error'>error</a>
+
+	</div>
+	
+  <div class="prev-next">
+  
+  
+    <a href="/2014/08/06/bitmapdata" class="prev" title="bitmapdata">&larr; Earlier Post</a>
+  
+  </div>
+  
 </div><!-- End Page -->
+
+	
+
+
+
+
+  <!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1926112"></script>
+<!-- UY END -->
+
+
 
 
 

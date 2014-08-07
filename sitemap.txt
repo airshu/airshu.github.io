@@ -9,6 +9,8 @@ http://alonepig.github.io/rss.xml
 http://alonepig.github.io/sitemap.txt
 http://alonepig.github.io/tags.html
 
+http://alonepig.github.io/tools/2014/08/07/vim-markdown-highlight
+http://alonepig.github.io/2014/08/06/bitmapdata
 http://alonepig.github.io/actionscript/2014/07/30/swf-file-format
 http://alonepig.github.io/actionscript/2014/07/30/mmcfg
 http://alonepig.github.io/actionscript/2014/07/29/crack-flash-game
