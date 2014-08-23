@@ -5,8 +5,8 @@
         <description>alonepig's blog - lsj</description>
         <link>http://alonepig.github.io</link>
         <link>http://alonepig.github.io</link>
-        <lastBuildDate>2014-08-07T23:06:49+08:00</lastBuildDate>
-        <pubDate>2014-08-07T23:06:49+08:00</pubDate>
+        <lastBuildDate>2014-08-23T16:29:04+08:00</lastBuildDate>
+        <pubDate>2014-08-23T16:29:04+08:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -845,7 +845,7 @@ h264Settings.setProfileLevel(H264Profile.MAIN, H264Level.LEVEL_3_1);
 
 ns.videoStreamSettings = h264Settings;
 ns.attachCamera(cam);
-ns.publish(&amp;quot;4:mplivestream.f4v&amp;quot;);
+ns.publish(&amp;quot;mp4:mplivestream.f4v&amp;quot;);
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;setProfileLevel(profile:String, level:String)&lt;/strong&gt;&lt;/p&gt;
 
