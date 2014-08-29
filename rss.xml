@@ -5,10 +5,245 @@
         <description>alonepig's blog - lsj</description>
         <link>http://alonepig.github.io</link>
         <link>http://alonepig.github.io</link>
-        <lastBuildDate>2014-08-25T23:53:16+08:00</lastBuildDate>
-        <pubDate>2014-08-25T23:53:16+08:00</pubDate>
+        <lastBuildDate>2014-08-29T17:57:04+08:00</lastBuildDate>
+        <pubDate>2014-08-29T17:57:04+08:00</pubDate>
         <ttl>1800</ttl>
 
+
+        <item>
+                <title>Simple Chat With P2P NetGroup In FP 10.1</title>
+                <description>&lt;p&gt;翻译自：http://tomkrcha.com/?p=1266&lt;/p&gt;
+
+&lt;p&gt;这篇文章介绍了最简单的P2P用法，介绍了GroupSpecifier、NetGroup的用法&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;步骤一：创建一个ActionSript项目&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;使用Flash Player10.1或以上的版本&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;步骤二：连接FMS&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;首先我们需要用NetConnection连接服务器：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;private const SERVER:String = &amp;quot;rtmfp://p2p.rtmfp.net/&amp;quot;;
+private const DEVKEY:String = &amp;quot;YOUR-DEVELOPER-KEY&amp;quot;;
+private var nc:NetConnection;
+
+private function connect():void{
+nc = new NetConnection();
+nc.addEventListener(NetStatusEvent.NET_STATUS,netStatus);
+nc.connect(SERVER+DEVKEY);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;步骤三：创建NetGroup&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;我们需要创建P2P组然后连接它。首先，新建GroupSpecifier，构造函数中传入组的名称。然后打开服务器通道，指定为NetGroup启动发布流。groupspecWithAuthorizations和groupspecWithoutAuthorizations的区别在于前者可以发送和接收，后者只能接收。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;private function setupGroup():void{
+    var groupspec:GroupSpecifier = new GroupSpecifier(&amp;quot;myGroup/g1&amp;quot;);
+    groupspec.serverChannelEnabled = true;
+    groupspec.postingEnabled = true;
+
+    netGroup = new NetGroup(nc,groupspec.groupspecWithAuthorizations());
+    netGroup.addEventListener(NetStatusEvent.NET_STATUS,netStatus);
+
+
+    user = &amp;quot;user&amp;quot;+Math.round(Math.random()*10000);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;步骤四：监听NetStatusEvent&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;private function netStatus(event:NetStatusEvent):void{
+    trace(event.info.code);
+
+    switch(event.info.code){
+        case &amp;quot;NetConnection.Connect.Success&amp;quot;://连接成功
+            setupGroup();
+            break;
+
+        case &amp;quot;NetGroup.Connect.Success&amp;quot;://组连接成功
+            connected = true;
+
+            break;
+
+        case &amp;quot;NetGroup.Posting.Notify&amp;quot;://消息接收
+            receiveMessage(event.info.message);
+            break;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;步骤五：发送和接收消息&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;private var seq:int = 0;
+private function sendMessage():void{
+    var message:Object = new Object();
+    message.sender = netGroup.convertPeerIDToGroupAddress(nc.nearID);
+    message.user = txtUser.text;
+    message.text = txtMessage.text;
+    message.sequence = seq++; // *to keep unique
+
+
+    netGroup.post(message);
+    receiveMessage(message);
+
+    txtMessage.text = &amp;quot;&amp;quot;;
+}
+
+private function receiveMessage(message:Object):void{
+    write(message.user+&amp;quot;: &amp;quot;+message.text);
+}
+
+private function write(txt:String):void{
+    txtHistory.text += txt+&amp;quot;n&amp;quot;;
+}   
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;步骤六：创建UI&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;lt;s:TextArea left=&amp;quot;10&amp;quot; right=&amp;quot;10&amp;quot; top=&amp;quot;10&amp;quot; bottom=&amp;quot;40&amp;quot; id=&amp;quot;txtHistory&amp;quot;/&amp;gt;
+&amp;lt;s:TextInput x=&amp;quot;10&amp;quot; id=&amp;quot;txtUser&amp;quot; text=&amp;quot;{user}&amp;quot; bottom=&amp;quot;10&amp;quot;/&amp;gt;
+&amp;lt;s:TextInput left=&amp;quot;145&amp;quot; right=&amp;quot;88&amp;quot; id=&amp;quot;txtMessage&amp;quot; bottom=&amp;quot;10&amp;quot; enter=&amp;quot;sendMessage()&amp;quot;/&amp;gt;
+&amp;lt;s:Button label=&amp;quot;Send&amp;quot; click=&amp;quot;sendMessage()&amp;quot; enabled=&amp;quot;{connected}&amp;quot; bottom=&amp;quot;10&amp;quot; right=&amp;quot;10&amp;quot;/&amp;gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;**&lt;/p&gt;
+</description>
+                <link>http://alonepig.github.io/fms/2014/08/29/simple-chat-with-p2p-netgroup-in-fp-101</link>
+                <guid>http://alonepig.github.io/fms/2014/08/29/simple-chat-with-p2p-netgroup-in-fp-101</guid>
+                <pubDate>2014-08-29T00:00:00+08:00</pubDate>
+        </item>
+
+        <item>
+                <title>Essential Actionscript3.0 读书笔记(一)</title>
+                <description>&lt;h4&gt;第一章：核心概念&lt;/h4&gt;
+
+&lt;p&gt;什么是程序？程序是由一组可被计算机编译并执行的指令。大家能够看懂的程序中的文本叫做源代码。写这个代码的人叫程序猿，高级一点的叫法叫软件工程师。不同的程序由不同的语言实现，就像有人讲英语有人讲法语。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;写ActionScript代码的工具&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;你可以使用任何一种文本编辑器来写，也可以使用Flash Builder或Flash Professional等IDE来写，甚至可以使用VIM编辑器来写，看个人喜好啦！但个人建议刚开始学时可以用纯文本的形式+命令行编译，这样能够更深刻的了解运行原理，后面开始做项目了推荐使用Flash Builder等大型IDE，里面集成的工具方便你调试和更快的开发。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Flash客户端运行时环境&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;ActionScript代码可以被三种不同的应用软件执行：Flash Player、Adobe AIR、Flash Lite。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;编译&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;为了能让Flash运行时环境能够执行ActionScript代码，需要对其进行编译，将其转换成ActionScript字节码，并包装到swf文件中。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;实时编译&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;一种利用在运行时将字节码(Bytecode)翻译为机器码(Machine code)，并保存在内存中, 在后续的运行中直接调用机器码, 从而改善字节码编译语言性能的技术。这个技术比较高深，特别是在研究指令集的时候会碰到。需要深入学习的话，请查阅相关资料。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;类和对象&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;试想一下，如果让你造一架飞机，你会怎么做？嗯，应该先画一张图纸，然后制造图纸上不同的零件然后组装起来。在程序世界中，也是这样，先有不同的类，类可以表示有形或无形的东西，比如可以表示数字，可以表示可点击的按钮，可以表示图片模糊的效果。类的实例的集合就构成一个应用程序啦！&lt;/p&gt;
+
+&lt;p&gt;在ActionScript中定义了以下基本类型：&lt;/p&gt;
+
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;类&lt;/td&gt;
+        &lt;td&gt;描述&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;String&lt;/td&gt;
+        &lt;td&gt;字符串，表示文本数据&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Boolean&lt;/td&gt;
+        &lt;td&gt;布尔值，表示逻辑状态真或假&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Number&lt;/td&gt;
+        &lt;td&gt;浮点型数字&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;int&lt;/td&gt;
+        &lt;td&gt;整型数字&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;uint&lt;/td&gt;
+        &lt;td&gt;正数整型数字&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Array&lt;/td&gt;
+        &lt;td&gt;数组，有序集合&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Error&lt;/td&gt;
+        &lt;td&gt;程序错误的类&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Date&lt;/td&gt;
+        &lt;td&gt;时间类&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Math&lt;/td&gt;
+        &lt;td&gt;数学运算类&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;RegExp&lt;/td&gt;
+        &lt;td&gt;正则表达式&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Function&lt;/td&gt;
+        &lt;td&gt;可执行、可重用的指令集和&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Object&lt;/td&gt;
+        &lt;td&gt;所有ActionScript类的基类&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;strong&gt;创建一个程序&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;一个应用程序由多个类文件构成，类文件包含类名、多个Function，由一个主类文件作为整个程序的入口。ActionScript类文件都是以扩展名为.as结尾的文本文件。这里我们新建一个名叫virtualzoo的程序，目录结构如下：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;virtualzoo
+    |- src
+        |- VirtualZoo.as
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;包&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;为什么要有包的概念？可以想像，如果所有的类文件都放到同一个目录下，那同名了肿么办？因此，你可以创建复杂的包结构，将不同类型的类放在不同的包中。基本的写法如下：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;package packageName {
+    public ClassA(){}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这里的packageName表示包的权限定名，就是说，如果你的类文件在A文件夹的B文件夹中，则packageName为A.B。(文件夹之间以.号隔开)package是ActionScript的关键字。什么叫关键字呢，最简单的理解就是有关键作用的字，哈哈！现在你要记住的就是它是关键字，关键字不能作为类名、方法名来用。package告诉ActionScript要创建一个叫packageName的包，包后面的花括号里定义了很多语句块。&lt;/p&gt;
+
+&lt;p&gt;下面我们将VirtualZoo文件放到包zoo中，目录结构为下：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;virtualzoo
+    |- src
+        |- zoo
+            |- VirtualZoo.as    
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;定义类&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;为了定义类，我们要使用class关键字：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;class Identifier {
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;类定义以class关键字开始，后面跟着类名(是不是跟包的定义很类似)。类的名字也有要求，不能以数字开头，只能包含下划线、字母、数字、美元符号$。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;类访问控制修饰符&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;默认情况下，一个类只能被同一个包下的其他类访问。但可以通过访问修饰符来改变访问权限。在ActionScript中，类有以下访问权限：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;public:全局可以访问
+internal(或不写)：当前包下访问
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;构造函数&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;构造函数是类初始化的入口，写法如下：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;class SomeClass{
+    function SomeClass(){
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;构造函数的名字和类名是一样的！funciton关键字表示函数，函数名后面的小括号包含了传递进来的参数。花括号里为函数体。如果类没有定义构造函数，则ActionScript会提供一个默认的不带参数的构造函数。
+从ActionScript3.0开始，构造函数的默认访问修饰符都是public，所以上面的写法跟下面的写法效果是一样的：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;class SomeClass{
+    public function SomeClass(){
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;创建对象&lt;/strong&gt;&lt;/p&gt;
+</description>
+                <link>http://alonepig.github.io/actionscript/2014/08/28/essential-actionscript30-reading-note</link>
+                <guid>http://alonepig.github.io/actionscript/2014/08/28/essential-actionscript30-reading-note</guid>
+                <pubDate>2014-08-28T00:00:00+08:00</pubDate>
+        </item>
 
         <item>
                 <title>windows下的VIM 编辑markdown语法高亮</title>
