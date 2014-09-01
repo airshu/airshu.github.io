@@ -5,10 +5,100 @@
         <description>alonepig's blog - lsj</description>
         <link>http://alonepig.github.io</link>
         <link>http://alonepig.github.io</link>
-        <lastBuildDate>2014-08-29T17:57:04+08:00</lastBuildDate>
-        <pubDate>2014-08-29T17:57:04+08:00</pubDate>
+        <lastBuildDate>2014-09-01T17:46:24+08:00</lastBuildDate>
+        <pubDate>2014-09-01T17:46:24+08:00</pubDate>
         <ttl>1800</ttl>
 
+
+        <item>
+                <title>Essential Actionscript3.0 读书笔记(二、条件语句和循环)</title>
+                <description>&lt;h4&gt;第二章：条件语句和循环&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;条件语句&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;ActionScript提供两种类型的条件语句：if语句和switch语句。还提供了条件操作符 &amp;quot; ? :&amp;quot;。&lt;/p&gt;
+
+&lt;p&gt;if语句的写法：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;if (testExpression) {
+    codeBlock1
+} else {
+    codeBlock2
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;如果testExpression的值为真，则执行codeBlock1语句块，如果为假则执行codeBlock2语句块。&lt;/p&gt;
+
+&lt;p&gt;switch语句的写法：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;switch (testExpression) {
+    case expression1:
+        codeBlock1
+        break;
+    case expression2:
+        codeBlock2
+        break;
+    default:
+        codeBlock3
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;如果testExpression的值等于expression1，则执行codeBlock1，依此类推。如果break表示跳出该层逻辑，如果没有break;则会一直按顺序执行下去。如果表达式不等于case中的值，则会执行default后面的语句块。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;循环&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;ActionScript提供了5种循环：while、do-while、for、for-in、for-each-in。&lt;/p&gt;
+
+&lt;p&gt;while语句的写法：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;while(testExpression) {
+    codeBlock
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;除了表达式为false来结束循环外，可以使用break来结束。例如：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;var i = 0;
+while(i&amp;lt;10){
+    trace(i++);
+    if(i == 5)
+        break;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;do-while语句的写法：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;do {
+    codeBlock
+} while (testExpression);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;语句块codeBlock会先执行一次，然后在判断testExpression表达式的值是否为真。&lt;/p&gt;
+
+&lt;p&gt;for语句的写法：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;for (initialization; testExpression; update) {
+    codeBlock
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;initialization语句进行初始化操作，如果表达式testExpression为真，则执行codeBlock语句块，然后执行update语句，再判断testExpression表达式是否为真，为真继续执行codeBlock语句块...。例如：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;var total = 2;
+for(var i = 0; i&amp;lt;2; i++){
+    total = total*2;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;布尔逻辑&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;通常使用：||(逻辑或)和&amp;amp;&amp;amp;(逻辑与)，逻辑非(!)&lt;/p&gt;
+
+&lt;p&gt;逻辑或(||)的用法：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;expression1 || expression2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;如果表达式expression1或expression2两个中有一个是真的，则表达式的结果为真。这里需要注意的是，如果expression1已经为真了，则表达式expression2就不会进行计算了。&lt;/p&gt;
+
+&lt;p&gt;逻辑与(&amp;amp;&amp;amp;)的用法：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;expression1 &amp;amp;&amp;amp; expression2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;如果表达式expression1和expression2的值都为真，结果才为真。&lt;/p&gt;
+
+&lt;p&gt;逻辑非(!)的用法：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;！expression
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;取表达式expression的反，如果表达式为真，则结果为假。&lt;/p&gt;
+</description>
+                <link>http://alonepig.github.io/actionscript/2014/09/01/conditionals-and-loops</link>
+                <guid>http://alonepig.github.io/actionscript/2014/09/01/conditionals-and-loops</guid>
+                <pubDate>2014-09-01T00:00:00+08:00</pubDate>
+        </item>
 
         <item>
                 <title>Simple Chat With P2P NetGroup In FP 10.1</title>
@@ -105,7 +195,7 @@ private function write(txt:String):void{
         </item>
 
         <item>
-                <title>Essential Actionscript3.0 读书笔记(一)</title>
+                <title>Essential Actionscript3.0 读书笔记(一、核心概念)</title>
                 <description>&lt;h4&gt;第一章：核心概念&lt;/h4&gt;
 
 &lt;p&gt;什么是程序？程序是由一组可被计算机编译并执行的指令。大家能够看懂的程序中的文本叫做源代码。写这个代码的人叫程序猿，高级一点的叫法叫软件工程师。不同的程序由不同的语言实现，就像有人讲英语有人讲法语。&lt;/p&gt;
@@ -239,7 +329,113 @@ internal(或不写)：当前包下访问
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;创建对象&lt;/strong&gt;&lt;/p&gt;
-</description>
+
+&lt;p&gt;为了创建一个类的对象(实例化)，我们使用new关键字。例如，我们要创建一个VirtualPet实例：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;new VirtualPet
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;同一个类可以创建多个实例。例如：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;new VirtualPet
+new VirtualPet
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Literal语法&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;对于ActionScript内建类型，有一些类型有更简便的实例化方法。比如，我们创建一个Number值为25.4的变量，可以直接用：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;25.4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;定义一个字符串使用：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;quot;hello&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;定义布尔值：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;true
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Literal 语法也可以用在Object、Function、RegExp和XML类上。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;对象创建实例：向动物园添加一个动物&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;现在我们知道如何创建对象，我们可以向动物园添加一个动物了：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;package zoo {
+    public class VirtualZoo {
+        public function VirtualZoo() {
+            new VirtualPet
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这里要注意访问权限的问题，在zoo包下的类默认情况下只能访问该包内的其他类，如果要访问外部包的公共类，需要用import关键字引用该类，如：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;package zoo {
+
+    import flash.media.Sound;
+
+    public class VirtualZoo {
+        public function VirtualZoo() {
+            new Sound
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;变量和值&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;变量和值是一种对应关系，每个变量都会有一个值，但在ActionScript中还有两种特殊情况，null和undefined，分别表示没有值和未定义。变量是关联到一个值的标识符。比如，一个变量可能是标识符submitBtn，它关联到一个设置按钮。&lt;/p&gt;
+
+&lt;p&gt;变量可以分为不同的种类：局部变量、实例变量、动态实例变量和静态变量。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;局部变量&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;在函数内定义的变量叫布局变量。定义变量用关键字var，以;结束，&amp;quot;;&amp;quot;表示语句的结束。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;class SomeClass {
+    public function SomeClass ( ) {
+        var identifier = value;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;identifier表示变量的名字，value表示变量的值。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;实例变量&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;实例变量直接在类定义的里面定义：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;class SomeClass {
+    var identifier = value;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;可以通过类的实例加&amp;quot;.&amp;quot;来访问某个非私有实例变量，如：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;someClass.identifier
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;实例变量与布局变量的区别在于它们的生命周期不同。&lt;/p&gt;
+
+&lt;p&gt;变量的访问修饰符有：public、internal、protected、private。public修饰的实例变量可以被包内和包外所有的类访问，internal修饰的实例变量只能被包内的类访问。protected修饰的实例变量只能被类本身或其子类访问。private修饰的实例变量只能在类内部访问。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;构造函数参数&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;构造函数参数是一个特殊的局部变量，但又不像局部变量那样需要用var关键字来定义。定义格式如下：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;class SomeClass {
+    funciton SomeClass(identifier = value){
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;实例化SomeClass的方法：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;new SomeClass(value)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;如果构造函数参数有默认值，则表示该参数是可选的。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;表达式&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;new Date()
+2.5
+4 * 2.5
+
+var quality = 100;
+var price = 50;
+var total = quality*price;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;以上都为表达式，通过不同操作符连接起来。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;实例方法&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;实例方法定义了对象可以做的事情。比如Sound类定义了实例方法play来播放声音。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;class SomeClass {
+    function identifier ( ) {
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
                 <link>http://alonepig.github.io/actionscript/2014/08/28/essential-actionscript30-reading-note</link>
                 <guid>http://alonepig.github.io/actionscript/2014/08/28/essential-actionscript30-reading-note</guid>
                 <pubDate>2014-08-28T00:00:00+08:00</pubDate>

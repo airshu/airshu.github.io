@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-   <title>getting_started_streaming_media  </title>
+   <title>Essential Actionscript3.0 读书笔记(二、条件语句和循环)  </title>
    <meta name="author" content="lsj" />
 
    <link rel="start" href="/" />
@@ -156,7 +156,7 @@ table{border:0}
   
 <div id="page">
 	
-  <h1 class="emphnext">getting_started_streaming_media</h1>
+  <h1 class="emphnext">Essential Actionscript3.0 读书笔记(二、条件语句和循环)</h1>
   <ul class="tag_box inline">
   
   
@@ -164,7 +164,9 @@ table{border:0}
 
   
      
-    	<li><a href="/tags.html#fms-ref">fms <span>14</span></a></li>
+    	<li><a href="/tags.html#actionscript-ref">actionscript <span>7</span></a></li>
+     
+    	<li><a href="/tags.html#essential actionscript3.0-ref">essential actionscript3.0 <span>2</span></a></li>
     
   
 
@@ -172,399 +174,115 @@ table{border:0}
 
   </ul>
 
-  <h3>目录</h3>
+  <h4>第二章：条件语句和循环</h4>
 
-<p>一、支持的客户端，编码器，解码器和文件格式</p>
+<p><strong>条件语句</strong></p>
 
-<p>二、预构建的媒体播放器</p>
+<p>ActionScript提供两种类型的条件语句：if语句和switch语句。还提供了条件操作符 &quot; ? :&quot;。</p>
 
-<p>三、实时流媒体(HTTP)</p>
-
-<p>四、实时流媒体(RTMP)</p>
-
-<p>五、点播流媒体(HTTP)</p>
-
-<p>六、点播流媒体(RTMP)</p>
-
-<p>七、受保护的点播流媒体(pRTMP)</p>
-
-<p>八、多播媒体(RTMFP)</p>
-
-<p>九、Configure closed captioning</p>
-
-<p>十、配置可交换的音频</p>
-
-<p>十一、配置保护内容</p>
-
-<p>十二、配置HTTP动态流和HTTP实时流</p>
-
-<p>十三、HTTP流配置文件参考</p>
-
-<p>十四、建立自定义媒体播放器</p>
-
-<p>十五、Offline packaging</p>
-
-<p>十六、流媒体问题的一些解决办法</p>
-
-<hr>
-
-<h5>一、支持的客户端，编码器，解码器和文件格式</h5>
-
-<h6>流服务支持的客户端和服务器</h6>
-
-<h5>二、预构建的媒体播放器</h5>
-
-<h5>三、实时流媒体(HTTP)</h5>
-
-<h5>四、实时流媒体(RTMP)</h5>
-
-<h5>五、点播流媒体(HTTP)</h5>
-
-<h5>六、点播流媒体(RTMP)</h5>
-
-<h5>七、受保护的点播流媒体(pRTMP)</h5>
-
-<h5>八、多播媒体(RTMFP)</h5>
-
-<p><strong>关于多播服务</strong></p>
-
-<p><strong>重要：</strong> 多播服务(rootinstall/applications/multicast)不能运行在AMS标准版中。</p>
-
-<p>多播服务是AMS多播解决方案的一部分。多播解决方案包括以下组件：</p>
-
-<ul>
-<li><p>多播配置工具(rootinstall/tools/multicast/configurator)</p></li>
-<li><p>Flash Media Live Encoder</p></li>
-</ul>
-
-<p>捕获、编码和发布实时视频</p>
-
-<ul>
-<li><p>多播服务(rootinstall/applications/multicast)</p></li>
-<li><p>多播播放器(rootinstall/tools/multicast/multicastplayer)</p></li>
-</ul>
-
-<p><strong>配置多播事件</strong></p>
-
-<p>1、打开rootinstall/tools/multicast/configurator/configurator.html。</p>
-
-<p>2、选择多播类型：</p>
-
-<ul>
-<li><p>Fusion(simultaneous, cooperative IP and P2P multicast)</p></li>
-<li><p>IP Multicast</p></li>
-<li><p>Peer to Peer</p></li>
-<li><p>Peer to Peer with Peer Discovery</p></li>
-</ul>
-
-<p>3、对于Fusion和Peer to Peer，输入服务器名称(或IP地址)和多播应用的全路径，比如:rtmfp://ams.example.com/multicast。
-如果服务器配置的端口大于1935，需指定端口，比如：rtmfp://ams.example.com:1940/multicast。</p>
-
-<p>4、输入流名字，比如，CorpAllHandsQ2_2010或livestream。</p>
-
-<p>5、输入发布密码。</p>
-
-<p>发布密码指定只有多播服务器才能在组内发布多播流，其他节点只能播放。</p>
-
-<p>6、输入组名字。名字需要唯一。</p>
-
-<p>7、对于IP Multicast 和Fusion，输入IP多播地址和端口。</p>
-
-<p>8、(可选的)如果托管AMS的服务器有一个以上的网络接口卡(NIC)，在地址文本框中为一个NIC输入IP地址。AMS使用这个IP地址来决定发布时访问的接口。</p>
-
-<p>9、(可选的)为了使用<a href="http://en.wikipedia.org/wiki/Source-specific_multicast">source-specific multicast</a>，在对应的输入框输入IP地址和端口。</p>
-
-<p>10、点击生成。多播配置工具产生以下内容：</p>
-
-<ul>
-<li><p>实时流的名字。</p></li>
-<li><p>F4M文件。为了观看此文件，点击观看Manifest文件。</p></li>
-</ul>
-
-<p>11、为了使用多播播放器，按照下面的步骤：</p>
-
-<p>a 点击保存Manifest文件。</p>
-
-<p>b 保存manifest.f4m文件到multicastplayer.html同目录。默认情况，在rootinstall/tools/multicast/multicastplayer。</p>
-
-<p>12、为了使用Strobe Media Playback，打开配置器。在设置完成后，你将返回到配置并保存f4m文件到相同的文件夹下的作为Strobe Media Playback。</p>
-
-<p><strong>使用Flash Media Live Encoder 发布流</strong></p>
-
-<p>1、打开Flash Media Live Encoder3.1或更高版本</p>
-
-<p>2、从预设菜单中，选择一个单一的流。多播解决方案不支持multi-bitrate流。</p>
-
-<p>3、对于AMS URL，输入多播服务的URL。如果你在同一台电脑测试，输入：rtmp://localhost/multicast</p>
-
-<p><strong>注意：</strong>Flash Media Live Encoder 连接AMS是通过RTMP协议传输的，不使用RTMFP。</p>
-
-<p>4、将在多播配置工具中复制的发布流的名字粘贴。</p>
-
-<p>5、点击开始。</p>
-
-<p>6、打开管理员控制台，点击观看Applications&gt;Clients。The RTMP client is the connection from FMLE to the server. The RTMFP client is a server-side peer established by the multicast service to republish the live stream into the target RTMFP Group</p>
-
-<p><strong>播放多播流</strong></p>
-
-<p>1、开打rootinstall/tools/multicast/multicastplayer/multicastplayer.html</p>
-
-<p>2、为了在本地系统中运行Flash Player，右键屏幕，选择全局设置：</p>
-
-<ul>
-<li><p>在Flash Player帮助页，选择全局安全设置面板。点击Edit locations &gt; Add location &gt;Browse for folder。选择multicastplayer.swf文件所在目录。
-点击添加。</p></li>
-<li><p>在Flash Player设置管理器，选择高级点击Trusted Location Setting。点击添加，选择multicastplayer.swf文件所在目录。</p></li>
-</ul>
-
-<p>3、重新装载multicastplayer.html。点击运行点对点连接。</p>
-
-<p>4、打开管理员控制台看客户端连接。</p>
-
-<p><strong>用AMS样例播放器播放流</strong></p>
-
-<p>1、打开rootinstall/samples/videoPlayer/videoplayer.html</p>
-
-<p>2、从rootinstall/tools/multicast/configurator复制t.f4m文件到rootinstall/smaples/videoPlayer文件夹。</p>
-
-<p>3、在样例播放器中，在URL流文本框中输入manifest.f4m， 点击播放。</p>
-
-<p>4、管理员控制台查看信息。</p>
-
-<h5>九、Configure closed captioning</h5>
-
-<h5>十、配置可交换的音频</h5>
-
-<h5>十一、配置保护内容</h5>
-
-<h5>十二、配置HTTP动态流和HTTP实时流</h5>
-
-<h5>十三、HTTP流配置文件参考</h5>
-
-<h5>十四、建立自定义媒体播放器</h5>
-
-<h6>为实时或点播服务构建媒体播放器</h6>
-
-<p>OSMF 播放器是基于Flash平台的开源播放器。</p>
-
-<p><strong>连接流服务</strong></p>
-
-<p>跟所有AMS应用一样，通过NetConnection.connect()来连接，URI参数格式如下：</p>
-
-<p>rtmp://ams-ip-or-dns/serviceName/[formatType:][instanceName/]fileOrStreamName</p>
-
-<p>hostName AMS域名</p>
-
-<p>serviceName 直播或点播</p>
-
-<p>instanceName 如果客户端连接默认的实例，你可以省略或使用<em>definst</em>。</p>
-
-<p>fotmatType mp3文件则用mp3:,对mp4/f4v文件，则用mp4:，flv文件不做要求。</p>
-
-<p>fileOrStreamName 文件名或路径，如my<em>video.mp4或subdir/subdir2/my</em>video.mp4。</p>
-
-<p><strong>不支持的ActionScript API</strong></p>
-
-<p>对于实时和点播服务，客户端不能使用 SharedObject.getRemote()</p>
-
-<p>你不能编辑服务端的代码。但可以通过NetConnection.call()来调用服务器端的方法。</p>
-
-<p><strong>允许从指定的域连接</strong></p>
-
-<p>默认情况，可以从任何域连接。</p>
-
-<p>rootinstall/applications/live 或 rootinstall/applications/vod 文件夹：</p>
-
-<ul>
-<li><p>添加一个swf客户端的域，编辑allowedSWFdomains.txt文件。</p></li>
-<li><p>添加一个HTML客户端的域，编辑allowedHTMLdomains.txt文件。</p></li>
-</ul>
-
-<p><strong>访问音频和视频的原始数据</strong></p>
-
-<p>ActionScript中通过BitmapData.draw()和SoundMixer.computeSpectrum()方法访问数据。</p>
-
-<p>默认情况下，AMS阻止你访问流。为了访问，需要做以下事情：</p>
-
-<ol>
-<li><p>将rootinstall/smaple/applications/live 或 rootinstall/smaple/applications/vod的main.far和main.asc文件复制到rootinstall/applications/live 或 rootinstall/applications/vod</p></li>
-<li><p>去掉下面两行的注释：</p>
-
-<p>//p<em>client.audioSampleAccess = &quot;/&quot;;
-//p</em>client.videoSampleAccess = &quot;/&quot;;</p></li>
-</ol>
-
-<p><strong>流服务API</strong></p>
-
-<p><strong>getStreamLength(streamObj)</strong></p>
-
-<p>返回流的长度。</p>
-
-<p><strong>实例</strong></p>
-
-<p>nc.call(&quot;getStreamLength&quot;, returnObj, &quot;sample_video&quot;);</p>
-
-<p><strong>getPageUrl()</strong></p>
-
-<p>返回客户端Swf的URL</p>
-
-<p>//嵌套在html中
-getPageUrl 返回： http://www.example.com/trace.html</p>
-
-<p>//没有嵌套在html中
-getPageUrl 返回： http://www.example.com/trace.swf</p>
-
-<p>这个值必须是http地址。由于安全原因，本地地址不会显示。</p>
-
-<p><strong>实例</strong></p>
-
-<p>nc.call(&quot;getPageUrl&quot;, returnObj);</p>
-
-<p><strong>getReferrer()</strong></p>
-
-<p>返回SWF文件的URL或服务器连接源自哪里</p>
-
-<p><strong>实例</strong></p>
-
-<p>myNetConnection.call(&quot;getReferrer&quot;, returnObj);</p>
-
-<h6>构建动态的HTTP流媒体播放器</h6>
-
-<p><strong>使用OSMF</strong></p>
-
-<p><strong>理解HTTP动态流的应用结构</strong></p>
-
-<p>流媒体使用Adobe HDS需要Adobe媒体Manifest文件(.f4m)。</p>
-
-<p>manifest文件包含的信息媒体资源或多播流中的每个流的事件的信息。这些信息包括媒体的位置、DRM额外头数据,媒体引导信息,自适应流比特率等。</p>
-
-<p>为了产生文件，HTTP模块会执行以下步骤：</p>
-
-<ol>
-<li><p>结合请求URL和HttpStreamingLiveEventPath指令来定位实时事件</p></li>
-<li><p>从Event.xml和multi-lvevel manifest文件总检索元数据</p></li>
-<li><p>为了流录制文件(.stream)扫描事件目录</p></li>
-<li><p>检索每一个流文件对应的内容。每一个.stream文件都来自manifest文件的<media>标签</p></li>
-<li><p>从.meta文件检索元数据</p></li>
-<li><p>为引导信息和DRM额外头数据创建链接(如果内容是安全的)</p></li>
-<li><p>返回生成manifest文档</p></li>
-</ol>
-
-<p>在rootinstall/applications/livepkgr/streams/<em>definst</em>文件夹，实时打包器以流的名字创建文件夹：livestream1，livestream2。实时打包器
-在每个文件夹中创建了以下文件：</p>
-
-<p>· livestream#.bootstrap</p>
-
-<p>· livestream#.control</p>
-
-<p>· livestream#.meta</p>
-
-<p>· livestream#.Seg#.f4f</p>
-
-<p>· livestream#.Seg#.f4x</p>
-
-<p>下表描述了每个文件类型：
-<table>
-    <tr>
-        <td>文件</td>
-        <td>描述</td>
-    </tr>
-    <tr>
-        <td>livestream#Seg#.f4f</td>
-        <td>A segment. The Live Packager outputs one or more F4F files. Each file contains a segment of the source file. Each segment contains the fragmented (and optionally protected) content.</td>
-    </tr>
-    <tr>
-        <td>livestream#Seg#.f4x</td>
-        <td>An index file listing the fragment offsets in each .f4f file. The Live Packager outputs one or more F4X files. The HTTP Origin Module uses this file to deliver fragments.</td>
-    </tr>
-    <tr>
-        <td>livestream#.meta</td>
-        <td>Contains the stream metadata (bitrate, screen size, and so on).</td>
-    </tr>
-    <tr>
-        <td>livestream#.bootstrap</td>
-        <td>Contains the bootstrap information for the stream.</td>
-    </tr>
-    <tr>
-        <td>livestream#.control</td>
-        <td>Contains internal metadata that the Live Packager uses to manage stream state.</td>
-    </tr>
-    <tr>
-        <td>livestream#.drmmeta</td>
-        <td>Contains additional header information when a stream is encrypted for use with Adobe Access.</td>
-    </tr>
-</table></p>
-
-<p>以下是Apache配置HTTP动态流的时候这些文件的URL请求格式：
-<table>
-    <tr>
-        <td>请求格式</td>
-        <td>描述</td>
-    </tr>
-    <tr>
-        <td>Fragment</td>
-        <td>http://<host>/<location-tag-alias>/streams/<app-name>/streams/<app-instance>/<stream name>Seg<segment #>-Frag<fragment #></td>
-    </tr>
-    <tr>
-        <td>Bootstrap(.bootstrap)</td>
-        <td>http://<host>/<location-tag-alias>/streams/<app-name>/streams/<app-instance>/<stream name>.bootstrap</td>
-    </tr>
-</table></p>
-
-<p><strong>流录制文件</strong></p>
-
-<p>流记录文件(.stream)是一个XML文档,其中包含的物理位置。服务器创建流记录文件时传入流与实时事件相关联。服务器创建的文件的名称在以下位置进行编码</p>
-
-<p>applications/appname/events/appinstancename/eventname/MTg1ODAyNigwNg=.stream</p>
-
-<p>.stream文件格式如下：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;stream xmlns=&quot;http://www.adobe.com/liveevent/1.0&quot;&gt;
-    &lt;type&gt;
-        f4f
-    &lt;/type&gt;
-    &lt;name&gt;
-        livestream
-    &lt;/name&gt;
-    &lt;path&gt;
-        C:\Program Files\Adobe\Adobe Media Server 5\applications\myapp\streams\_definst_\livestream
-    &lt;/path&gt;
-&lt;/stream&gt;
+<p>if语句的写法：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">if (testExpression) {
+    codeBlock1
+} else {
+    codeBlock2
+}
 </code></pre></div>
-<p><strong>.f4m manifest文件实例</strong></p>
+<p>如果testExpression的值为真，则执行codeBlock1语句块，如果为假则执行codeBlock2语句块。</p>
 
-<h5>十五、Offline packaging</h5>
+<p>switch语句的写法：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">switch (testExpression) {
+    case expression1:
+        codeBlock1
+        break;
+    case expression2:
+        codeBlock2
+        break;
+    default:
+        codeBlock3
+}
+</code></pre></div>
+<p>如果testExpression的值等于expression1，则执行codeBlock1，依此类推。如果break表示跳出该层逻辑，如果没有break;则会一直按顺序执行下去。如果表达式不等于case中的值，则会执行default后面的语句块。</p>
 
-<h5>十六、流媒体问题的一些解决办法</h5>
+<p><strong>循环</strong></p>
+
+<p>ActionScript提供了5种循环：while、do-while、for、for-in、for-each-in。</p>
+
+<p>while语句的写法：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">while(testExpression) {
+    codeBlock
+}
+</code></pre></div>
+<p>除了表达式为false来结束循环外，可以使用break来结束。例如：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">var i = 0;
+while(i&lt;10){
+    trace(i++);
+    if(i == 5)
+        break;
+}
+</code></pre></div>
+<p>do-while语句的写法：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">do {
+    codeBlock
+} while (testExpression);
+</code></pre></div>
+<p>语句块codeBlock会先执行一次，然后在判断testExpression表达式的值是否为真。</p>
+
+<p>for语句的写法：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">for (initialization; testExpression; update) {
+    codeBlock
+}
+</code></pre></div>
+<p>initialization语句进行初始化操作，如果表达式testExpression为真，则执行codeBlock语句块，然后执行update语句，再判断testExpression表达式是否为真，为真继续执行codeBlock语句块...。例如：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">var total = 2;
+for(var i = 0; i&lt;2; i++){
+    total = total*2;
+}
+</code></pre></div>
+<p><strong>布尔逻辑</strong></p>
+
+<p>通常使用：||(逻辑或)和&amp;&amp;(逻辑与)，逻辑非(!)</p>
+
+<p>逻辑或(||)的用法：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">expression1 || expression2
+</code></pre></div>
+<p>如果表达式expression1或expression2两个中有一个是真的，则表达式的结果为真。这里需要注意的是，如果expression1已经为真了，则表达式expression2就不会进行计算了。</p>
+
+<p>逻辑与(&amp;&amp;)的用法：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">expression1 &amp;&amp; expression2
+</code></pre></div>
+<p>如果表达式expression1和expression2的值都为真，结果才为真。</p>
+
+<p>逻辑非(!)的用法：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">！expression
+</code></pre></div>
+<p>取表达式expression的反，如果表达式为真，则结果为假。</p>
 
 
   <address class="signature">
     <a class="author" href="/">lsj</a> 
-    <span class="date">01 July 2014</span>
+    <span class="date">01 September 2014</span>
     <span class="location"></span>
   </address>
   
   
 	<div class='cloud'>
-		<a style='font-size: 70%' href='/tags.html#ios'>ios</a>
-<a style='font-size: 70%' href='/tags.html#air'>air</a>
-<a style='font-size: 70%' href='/tags.html#error'>error</a>
-<a style='font-size: 144%' href='/tags.html#actionscript'>actionscript</a>
-<a style='font-size: 70%' href='/tags.html#vim'>vim</a>
+		<a style='font-size: 112%' href='/tags.html#crack'>crack</a>
 <a style='font-size: 96%' href='/tags.html#essential actionscript3.0'>essential actionscript3.0</a>
-<a style='font-size: 170%' href='/tags.html#fms'>fms</a>
+<a style='font-size: 70%' href='/tags.html#error'>error</a>
+<a style='font-size: 70%' href='/tags.html#ios'>ios</a>
 <a style='font-size: 70%' href='/tags.html#p2p'>p2p</a>
+<a style='font-size: 70%' href='/tags.html#vim'>vim</a>
+<a style='font-size: 170%' href='/tags.html#fms'>fms</a>
+<a style='font-size: 144%' href='/tags.html#actionscript'>actionscript</a>
 <a style='font-size: 112%' href='/tags.html#swf'>swf</a>
-<a style='font-size: 112%' href='/tags.html#crack'>crack</a>
+<a style='font-size: 70%' href='/tags.html#air'>air</a>
 
 	</div>
 	
   <div class="prev-next">
   
-    <a href="/fms/2014/07/01/server-side-actionscript-language-reference" class="next" title="server side actionscript language reference">Next Post &rarr;</a>
   
-  
-    <a href="/fms/2014/06/24/learning-ams" class="prev" title="Learning AMS">&larr; Earlier Post</a>
+    <a href="/fms/2014/08/29/simple-chat-with-p2p-netgroup-in-fp-101" class="prev" title="Simple Chat With P2P NetGroup In FP 10.1">&larr; Earlier Post</a>
   
   </div>
   
