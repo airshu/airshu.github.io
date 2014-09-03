@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-   <title>swf文件格式  </title>
+   <title>股票入门之术语学习  </title>
    <meta name="author" content="lsj" />
 
    <link rel="start" href="/" />
@@ -158,7 +158,7 @@ table{border:0}
   
 <div id="page">
 	
-  <h1 class="emphnext">swf文件格式</h1>
+  <h1 class="emphnext">股票入门之术语学习</h1>
   <ul class="tag_box inline">
   
   
@@ -166,11 +166,7 @@ table{border:0}
 
   
      
-    	<li><a href="/tags.html#swf-ref">swf <span>3</span></a></li>
-     
-    	<li><a href="/tags.html#crack-ref">crack <span>3</span></a></li>
-     
-    	<li><a href="/tags.html#actionscript-ref">actionscript <span>7</span></a></li>
+    	<li><a href="/tags.html#stock-ref">stock <span>1</span></a></li>
     
   
 
@@ -178,393 +174,151 @@ table{border:0}
 
   </ul>
 
-  <p>关于swf的文件格式，除了官方的文档，也有许多的资料可以参考。在这里只是做一个总结，具体内容请参阅最后给出的链接。</p>
+  <p>前天，入手600023后，从此算踏上了股市这条路。不过，自己真的什么都不懂。为了督促自己努力学习各种股票知识，并实现&quot;单车变摩托&quot;的美梦，从此后，此博客也将开始记录自己的股海生涯。</p>
 
-<p>学习swf的格式，首先你要了解swf的组成，它是有许多的标签按照一定的规则构成。它有自己定义的单位，就像int、number一样。可以查阅官方的文档或http://www.the-labs.com/MacromediaFlash/SWF-Spec/SWFfilereference.html来了解基本的数据类型和标签类型。</p>
+<p>首先，要明白一些基本的术语。</p>
 
-<p>到最新的版本，已有的标签如下：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">Tag-value     Tag-name
-0            End
-1         ShowFrame
-2         DefineShape
-4         PlaceObject
-5         RemoveObject
-6         DefineBits
-7         DefineButton
-8         JPEGTables
-9         SetBackgroundColor
-10     DefineFont
-11     DefineText
-12     DoAction
-13     DefineFontInfo
-14     DefineSound
-15     StartSound
-17     DefineButtonSound
-18     SoundStreamHead
-19     SoundStreamBlock
-20     DefineBitsLossless
-21     DefineBitsJPEG2
-22     DefineShape2
-23     DefineButtonCxform
-24     Protect
-26     PlaceObject2
-28     RemoveObject2
-32     DefineShape3
-33     DefineText2
-34     DefineButton2
-35     DefineBitsJPEG3
-36     DefineBitsLossless2
-37     DefineEditText
-39     DefineSprite
-43     FrameLabel
-45     SoundStreamHead2
-46     DefineMorphShape
-48     DefineFont2
-56     ExportAssets
-57     ImportAssets
-58     EnableDebugger
-59     DoInitAction
-60     DefineVideoStream
-61     VideoFrame
-62     DefineFontInfo2
-64     EnableDebugger2
-65     ScriptLimits
-66     SetTabIndex
-69     FileAttributes
-70     PlaceObject3
-71     ImportAssets2
-73     DefineFontAlignZones
-74     CSMTextSettings
-75     DefineFont3
-76     SymbolClass
-77     Metadata
-78     DefineScalingGrid
-82     DoABC
-83     DefineShape4
-84     DefineMorphShape2
-86     DefineSceneAndFrameLabelData
-87     DefineBinaryData
-88     DefineFontName
-89     StartSound2
-90     DefineBitsJPEG4
-91     DefineFont4
-</code></pre></div>
-<p>然后，你需要弄明白这个规则。swf是由头和身体两部分组成。</p>
+<p><strong>股票</strong></p>
 
-<p>参考(A simple .swf file and it’s below the line representation)[http://blog.csdn.net/qdlgx/article/details/2868504]，你将明白头是怎么构成的，标签又是按照什么顺序排列的。</p>
+<p>股票是一种有价证券，它由相应股份公司发行，是证明股东所持股份的凭证，它表明股票的持有者对股份公司的部分资本拥有所有权。在股市中，投资者买卖的对象即为代表着不同上市公司的股票，投资者既可以通过业绩优良上市公司的年终分红，获取高于银行利率的回报，也可以通过股票价格在二级市场的涨跌变化获取差价收益。</p>
 
-<p>再然后，就是指令集了。AVM虚拟机有自己的指令集。详情参考http://www.adobe.com/content/dam/Adobe/en/devnet/actionscript/articles/avm2overview.pdf</p>
+<p>上面是书里面的讲法，但我还是有很多地方不明白。比如，如果股票都涨了，那所有的股民不都赚钱了吗？那这些钱从哪里来的呢？好吧，作为初学者，现在暂时不要纠结这些了，以后会慢慢明白的。</p>
 
-<p>下面总结出的ABC文件结构：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">abcFile
-{
-+ minor_version: u16    最低swf版本
-+ major_version: u16    最高swf版本
-+ method_count: u30     方法数量
-+ metadata_count: u30   元数据数量
-+ class_count: u30          类数量
-+ script_count: u30         脚本数量
-+ method_body_count: u30      方法体数量
-+ constant_pool: cpool_info      常量池
-+ method: method_info (Array)      方法集合
-+ metadata: metadata_info (Array)      元数据集合
-+ instance: instance_info (Array)      实例集合
-+ class: class_info (Array)      类集合
-+ script: script_info (Array)      脚本集合
-+ method_body: method_body_info (Array)      方法体集合
-}
+<p><strong>股票市场</strong></p>
 
+<p>简称为股市，股票市场是股票发行和交易的场所，根据市场的功能划分，可分为发行市场和流通市场，其中，发行市场也就是我们所说的一级市场，流通市场则是二级市场。</p>
 
+<p>股票交易的场所还好理解，就是证券所嘛！不过现在都可以用不同的软件进行交易，也就不用去证券所了。什么叫发行市场什么叫流通市场我也不太关心，见过面就好。</p>
 
-cpool_info
-{
-+ int_count: u30      整形数量
-+ uint_count: u30      无符号整形数量
-+ double_count: u30      双精度型数量     
-+ string_count: u30      字符串数量
-+ namespace_count: u30      命名空间数量
-+ ns_set_count: u30      命名空间集合数量
-+ multiname_count: u30      复合名字数量
-+ string: string_info (Array)      字符串集合
-+ namespace: namespace_info (Array)      命名空间集合
-+ ns_set: ns_set_info (Array)      命名空间的集合关系
-+ multiname: multiname_info (Array)      复合名字集合
-}
+<p><strong>A股、B股、H股</strong></p>
 
-namespace_info
-{
-+ CONSTANT_Namespace: u8 = 0x08
-+ CONSTANT_PackageNamespace: u8 = 0x16
-+ CONSTANT_PackageInternalNs: u8 = 0x17
-+ CONSTANT_ProtectedNamespace: u8 = 0x18
-+ CONSTANT_ExplicitNamespace: u8 = 0x19
-+ CONSTANT_StaticProtectedNs: u8 = 0x1A
-+ CONSTANT_PrivateNs: u8 = 0x05
-+ kind: u8      类型，有6种常量类型
-+ name：u30      string集合的下标，为0的话则是空字符串
-}
+<p>这个很好理解，前面的字母代表不同的股票市场。</p>
 
-ns_set_info
-{
-+ count: u30      数量
-+ ns: u30 (Array)      each ns is an integer that indexes into the namespace array of the constant pool
-}
+<p>A 股是由我国境内的公司发行，供境内机构、组织或个人（不含台、港、澳投资者）以人民币认购和交易的普通股股票，A 股也就是我们国内普通投资者所参与的股票市场，国内的A 股分为上证A股与深证A 股，上证A 股包括全体在上海证券交易所上市的股票，上证A 股所形成的股票市场也常被称为“沪市”，深证A则包括全体在深圳证券交易所上市的股票，深证A 股所形成的股票市场也常被称为“深市”。</p>
 
-multiname_info
-{
-+ kind: u8      类型
-+ CONSTANT_QName: u8 = 0x07
-+ CONSTANT_QNameA: u8 = 0x0D
-+ CONSTANT_RTQName: u8 = 0x0F
-+ CONSTANT_RTQNameA: u8 = 0x10
-+ CONSTANT_RTQNameL: u8 = 0x11
-+ CONSTANT_RTQNameLA: u8 = 0x12
-+ CONSTANT_Multiname: u8 = 0x09
-+ CONSTANT_MultinameA: u8 = 0x0E
-+ CONSTANT_MultinameL: u8 = 0x1B
-+ CONSTANT_MultinameLA: u8 = 0x1C
-+ data: u8 (Array)      可变长数据(根据不同类型得到不同的数据)
-}
+<p>B 股的正式名称为人民币特种股票。它是以人民币标明面值，以外币认购和买卖，在境 内（上海、深圳）证券交易所上市交易的。B 股公司的注册地和上市地都在境内，起初，B 股的投资者仅限于境外或在中国香港、澳门及台湾投资者，如：外国的自然人、法人和其他 组织，香港、澳门、台湾地区的自然人、法人和其他组织等，后来B 股也对国内投资者开 放，现国内投资者只要有美元就可以开户投资。相对来说，B 股并不是面向国内的广大普通 投资者的。</p>
 
-multiname_kind_QName
-{
-+ ns: u30      namespace集合的索引
-+ name: u30      string集合的索引
-}
+<p>H 股，即注册地在内地、上市地在香港的外资股，也称国企股。香港的英文是Hong Kong ，取其字首，在香港上市外资股就叫做H 股。</p>
 
-multiname_kind_RTQName
-{
-+ name: u30      string集合的索引
-}
+<p>所以，作为一个刚入股海的菜鸟，目前还是安心炒A股就好了。</p>
 
-multiname_kind_RTQNameL
-{
-}
+<p><strong>投资者</strong></p>
 
-multiname_kind_Multiname
-{
-+ u30 name      string集合的索引
-+ u30 ns_set      ns_set集合的索引
-}
+<p>投资者是指持有上市公司股票的自然人或机构投资者，机构投资者主要包括券商、基金、 投资公司、保险公司、及金融财团等等。</p>
 
-multiname_kind_MultinameL
-{
-+ u30 ns_set      ns_set集合的索引
-}
+<p><strong>IPO</strong></p>
 
+<p>initial public offerings：首次公开发行股票的简称，是一家企业通过证券交易所第一次将它的股份向公众出售，IPO过程对应于一级市场，多有券商来承销发行，所谓承销发行是指：企业通过向券商支付一定的酬 劳，由券商代理帮助其实现股票发行，并由大众申购，若大众申购数量不足，则余下的股票 份额由券商买账。</p>
 
-method_info
-{
-+ u30 param_count      参数的数量
-+ u30 return_type      指向multiname索引
-+ u30 param_type[param_count]      每一个条目指向multiname集合的索引
-+ u30 name      string集合的索引
-+ u8 flags      为以下常量类型，提供关于方法的额外信息
-+ option_info options      只有在flag为HAS_OPTIONAL时才会出现
-+ param_info param_names      只有在flag为HAS_PARAM_NAMES才会出现
-+ NEED_ARGUMENTS: u8 = 0x01      Suggests to the run-time that an “arguments” object (as specified by the ActionScript 3.0 Language Reference) be created. Must not be used together with NEED_REST
-+ NEED_ACTIVATION: u8 = 0x02      Must be set if this method uses the newactivation opcode
-+ NEED_REST: u8 = 0x04      This flag creates an ActionScript 3.0 rest arguments array. Must not be used with NEED_ARGUMENTS
-+ HAS_OPTIONAL: u8 = 0x08      Must be set if this method has optional parameters and the options field is present in this method_info structure
-+ SET_DXNS: u8 = 0x40      Must be set if this method has optional parameters and the options field is present in this method_info structure
-+ HAS_PARAM_NAMES: u8 = 0x80      Must be set when the param_names field is present in this method_info structure
-}
+<p>加入，某个企业的股票卖不出去，那券商会有那么多钱么？是我太单纯了么...</p>
 
-option_info
-{
-+ u30 option_count
-+ option_detail option[option_count]
-}
+<p><strong>一手</strong></p>
 
-option_detail
-{
-+ u30 val      有kind类型来指向常量池中不同类型集合的索引，如0x03表示整形集合的索引
-+ u8 kind      类型，对应kind_constants
-}
+<p>“手”是股票交易时的最小买入单位，既投资者所买的股票数量应是100 的整数倍。我们常说买入10 手股票，即是指买入1000 股。</p>
 
-kind_constants
-{
-+ CONSTANT_Int: u8 = 0x03
-+ CONSTANT_UInt: u8 = 0x04
-+ CONSTANT_Double: u8 = 0x06
-+ CONSTANT_Utf8: u8 = 0x01
-+ CONSTANT_True: u8 = 0x0B
-+ CONSTANT_False: u8 = 0x0A
-+ CONSTANT_Null: u8 = 0x0C
-+ CONSTANT_Undefined: u8 = 0x00
-+ CONSTANT_Namespace: u8 = 0x08
-+ CONSTANT_PackageNamespace: u8 = 0x16
-+ CONSTANT_PackageInternalNs: u8 = 0x17
-+ CONSTANT_ProtectedNamespace: u8 = 0x18
-+ CONSTANT_ExplicitNamespace: u8 = 0x19
-+ CONSTANT_StaticProtectedNs: u8 = 0x1A
-+ CONSTANT_PrivateNs: u8 = 0x05
-}
+<p><strong>&quot;T+1&quot;制度</strong></p>
 
+<p>T 是Trade 的首字母。目前沪市与深市均实行T+1 制度，即：当天买进的股票只能在第 二天卖出，但当天卖出的股票确认成交后所返回的资金则可以当天再次买股，T+1 制度使得 投资者最短的一次买卖操作也要经历两个交易日才能完成，可以在一定程度上起到抑制投机的作用。</p>
 
-metadata_info
-{
-+ u30 name      string集合的索引
-+ u30 item_count      items条目的数量
-+ item_info items[item_count]      
-}
+<p><strong>股票代码</strong></p>
 
-item_info
-{
-+ u30 key
-+ u30 value
-}
-The item_info entry consists of item_count elements that are interpreted as key/value pairs of indices into the string table of the constant pool
+<p>每一只股票在股市中都有唯一的代码，将好像你数据库里保存的记录一般都会有一个主键一样，用来起标识作用。国内的A股市场中，沪市的股票代码以&quot;600&quot;或&quot;601&quot;打头，深市则以&quot;000&quot;打头。</p>
 
+<p><strong>新股上市</strong></p>
 
-instance_info
-{
-+ CONSTANT_ClassSealed: u8 = 0x01      The class is sealed: properties can not be dynamically added to instances of the class
-+ CONSTANT_ClassFinal: u8 = 0x02      The class is final: it cannot be a base class for any other class
-+ CONSTANT_ClassInterface: u8 = 0x04      The class is an interface
-+ CONSTANT_ClassProtectedNs: u8 = 0x08      The class uses its protected namespace and the protectedNs field is present in the interface_info structure
-+ u30 name      multiname索引，类名
-+ u30 super_name      基类的名字，multiname索引
-+ u8 flags      常量类型
-+ u30 protectedNs      flags为CONSTANT_ClassProtectedNs时才出现， namespace索引
-+ u30 intrf_count      interface长度
-+ u30 interface[intrf_count]      interface的条目包含multiname索引
-+ u30 iinit      abcFile中method的索引
-+ u30 trait_count      trait长度
-+ traits_info trait[trait_count]      
-}
+<p>成功了完成了 IPO 过程的企业会在随后进入股票二级市场进行交易，这就是所说的新 股上市交易，此时，那些在一级市场中成功申购到此股的投资者就可以进行卖出操作，新股 上市首日会在其股票名称前加一个字母“N”，N 为NEW 的简写。</p>
 
-traits_info
-{
-+ Trait_Slot: u8 = 0
-+ Trait_Method: u8 = 1
-+ Trait_Getter: u8 = 2
-+ Trait_Setter: u8 = 3
-+ Trait_Class: u8 = 4
-+ Trait_Function: u8 = 5
-+ Trait_Const: u8 = 6
-+ ATTR_Final: u8 = 0x1
-+ ATTR_Override: u8 = 0x2
-+ ATTR_Metadata: u8 = 0x4
-+ name: u30      multiname索引，不能为0
-+ kind: u8      两个四位字段，低四位决定trait的类型，高四位构成trait的属性(有点不明白)
-+ data: u8 (Array)      有trait的类型决定
-+ metadata_count: u30      metadata长度
-+ metadata: u30 (Array)      
-}
+<p><strong>低吸高抛</strong></p>
 
-trait_slot
-{
-+ u30 slot_id
-+ u30 type_name      multiname索引
-+ u30 vindex      
-+ u8 vkind      kind_constant索引，当vindex不为0时存在
-}
-Trait_Slot或Trait_Const类型为trait_slot
+<p>这个就是赚钱的门道，在低价位买入，高价位卖出。也叫&quot;做多机制&quot;。</p>
 
+<p><strong>股价</strong></p>
 
-trait_class
-{
-+ u30 slot_id      确定trait的位置
-+ u30 classi      abcFile的class集合索引
-}
-Trait_Class类型为trait_class
+<p>股价即是指股票在二级市场中的交易价格，它随着的买方与卖方的持续交易而发生变 化，当买方力量更强时，股价会在买方的推动下而出现上涨，反之，当卖方力量的打压下而 出现下跌，股价的变化直接决定着投资者是亏损还是盈利，因而它也是投资者最为关注的对象。</p>
 
-trait_function
-{
-+ u30 slot_id
-+ u30 function      abcFile中method索引
-}
-Trait_Function类型为trait_function
+<p><strong>多头和空头</strong></p>
 
-trait_method
-{
-+ u30 disp_id
-+ u30 method      abcFile中method索引
-}
-Trait_Method、Trait_Getter、Trait_Setter类型为trai_method
+<p>&quot;多&quot;表示上涨，&quot;空&quot;表示下跌。多头是指那些认为股价将要上涨，而积极买入并持股的投资者，空头则是指那些认为股价将 要下跌会卖出股票、或持币观望等待下跌的投资者。多头与空头是股市中的两类投资者，多 头投资者构成了多方阵营，空头则构成了空方阵营，它们对价格的上涨或下跌起着决定作用。</p>
 
+<p><strong>涨跌幅限制</strong></p>
 
-class_info
-{
-+ u30 cinit      method索引
-+ u30 trait_count
-+ traits_info traits[trait_count]
-}
+<p>涨跌幅限制是国内股市中的一种交易规则，它限制了股价的当日波动范围，其出现点是 为了防止股价的暴涨暴跌并抑制过度投机现象的发生，上海、深圳两交易所自1996 年12 月26 日起，分别对上市交易的股票（含A、B 股）、基金类证券的交易实行价格涨跌幅限制， 即在一个交易日内，上述证券的交易价格相对上一交易日收市价格的涨跌幅度不得超过10 %，超过涨跌限价的委托为无效委托。不受涨跌幅限制的股票主要包括以下几中：一是，新 股上市首日；二是，增发股票上市当天；三是，某些重大资产重组股票比如合并之类的复牌当天。</p>
 
-script_info
-{
-+ u30 init      method索引
-+ u30 trait_count
-+ traits_info trait[trait_count]
-}
+<p><strong>涨停板和跌停板</strong></p>
 
+<p>涨停板与跌停板是涨跌幅限制制度下的股价的一种特殊走势，当买盘过于强劲促使股价当日达到涨幅限制时，若买盘力量没有减弱，则交易就会在这一涨幅上限处进行交易，由此 形成涨停板；当卖盘过于强劲促使股价当日达到跌幅限制时，若卖盘力量没有减弱，则交易 就会在这一跌幅下限处进行交易，由此形成跌停板；它们是股价的极端走势，往往蕴含着机 会或风险，是投资者应关注的对象。</p>
 
-method_body_info
-{
-+ method: u30      abcFile中method索引
-+ max_stack: u30
-+ local_count: u30      最大本地寄存器索引+1
-+ init_scope_depth: u30
-+ max_scope_depth: u30
-+ code_length: u30
-+ code: u8      保存AVM2指令
-+ exception_count: u30
-+ exception: exception_info (Array)
-+ trait_count: u30
-+ trait: traits_info (Array)
-}
+<p><strong>大盘指数</strong></p>
 
-exception_info
-{
-+ u30 from      代码范围
-+ u30 to
-+ u30 target      跳转目标
-+ u30 exc_type      错误类型, 常量表中 string 索引, 0=所有错误
-+ u30 var_name      异常的变量名, 常量表中 string 索引
-}
-</code></pre></div>
-<p>授之以鱼不如授之以渔，由于自己的水平有限，也没有完成弄懂里面的所有东西。在此，只是记录自己的学习过程。除了下面参考的资料，个人觉得最好的学习方法还是找到一个比较好的解析swf开源项目，通过阅读源码来理解(可参考swfinvestigator、as3crypto、JPEXS等)。有任何问题，欢迎跟我探讨。</p>
+<p>指数是依据一定的计算方法经过编制并用以反映相应股票市场整体走势情况的指标，不 同的股票市场都有反映其运行情况的相应指数，如：对于国内的上证A 股与深证A 股，分 别有上证指数与深圳成分指数，平常我们所说的大盘指数是一个俗语，它是指上证综合指数。</p>
 
-<p>参考：</p>
+<p><strong>仓位、空仓、满仓</strong></p>
 
-<p><a href="http://www.the-labs.com/MacromediaFlash/SWF-Spec/SWFfilereference.html">SWF File Reference</a></p>
+<p>仓位指出了投资者股票账户中的现金数量与股票市值的关系，当全部的现金都买入股票 后，则为全仓，反之，若账户中没有股票、只有现金，则为空仓；在股票交易中，仓位的控 制极为重要，这属于资金管理的范畴。</p>
 
-<p><a href="http://www.the-labs.com/MacromediaFlash/SWF-Spec/SWFfileformat.html">SWF File Format Specification</a></p>
+<p>了解了这个，以后跟其他股民聊天就会显得稍微专业一点了。</p>
 
-<p><a href="http://www.adobe.com/content/dam/Adobe/en/devnet/actionscript/articles/avm2overview.pdf">AVM指令集概要</a></p>
+<p><strong>集合竞价</strong></p>
 
-<p><a href="http://blog.csdn.net/qdlgx/article/details/2868504">一个例子分析swf格式</a></p>
+<p>集合竞价是指个股在当日开盘交易前，投资者基于昨日个股的收盘价及当日个股的预期 走势进行申报买入或卖出的行为，对于沪、深A 股来说，每个交易日的 9：15 到9：25 这 段时间内为集合竞价时间，期间投资者可以申报买入或卖出，其中，9：15 至9：20 这段时 间还可以对所委托的申报给予撤销，而9：20 至开盘前则不可以进行撤单操作。在9 点30 分正式开盘的一瞬间，沪深证交所的电脑主机开始撮合成交，以每个股票最大成交量的价格来确定个股的开盘价格。</p>
+
+<p>开盘价原来是这么确定的。</p>
+
+<p><strong>开盘价、收盘价、最高价、最低价</strong></p>
+
+<p>开盘价是由集合竞价产生的，基于当日开盘价与上一交易日收盘价的对比情况，我们可 以把开盘情况分为高开（当日开盘价高于昨日收盘价）、低开、平开三种。最高价、最低价 则表明了个股当天交投过程中的最高成交价格及最低成交价格；至于收盘价，沪市与深市的 计算方法略有不同，沪市以每个交易日最后一分钟内的所有交易的加权平均价计算得出，而 深市的收盘价则是通过最后三分钟内的竞价方式产生。</p>
+
+<p><strong>K线图</strong></p>
+
+<p>K 线图是反映价格在某一时间周期内波动情况的图表，它由开盘价、收盘价、最高价、 最低价四个要素构成，若当日收盘价高于开盘价，这表明价格处于上涨状态，此时K 线图 多用红色表示；若当日收盘价低于开盘价，这表明价格处于下跌状态，此时K 线图多用黑 色或绿色表示；</p>
+
+<p><img src="http://cainiaoxiaoxiao.u.qiniudn.com/stock1.png" alt="k线图"></p>
+
+<p><strong>休市</strong></p>
+
+<p>休市是指股市停止交易，国内股市每周六、周日会休市，此外，在五一、十一、春节等 节假日也会休市。</p>
+
+<p><strong>停牌、复牌</strong></p>
+
+<p>停牌即是指个股暂停交易，复牌则是指停牌后的个股又继续恢复交易。可以开始交易了。 对上市公司的股票进行停牌，是为了维护广大投资者的利益及市场信息披露公平、公正以及对上市公司行为进行监管约束而采取的必要措施。一般来说，以下几种情况可能出现停牌： 一是，个股走势出现明显的异常时，二是，当上市公司有重大事项将要公布时，三是，上市 公司召开例行的股东大会时。此外，一些意外的因素也可能导致上市公司股票停牌。</p>
+
+<p><strong>委买盘和委卖盘</strong></p>
+
+<p>在股票行情软件中，我们可以看到“买盘”与“卖盘”窗口（也可称之为委买盘与委卖 盘窗口），买盘与卖盘各包含五档信息，每一档的信息包括这一档的价位及其委托单数量（以 “手”为单位），指代了已委托而未成交的股票数量，因而，买盘与卖盘窗口是反映投资者 申报委托情况的窗口。（我们平常所说的“买盘”与“卖盘”是指已买入的股票数量及已卖 出的股票数量，与这里的反映委托单情况的买卖盘窗口含义不同）。</p>
+
+<p>这样看来，可以从里面看出买方和卖方的差别，那是不是能说如果委买盘的数量最大，则股票上涨的可能性越大呢？记录这个，以后看行情图的时候也要留意这个了。</p>
+
+<p>好了，今天就到这了。欲速则不达！</p>
+
+<p>600023今天涨了3.5%，还是蛮开心的，虽然是别人推荐的，不过好歹是自己人生第一次买的第一只股哈！！！</p>
 
 
   <address class="signature">
     <a class="author" href="/">lsj</a> 
-    <span class="date">30 July 2014</span>
+    <span class="date">03 September 2014</span>
     <span class="location"></span>
   </address>
   
   
 	<div class='cloud'>
-		<a style='font-size: 112%' href='/tags.html#swf'>swf</a>
-<a style='font-size: 70%' href='/tags.html#vim'>vim</a>
-<a style='font-size: 70%' href='/tags.html#stock'>stock</a>
+		<a style='font-size: 170%' href='/tags.html#fms'>fms</a>
+<a style='font-size: 70%' href='/tags.html#error'>error</a>
 <a style='font-size: 112%' href='/tags.html#crack'>crack</a>
-<a style='font-size: 170%' href='/tags.html#fms'>fms</a>
+<a style='font-size: 70%' href='/tags.html#p2p'>p2p</a>
+<a style='font-size: 70%' href='/tags.html#air'>air</a>
+<a style='font-size: 70%' href='/tags.html#stock'>stock</a>
+<a style='font-size: 112%' href='/tags.html#swf'>swf</a>
 <a style='font-size: 70%' href='/tags.html#ios'>ios</a>
 <a style='font-size: 144%' href='/tags.html#actionscript'>actionscript</a>
+<a style='font-size: 70%' href='/tags.html#vim'>vim</a>
 <a style='font-size: 96%' href='/tags.html#essential actionscript3.0'>essential actionscript3.0</a>
-<a style='font-size: 70%' href='/tags.html#error'>error</a>
-<a style='font-size: 70%' href='/tags.html#air'>air</a>
-<a style='font-size: 70%' href='/tags.html#p2p'>p2p</a>
 
 	</div>
 	
   <div class="prev-next">
   
-    <a href="/2014/08/06/bitmapdata" class="next" title="bitmapdata">Next Post &rarr;</a>
   
-  
-    <a href="/actionscript/2014/07/30/mmcfg" class="prev" title="mm.cfg">&larr; Earlier Post</a>
+    <a href="/actionscript/2014/09/01/conditionals-and-loops" class="prev" title="Essential Actionscript3.0 读书笔记(二、条件语句和循环)">&larr; Earlier Post</a>
   
   </div>
   
