@@ -4,13 +4,318 @@
  <title>alonepig's blog</title>
  <link href="http://alonepig.github.io/" rel="self"/>
  <link href="http://alonepig.github.io"/>
- <updated>2014-09-03T22:59:13+08:00</updated>
+ <updated>2014-09-09T16:12:35+08:00</updated>
  <id>http://alonepig.github.io</id>
  <author>
    <name>lsj</name>
    <email>alonelsj@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>XML and E4X</title>
+   <link href="http://alonepig.github.io/2014/09/04/xml-and-e4x"/>
+   <updated>2014-09-04T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/2014/09/04/xml-and-e4x</id>
+   <content type="html"></content>
+ </entry>
+ 
+ <entry>
+   <title>Essential Actionscript3.0 读书笔记(三、静态变量和静态方法)</title>
+   <link href="http://alonepig.github.io/actionscript/2014/09/04/static-variables-and-static-methods"/>
+   <updated>2014-09-04T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/actionscript/2014/09/04/static-variables-and-static-methods</id>
+   <content type="html">&lt;h4&gt;第三章：静态变量和静态方法&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;静态变量&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;用static关键字修饰的实例变量就是静态变量：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;class SomeClass {
+    static var identifier = value;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;静态变量跟实例变量有什么区别呢？首先，实例变量是对具体实例而言的，静态变量是对类而言的。实例变量只能通过具体的实例来访问，静态变量的访问方法是：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;SomeClass.indentifier
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;定义的时候，静态变量和实例变量的名字可以相同，在类的内部的实例方法中，会优先访问实例变量。实例方法可以访问静态变量，但静态方法只能访问静态变量。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;package
+{
+    public class Foo
+    {
+        public function Foo()
+        {
+            trace(aa);
+        }
+
+        public function init():void
+        {
+            trace(bb);
+            trace(cc);
+        }
+
+        static public function init2():void
+        {
+            trace(cc);
+        }
+
+        static var cc:int = 40;
+
+
+        static var aa:int = 20;
+
+        var aa:int = 10;
+
+        var bb:int = 30;
+    }
+}
+
+
+var foo:Foo = new Foo();
+foo.init();
+Foo.aa;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面的例子中，init2静态方法不能访问实例变量。构造函数中输出的结果是10。init方法中能访问实例变量和静态变量。通过测试就能理解两者不同点，书上讲的有点啰嗦。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;常量&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;变量分为静态变量、实例变量和布局变量，那常量也就有静态常量、实例常量和布局常量了。什么叫常量呢，就是不能修改的变量。用const修饰。常量一般用大写英文字母表示。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;static const IDENTIFIER = value
+
+const IDENTIFIER = value
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;比如表示某个建筑的高度、表示某个时间点，这些都该用常量表示，因为它们是不变的。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;静态方法&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;静态方法跟静态变量的道理类似，用static修饰，只能通过SomeClass.functionName的方式来访问。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;class SomeClass {
+    static function methodName (identifier1 = value1,
+            identifier2 = value2,
+            ...
+            identifiern = valuen) {
+    }
+}   
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Statements and Operators</title>
+   <link href="http://alonepig.github.io/2014/09/04/statements-and-operators"/>
+   <updated>2014-09-04T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/2014/09/04/statements-and-operators</id>
+   <content type="html"></content>
+ </entry>
+ 
+ <entry>
+   <title>Scope</title>
+   <link href="http://alonepig.github.io/2014/09/04/scope"/>
+   <updated>2014-09-04T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/2014/09/04/scope</id>
+   <content type="html"></content>
+ </entry>
+ 
+ <entry>
+   <title>Namespaces</title>
+   <link href="http://alonepig.github.io/2014/09/04/namespaces"/>
+   <updated>2014-09-04T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/2014/09/04/namespaces</id>
+   <content type="html"></content>
+ </entry>
+ 
+ <entry>
+   <title>Interfaces</title>
+   <link href="http://alonepig.github.io/2014/09/04/interfaces"/>
+   <updated>2014-09-04T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/2014/09/04/interfaces</id>
+   <content type="html"></content>
+ </entry>
+ 
+ <entry>
+   <title>Inheritance</title>
+   <link href="http://alonepig.github.io/2014/09/04/inheritance"/>
+   <updated>2014-09-04T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/2014/09/04/inheritance</id>
+   <content type="html"></content>
+ </entry>
+ 
+ <entry>
+   <title>Garbage Collection</title>
+   <link href="http://alonepig.github.io/2014/09/04/garbage-collection"/>
+   <updated>2014-09-04T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/2014/09/04/garbage-collection</id>
+   <content type="html"></content>
+ </entry>
+ 
+ <entry>
+   <title>Essential Actionscript3.0 读书笔记(四、函数)</title>
+   <link href="http://alonepig.github.io/actionscript/2014/09/04/functions"/>
+   <updated>2014-09-04T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/actionscript/2014/09/04/functions</id>
+   <content type="html">&lt;h4&gt;第四章、函数&lt;/h4&gt;
+
+&lt;p&gt;ActionScript3.0种有两类函数：方法和函数闭包。将函数成为方法还是函数闭包取决于函数的上下文。如果在类定义的一部分或将它附加到对象的实例，则称方法。如果以其他方式定义函数(方法内部、包定义内部、包定义外部)，则称函数闭包。函数的定义：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;function funName(param1, param2,...):void
+{
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;使用关键字function定义，funName为函数的名字，后面接参数，函数可以有返回值，如果没有返回值则使用void。函数的调用：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;funName(param1Value, parame2Value, ....);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;包级别函数&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;下面的例子定义了一个包级别函数isMac()，编译时会把这个函数单独编译成一个.as文件，名字为isMac.as：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;package utilities {
+    import flash.system.*;
+
+    internal function isMac ( ) {
+        return Capabilities.os == &amp;quot;MacOS&amp;quot;;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;如果需要全局使用，则用public修饰该函数。&lt;/p&gt;
+
+&lt;p&gt;调用这个函数的时候需要导入该函数：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;package setup {
+    // Import isMac( ) so it can be used within this package body
+    import utilities.isMac;
+        public class Welcome {
+        public function Welcome ( ) {
+            // Use isMac( )
+            if (isMac( )) {
+                // Do something Macintosh-specific
+            }
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;嵌套函数&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;在函数内部声明的函数叫嵌套函数。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;// Define method a( )
+    public function a ( ) {
+        // Invoke nested function b( )
+        b( );
+    // Define nested function b( )
+    function b ( ) {
+        // Function body would be inserted here
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;嵌套函数的定义的可以写在函数内部的任意位置，可以在最前面调用该函数，这种方式被称为向前引用。嵌套函数不能使用修饰符。函数的定义有两种方式：函数语句和函数表达式。上面的例子中就是函数表达式，函数语句的写法如下：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;class Example
+{
+    var methodExpression = function() {}
+    function methodStatement() {}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;源文件级别函数&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;当函数定义在包定义的外部时，被称作源文件级别函数。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;package {
+    // Ok to use f( ) here
+    class A {
+    // Ok to use f( ) here
+        public function A ( ) {
+        // Ok to use f( ) here
+        }
+    }
+}
+
+// Ok to use f( ) here
+function f ( ) {
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;函数还能作为函数的参数来传递，如setInterval(fun, intervalTime)函数：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;package {
+    import flash.utils.setInterval;
+    public class Clock {
+        public function Clock ( ) {
+            // Execute the function literal once per second
+            setInterval(function ( ) {
+                trace(&amp;quot;Tick!&amp;quot;);
+            }, 1000);
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;或者：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;package {
+    import flash.utils.setInterval;
+    public class Clock {
+        public function Clock ( ) {
+        // Execute tick( ) once per second
+            setInterval(tick, 1000);
+            function tick ( ):void {
+                trace(&amp;quot;Tick!&amp;quot;);
+            }
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;递归函数&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;function trouble ( ) {
+    trouble( );
+}   
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;递归函数在解决某些问题的时候非常有用，详细的用法请google之。&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Flash Player Security Restrictions</title>
+   <link href="http://alonepig.github.io/2014/09/04/flash-player-security-restrictions"/>
+   <updated>2014-09-04T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/2014/09/04/flash-player-security-restrictions</id>
+   <content type="html"></content>
+ </entry>
+ 
+ <entry>
+   <title>Exceptions and Error Handling</title>
+   <link href="http://alonepig.github.io/2014/09/04/exceptions-and-error-handling"/>
+   <updated>2014-09-04T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/2014/09/04/exceptions-and-error-handling</id>
+   <content type="html"></content>
+ </entry>
+ 
+ <entry>
+   <title>Events and Event Handling</title>
+   <link href="http://alonepig.github.io/2014/09/04/events-and-event-handling"/>
+   <updated>2014-09-04T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/2014/09/04/events-and-event-handling</id>
+   <content type="html"></content>
+ </entry>
+ 
+ <entry>
+   <title>Dynamic ActionScript</title>
+   <link href="http://alonepig.github.io/2014/09/04/dynamic-actionscript"/>
+   <updated>2014-09-04T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/2014/09/04/dynamic-actionscript</id>
+   <content type="html"></content>
+ </entry>
+ 
+ <entry>
+   <title>Datatypes and Type Checking</title>
+   <link href="http://alonepig.github.io/2014/09/04/datatypes-and-type-checking"/>
+   <updated>2014-09-04T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/2014/09/04/datatypes-and-type-checking</id>
+   <content type="html"></content>
+ </entry>
+ 
+ <entry>
+   <title>Compliling andRunning a Program</title>
+   <link href="http://alonepig.github.io/2014/09/04/compliling-andrunning-a-program"/>
+   <updated>2014-09-04T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/2014/09/04/compliling-andrunning-a-program</id>
+   <content type="html"></content>
+ </entry>
+ 
+ <entry>
+   <title>Arrays</title>
+   <link href="http://alonepig.github.io/2014/09/04/arrays"/>
+   <updated>2014-09-04T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/2014/09/04/arrays</id>
+   <content type="html"></content>
+ </entry>
  
  <entry>
    <title>股票入门之术语学习</title>
@@ -224,6 +529,27 @@ for(var i = 0; i&amp;lt;2; i++){
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;！expression
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;取表达式expression的反，如果表达式为真，则结果为假。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;可变长参数&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;如果参数的个数是未知的话，可以使用... 来表示：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;function methodName(... argumentsArray){
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;methodName表示方法的名字，argumentsArray是一个长度可变的数组。可以通过argumentsArray[index]来获取index位置的值。这个跟java中的main方法的参数是一样的。可以联系起来思考。有时候，可能某些参数是固定的，某些不是固定的，可以使用以下的方式：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;public function initializeUser (name, ...hobbies) {
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;可变长参数在实际编程中用的并不多，用的多的是带默认值的参数，比如：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;function setCircle(width:int=100, height:int=100)
+{
+}
+
+setCircle();
+setCircle(200,200);
+setCircle(200)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;以上三种调用方式都是正确的，没有复制的参数会使用默认值。&lt;/p&gt;
 </content>
  </entry>
  

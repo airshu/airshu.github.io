@@ -9,6 +9,22 @@ http://alonepig.github.io/rss.xml
 http://alonepig.github.io/sitemap.txt
 http://alonepig.github.io/tags.html
 
+http://alonepig.github.io/2014/09/04/xml-and-e4x
+http://alonepig.github.io/actionscript/2014/09/04/static-variables-and-static-methods
+http://alonepig.github.io/2014/09/04/statements-and-operators
+http://alonepig.github.io/2014/09/04/scope
+http://alonepig.github.io/2014/09/04/namespaces
+http://alonepig.github.io/2014/09/04/interfaces
+http://alonepig.github.io/2014/09/04/inheritance
+http://alonepig.github.io/2014/09/04/garbage-collection
+http://alonepig.github.io/actionscript/2014/09/04/functions
+http://alonepig.github.io/2014/09/04/flash-player-security-restrictions
+http://alonepig.github.io/2014/09/04/exceptions-and-error-handling
+http://alonepig.github.io/2014/09/04/events-and-event-handling
+http://alonepig.github.io/2014/09/04/dynamic-actionscript
+http://alonepig.github.io/2014/09/04/datatypes-and-type-checking
+http://alonepig.github.io/2014/09/04/compliling-andrunning-a-program
+http://alonepig.github.io/2014/09/04/arrays
 http://alonepig.github.io/stock/2014/09/03/stock1
 http://alonepig.github.io/actionscript/2014/09/01/conditionals-and-loops
 http://alonepig.github.io/fms/2014/08/29/simple-chat-with-p2p-netgroup-in-fp-101

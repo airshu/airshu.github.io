@@ -166,9 +166,9 @@ table{border:0}
 
   
      
-    	<li><a href="/tags.html#actionscript-ref">actionscript <span>7</span></a></li>
+    	<li><a href="/tags.html#actionscript-ref">actionscript <span>9</span></a></li>
      
-    	<li><a href="/tags.html#essential actionscript3.0-ref">essential actionscript3.0 <span>2</span></a></li>
+    	<li><a href="/tags.html#essential actionscript3.0-ref">essential actionscript3.0 <span>4</span></a></li>
     
   
 
@@ -259,6 +259,27 @@ for(var i = 0; i&lt;2; i++){
 </code></pre></div>
 <p>取表达式expression的反，如果表达式为真，则结果为假。</p>
 
+<p><strong>可变长参数</strong></p>
+
+<p>如果参数的个数是未知的话，可以使用... 来表示：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">function methodName(... argumentsArray){
+}
+</code></pre></div>
+<p>methodName表示方法的名字，argumentsArray是一个长度可变的数组。可以通过argumentsArray[index]来获取index位置的值。这个跟java中的main方法的参数是一样的。可以联系起来思考。有时候，可能某些参数是固定的，某些不是固定的，可以使用以下的方式：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">public function initializeUser (name, ...hobbies) {
+}
+</code></pre></div>
+<p>可变长参数在实际编程中用的并不多，用的多的是带默认值的参数，比如：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">function setCircle(width:int=100, height:int=100)
+{
+}
+
+setCircle();
+setCircle(200,200);
+setCircle(200)
+</code></pre></div>
+<p>以上三种调用方式都是正确的，没有复制的参数会使用默认值。</p>
+
 
   <address class="signature">
     <a class="author" href="/">lsj</a> 
@@ -268,17 +289,17 @@ for(var i = 0; i&lt;2; i++){
   
   
 	<div class='cloud'>
-		<a style='font-size: 70%' href='/tags.html#p2p'>p2p</a>
-<a style='font-size: 112%' href='/tags.html#swf'>swf</a>
-<a style='font-size: 170%' href='/tags.html#fms'>fms</a>
-<a style='font-size: 70%' href='/tags.html#air'>air</a>
-<a style='font-size: 144%' href='/tags.html#actionscript'>actionscript</a>
-<a style='font-size: 70%' href='/tags.html#vim'>vim</a>
+		<a style='font-size: 170%' href='/tags.html#fms'>fms</a>
 <a style='font-size: 70%' href='/tags.html#stock'>stock</a>
-<a style='font-size: 96%' href='/tags.html#essential actionscript3.0'>essential actionscript3.0</a>
+<a style='font-size: 153%' href='/tags.html#actionscript'>actionscript</a>
+<a style='font-size: 70%' href='/tags.html#air'>air</a>
+<a style='font-size: 70%' href='/tags.html#vim'>vim</a>
 <a style='font-size: 112%' href='/tags.html#crack'>crack</a>
 <a style='font-size: 70%' href='/tags.html#ios'>ios</a>
 <a style='font-size: 70%' href='/tags.html#error'>error</a>
+<a style='font-size: 123%' href='/tags.html#essential actionscript3.0'>essential actionscript3.0</a>
+<a style='font-size: 112%' href='/tags.html#swf'>swf</a>
+<a style='font-size: 70%' href='/tags.html#p2p'>p2p</a>
 
 	</div>
 	
