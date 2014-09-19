@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-   <title>windows下的VIM 编辑markdown语法高亮  </title>
+   <title>股票入门之术语学习  </title>
    <meta name="author" content="lsj" />
 
    <link rel="start" href="/" />
@@ -160,7 +160,7 @@ table{border:0}
   
 <div id="page">
 	
-  <h1 class="emphnext">windows下的VIM 编辑markdown语法高亮</h1>
+  <h1 class="emphnext">股票入门之术语学习</h1>
   <ul class="tag_box inline">
   
   
@@ -168,7 +168,7 @@ table{border:0}
 
   
      
-    	<li><a href="/tags.html#vim-ref">vim <span>1</span></a></li>
+    	<li><a href="/tags.html#stock-ref">stock <span>3</span></a></li>
     
   
 
@@ -176,100 +176,78 @@ table{border:0}
 
   </ul>
 
-  <p>Windows使用VIM编辑markdown的语法高亮设置</p>
+  <p>今天学习一下市盈率、市净率</p>
 
-<p><strong>安装git</strong>：</p>
+<p><strong>市盈率(PE)</strong></p>
 
-<p><strong>安装curl</strong>：</p>
+<p>指在一个考察期(通常为12个月的时间内)，股票的价格和每股收益的比率。即股票的价格与该股上一年度每股税后利润之比。</p>
 
-<p>在git的安装目录的cmd件夹下的cmd件夹下新建curl.cmd件，复制以下内容：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">@rem Do not use &quot;echo off&quot; to not affect any child calls.
-@setlocal
+<p>如果一家公司股票的市盈率过高，那么该股票的价格具有泡沫，价值被高估。当一家公司增长迅速以及未来的业绩增长非常看好时，利用市盈率比较不同股票的投资价值时，这些股票必须属于同一行业，因为此时公司的每股收益比较接近，相互比较才有效。</p>
 
-@rem Get the abolute path to the parent directory, which is assumed to be the
-@rem Git installation root.
-@for /F &quot;delims=&quot; %%I in (&quot;%~dp0..&quot;) do @set git_install_root=%%~fI
-@set PATH=%git_install_root%\bin;%git_install_root%\mingw\bin;%PATH%
-
-@if not exist &quot;%HOME%&quot; @set HOME=%HOMEDRIVE%%HOMEPATH%
-@if not exist &quot;%HOME%&quot; @set HOME=%USERPROFILE%
-
-@curl.exe %*
+<p>市盈率也分为静态市盈率和动态市盈率，静态市盈率表示过去的的数据，动态市盈率的计算公式是以静态市盈率为基数，乘以动态系数。表达式为：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">           n 
+1 ÷ (1 + i) 
 </code></pre></div>
-<p>在命令行中输入curl --version检查是否正确。</p>
+<p>高市盈率通常意味着高风险，高风险意味着可能会有高回报。</p>
 
-<p><strong>安装Vundle</strong></p>
+<p>由于不同行业处于不同的生命周期，市场对不同行业的发展前景有较大的差异，对于新兴产业（快速成长期）的预期一般较好，市盈率一般较高；而对部分传统行业（成熟稳定期）的预期一般较稳定，市盈率会维持相对较低的水平，波动幅度也不会很大，对一些夕阳产业（衰落期）的预期一般较差，市盈率会维持在更低的水平。</p>
 
-<p>命令行进入用户目录，(一定要选择用户目录，win7下在C:/Users/xxx/，自己在其他地方clone后不能正确安装，配置文件中rtp和path设置绝对路径貌似没有效果，囧~)，克隆Vundle：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">$ git clone https://github.com/gmarik/Vundle.vim.git 
-</code></pre></div>
-<p>编辑vim安装目录下的vimrc的配置文件，将以下内容添加到文件的最前面：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">set nocompatible              &quot; be iMproved, required
-filetype off                  &quot; required
+<p>如果该股在历史上就享受了较高的市盈率，往往这类公司是更受市场看好的公司。反之如果某公司一直处于低市盈率状态，就可能意味着市场对该公司持续成长性并不看好。</p>
 
-set rtp+=~/vimfiles/bundle/Vundle.vim/
-let path=&#39;~/vimfiles/bundle&#39;
-call vundle#begin(path)
+<p>感觉根据这个指标看不出什么门道，不同行业差别大，高低不能代表好坏，目前暂时了解了解吧。</p>
 
-&quot; let Vundle manage Vundle, required
-Plugin &#39;gmarik/Vundle.vim&#39;
+<p><strong>市净率(P/BV)</strong></p>
 
-Plugin &#39;godlygeek/tabular&#39;
-Plugin &#39;plasticboy/vim-markdown&#39;
+<p>市净率指的是每股股价与每股净资产的比率。一般来说市净率较低的股票，投资价值较高，相反，则投资价值较低；在判断投资价值时还要考虑当时的市场环境以及公司经营情况、盈利能力等因素。市净率不适用于短线炒作，提高获利能力。 </p>
 
-call vundle#end()            &quot; required
-filetype plugin indent on    &quot; required
-</code></pre></div>
-<p>这里的rtp和path要对应Vundle的目录，不然会找不到后面的命令。</p>
+<p>市净率可用于投资分析。每股净资产是股票的账面价值，它是用成本计量的，而每股市价是这些资产的现在价值，它是证券市场上交易的结果。市价高于账面价值时企业资产的质量较好，有发展潜力，反之则资产质量差，没有发展前景。优质股票的市价都超出每股净资产许多，一般说来市净率达到3可以树立较好的公司形象。市价低于每股净资产的股票，就象售价低于成本的商品一样，属于&quot;处理品&quot;。当然，&quot;处理品&quot;也不是没有购买价值，问题在于该公司今后是否有转机，或者购入后经过资产重组能否提高获利能力，是市价与每股净资产之间的比值，比值越低意味着风险越低。</p>
 
-<p><strong>安装插件</strong></p>
+<p><strong>净资产收益率</strong></p>
 
-<p>进入vim命令行状态，输入PluginInstall 安装vim-markdown插件</p>
+<p>净资产收益率=税后利润/所有者权益
+假定某公司年度税后利润为2亿元，年度平均净资产为15亿元，则其本年度之净资产收益率就是13．33%（即(2亿元/15亿元)*100%）。</p>
 
-<p>除此之外还有以下命令可以使用：</p>
+<p>公式非常的简单，几乎一下子就可以完全理解，但是怎么简单明确的认识到这个指标的涵义和价值腻？我们都知道所有者权益，也就是净资产相当于这家公司的全部 现值。净利润是一家公司的盈利能力的体现。他们两之商，净资产收益率其实是一种反应公司盈利速度的指标。你比如说一家公司净资产100亿，净利润是10个 亿。另一家公司净资产10个亿，盈利4个亿。单看盈利的话好像第一家公司很厉害，但是考虑到公司总体量的话，用100一个亿挣10个亿就没有用10个亿挣 4个亿效率高了。差多少腻？就可以用到这个指标了，公司一的净资产收益率是10%，公司二是40%。相差30%，这样一对比盈利效率就清晰了。</p>
 
-<p>PluginList   查看插件列表</p>
+<p>还 有一种更简单的理解方式，用1除以净资产收益率，得到一个新的值。公司一，是10，公司二，是2.5。这里的1代表公司总体量，那么换句话说就是，假如公 司的盈利能力保持不变的情况下，公司一10年能复制一个自己，资产总量翻一倍。公司二两年半能复制一个自己，资
+产总量翻一倍。挣钱效率的快慢就一目了然 了。 </p>
 
-<p>PluginSearch foo 查询foo插件</p>
+<p>净资产收益率越高，效益越好！</p>
 
-<p>PluginClean     移除不需要的插件</p>
+<p><strong>换手率</strong></p>
 
-<p>参考：</p>
-
-<p>https://github.com/gmarik/Vundle.vim</p>
-
-<p>https://github.com/gmarik/Vundle.vim/wiki/Vundle-for-Windows</p>
+<p>越高说明关注度越高，但风险也越大。越低表示主要持有者稳定。短线还是要稍微高点，找活跃点的波动才会比较大。</p>
 
 
   <address class="signature">
     <a class="author" href="/">lsj</a> 
-    <span class="date">07 August 2014</span>
+    <span class="date">09 September 2014</span>
     <span class="location"></span>
   </address>
   
   
 	<div class='cloud'>
-		<a style='font-size: 157%' href='/tags.html#actionscript'>actionscript</a>
-<a style='font-size: 170%' href='/tags.html#fms'>fms</a>
+		<a style='font-size: 170%' href='/tags.html#fms'>fms</a>
 <a style='font-size: 112%' href='/tags.html#crack'>crack</a>
-<a style='font-size: 70%' href='/tags.html#ios'>ios</a>
-<a style='font-size: 112%' href='/tags.html#swf'>swf</a>
+<a style='font-size: 70%' href='/tags.html#vim'>vim</a>
+<a style='font-size: 70%' href='/tags.html#air'>air</a>
+<a style='font-size: 70%' href='/tags.html#p2p'>p2p</a>
 <a style='font-size: 131%' href='/tags.html#essential actionscript3.0'>essential actionscript3.0</a>
+<a style='font-size: 112%' href='/tags.html#swf'>swf</a>
 <a style='font-size: 70%' href='/tags.html#android'>android</a>
 <a style='font-size: 112%' href='/tags.html#stock'>stock</a>
-<a style='font-size: 70%' href='/tags.html#air'>air</a>
 <a style='font-size: 70%' href='/tags.html#error'>error</a>
-<a style='font-size: 70%' href='/tags.html#vim'>vim</a>
-<a style='font-size: 70%' href='/tags.html#p2p'>p2p</a>
+<a style='font-size: 70%' href='/tags.html#ios'>ios</a>
+<a style='font-size: 157%' href='/tags.html#actionscript'>actionscript</a>
 
 	</div>
 	
   <div class="prev-next">
   
-    <a href="/actionscript/2014/08/28/essential-actionscript30-reading-note" class="next" title="Essential Actionscript3.0 读书笔记(一、核心概念)">Next Post &rarr;</a>
+    <a href="/android/2014/09/16/andengine-for-android-game-development1" class="next" title="andengine for android game development读书笔记(一)">Next Post &rarr;</a>
   
   
-    <a href="/2014/08/06/bitmapdata" class="prev" title="bitmapdata">&larr; Earlier Post</a>
+    <a href="/2014/09/04/xml-and-e4x" class="prev" title="XML and E4X">&larr; Earlier Post</a>
   
   </div>
   

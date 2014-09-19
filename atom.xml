@@ -4,13 +4,278 @@
  <title>alonepig's blog</title>
  <link href="http://alonepig.github.io/" rel="self"/>
  <link href="http://alonepig.github.io"/>
- <updated>2014-09-09T16:12:35+08:00</updated>
+ <updated>2014-09-19T17:56:20+08:00</updated>
  <id>http://alonepig.github.io</id>
  <author>
    <name>lsj</name>
    <email>alonelsj@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>关于新股申购</title>
+   <link href="http://alonepig.github.io/stock/2014/09/19/subscribe-new-stock"/>
+   <updated>2014-09-19T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/stock/2014/09/19/subscribe-new-stock</id>
+   <content type="html">&lt;p&gt;从朋友口中得知，如果能够申购到新股，就一定能赚钱。这对于我这种刚入市的菜鸟股民来说无疑很有吸引力。于是，在网络上查询了新股申购的流程。大致有以下条件：&lt;/p&gt;
+
+&lt;p&gt;根据投资者持有的市值确定其网上可申购额度，持有市值1万元以上（含1万元）的投资者才能参与新股申购，沪市每1万元市值可申购一个申购单位，不足1万元的部分不计入申购额度。深市每5000元市值可申购一个申购单位，不足5000元的部分不计入申购额度。&lt;/p&gt;
+
+&lt;p&gt;然后来到了9.18号，根据一些所谓的提高中签技巧的文章，十点后进入客户端，选择新股申购，填入对应号码，可始终提示信息码不存在。百思不得其解，自己明明已经按照要求来操作了啊！于是，搜索原因，终于在某个股吧中找到：人家说账号必须要在最近20个交易日持有市值的1W以上的股票才行。唉，我还不满足条件啊！！！&lt;/p&gt;
+
+&lt;p&gt;总结，以后在做某件事情之前一定要做好的充分的准备工作。顺便记录一下申购流程：&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;申购流程&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;T日，准备好足额资金，通过证券账户进行新股申购，买入委托（和买股票的菜单一样），数量沪市股票需要是1000股的整数倍，深市股票需要是500股的整数倍，超过可申购额度都是废单。如果多次委托仅第一笔委托是有效的。沪市申购时间为T日9:30-11：30；13：00-15：00；深市申购时间为T日9:15-11：30；13：00-15：00。&lt;/p&gt;
+
+&lt;p&gt;T+1日：资金冻结、验资及配号。中国结算公司将申购资金冻结。交易所将根据最终的有效申购总量，按每1000（深圳500股）股配一个号的规则，由交易主机自动对有效申购进行统一连续配号。&lt;/p&gt;
+
+&lt;p&gt;T+2日：摇号抽签。公布中签率，并根据总配号量和中签率组织摇号抽签，于次日公布中签结果。&lt;/p&gt;
+
+&lt;p&gt;T+3日（一般T+2日清算后就可以）可查询到是否中签，如未中签会返款到账户。中签客户在新股上市日可以将中签股票进行交易。&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>andengine for android game development读书笔记(一)</title>
+   <link href="http://alonepig.github.io/android/2014/09/16/andengine-for-android-game-development1"/>
+   <updated>2014-09-16T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/android/2014/09/16/andengine-for-android-game-development1</id>
+   <content type="html">&lt;h4&gt;第一章、AndEngine 游戏引擎架构&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;介绍&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;AndEngine引擎最大的特点是其非常容易构建一个游戏。可能在几个星期内就能完成一款游戏从头到尾的设计和编码，但不代表它会是一款完美的游戏。在使用该引擎前最好先理解该引擎，才能创建出好的已扩展的游戏。&lt;/p&gt;
+
+&lt;p&gt;这一章中，我们会先大致了解一下引擎中非常常用的组件。它们是构建游戏的基础。此外，我们将讨论资源和对象类型的不同点，它们在塑造游戏的外观和整体风格中扮演了重要的角色。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;生命周期&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;理解游戏初始化的顺序很重要。基本包括创建引擎、装载游戏资源、设置初始化屏幕和设置。这些都是创建一个AndEngine游戏的基础。但为了让你的游戏更加多样性，你需要明白其生命周期。&lt;/p&gt;
+
+&lt;p&gt;参考PacktRecipesActivity&lt;/p&gt;
+
+&lt;p&gt;AndEngine生命周期有几个方法直接负责定义。这些方法包括创建引擎属性(EngineOptions)对象，创建场景(Scene)对象，将子实体填充到场景中。这些方法按照下面的顺序调用：&lt;/p&gt;
+
+&lt;p&gt;1、定义onCreateEngineOptions()方法：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;@Override
+public EngineOptions onCreateEngineOptions() {
+    // Define our mCamera object
+    mCamera = new Camera(0, 0, WIDTH, HEIGHT);
+    // Declare &amp;amp; Define our engine options to be applied to our Engine object
+    EngineOptions engineOptions = new EngineOptions(true,
+    ScreenOrientation.LANDSCAPE_FIXED, new FillResolutionPolicy(), mCamera);
+    // It is necessary in a lot of applications to define the following
+    // wake lock options in order to disable the device&amp;#39;s display
+    // from turning off during gameplay due to inactivity
+    engineOptions.setWakeLockOptions(WakeLockOptions.SCREEN_ON);
+    // Return the engineOptions object, passing it to the engine
+    return engineOptions;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;2、定义哦那CreateResources()方法：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;@override
+public void onCreateResource(OnCreateResourcesCallback pOnCreateResourcesCallback){
+//装载好所有资源后调用该方法
+    pOnCreateResourcesCallback.onCreateResourcesFinished();
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;3、定义onCreateScene()方法：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;@override 
+public void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback){
+    mScene = new Scene();
+    // 通知回调已经完成创建场景
+    pOnCreateSceneCallback.onCreateSceneFinished(mScene);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;4、定义onPopulateScene()方法：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;@override 
+public void onPopulateScene(Scene pScene, OnPopulateSceneCallback pOnPopulateSceneCallback){
+// 完成之后回调此方法
+    pOnPopulateSceneCallback.onPopulateSceneFinished();
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面的代码是AndEngine游戏的基础。我们建立一个主activity作为我们应用的入口。这个activity包括四个主要的方法，作用分别表示创建EngineOptions属性，创建资源、创建场景和填充场景。&lt;/p&gt;
+
+&lt;p&gt;第一步，我们重写了onCreateEngineOptions()方法。在方法里面，初始化了摄像机对象和引擎属性对象。两个对象的构造函数可以传递我们应用的属性。此外，engineOptions.setWakeLockOptions(WakeLockOptions.SCREEN_ON)表示屏幕常亮。&lt;/p&gt;
+
+&lt;p&gt;第二步，定义了onCreateResources()方法，它用来创建游戏需要的资源。这些资源包括纹理、声音、音乐和字体。在这一步和接下来的两步，我们需要调用相应的方法以进行回调。对于onCreateResources()，我们必须调用pOnCreateResourcesCallback.onCreateResourcesFinished(),放在方法的最后面。&lt;/p&gt;
+
+&lt;p&gt;下面的列表中，我们将生命周期的方法按顺序排列：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;onCreate：这个方法是Android SDK应用入口。在AndEngine开发中，这个方法只是在BaseGameActivity类中简单的调用onCreateEngineOptions()方法。
+
+onResume：另外一个Android方法。在这里，我们从EngineOptions对象获取锁屏属性，然后调用RenderSurfaceView的onResume()方法。
+
+onSurfaceCreated：可能会调用onCreateGame()
+
+onReloadResources：装载资源
+
+onCreateGame：按顺序执行三个回调。
+
+onCreateResources：允许我们声明和定义应用的初始化资源
+
+onPopulateScene：完成设置场景
+
+onGameCreated：表示onCreateGame()队列完成。如有必要重新装载资源，否则什么都不做。
+
+onSurfaceChanged：应用方向发生变化时调用
+
+onResumeGame：启动生命周期最后一个调用的方法。如果启动过程中没有问题，则引擎的start()方法会被调用。
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;生命周期在最小化和终止时：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;onPause：最小化或终止时第一个被调用的方法。
+
+onPauseGame：然后，AndEngine实现的onPause()灰调用引擎的stop()方法。
+
+onDestroy：清除所有资源
+
+onDestroyResources；这个方法会在onDestroy中被调用。清除音乐和声音。
+
+onGameDestroyed：最后调用，将mGameCreated设置为false。
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;前面我们介绍了BaseGameActivity类，下面使用其他可以替代它的类，不同的类有稍许不同。&lt;/p&gt;
+
+&lt;p&gt;LayoutGameActivity类&lt;/p&gt;
+
+&lt;p&gt;这个类可以时原始的Android View添加到游戏中。它的做法就是调用setContentView(layoutID)方法。使用这个类，可以轻松的在游戏中添加广告。&lt;/p&gt;
+
+&lt;p&gt;使用LayoutGameActivity类的步骤如下：&lt;/p&gt;
+
+&lt;p&gt;1、布局文件中添加以下代码：这个View会显示到游戏当中。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;lt;org.andengine.opengl.view.RenderSurfaceView
+android:id=&amp;quot;@+id/gameSurfaceView&amp;quot;
+android:layout_width=&amp;quot;fill_parent&amp;quot;
+android:layout_height=&amp;quot;fill_parent&amp;quot;/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;2、关联到布局文件，假设步骤1中的布局文件名字是main，重写LayoutGameActivity的方法,这样在onSetContentView中就会找到对应的布局文件了。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;@Override
+protected int getLayoutID() {
+    return R.layout.main;
+}
+@Override
+protected int getRenderSurfaceViewID() {
+    return R.id.gameSurfaceView;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;SimpleBaseGameActivity和SimpleLayoutGameActivity类&lt;/p&gt;
+
+&lt;p&gt;重写了一些生命周期中的方法使其更加容易使用。它们不需要我们重写onPopulateScene()方法，我们也不用回调那些方法了。&lt;/p&gt;
+
+&lt;p&gt;SimpleAsyncGameActivity类&lt;/p&gt;
+
+&lt;p&gt;这个类包含了三个方法onCreateResourcesAsync()、onCreateSceneAsync()、onPopulateSceneAsync()。主要作用是在加载各种资源时提供一个进度数据。比如：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;@Override
+public void onCreateResourcesAsync(IProgressListener pProgressListener) throws Exception {
+    // Load texture number one
+    pProgressListener.onProgressChanged(10);
+    // Load texture number two
+    pProgressListener.onProgressChanged(20);
+    // Load texture number three
+    pProgressListener.onProgressChanged(30);
+    // We can continue to set progress to whichever value we&amp;#39;d like
+    // for each additional step through onCreateResourcesAsync...
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;选择引擎类型&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;在开始编码之前，先根据游戏所需的性能选择不同的引擎类型。&lt;/p&gt;
+
+&lt;p&gt;为了指定合适的Engine对象，我们必须重写onCreateEngine()方法，来设置不同类型的Engine。默认情况如下：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;@override 
+public Engine onCreateEngine(EngineOptions pEngineOptions){
+    return new Engine(pEngineOptions);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;下面是不同Engine类型的介绍：&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Engine&lt;/em&gt;：对于大部分游戏来说不实用，因为它没有限制每秒的帧率。&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;FixedStepEngine&lt;/em&gt;：会以一个固定速度循环刷新游戏，不需要考虑不同设备。如new FixedStepEngine(pEngineOptions, 60)则每秒刷新60次。&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;LimitedFPSEngine&lt;/em&gt;：限制最大帧率。&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;SingleSceneSplitScreenEngine和DoubleSceneSplitScreenEngine&lt;/em&gt;：允许创建两个分开的摄像机，这样就可以在一个设备中供两个人一起玩游戏。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;选择解决策略&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;在onCreateEngineOptions方法中：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;EngineOptions engineOptions = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new FillResolutionPolicy(), mCamera);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;FillResolutionPolicy&lt;/em&gt; ：全屏使用&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;FixedResolutionPolicy&lt;/em&gt; ：允许固定应用尺寸。如new FixedResourcePolicy(800， 480)&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;RatioResolutionPolicy&lt;/em&gt; ：按比例显示。raito等于高宽比。new RaitoResourcePolicy(1.6f)或new RaitoResourcePolicy(800, 600)&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;RelativeResolutionPolicy&lt;/em&gt; ：提供缩放。可以缩放高宽new RelativeResolutionPolicy(1.5f， 0.5f)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;创建对象工厂&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;创建游戏管理器&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;介绍声音和音乐&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;使用不同的纹理&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;设置纹理属性&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;使用AndEngine字体资源&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;创建资源管理器&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;保存和装载游戏数据&lt;/strong&gt;&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>股票入门之术语学习</title>
+   <link href="http://alonepig.github.io/stock/2014/09/09/stock2"/>
+   <updated>2014-09-09T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/stock/2014/09/09/stock2</id>
+   <content type="html">&lt;p&gt;今天学习一下市盈率、市净率&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;市盈率(PE)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;指在一个考察期(通常为12个月的时间内)，股票的价格和每股收益的比率。即股票的价格与该股上一年度每股税后利润之比。&lt;/p&gt;
+
+&lt;p&gt;如果一家公司股票的市盈率过高，那么该股票的价格具有泡沫，价值被高估。当一家公司增长迅速以及未来的业绩增长非常看好时，利用市盈率比较不同股票的投资价值时，这些股票必须属于同一行业，因为此时公司的每股收益比较接近，相互比较才有效。&lt;/p&gt;
+
+&lt;p&gt;市盈率也分为静态市盈率和动态市盈率，静态市盈率表示过去的的数据，动态市盈率的计算公式是以静态市盈率为基数，乘以动态系数。表达式为：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;           n 
+1 ÷ (1 + i) 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;高市盈率通常意味着高风险，高风险意味着可能会有高回报。&lt;/p&gt;
+
+&lt;p&gt;由于不同行业处于不同的生命周期，市场对不同行业的发展前景有较大的差异，对于新兴产业（快速成长期）的预期一般较好，市盈率一般较高；而对部分传统行业（成熟稳定期）的预期一般较稳定，市盈率会维持相对较低的水平，波动幅度也不会很大，对一些夕阳产业（衰落期）的预期一般较差，市盈率会维持在更低的水平。&lt;/p&gt;
+
+&lt;p&gt;如果该股在历史上就享受了较高的市盈率，往往这类公司是更受市场看好的公司。反之如果某公司一直处于低市盈率状态，就可能意味着市场对该公司持续成长性并不看好。&lt;/p&gt;
+
+&lt;p&gt;感觉根据这个指标看不出什么门道，不同行业差别大，高低不能代表好坏，目前暂时了解了解吧。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;市净率(P/BV)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;市净率指的是每股股价与每股净资产的比率。一般来说市净率较低的股票，投资价值较高，相反，则投资价值较低；在判断投资价值时还要考虑当时的市场环境以及公司经营情况、盈利能力等因素。市净率不适用于短线炒作，提高获利能力。 &lt;/p&gt;
+
+&lt;p&gt;市净率可用于投资分析。每股净资产是股票的账面价值，它是用成本计量的，而每股市价是这些资产的现在价值，它是证券市场上交易的结果。市价高于账面价值时企业资产的质量较好，有发展潜力，反之则资产质量差，没有发展前景。优质股票的市价都超出每股净资产许多，一般说来市净率达到3可以树立较好的公司形象。市价低于每股净资产的股票，就象售价低于成本的商品一样，属于&amp;quot;处理品&amp;quot;。当然，&amp;quot;处理品&amp;quot;也不是没有购买价值，问题在于该公司今后是否有转机，或者购入后经过资产重组能否提高获利能力，是市价与每股净资产之间的比值，比值越低意味着风险越低。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;净资产收益率&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;净资产收益率=税后利润/所有者权益
+假定某公司年度税后利润为2亿元，年度平均净资产为15亿元，则其本年度之净资产收益率就是13．33%（即(2亿元/15亿元)*100%）。&lt;/p&gt;
+
+&lt;p&gt;公式非常的简单，几乎一下子就可以完全理解，但是怎么简单明确的认识到这个指标的涵义和价值腻？我们都知道所有者权益，也就是净资产相当于这家公司的全部 现值。净利润是一家公司的盈利能力的体现。他们两之商，净资产收益率其实是一种反应公司盈利速度的指标。你比如说一家公司净资产100亿，净利润是10个 亿。另一家公司净资产10个亿，盈利4个亿。单看盈利的话好像第一家公司很厉害，但是考虑到公司总体量的话，用100一个亿挣10个亿就没有用10个亿挣 4个亿效率高了。差多少腻？就可以用到这个指标了，公司一的净资产收益率是10%，公司二是40%。相差30%，这样一对比盈利效率就清晰了。&lt;/p&gt;
+
+&lt;p&gt;还 有一种更简单的理解方式，用1除以净资产收益率，得到一个新的值。公司一，是10，公司二，是2.5。这里的1代表公司总体量，那么换句话说就是，假如公 司的盈利能力保持不变的情况下，公司一10年能复制一个自己，资产总量翻一倍。公司二两年半能复制一个自己，资
+产总量翻一倍。挣钱效率的快慢就一目了然 了。 &lt;/p&gt;
+
+&lt;p&gt;净资产收益率越高，效益越好！&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;换手率&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;越高说明关注度越高，但风险也越大。越低表示主要持有者稳定。短线还是要稍微高点，找活跃点的波动才会比较大。&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>XML and E4X</title>
@@ -131,11 +396,166 @@ const IDENTIFIER = value
  </entry>
  
  <entry>
-   <title>Inheritance</title>
-   <link href="http://alonepig.github.io/2014/09/04/inheritance"/>
+   <title>Essential Actionscript3.0 读书笔记(五、继承)</title>
+   <link href="http://alonepig.github.io/actionscript/2014/09/04/inheritance"/>
    <updated>2014-09-04T00:00:00+08:00</updated>
-   <id>http://alonepig.github.io/2014/09/04/inheritance</id>
-   <content type="html"></content>
+   <id>http://alonepig.github.io/actionscript/2014/09/04/inheritance</id>
+   <content type="html">&lt;h4&gt;第无章、继承&lt;/h4&gt;
+
+&lt;p&gt;面向对象编程，就像现实生活中的情况一样，狗是动物、猫也是动物，猫和狗都继承了动物的一些特性。在程序的世界里，继承还能使代码得到重用。ActionScript中只能单继承。静态方法和静态变量不能被继承。但可以在子类中直接访问它们。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;继承的基础&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;首先来看一段代码，有一个类A：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;public class A {
+    public var v = 10;
+    public function m ( ) {
+        trace(&amp;quot;Method m( ) was called&amp;quot;);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;然后有一个类B继承了A：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;public class B extends A {
+    // No methods or variables defined
+    function n(){
+    }
+}
+
+var bInstance:B = new B( );
+bInstance.m(); // Displays: Method m( ) was called
+trace(bInstance.v); // Displays: 10
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;实例化B后，调用m()方法，ActionScript会检查B类中是否有这个方法，没有的话，则会从它继承的类里找。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;重写实例方法&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;动物是可以走路的，但有些动物是用两条腿走路，有些用四条腿走路，所以不同的动物走路方式是不一样的，这个时候就需要重新定义走路的方式了。在ActionSctipt中，这个叫做重定义实例方法。请看代码：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;public class Animal{
+    public function move(){
+        trace(&amp;quot;走路啦！&amp;quot;);
+    }
+}
+
+public funtion Dog extends Animal {
+    override public function move(){
+        trace(&amp;quot;四条腿走路！&amp;quot;);
+    }
+}
+
+public funtion Cat extends Animal {
+    override public function move(){
+        super.move();// 调用父类的方法
+        trace(&amp;quot;两条腿走路！&amp;quot;);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;重写某个方法需要使用override关键字。重新定义某个方法后，父类的方法就不见了，如果需要调用父级的那个方法，则要使用super关键字，参考Cat类中的写法。还要注意这个用的super和构造函数中的super()是不一样的。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;子类中的构造函数&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;如果子类提供了构造函数，则需要用super关键字调用父级的构造函数，如果没有，则会调用默认的。需要注意的是，子类的构造函数的参数可以与父级不一样，只要super中的参数与父级对应就可以，这与实例函数不同。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;public class Rectange
+{
+    protected var w = 0;
+    protected var h = 0;
+
+    public function Rectange(width, height)
+    {
+        setSize(width, height);
+
+    }
+
+    public function setSize (newW, newH) {
+        w = newW;
+        h = newH;
+    }
+
+    public function getArea ( ) {
+        return w * h;
+    }
+}
+
+public class Square extends Rectange
+{
+    public function Square(side)
+    {
+        super(side, side);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;防止被继承或重写&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;为了防止类被继承，类的实例方法被重写，使用final关键字来修饰。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;final public class A {
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;A类将不能被其他类继承。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;public class A {
+    final public function m ( ) {
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;m()函数不能被子类重写。&lt;/p&gt;
+
+&lt;p&gt;使用final关键字有两个好处：&lt;/p&gt;
+
+&lt;p&gt;某些情况下，final关键字修饰的方法要比没有final修饰的方法执行的更快。&lt;/p&gt;
+
+&lt;p&gt;final能隐藏部分实现细节。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;继承的理论知识&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;使用继承最大的好处的是代码重用。当对父类进行修改时，所有子类都会自动继承它新的特性，减少了代码修改量。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;多态和动态绑定&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;多态是所有面向对象语言的一个重要特性。每一个类的实例都可以被看成是它自己或其所有父类的一种形态。&lt;/p&gt;
+
+&lt;p&gt;多态典型的例子是画图应用。这个应用定义了Shape类：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;public class Shape {
+    public function draw ( ) {
+    // No implementation. In some other languages, draw( ) would be
+    // declared with the abstract attribute, which syntactically
+    // forces subclasses of Shape to provide an implementation.
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Shape有许多个子类：Circle、Rectangle、Triangle，每一个子类都有自定义的draw()方法：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;public class Circle extends Shape {
+    override public function draw ( ) {
+    // Code to draw a Circle on screen, not shown...
+    }
+}
+public class Rectangle extends Shape {
+    override public function draw ( ) {
+    // Code to draw a Rectangle on screen, not shown...
+    }
+}
+public class Triangle extends Shape {
+    override public function draw ( ) {
+    // Code to draw a Triangle on screen, not shown...
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;为了将图形添加到屏幕上，我们传递Circle、Rectangle、Triangle实例给addShape()方法，在主类中添加该方法：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;    public function addShape(newShape){
+        newShape.draw();
+    }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;addShape()方法调用shape的draw()方法，这是关键点，newShape可能是Circle、Rectangle、Triangle中的任何一种类型。这个过程叫做动态绑定。&lt;/p&gt;
+
+&lt;p&gt;继承关系被叫做Is-A，就好像说狗是动物，猫是动物。而组合被叫做Has-A，表示A中有一个B。&lt;/p&gt;
+
+&lt;p&gt;继承和组合的选择：&lt;/p&gt;
+
+&lt;p&gt;*如果一个类需要使用其他类的服务，则考虑组合。&lt;/p&gt;
+
+&lt;p&gt;*如果类的行为很像已经存在的类，则使用继承。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;抽象不被支持&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;许多面向对象的设计会使用抽象类。抽象类定义了抽象方法(没有方法体的方法)。所有继承它的类都要实现这些抽象方法。但ActionScript不支持抽象类和抽象方法。变相的处理时，父类的方法体为空。&lt;/p&gt;
+</content>
  </entry>
  
  <entry>
@@ -1846,12 +2266,6 @@ ns.publish(&amp;quot;mp4:mplivestream.f4v&amp;quot;);
 4 : Microphone.setRate(8);
 5 : //总的消耗带宽：54 kbps = 7kbyte
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;自己经过了如下测试：&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;设置setQuality(0, 85); 然后setMode设置为以上值&lt;/li&gt;
-&lt;/ol&gt;
-
 &lt;h5&gt;setLoopback(compress:Boolean=false)&lt;/h5&gt;
 
 &lt;p&gt;指定在本地查看摄像头时是否使用压缩视频流。此方法仅在使用 Flash Media Server 传输视频时适用；如果将 compress 设置为 true，则可以更精确地看到在用户实时查看视频时向用户呈现视频的方式。&lt;/p&gt;

@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-   <title>windows下的VIM 编辑markdown语法高亮  </title>
+   <title>关于新股申购  </title>
    <meta name="author" content="lsj" />
 
    <link rel="start" href="/" />
@@ -160,7 +160,7 @@ table{border:0}
   
 <div id="page">
 	
-  <h1 class="emphnext">windows下的VIM 编辑markdown语法高亮</h1>
+  <h1 class="emphnext">关于新股申购</h1>
   <ul class="tag_box inline">
   
   
@@ -168,7 +168,7 @@ table{border:0}
 
   
      
-    	<li><a href="/tags.html#vim-ref">vim <span>1</span></a></li>
+    	<li><a href="/tags.html#stock-ref">stock <span>3</span></a></li>
     
   
 
@@ -176,100 +176,52 @@ table{border:0}
 
   </ul>
 
-  <p>Windows使用VIM编辑markdown的语法高亮设置</p>
+  <p>从朋友口中得知，如果能够申购到新股，就一定能赚钱。这对于我这种刚入市的菜鸟股民来说无疑很有吸引力。于是，在网络上查询了新股申购的流程。大致有以下条件：</p>
 
-<p><strong>安装git</strong>：</p>
+<p>根据投资者持有的市值确定其网上可申购额度，持有市值1万元以上（含1万元）的投资者才能参与新股申购，沪市每1万元市值可申购一个申购单位，不足1万元的部分不计入申购额度。深市每5000元市值可申购一个申购单位，不足5000元的部分不计入申购额度。</p>
 
-<p><strong>安装curl</strong>：</p>
+<p>然后来到了9.18号，根据一些所谓的提高中签技巧的文章，十点后进入客户端，选择新股申购，填入对应号码，可始终提示信息码不存在。百思不得其解，自己明明已经按照要求来操作了啊！于是，搜索原因，终于在某个股吧中找到：人家说账号必须要在最近20个交易日持有市值的1W以上的股票才行。唉，我还不满足条件啊！！！</p>
 
-<p>在git的安装目录的cmd件夹下的cmd件夹下新建curl.cmd件，复制以下内容：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">@rem Do not use &quot;echo off&quot; to not affect any child calls.
-@setlocal
+<p>总结，以后在做某件事情之前一定要做好的充分的准备工作。顺便记录一下申购流程：</p>
 
-@rem Get the abolute path to the parent directory, which is assumed to be the
-@rem Git installation root.
-@for /F &quot;delims=&quot; %%I in (&quot;%~dp0..&quot;) do @set git_install_root=%%~fI
-@set PATH=%git_install_root%\bin;%git_install_root%\mingw\bin;%PATH%
+<p><strong>申购流程</strong></p>
 
-@if not exist &quot;%HOME%&quot; @set HOME=%HOMEDRIVE%%HOMEPATH%
-@if not exist &quot;%HOME%&quot; @set HOME=%USERPROFILE%
+<p>T日，准备好足额资金，通过证券账户进行新股申购，买入委托（和买股票的菜单一样），数量沪市股票需要是1000股的整数倍，深市股票需要是500股的整数倍，超过可申购额度都是废单。如果多次委托仅第一笔委托是有效的。沪市申购时间为T日9:30-11：30；13：00-15：00；深市申购时间为T日9:15-11：30；13：00-15：00。</p>
 
-@curl.exe %*
-</code></pre></div>
-<p>在命令行中输入curl --version检查是否正确。</p>
+<p>T+1日：资金冻结、验资及配号。中国结算公司将申购资金冻结。交易所将根据最终的有效申购总量，按每1000（深圳500股）股配一个号的规则，由交易主机自动对有效申购进行统一连续配号。</p>
 
-<p><strong>安装Vundle</strong></p>
+<p>T+2日：摇号抽签。公布中签率，并根据总配号量和中签率组织摇号抽签，于次日公布中签结果。</p>
 
-<p>命令行进入用户目录，(一定要选择用户目录，win7下在C:/Users/xxx/，自己在其他地方clone后不能正确安装，配置文件中rtp和path设置绝对路径貌似没有效果，囧~)，克隆Vundle：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">$ git clone https://github.com/gmarik/Vundle.vim.git 
-</code></pre></div>
-<p>编辑vim安装目录下的vimrc的配置文件，将以下内容添加到文件的最前面：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">set nocompatible              &quot; be iMproved, required
-filetype off                  &quot; required
-
-set rtp+=~/vimfiles/bundle/Vundle.vim/
-let path=&#39;~/vimfiles/bundle&#39;
-call vundle#begin(path)
-
-&quot; let Vundle manage Vundle, required
-Plugin &#39;gmarik/Vundle.vim&#39;
-
-Plugin &#39;godlygeek/tabular&#39;
-Plugin &#39;plasticboy/vim-markdown&#39;
-
-call vundle#end()            &quot; required
-filetype plugin indent on    &quot; required
-</code></pre></div>
-<p>这里的rtp和path要对应Vundle的目录，不然会找不到后面的命令。</p>
-
-<p><strong>安装插件</strong></p>
-
-<p>进入vim命令行状态，输入PluginInstall 安装vim-markdown插件</p>
-
-<p>除此之外还有以下命令可以使用：</p>
-
-<p>PluginList   查看插件列表</p>
-
-<p>PluginSearch foo 查询foo插件</p>
-
-<p>PluginClean     移除不需要的插件</p>
-
-<p>参考：</p>
-
-<p>https://github.com/gmarik/Vundle.vim</p>
-
-<p>https://github.com/gmarik/Vundle.vim/wiki/Vundle-for-Windows</p>
+<p>T+3日（一般T+2日清算后就可以）可查询到是否中签，如未中签会返款到账户。中签客户在新股上市日可以将中签股票进行交易。</p>
 
 
   <address class="signature">
     <a class="author" href="/">lsj</a> 
-    <span class="date">07 August 2014</span>
+    <span class="date">19 September 2014</span>
     <span class="location"></span>
   </address>
   
   
 	<div class='cloud'>
-		<a style='font-size: 157%' href='/tags.html#actionscript'>actionscript</a>
-<a style='font-size: 170%' href='/tags.html#fms'>fms</a>
-<a style='font-size: 112%' href='/tags.html#crack'>crack</a>
+		<a style='font-size: 112%' href='/tags.html#crack'>crack</a>
 <a style='font-size: 70%' href='/tags.html#ios'>ios</a>
-<a style='font-size: 112%' href='/tags.html#swf'>swf</a>
-<a style='font-size: 131%' href='/tags.html#essential actionscript3.0'>essential actionscript3.0</a>
-<a style='font-size: 70%' href='/tags.html#android'>android</a>
-<a style='font-size: 112%' href='/tags.html#stock'>stock</a>
-<a style='font-size: 70%' href='/tags.html#air'>air</a>
-<a style='font-size: 70%' href='/tags.html#error'>error</a>
 <a style='font-size: 70%' href='/tags.html#vim'>vim</a>
 <a style='font-size: 70%' href='/tags.html#p2p'>p2p</a>
+<a style='font-size: 112%' href='/tags.html#stock'>stock</a>
+<a style='font-size: 112%' href='/tags.html#swf'>swf</a>
+<a style='font-size: 170%' href='/tags.html#fms'>fms</a>
+<a style='font-size: 131%' href='/tags.html#essential actionscript3.0'>essential actionscript3.0</a>
+<a style='font-size: 70%' href='/tags.html#android'>android</a>
+<a style='font-size: 70%' href='/tags.html#air'>air</a>
+<a style='font-size: 70%' href='/tags.html#error'>error</a>
+<a style='font-size: 157%' href='/tags.html#actionscript'>actionscript</a>
 
 	</div>
 	
   <div class="prev-next">
   
-    <a href="/actionscript/2014/08/28/essential-actionscript30-reading-note" class="next" title="Essential Actionscript3.0 读书笔记(一、核心概念)">Next Post &rarr;</a>
   
-  
-    <a href="/2014/08/06/bitmapdata" class="prev" title="bitmapdata">&larr; Earlier Post</a>
+    <a href="/android/2014/09/16/andengine-for-android-game-development1" class="prev" title="andengine for android game development读书笔记(一)">&larr; Earlier Post</a>
   
   </div>
   

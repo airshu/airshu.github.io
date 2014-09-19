@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-   <title>windows下的VIM 编辑markdown语法高亮  </title>
+   <title>andengine for android game development读书笔记(一)  </title>
    <meta name="author" content="lsj" />
 
    <link rel="start" href="/" />
@@ -160,7 +160,7 @@ table{border:0}
   
 <div id="page">
 	
-  <h1 class="emphnext">windows下的VIM 编辑markdown语法高亮</h1>
+  <h1 class="emphnext">andengine for android game development读书笔记(一)</h1>
   <ul class="tag_box inline">
   
   
@@ -168,7 +168,7 @@ table{border:0}
 
   
      
-    	<li><a href="/tags.html#vim-ref">vim <span>1</span></a></li>
+    	<li><a href="/tags.html#android-ref">android <span>1</span></a></li>
     
   
 
@@ -176,100 +176,220 @@ table{border:0}
 
   </ul>
 
-  <p>Windows使用VIM编辑markdown的语法高亮设置</p>
+  <h4>第一章、AndEngine 游戏引擎架构</h4>
 
-<p><strong>安装git</strong>：</p>
+<p><strong>介绍</strong></p>
 
-<p><strong>安装curl</strong>：</p>
+<p>AndEngine引擎最大的特点是其非常容易构建一个游戏。可能在几个星期内就能完成一款游戏从头到尾的设计和编码，但不代表它会是一款完美的游戏。在使用该引擎前最好先理解该引擎，才能创建出好的已扩展的游戏。</p>
 
-<p>在git的安装目录的cmd件夹下的cmd件夹下新建curl.cmd件，复制以下内容：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">@rem Do not use &quot;echo off&quot; to not affect any child calls.
-@setlocal
+<p>这一章中，我们会先大致了解一下引擎中非常常用的组件。它们是构建游戏的基础。此外，我们将讨论资源和对象类型的不同点，它们在塑造游戏的外观和整体风格中扮演了重要的角色。</p>
 
-@rem Get the abolute path to the parent directory, which is assumed to be the
-@rem Git installation root.
-@for /F &quot;delims=&quot; %%I in (&quot;%~dp0..&quot;) do @set git_install_root=%%~fI
-@set PATH=%git_install_root%\bin;%git_install_root%\mingw\bin;%PATH%
+<p><strong>生命周期</strong></p>
 
-@if not exist &quot;%HOME%&quot; @set HOME=%HOMEDRIVE%%HOMEPATH%
-@if not exist &quot;%HOME%&quot; @set HOME=%USERPROFILE%
+<p>理解游戏初始化的顺序很重要。基本包括创建引擎、装载游戏资源、设置初始化屏幕和设置。这些都是创建一个AndEngine游戏的基础。但为了让你的游戏更加多样性，你需要明白其生命周期。</p>
 
-@curl.exe %*
+<p>参考PacktRecipesActivity</p>
+
+<p>AndEngine生命周期有几个方法直接负责定义。这些方法包括创建引擎属性(EngineOptions)对象，创建场景(Scene)对象，将子实体填充到场景中。这些方法按照下面的顺序调用：</p>
+
+<p>1、定义onCreateEngineOptions()方法：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">@Override
+public EngineOptions onCreateEngineOptions() {
+    // Define our mCamera object
+    mCamera = new Camera(0, 0, WIDTH, HEIGHT);
+    // Declare &amp; Define our engine options to be applied to our Engine object
+    EngineOptions engineOptions = new EngineOptions(true,
+    ScreenOrientation.LANDSCAPE_FIXED, new FillResolutionPolicy(), mCamera);
+    // It is necessary in a lot of applications to define the following
+    // wake lock options in order to disable the device&#39;s display
+    // from turning off during gameplay due to inactivity
+    engineOptions.setWakeLockOptions(WakeLockOptions.SCREEN_ON);
+    // Return the engineOptions object, passing it to the engine
+    return engineOptions;
+}
 </code></pre></div>
-<p>在命令行中输入curl --version检查是否正确。</p>
-
-<p><strong>安装Vundle</strong></p>
-
-<p>命令行进入用户目录，(一定要选择用户目录，win7下在C:/Users/xxx/，自己在其他地方clone后不能正确安装，配置文件中rtp和path设置绝对路径貌似没有效果，囧~)，克隆Vundle：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">$ git clone https://github.com/gmarik/Vundle.vim.git 
+<p>2、定义哦那CreateResources()方法：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">@override
+public void onCreateResource(OnCreateResourcesCallback pOnCreateResourcesCallback){
+//装载好所有资源后调用该方法
+    pOnCreateResourcesCallback.onCreateResourcesFinished();
+}
 </code></pre></div>
-<p>编辑vim安装目录下的vimrc的配置文件，将以下内容添加到文件的最前面：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">set nocompatible              &quot; be iMproved, required
-filetype off                  &quot; required
-
-set rtp+=~/vimfiles/bundle/Vundle.vim/
-let path=&#39;~/vimfiles/bundle&#39;
-call vundle#begin(path)
-
-&quot; let Vundle manage Vundle, required
-Plugin &#39;gmarik/Vundle.vim&#39;
-
-Plugin &#39;godlygeek/tabular&#39;
-Plugin &#39;plasticboy/vim-markdown&#39;
-
-call vundle#end()            &quot; required
-filetype plugin indent on    &quot; required
+<p>3、定义onCreateScene()方法：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">@override 
+public void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback){
+    mScene = new Scene();
+    // 通知回调已经完成创建场景
+    pOnCreateSceneCallback.onCreateSceneFinished(mScene);
+}
 </code></pre></div>
-<p>这里的rtp和path要对应Vundle的目录，不然会找不到后面的命令。</p>
+<p>4、定义onPopulateScene()方法：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">@override 
+public void onPopulateScene(Scene pScene, OnPopulateSceneCallback pOnPopulateSceneCallback){
+// 完成之后回调此方法
+    pOnPopulateSceneCallback.onPopulateSceneFinished();
+}
+</code></pre></div>
+<p>上面的代码是AndEngine游戏的基础。我们建立一个主activity作为我们应用的入口。这个activity包括四个主要的方法，作用分别表示创建EngineOptions属性，创建资源、创建场景和填充场景。</p>
 
-<p><strong>安装插件</strong></p>
+<p>第一步，我们重写了onCreateEngineOptions()方法。在方法里面，初始化了摄像机对象和引擎属性对象。两个对象的构造函数可以传递我们应用的属性。此外，engineOptions.setWakeLockOptions(WakeLockOptions.SCREEN_ON)表示屏幕常亮。</p>
 
-<p>进入vim命令行状态，输入PluginInstall 安装vim-markdown插件</p>
+<p>第二步，定义了onCreateResources()方法，它用来创建游戏需要的资源。这些资源包括纹理、声音、音乐和字体。在这一步和接下来的两步，我们需要调用相应的方法以进行回调。对于onCreateResources()，我们必须调用pOnCreateResourcesCallback.onCreateResourcesFinished(),放在方法的最后面。</p>
 
-<p>除此之外还有以下命令可以使用：</p>
+<p>下面的列表中，我们将生命周期的方法按顺序排列：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">onCreate：这个方法是Android SDK应用入口。在AndEngine开发中，这个方法只是在BaseGameActivity类中简单的调用onCreateEngineOptions()方法。
 
-<p>PluginList   查看插件列表</p>
+onResume：另外一个Android方法。在这里，我们从EngineOptions对象获取锁屏属性，然后调用RenderSurfaceView的onResume()方法。
 
-<p>PluginSearch foo 查询foo插件</p>
+onSurfaceCreated：可能会调用onCreateGame()
 
-<p>PluginClean     移除不需要的插件</p>
+onReloadResources：装载资源
 
-<p>参考：</p>
+onCreateGame：按顺序执行三个回调。
 
-<p>https://github.com/gmarik/Vundle.vim</p>
+onCreateResources：允许我们声明和定义应用的初始化资源
 
-<p>https://github.com/gmarik/Vundle.vim/wiki/Vundle-for-Windows</p>
+onPopulateScene：完成设置场景
+
+onGameCreated：表示onCreateGame()队列完成。如有必要重新装载资源，否则什么都不做。
+
+onSurfaceChanged：应用方向发生变化时调用
+
+onResumeGame：启动生命周期最后一个调用的方法。如果启动过程中没有问题，则引擎的start()方法会被调用。
+</code></pre></div>
+<p>生命周期在最小化和终止时：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">onPause：最小化或终止时第一个被调用的方法。
+
+onPauseGame：然后，AndEngine实现的onPause()灰调用引擎的stop()方法。
+
+onDestroy：清除所有资源
+
+onDestroyResources；这个方法会在onDestroy中被调用。清除音乐和声音。
+
+onGameDestroyed：最后调用，将mGameCreated设置为false。
+</code></pre></div>
+<p>前面我们介绍了BaseGameActivity类，下面使用其他可以替代它的类，不同的类有稍许不同。</p>
+
+<p>LayoutGameActivity类</p>
+
+<p>这个类可以时原始的Android View添加到游戏中。它的做法就是调用setContentView(layoutID)方法。使用这个类，可以轻松的在游戏中添加广告。</p>
+
+<p>使用LayoutGameActivity类的步骤如下：</p>
+
+<p>1、布局文件中添加以下代码：这个View会显示到游戏当中。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;org.andengine.opengl.view.RenderSurfaceView
+android:id=&quot;@+id/gameSurfaceView&quot;
+android:layout_width=&quot;fill_parent&quot;
+android:layout_height=&quot;fill_parent&quot;/&gt;
+</code></pre></div>
+<p>2、关联到布局文件，假设步骤1中的布局文件名字是main，重写LayoutGameActivity的方法,这样在onSetContentView中就会找到对应的布局文件了。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">@Override
+protected int getLayoutID() {
+    return R.layout.main;
+}
+@Override
+protected int getRenderSurfaceViewID() {
+    return R.id.gameSurfaceView;
+}
+</code></pre></div>
+<p>SimpleBaseGameActivity和SimpleLayoutGameActivity类</p>
+
+<p>重写了一些生命周期中的方法使其更加容易使用。它们不需要我们重写onPopulateScene()方法，我们也不用回调那些方法了。</p>
+
+<p>SimpleAsyncGameActivity类</p>
+
+<p>这个类包含了三个方法onCreateResourcesAsync()、onCreateSceneAsync()、onPopulateSceneAsync()。主要作用是在加载各种资源时提供一个进度数据。比如：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">@Override
+public void onCreateResourcesAsync(IProgressListener pProgressListener) throws Exception {
+    // Load texture number one
+    pProgressListener.onProgressChanged(10);
+    // Load texture number two
+    pProgressListener.onProgressChanged(20);
+    // Load texture number three
+    pProgressListener.onProgressChanged(30);
+    // We can continue to set progress to whichever value we&#39;d like
+    // for each additional step through onCreateResourcesAsync...
+}
+</code></pre></div>
+<p><strong>选择引擎类型</strong></p>
+
+<p>在开始编码之前，先根据游戏所需的性能选择不同的引擎类型。</p>
+
+<p>为了指定合适的Engine对象，我们必须重写onCreateEngine()方法，来设置不同类型的Engine。默认情况如下：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">@override 
+public Engine onCreateEngine(EngineOptions pEngineOptions){
+    return new Engine(pEngineOptions);
+}
+</code></pre></div>
+<p>下面是不同Engine类型的介绍：</p>
+
+<p><em>Engine</em>：对于大部分游戏来说不实用，因为它没有限制每秒的帧率。</p>
+
+<p><em>FixedStepEngine</em>：会以一个固定速度循环刷新游戏，不需要考虑不同设备。如new FixedStepEngine(pEngineOptions, 60)则每秒刷新60次。</p>
+
+<p><em>LimitedFPSEngine</em>：限制最大帧率。</p>
+
+<p><em>SingleSceneSplitScreenEngine和DoubleSceneSplitScreenEngine</em>：允许创建两个分开的摄像机，这样就可以在一个设备中供两个人一起玩游戏。</p>
+
+<p><strong>选择解决策略</strong></p>
+
+<p>在onCreateEngineOptions方法中：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">EngineOptions engineOptions = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new FillResolutionPolicy(), mCamera);
+</code></pre></div>
+<p><em>FillResolutionPolicy</em> ：全屏使用</p>
+
+<p><em>FixedResolutionPolicy</em> ：允许固定应用尺寸。如new FixedResourcePolicy(800， 480)</p>
+
+<p><em>RatioResolutionPolicy</em> ：按比例显示。raito等于高宽比。new RaitoResourcePolicy(1.6f)或new RaitoResourcePolicy(800, 600)</p>
+
+<p><em>RelativeResolutionPolicy</em> ：提供缩放。可以缩放高宽new RelativeResolutionPolicy(1.5f， 0.5f)</p>
+
+<p><strong>创建对象工厂</strong></p>
+
+<p><strong>创建游戏管理器</strong></p>
+
+<p><strong>介绍声音和音乐</strong></p>
+
+<p><strong>使用不同的纹理</strong></p>
+
+<p><strong>设置纹理属性</strong></p>
+
+<p><strong>使用AndEngine字体资源</strong></p>
+
+<p><strong>创建资源管理器</strong></p>
+
+<p><strong>保存和装载游戏数据</strong></p>
 
 
   <address class="signature">
     <a class="author" href="/">lsj</a> 
-    <span class="date">07 August 2014</span>
+    <span class="date">16 September 2014</span>
     <span class="location"></span>
   </address>
   
   
 	<div class='cloud'>
-		<a style='font-size: 157%' href='/tags.html#actionscript'>actionscript</a>
-<a style='font-size: 170%' href='/tags.html#fms'>fms</a>
-<a style='font-size: 112%' href='/tags.html#crack'>crack</a>
-<a style='font-size: 70%' href='/tags.html#ios'>ios</a>
-<a style='font-size: 112%' href='/tags.html#swf'>swf</a>
-<a style='font-size: 131%' href='/tags.html#essential actionscript3.0'>essential actionscript3.0</a>
-<a style='font-size: 70%' href='/tags.html#android'>android</a>
-<a style='font-size: 112%' href='/tags.html#stock'>stock</a>
-<a style='font-size: 70%' href='/tags.html#air'>air</a>
+		<a style='font-size: 170%' href='/tags.html#fms'>fms</a>
 <a style='font-size: 70%' href='/tags.html#error'>error</a>
-<a style='font-size: 70%' href='/tags.html#vim'>vim</a>
+<a style='font-size: 157%' href='/tags.html#actionscript'>actionscript</a>
+<a style='font-size: 70%' href='/tags.html#ios'>ios</a>
+<a style='font-size: 131%' href='/tags.html#essential actionscript3.0'>essential actionscript3.0</a>
+<a style='font-size: 70%' href='/tags.html#air'>air</a>
+<a style='font-size: 112%' href='/tags.html#stock'>stock</a>
 <a style='font-size: 70%' href='/tags.html#p2p'>p2p</a>
+<a style='font-size: 112%' href='/tags.html#crack'>crack</a>
+<a style='font-size: 70%' href='/tags.html#vim'>vim</a>
+<a style='font-size: 112%' href='/tags.html#swf'>swf</a>
+<a style='font-size: 70%' href='/tags.html#android'>android</a>
 
 	</div>
 	
   <div class="prev-next">
   
-    <a href="/actionscript/2014/08/28/essential-actionscript30-reading-note" class="next" title="Essential Actionscript3.0 读书笔记(一、核心概念)">Next Post &rarr;</a>
+    <a href="/stock/2014/09/19/subscribe-new-stock" class="next" title="关于新股申购">Next Post &rarr;</a>
   
   
-    <a href="/2014/08/06/bitmapdata" class="prev" title="bitmapdata">&larr; Earlier Post</a>
+    <a href="/stock/2014/09/09/stock2" class="prev" title="股票入门之术语学习">&larr; Earlier Post</a>
   
   </div>
   

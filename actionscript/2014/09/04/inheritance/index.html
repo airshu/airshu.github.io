@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-   <title>Inheritance  </title>
+   <title>Essential Actionscript3.0 读书笔记(五、继承)  </title>
    <meta name="author" content="lsj" />
 
    <link rel="start" href="/" />
@@ -72,6 +72,8 @@
     		<a href="tags.html#p2p-ref" id="10" class="__tag" style="margin: 5px">p2p</a>
   		
     		<a href="tags.html#stock-ref" id="11" class="__tag" style="margin: 5px">stock</a>
+  		
+    		<a href="tags.html#android-ref" id="12" class="__tag" style="margin: 5px">android</a>
   		
      </div>
      
@@ -158,13 +160,17 @@ table{border:0}
   
 <div id="page">
 	
-  <h1 class="emphnext">Inheritance</h1>
+  <h1 class="emphnext">Essential Actionscript3.0 读书笔记(五、继承)</h1>
   <ul class="tag_box inline">
   
   
 
 
   
+     
+    	<li><a href="/tags.html#actionscript-ref">actionscript <span>10</span></a></li>
+     
+    	<li><a href="/tags.html#essential actionscript3.0-ref">essential actionscript3.0 <span>5</span></a></li>
     
   
 
@@ -172,7 +178,162 @@ table{border:0}
 
   </ul>
 
-  
+  <h4>第无章、继承</h4>
+
+<p>面向对象编程，就像现实生活中的情况一样，狗是动物、猫也是动物，猫和狗都继承了动物的一些特性。在程序的世界里，继承还能使代码得到重用。ActionScript中只能单继承。静态方法和静态变量不能被继承。但可以在子类中直接访问它们。</p>
+
+<p><strong>继承的基础</strong></p>
+
+<p>首先来看一段代码，有一个类A：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">public class A {
+    public var v = 10;
+    public function m ( ) {
+        trace(&quot;Method m( ) was called&quot;);
+    }
+}
+</code></pre></div>
+<p>然后有一个类B继承了A：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">public class B extends A {
+    // No methods or variables defined
+    function n(){
+    }
+}
+
+var bInstance:B = new B( );
+bInstance.m(); // Displays: Method m( ) was called
+trace(bInstance.v); // Displays: 10
+</code></pre></div>
+<p>实例化B后，调用m()方法，ActionScript会检查B类中是否有这个方法，没有的话，则会从它继承的类里找。</p>
+
+<p><strong>重写实例方法</strong></p>
+
+<p>动物是可以走路的，但有些动物是用两条腿走路，有些用四条腿走路，所以不同的动物走路方式是不一样的，这个时候就需要重新定义走路的方式了。在ActionSctipt中，这个叫做重定义实例方法。请看代码：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">public class Animal{
+    public function move(){
+        trace(&quot;走路啦！&quot;);
+    }
+}
+
+public funtion Dog extends Animal {
+    override public function move(){
+        trace(&quot;四条腿走路！&quot;);
+    }
+}
+
+public funtion Cat extends Animal {
+    override public function move(){
+        super.move();// 调用父类的方法
+        trace(&quot;两条腿走路！&quot;);
+    }
+}
+</code></pre></div>
+<p>重写某个方法需要使用override关键字。重新定义某个方法后，父类的方法就不见了，如果需要调用父级的那个方法，则要使用super关键字，参考Cat类中的写法。还要注意这个用的super和构造函数中的super()是不一样的。</p>
+
+<p><strong>子类中的构造函数</strong></p>
+
+<p>如果子类提供了构造函数，则需要用super关键字调用父级的构造函数，如果没有，则会调用默认的。需要注意的是，子类的构造函数的参数可以与父级不一样，只要super中的参数与父级对应就可以，这与实例函数不同。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">public class Rectange
+{
+    protected var w = 0;
+    protected var h = 0;
+
+    public function Rectange(width, height)
+    {
+        setSize(width, height);
+
+    }
+
+    public function setSize (newW, newH) {
+        w = newW;
+        h = newH;
+    }
+
+    public function getArea ( ) {
+        return w * h;
+    }
+}
+
+public class Square extends Rectange
+{
+    public function Square(side)
+    {
+        super(side, side);
+    }
+}
+</code></pre></div>
+<p><strong>防止被继承或重写</strong></p>
+
+<p>为了防止类被继承，类的实例方法被重写，使用final关键字来修饰。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">final public class A {
+}
+</code></pre></div>
+<p>A类将不能被其他类继承。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">public class A {
+    final public function m ( ) {
+    }
+}
+</code></pre></div>
+<p>m()函数不能被子类重写。</p>
+
+<p>使用final关键字有两个好处：</p>
+
+<p>某些情况下，final关键字修饰的方法要比没有final修饰的方法执行的更快。</p>
+
+<p>final能隐藏部分实现细节。</p>
+
+<p><strong>继承的理论知识</strong></p>
+
+<p>使用继承最大的好处的是代码重用。当对父类进行修改时，所有子类都会自动继承它新的特性，减少了代码修改量。</p>
+
+<p><strong>多态和动态绑定</strong></p>
+
+<p>多态是所有面向对象语言的一个重要特性。每一个类的实例都可以被看成是它自己或其所有父类的一种形态。</p>
+
+<p>多态典型的例子是画图应用。这个应用定义了Shape类：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">public class Shape {
+    public function draw ( ) {
+    // No implementation. In some other languages, draw( ) would be
+    // declared with the abstract attribute, which syntactically
+    // forces subclasses of Shape to provide an implementation.
+    }
+}
+</code></pre></div>
+<p>Shape有许多个子类：Circle、Rectangle、Triangle，每一个子类都有自定义的draw()方法：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">public class Circle extends Shape {
+    override public function draw ( ) {
+    // Code to draw a Circle on screen, not shown...
+    }
+}
+public class Rectangle extends Shape {
+    override public function draw ( ) {
+    // Code to draw a Rectangle on screen, not shown...
+    }
+}
+public class Triangle extends Shape {
+    override public function draw ( ) {
+    // Code to draw a Triangle on screen, not shown...
+    }
+}
+</code></pre></div>
+<p>为了将图形添加到屏幕上，我们传递Circle、Rectangle、Triangle实例给addShape()方法，在主类中添加该方法：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">    public function addShape(newShape){
+        newShape.draw();
+    }
+</code></pre></div>
+<p>addShape()方法调用shape的draw()方法，这是关键点，newShape可能是Circle、Rectangle、Triangle中的任何一种类型。这个过程叫做动态绑定。</p>
+
+<p>继承关系被叫做Is-A，就好像说狗是动物，猫是动物。而组合被叫做Has-A，表示A中有一个B。</p>
+
+<p>继承和组合的选择：</p>
+
+<p>*如果一个类需要使用其他类的服务，则考虑组合。</p>
+
+<p>*如果类的行为很像已经存在的类，则使用继承。</p>
+
+<p><strong>抽象不被支持</strong></p>
+
+<p>许多面向对象的设计会使用抽象类。抽象类定义了抽象方法(没有方法体的方法)。所有继承它的类都要实现这些抽象方法。但ActionScript不支持抽象类和抽象方法。变相的处理时，父类的方法体为空。</p>
+
 
   <address class="signature">
     <a class="author" href="/">lsj</a> 
@@ -182,17 +343,18 @@ table{border:0}
   
   
 	<div class='cloud'>
-		<a style='font-size: 70%' href='/tags.html#stock'>stock</a>
-<a style='font-size: 70%' href='/tags.html#ios'>ios</a>
-<a style='font-size: 112%' href='/tags.html#crack'>crack</a>
-<a style='font-size: 70%' href='/tags.html#p2p'>p2p</a>
-<a style='font-size: 70%' href='/tags.html#air'>air</a>
-<a style='font-size: 153%' href='/tags.html#actionscript'>actionscript</a>
-<a style='font-size: 70%' href='/tags.html#vim'>vim</a>
-<a style='font-size: 123%' href='/tags.html#essential actionscript3.0'>essential actionscript3.0</a>
+		<a style='font-size: 157%' href='/tags.html#actionscript'>actionscript</a>
+<a style='font-size: 70%' href='/tags.html#android'>android</a>
+<a style='font-size: 112%' href='/tags.html#stock'>stock</a>
 <a style='font-size: 112%' href='/tags.html#swf'>swf</a>
-<a style='font-size: 70%' href='/tags.html#error'>error</a>
+<a style='font-size: 131%' href='/tags.html#essential actionscript3.0'>essential actionscript3.0</a>
+<a style='font-size: 70%' href='/tags.html#p2p'>p2p</a>
+<a style='font-size: 70%' href='/tags.html#ios'>ios</a>
+<a style='font-size: 70%' href='/tags.html#vim'>vim</a>
+<a style='font-size: 112%' href='/tags.html#crack'>crack</a>
 <a style='font-size: 170%' href='/tags.html#fms'>fms</a>
+<a style='font-size: 70%' href='/tags.html#air'>air</a>
+<a style='font-size: 70%' href='/tags.html#error'>error</a>
 
 	</div>
 	
