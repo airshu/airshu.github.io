@@ -4,13 +4,495 @@
  <title>alonepig's blog</title>
  <link href="http://alonepig.github.io/" rel="self"/>
  <link href="http://alonepig.github.io"/>
- <updated>2014-09-19T17:58:02+08:00</updated>
+ <updated>2014-10-21T17:59:35+08:00</updated>
  <id>http://alonepig.github.io</id>
  <author>
    <name>lsj</name>
    <email>alonelsj@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>android fragment学习笔记</title>
+   <link href="http://alonepig.github.io/android/2014/10/21/android-fragment"/>
+   <updated>2014-10-21T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/android/2014/10/21/android-fragment</id>
+   <content type="html">&lt;p&gt;&lt;strong&gt;1、什么是Fragment？&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;就像它的字面意思，Fragment表示不同的碎片。主要的作用是在不同尺寸的屏幕中使用，不需要不停的切换activity。Fragments必须绑定到宿主Activities中，不能独立于Activities运行。Fragment能自定义布局视图，有自己的生命周期。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2、不同SDK版本中如何使用Fragment？&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;在Honeycomb和以后的版本中实现了该API，主要用到的类有：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;android.app.Fragment      
+android.app.Fragmentmanager      
+android.app.FragmentTransaction
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;如果使用较早的版本则需要添加兼容库，主要用到的类有：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;android.support.v4.app.FragmentActivity
+android.support.v4.app.Fragment
+android.support.v4.app.FragmentManager
+android.support.v4.app.FragmentTransaction
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;3、Fragment的生命周期&lt;/strong&gt;&lt;/p&gt;
+
+&lt;table border=&quot;1&quot;&gt;
+&lt;tr&gt;
+&lt;td&gt;Activity 状态&lt;/td&gt;
+&lt;td&gt;Fragment 回调&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Created&lt;/td&gt;
+&lt;td&gt;
+onAttach()    当fragment关联到activity时调用&lt;br/&gt;
+    ↓&lt;br/&gt;
+onCreate()&lt;br/&gt;
+    ↓&lt;br/&gt;
+onCreateView()    创建视图的时候调用，这个方法重写时一定要super&lt;br/&gt;
+    ↓&lt;br/&gt;
+onActivityCreated()    当activity的onCreate方法调用时调用&lt;br/&gt;
+    ↓&lt;br/&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Started&lt;/td&gt;
+&lt;td&gt;
+onStart()&lt;br/&gt;
+    ↓
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Resumed&lt;/td&gt;
+&lt;td&gt;
+onResume()&lt;br/&gt;
+    ↓
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;
+Paused
+&lt;/td&gt;
+&lt;td&gt;
+onPause()&lt;br/&gt;
+    ↓
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Stopped&lt;/td&gt;
+&lt;td&gt;
+onStop()&lt;br/&gt;
+    ↓
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Destroyed&lt;/td&gt;
+&lt;td&gt;
+onDestroyView()    当层级视图被移除时调用&lt;br/&gt;
+    ↓&lt;br/&gt;
+onDestroy()&lt;br/&gt;
+    ↓&lt;br/&gt;
+onDetach()    当fragment与activity断开连接时调用
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;/table&gt;
+
+&lt;p&gt;&lt;strong&gt;4、创建Fragment&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;public class MyFragment extends Fragment {
+
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+    //R.layout.my_fragment 对应为Fragment的布局文件
+        View view = inflater.inflate(R.layout.my_fragment, null);
+        return view;
+    }
+
+    ....
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;5、初始化Fragment&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;有两种方式：在布局文件中直接初始化Fragment，或者代码进行初始化。&lt;/p&gt;
+
+&lt;p&gt;布局文件添加Fragment的方法，使用&lt;fragment&gt;标签，android:name属性的值为Fragment的权限定名&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;
+&amp;lt;LinearLayout xmlns:android=&amp;quot;http://schemas.android.com/apk/res/android&amp;quot;
+     android:orientation=&amp;quot;horizontal&amp;quot;
+     android:layout_width=&amp;quot;match_parent&amp;quot;
+     android:layout_height=&amp;quot;match_parent&amp;quot;&amp;gt;
+     &amp;lt;fragment android:name=&amp;quot;com.example.news.ArticleListFragment&amp;quot;    
+          android:id=&amp;quot;@+id/list&amp;quot;
+          android:layout_weight=&amp;quot;1&amp;quot;
+          android:layout_width=&amp;quot;0dp&amp;quot;
+          android:layout_height=&amp;quot;match_parent&amp;quot; /&amp;gt;
+     &amp;lt;fragment android:name=&amp;quot;com.example.news.ArticleReaderFragment&amp;quot;
+          android:id=&amp;quot;@+id/viewer&amp;quot;
+          android:layout_weight=&amp;quot;2&amp;quot;
+          android:layout_width=&amp;quot;0dp&amp;quot;
+          android:layout_height=&amp;quot;match_parent&amp;quot; /&amp;gt;
+&amp;lt;/LinearLayout&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;代码中初始化：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;FragmentManager fragmentManager = getFragmentManager();//获取FragmentManager
+// Or: FragmentManager fragmentManager = getSupportFragmentManager()
+FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();//获取FragmentTransaction
+ExampleFragment fragment = new ExampleFragment();
+fragmentTransaction.add(R.id.fragment_container, fragment);//添加到容器中
+fragmentTransaction.commit();//提交事务
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;6、Fragment的操作&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;add      添加一个fragment到activity。Fragment生命周期中的onAttach-onResume都会被调用一次。
+remove      移除一个fragment。onPause-onDetach都会被调用一次。
+replace     会使得原来的Fragment被销毁。
+hide      隐藏UI，生命周期方法不会被执行，仅仅使View被隐藏。
+show      显示前面隐藏的UI
+detach     使fragment和UI分开，销毁层次视图但保留fragment实例。onPause-onDestroyView都会被调用。
+attach      恢复前面detach的。onCreateView-onResume都会被调用。
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这里需要注意的地方是：上面这些方法只能用在动态的Fragment中。在不同Fragment来回切换时，每次都会调用onCreateView方法，这里就可以做优化，不需要每次都重新构建布局视图。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;7、管理Fragment回退栈&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;将Fragment添加到回退栈中，用户点击回退按钮会响应。只需要在提交事务之前调用addToBackStack方法即可将其添加到回退栈。如果在替换或移除时调用addBackStack方法，系统则只会调用onPause、onStop、onDestroyView，而不会调用onDestroy、onDetach方法。如果用户向前导航，系统就会调用onCreateView、onActivityCreated、onStart、onResume来回到原来的Fragment视图。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;8、与Activity通讯&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Fragment可以访问Activity实例：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;View listView = getActivity().findViewById(R.id.list);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Activity中也可以访问具体某个Fragment：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;getFragmentManager().findFragmentById(R.id.example_fragment);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;可以创建事件回调方法：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;public static class FragmentA extends ListFragment {
+    ...
+    // 宿主Activity必须实现这个接口
+    public interface OnArticleSelectedListener {
+        public void onArticleSelected(Uri articleUri);
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            mListener = (OnArticleSelectedListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + &amp;quot; must implement OnArticleSelectedListener&amp;quot;);
+        }
+    }
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        // Append the clicked item&amp;#39;s row ID with the content provider Uri
+        Uri noteUri = ContentUris.withAppendedId(ArticleColumns.CONTENT_URI, id);
+        // Send the event and Uri to the host activity
+        mListener.onArticleSelected(noteUri);
+    }
+
+    ...
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;9、Fragment中使用上下文菜单和Menu菜单&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;public class MyActivity extends Activity {
+    // ...
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+       getMenuInflater().inflate(R.menu.activity_options, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        case R.id.menu_activity_info:
+           // Handle activity menu item
+           return true;
+        default:
+           // Handle fragment menu items
+           return super.onOptionsItemSelected(item);
+       }
+    }
+    // ...
+}
+
+
+
+public class MyFragment extends Fragment {
+    // ...
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+       setHasOptionsMenu( true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu( Menu menu, MenuInflater inflater) {
+       inflater.inflate(R.menu. myfragment_options, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        case R.id.menu_first_info:
+           // Handle fragment menu item
+           return true;
+        default:
+           // Not one of ours. Perform default menu processing
+           return super.onOptionsItemSelected(item);
+       }
+    }
+    // ...
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Menu菜单：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;public static class ContextMenuFragment extends Fragment {
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout. fragment_context_menu , container, false );
+        registerForContextMenu(root.findViewById(R.id. long_press));
+        return root;
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.add(Menu. NONE, R.id.a_item, Menu.NONE, &amp;quot;Menu A&amp;quot;);
+        menu.add(Menu. NONE, R.id.b_item, Menu.NONE, &amp;quot;Menu B&amp;quot;);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.a_item:
+                Toast. makeText(getActivity(), &amp;quot;Item 1a was chosen&amp;quot;, Toast.LENGTH_SHORT ).show();
+                return true;
+            case R.id.b_item:
+                Toast. makeText(getActivity(), &amp;quot;Item 1b was chosen&amp;quot;, Toast.LENGTH_SHORT ).show();
+                return true;
+        }
+        return super.onContextItemSelected(item);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>ActionScript和JavaScript之间的通讯</title>
+   <link href="http://alonepig.github.io/actionscript/2014/10/16/communication-between-as-and-js"/>
+   <updated>2014-10-16T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/actionscript/2014/10/16/communication-between-as-and-js</id>
+   <content type="html">&lt;p&gt;ActionScript和JavaScript间的通讯主要是对ExternalInterface的使用，在这个类中有两个关键的函数：&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;addCallback&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;将 ActionScript 方法注册为可从容器调用。成功调用 addCallBack() 后，容器中的 JavaScript 或 ActiveX 代码可以调用在 Flash Player 中注册的函数。 &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;call&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;调用由 Flash Player 容器公开的函数，不传递参数或传递多个参数。如果该函数不可用，调用将返回 null；否则，它返回由该函数提供的值。不允许在 Opera 或 Netscape 浏览器中使用递归；在这些浏览器上，递归调用将生成 null 响应。（Internet Explorer 和 Firefox 浏览器上支持递归。）。如果该容器是 HTML 页，则此方法在 script 元素中调用 JavaScript 函数。如果该容器是某个其它 ActiveX 容器，此方法将使用指定的名称调度 FlashCall ActiveX 事件，并且该容器将处理该事件。如果该容器承载 Netscape 插件，您可以写入对新 NPRuntime 接口的自定义支持或嵌入 HTML 控件以及在 HTML 控件内嵌入 Flash Player。如果嵌入 HTML 控件，则可以通过本机容器应用程序的 JavaScript 接口与 Flash Player 进行通信。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;参考例子&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;package {
+    import flash.display.Sprite;
+    import flash.events.*;
+    import flash.external.ExternalInterface;
+    import flash.text.TextField;
+    import flash.utils.Timer;
+    import flash.text.TextFieldType;
+    import flash.text.TextFieldAutoSize;
+
+    public class ExternalInterfaceExample extends Sprite {
+        private var input:TextField;
+        private var output:TextField;
+        private var sendBtn:Sprite;
+
+        public function ExternalInterfaceExample() {
+            input = new TextField();
+            input.type = TextFieldType.INPUT;
+            input.background = true;
+            input.border = true;
+            input.width = 350;
+            input.height = 18;
+            addChild(input);
+
+            sendBtn = new Sprite();
+            sendBtn.mouseEnabled = true;
+            sendBtn.x = input.width + 10;
+            sendBtn.graphics.beginFill(0xCCCCCC);
+            sendBtn.graphics.drawRoundRect(0, 0, 80, 18, 10, 10);
+            sendBtn.graphics.endFill();
+            sendBtn.addEventListener(MouseEvent.CLICK, clickHandler);
+            addChild(sendBtn);
+
+            output = new TextField();
+            output.y = 25;
+            output.width = 450;
+            output.height = 325;
+            output.multiline = true;
+            output.wordWrap = true;
+            output.border = true;
+            output.text = &amp;quot;Initializing...\n&amp;quot;;
+            addChild(output);
+
+            if (ExternalInterface.available) {
+                try {
+                    output.appendText(&amp;quot;Adding callback...\n&amp;quot;);
+                    ExternalInterface.addCallback(&amp;quot;sendToActionScript&amp;quot;, receivedFromJavaScript);
+                    if (checkJavaScriptReady()) {
+                        output.appendText(&amp;quot;JavaScript is ready.\n&amp;quot;);
+                    } else {
+                        output.appendText(&amp;quot;JavaScript is not ready, creating timer.\n&amp;quot;);
+                        var readyTimer:Timer = new Timer(100, 0);
+                        readyTimer.addEventListener(TimerEvent.TIMER, timerHandler);
+                        readyTimer.start();
+                    }
+                } catch (error:SecurityError) {
+                    output.appendText(&amp;quot;A SecurityError occurred: &amp;quot; + error.message + &amp;quot;\n&amp;quot;);
+                } catch (error:Error) {
+                    output.appendText(&amp;quot;An Error occurred: &amp;quot; + error.message + &amp;quot;\n&amp;quot;);
+                }
+            } else {
+                output.appendText(&amp;quot;External interface is not available for this container.&amp;quot;);
+            }
+        }
+        private function receivedFromJavaScript(value:String):void {
+            output.appendText(&amp;quot;JavaScript says: &amp;quot; + value + &amp;quot;\n&amp;quot;);
+        }
+        private function checkJavaScriptReady():Boolean {
+            var isReady:Boolean = ExternalInterface.call(&amp;quot;isReady&amp;quot;);
+            return isReady;
+        }
+        private function timerHandler(event:TimerEvent):void {
+            output.appendText(&amp;quot;Checking JavaScript status...\n&amp;quot;);
+            var isReady:Boolean = checkJavaScriptReady();
+            if (isReady) {
+                output.appendText(&amp;quot;JavaScript is ready.\n&amp;quot;);
+                Timer(event.target).stop();
+            }
+        }
+        private function clickHandler(event:MouseEvent):void {
+            if (ExternalInterface.available) {
+                ExternalInterface.call(&amp;quot;sendToJavaScript&amp;quot;, input.text);
+            }
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;html页面&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;lt;!-- saved from url=(0014)about:internet --&amp;gt;
+&amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt;
+&amp;lt;head&amp;gt;
+&amp;lt;meta http-equiv=&amp;quot;Content-Type&amp;quot; content=&amp;quot;text/html; charset=utf-8&amp;quot; /&amp;gt;
+&amp;lt;title&amp;gt;ExternalInterfaceExample&amp;lt;/title&amp;gt;
+&amp;lt;script language=&amp;quot;JavaScript&amp;quot;&amp;gt;
+ var jsReady = false;
+ function isReady() {
+     return jsReady;
+ }
+ function pageInit() {
+     jsReady = true;
+     document.forms[&amp;quot;form1&amp;quot;].output.value += &amp;quot;\n&amp;quot; + &amp;quot;JavaScript is ready.\n&amp;quot;;
+ }
+ function thisMovie(movieName) {
+     if (navigator.appName.indexOf(&amp;quot;Microsoft&amp;quot;) != -1) {
+         return window[movieName];
+     } else {
+         return document[movieName];
+     }
+ }
+ function sendToActionScript(value) {
+     thisMovie(&amp;quot;ExternalInterfaceExample&amp;quot;).sendToActionScript(value);
+ }
+ function sendToJavaScript(value) {
+     document.forms[&amp;quot;form1&amp;quot;].output.value += &amp;quot;ActionScript says: &amp;quot; + value + &amp;quot;\n&amp;quot;;
+ }
+&amp;lt;/script&amp;gt;
+&amp;lt;/head&amp;gt;
+&amp;lt;body onload=&amp;quot;pageInit();&amp;quot;&amp;gt;
+
+ &amp;lt;object classid=&amp;quot;clsid:D27CDB6E-AE6D-11cf-96B8-444553540000&amp;quot;
+         id=&amp;quot;ExternalInterfaceExample&amp;quot; width=&amp;quot;500&amp;quot; height=&amp;quot;375&amp;quot;
+         codebase=&amp;quot;http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab&amp;quot;&amp;gt;
+     &amp;lt;param name=&amp;quot;movie&amp;quot; value=&amp;quot;ExternalInterfaceExample.swf&amp;quot; /&amp;gt;
+     &amp;lt;param name=&amp;quot;quality&amp;quot; value=&amp;quot;high&amp;quot; /&amp;gt;
+     &amp;lt;param name=&amp;quot;bgcolor&amp;quot; value=&amp;quot;#869ca7&amp;quot; /&amp;gt;
+     &amp;lt;param name=&amp;quot;allowScriptAccess&amp;quot; value=&amp;quot;sameDomain&amp;quot; /&amp;gt;
+     &amp;lt;embed src=&amp;quot;ExternalInterfaceExample.swf&amp;quot; quality=&amp;quot;high&amp;quot; bgcolor=&amp;quot;#869ca7&amp;quot;
+         width=&amp;quot;500&amp;quot; height=&amp;quot;375&amp;quot; name=&amp;quot;ExternalInterfaceExample&amp;quot; align=&amp;quot;middle&amp;quot;
+         play=&amp;quot;true&amp;quot; loop=&amp;quot;false&amp;quot; quality=&amp;quot;high&amp;quot; allowScriptAccess=&amp;quot;sameDomain&amp;quot;
+         type=&amp;quot;application/x-shockwave-flash&amp;quot;
+         pluginspage=&amp;quot;http://www.macromedia.com/go/getflashplayer&amp;quot;&amp;gt;
+     &amp;lt;/embed&amp;gt;
+ &amp;lt;/object&amp;gt;
+
+ &amp;lt;form name=&amp;quot;form1&amp;quot; onsubmit=&amp;quot;return false;&amp;quot;&amp;gt;
+     &amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;input&amp;quot; value=&amp;quot;&amp;quot; /&amp;gt;
+     &amp;lt;input type=&amp;quot;button&amp;quot; value=&amp;quot;Send&amp;quot; onclick=&amp;quot;sendToActionScript(this.form.input.value);&amp;quot; /&amp;gt;&amp;lt;br /&amp;gt;
+     &amp;lt;textarea cols=&amp;quot;60&amp;quot; rows=&amp;quot;20&amp;quot; name=&amp;quot;output&amp;quot; readonly=&amp;quot;true&amp;quot;&amp;gt;Initializing...&amp;lt;/textarea&amp;gt;
+ &amp;lt;/form&amp;gt;
+
+&amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;需要注意的地方：如果是本地测试，需要注意沙箱问题。应该将swf所在文件夹添加到可信任域中。然后在html页中，设置以下标签：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;lt;param name=&amp;quot;allowScriptAccess&amp;quot; value=&amp;quot;always&amp;quot; /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;在swf文件中，添加以下代码：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;flash.system.Security.allowDomain(sourceDomain)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>java 类型转换</title>
+   <link href="http://alonepig.github.io/java/2014/09/23/java-type-conversion"/>
+   <updated>2014-09-23T00:00:00+08:00</updated>
+   <id>http://alonepig.github.io/java/2014/09/23/java-type-conversion</id>
+   <content type="html">&lt;p&gt;最近在做Android方面的东西，进行的过程中，发现许多地方都不记得了。唉！Number类型是个神马都没印象了。还是再翻一翻《think in java》，总结一下吧！&lt;/p&gt;
+
+&lt;p&gt;简单数据类型之间的转换，由低到高：
+(byte,short,char)--&amp;gt;int--&amp;gt;long--&amp;gt;float--&amp;gt;double&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;低级到高级自动转换&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;byte b;
+int i = b;
+long l = b;
+float f = b;
+double d = b;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;如果低级类型为char型，向高级类型(整型)转换时，会转换为对应的ASCII码值，例如：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;char c = &amp;#39;c&amp;#39;;
+int i = c;
+System.out.println(i);//99
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;对于byte、short、char三种类型，它们是平级的，不能相互转换，可以使用下面的方法强制转换。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;short i = 99;
+char c = (char)i;
+System.out.print(c);//&amp;#39;c&amp;#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;高级到低级强制类型转换&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;int i=99;
+byte b=(byte)i;
+char c=(char)i;
+float f=(float)i;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;包装类过度类型能够转换&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;共有6个包装类：Boolean、Character、Integer、Long、Float、Double。它们都基础自Number类型。Number包含了各种数据转换的方法：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;public abstract int intValue();
+
+public abstract long longValue();
+
+public abstract float floatValue();
+
+public abstract double doubleValue();
+
+public byte byteValue()
+
+public short shortValue()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
+ </entry>
  
  <entry>
    <title>关于新股申购</title>

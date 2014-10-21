@@ -9,6 +9,9 @@ http://alonepig.github.io/rss.xml
 http://alonepig.github.io/sitemap.txt
 http://alonepig.github.io/tags.html
 
+http://alonepig.github.io/android/2014/10/21/android-fragment
+http://alonepig.github.io/actionscript/2014/10/16/communication-between-as-and-js
+http://alonepig.github.io/java/2014/09/23/java-type-conversion
 http://alonepig.github.io/stock/2014/09/19/subscribe-new-stock
 http://alonepig.github.io/android/2014/09/16/andengine-for-android-game-development1
 http://alonepig.github.io/stock/2014/09/09/stock2

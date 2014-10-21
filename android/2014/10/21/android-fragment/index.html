@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-   <title>Essential Actionscript3.0 读书笔记(一、核心概念)  </title>
+   <title>android fragment学习笔记  </title>
    <meta name="author" content="lsj" />
 
    <link rel="start" href="/" />
@@ -162,7 +162,7 @@ table{border:0}
   
 <div id="page">
 	
-  <h1 class="emphnext">Essential Actionscript3.0 读书笔记(一、核心概念)</h1>
+  <h1 class="emphnext">android fragment学习笔记</h1>
   <ul class="tag_box inline">
   
   
@@ -170,9 +170,7 @@ table{border:0}
 
   
      
-    	<li><a href="/tags.html#actionscript-ref">actionscript <span>11</span></a></li>
-     
-    	<li><a href="/tags.html#essential actionscript3.0-ref">essential actionscript3.0 <span>5</span></a></li>
+    	<li><a href="/tags.html#android-ref">android <span>2</span></a></li>
     
   
 
@@ -180,277 +178,294 @@ table{border:0}
 
   </ul>
 
-  <h4>第一章：核心概念</h4>
+  <p><strong>1、什么是Fragment？</strong></p>
 
-<p>什么是程序？程序是由一组可被计算机编译并执行的指令。大家能够看懂的程序中的文本叫做源代码。写这个代码的人叫程序猿，高级一点的叫法叫软件工程师。不同的程序由不同的语言实现，就像有人讲英语有人讲法语。</p>
+<p>就像它的字面意思，Fragment表示不同的碎片。主要的作用是在不同尺寸的屏幕中使用，不需要不停的切换activity。Fragments必须绑定到宿主Activities中，不能独立于Activities运行。Fragment能自定义布局视图，有自己的生命周期。</p>
 
-<p><strong>写ActionScript代码的工具</strong></p>
+<p><strong>2、不同SDK版本中如何使用Fragment？</strong></p>
 
-<p>你可以使用任何一种文本编辑器来写，也可以使用Flash Builder或Flash Professional等IDE来写，甚至可以使用VIM编辑器来写，看个人喜好啦！但个人建议刚开始学时可以用纯文本的形式+命令行编译，这样能够更深刻的了解运行原理，后面开始做项目了推荐使用Flash Builder等大型IDE，里面集成的工具方便你调试和更快的开发。</p>
+<p>在Honeycomb和以后的版本中实现了该API，主要用到的类有：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">android.app.Fragment      
+android.app.Fragmentmanager      
+android.app.FragmentTransaction
+</code></pre></div>
+<p>如果使用较早的版本则需要添加兼容库，主要用到的类有：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">android.support.v4.app.FragmentActivity
+android.support.v4.app.Fragment
+android.support.v4.app.FragmentManager
+android.support.v4.app.FragmentTransaction
+</code></pre></div>
+<p><strong>3、Fragment的生命周期</strong></p>
 
-<p><strong>Flash客户端运行时环境</strong></p>
+<table border="1">
+<tr>
+<td>Activity 状态</td>
+<td>Fragment 回调</td>
+</tr>
+<tr>
+<td>Created</td>
+<td>
+onAttach()    当fragment关联到activity时调用<br/>
+    ↓<br/>
+onCreate()<br/>
+    ↓<br/>
+onCreateView()    创建视图的时候调用，这个方法重写时一定要super<br/>
+    ↓<br/>
+onActivityCreated()    当activity的onCreate方法调用时调用<br/>
+    ↓<br/>
+</td>
+</tr>
+<tr>
+<td>Started</td>
+<td>
+onStart()<br/>
+    ↓
+</td>
+</tr>
+<tr>
+<td>Resumed</td>
+<td>
+onResume()<br/>
+    ↓
+</td>
+</tr>
+<tr>
+<td>
+Paused
+</td>
+<td>
+onPause()<br/>
+    ↓
+</td>
+</tr>
+<tr>
+<td>Stopped</td>
+<td>
+onStop()<br/>
+    ↓
+</td>
+</tr>
+<tr>
+<td>Destroyed</td>
+<td>
+onDestroyView()    当层级视图被移除时调用<br/>
+    ↓<br/>
+onDestroy()<br/>
+    ↓<br/>
+onDetach()    当fragment与activity断开连接时调用
+</td>
+</tr>
 
-<p>ActionScript代码可以被三种不同的应用软件执行：Flash Player、Adobe AIR、Flash Lite。</p>
-
-<p><strong>编译</strong></p>
-
-<p>为了能让Flash运行时环境能够执行ActionScript代码，需要对其进行编译，将其转换成ActionScript字节码，并包装到swf文件中。</p>
-
-<p><strong>实时编译</strong></p>
-
-<p>一种利用在运行时将字节码(Bytecode)翻译为机器码(Machine code)，并保存在内存中, 在后续的运行中直接调用机器码, 从而改善字节码编译语言性能的技术。这个技术比较高深，特别是在研究指令集的时候会碰到。需要深入学习的话，请查阅相关资料。</p>
-
-<p><strong>类和对象</strong></p>
-
-<p>试想一下，如果让你造一架飞机，你会怎么做？嗯，应该先画一张图纸，然后制造图纸上不同的零件然后组装起来。在程序世界中，也是这样，先有不同的类，类可以表示有形或无形的东西，比如可以表示数字，可以表示可点击的按钮，可以表示图片模糊的效果。类的实例的集合就构成一个应用程序啦！</p>
-
-<p>在ActionScript中定义了以下基本类型：</p>
-
-<table>
-    <tr>
-        <td>类</td>
-        <td>描述</td>
-    </tr>
-    <tr>
-        <td>String</td>
-        <td>字符串，表示文本数据</td>
-    </tr>
-    <tr>
-        <td>Boolean</td>
-        <td>布尔值，表示逻辑状态真或假</td>
-    </tr>
-    <tr>
-        <td>Number</td>
-        <td>浮点型数字</td>
-    </tr>
-    <tr>
-        <td>int</td>
-        <td>整型数字</td>
-    </tr>
-    <tr>
-        <td>uint</td>
-        <td>正数整型数字</td>
-    </tr>
-    <tr>
-        <td>Array</td>
-        <td>数组，有序集合</td>
-    </tr>
-    <tr>
-        <td>Error</td>
-        <td>程序错误的类</td>
-    </tr>
-    <tr>
-        <td>Date</td>
-        <td>时间类</td>
-    </tr>
-    <tr>
-        <td>Math</td>
-        <td>数学运算类</td>
-    </tr>
-    <tr>
-        <td>RegExp</td>
-        <td>正则表达式</td>
-    </tr>
-    <tr>
-        <td>Function</td>
-        <td>可执行、可重用的指令集和</td>
-    </tr>
-    <tr>
-        <td>Object</td>
-        <td>所有ActionScript类的基类</td>
-    </tr>
 </table>
 
-<p><strong>创建一个程序</strong></p>
+<p><strong>4、创建Fragment</strong></p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">public class MyFragment extends Fragment {
 
-<p>一个应用程序由多个类文件构成，类文件包含类名、多个Function，由一个主类文件作为整个程序的入口。ActionScript类文件都是以扩展名为.as结尾的文本文件。这里我们新建一个名叫virtualzoo的程序，目录结构如下：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">virtualzoo
-    |- src
-        |- VirtualZoo.as
-</code></pre></div>
-<p><strong>包</strong></p>
-
-<p>为什么要有包的概念？可以想像，如果所有的类文件都放到同一个目录下，那同名了肿么办？因此，你可以创建复杂的包结构，将不同类型的类放在不同的包中。基本的写法如下：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">package packageName {
-    public ClassA(){}
-}
-</code></pre></div>
-<p>这里的packageName表示包的权限定名，就是说，如果你的类文件在A文件夹的B文件夹中，则packageName为A.B。(文件夹之间以.号隔开)package是ActionScript的关键字。什么叫关键字呢，最简单的理解就是有关键作用的字，哈哈！现在你要记住的就是它是关键字，关键字不能作为类名、方法名来用。package告诉ActionScript要创建一个叫packageName的包，包后面的花括号里定义了很多语句块。</p>
-
-<p>下面我们将VirtualZoo文件放到包zoo中，目录结构为下：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">virtualzoo
-    |- src
-        |- zoo
-            |- VirtualZoo.as    
-</code></pre></div>
-<p><strong>定义类</strong></p>
-
-<p>为了定义类，我们要使用class关键字：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">class Identifier {
-}
-</code></pre></div>
-<p>类定义以class关键字开始，后面跟着类名(是不是跟包的定义很类似)。类的名字也有要求，不能以数字开头，只能包含下划线、字母、数字、美元符号$。</p>
-
-<p><strong>类访问控制修饰符</strong></p>
-
-<p>默认情况下，一个类只能被同一个包下的其他类访问。但可以通过访问修饰符来改变访问权限。在ActionScript中，类有以下访问权限：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">public:全局可以访问
-internal(或不写)：当前包下访问
-</code></pre></div>
-<p><strong>构造函数</strong></p>
-
-<p>构造函数是类初始化的入口，写法如下：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">class SomeClass{
-    function SomeClass(){
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+    //R.layout.my_fragment 对应为Fragment的布局文件
+        View view = inflater.inflate(R.layout.my_fragment, null);
+        return view;
     }
+
+    ....
 }
 </code></pre></div>
-<p>构造函数的名字和类名是一样的！funciton关键字表示函数，函数名后面的小括号包含了传递进来的参数。花括号里为函数体。如果类没有定义构造函数，则ActionScript会提供一个默认的不带参数的构造函数。
-从ActionScript3.0开始，构造函数的默认访问修饰符都是public，所以上面的写法跟下面的写法效果是一样的：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">class SomeClass{
-    public function SomeClass(){
+<p><strong>5、初始化Fragment</strong></p>
+
+<p>有两种方式：在布局文件中直接初始化Fragment，或者代码进行初始化。</p>
+
+<p>布局文件添加Fragment的方法，使用<fragment>标签，android:name属性的值为Fragment的权限定名</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+     android:orientation=&quot;horizontal&quot;
+     android:layout_width=&quot;match_parent&quot;
+     android:layout_height=&quot;match_parent&quot;&gt;
+     &lt;fragment android:name=&quot;com.example.news.ArticleListFragment&quot;    
+          android:id=&quot;@+id/list&quot;
+          android:layout_weight=&quot;1&quot;
+          android:layout_width=&quot;0dp&quot;
+          android:layout_height=&quot;match_parent&quot; /&gt;
+     &lt;fragment android:name=&quot;com.example.news.ArticleReaderFragment&quot;
+          android:id=&quot;@+id/viewer&quot;
+          android:layout_weight=&quot;2&quot;
+          android:layout_width=&quot;0dp&quot;
+          android:layout_height=&quot;match_parent&quot; /&gt;
+&lt;/LinearLayout&gt;
+</code></pre></div>
+<p>代码中初始化：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">FragmentManager fragmentManager = getFragmentManager();//获取FragmentManager
+// Or: FragmentManager fragmentManager = getSupportFragmentManager()
+FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();//获取FragmentTransaction
+ExampleFragment fragment = new ExampleFragment();
+fragmentTransaction.add(R.id.fragment_container, fragment);//添加到容器中
+fragmentTransaction.commit();//提交事务
+</code></pre></div>
+<p><strong>6、Fragment的操作</strong></p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">add      添加一个fragment到activity。Fragment生命周期中的onAttach-onResume都会被调用一次。
+remove      移除一个fragment。onPause-onDetach都会被调用一次。
+replace     会使得原来的Fragment被销毁。
+hide      隐藏UI，生命周期方法不会被执行，仅仅使View被隐藏。
+show      显示前面隐藏的UI
+detach     使fragment和UI分开，销毁层次视图但保留fragment实例。onPause-onDestroyView都会被调用。
+attach      恢复前面detach的。onCreateView-onResume都会被调用。
+</code></pre></div>
+<p>这里需要注意的地方是：上面这些方法只能用在动态的Fragment中。在不同Fragment来回切换时，每次都会调用onCreateView方法，这里就可以做优化，不需要每次都重新构建布局视图。</p>
+
+<p><strong>7、管理Fragment回退栈</strong></p>
+
+<p>将Fragment添加到回退栈中，用户点击回退按钮会响应。只需要在提交事务之前调用addToBackStack方法即可将其添加到回退栈。如果在替换或移除时调用addBackStack方法，系统则只会调用onPause、onStop、onDestroyView，而不会调用onDestroy、onDetach方法。如果用户向前导航，系统就会调用onCreateView、onActivityCreated、onStart、onResume来回到原来的Fragment视图。</p>
+
+<p><strong>8、与Activity通讯</strong></p>
+
+<p>Fragment可以访问Activity实例：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">View listView = getActivity().findViewById(R.id.list);
+</code></pre></div>
+<p>Activity中也可以访问具体某个Fragment：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">getFragmentManager().findFragmentById(R.id.example_fragment);
+</code></pre></div>
+<p>可以创建事件回调方法：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">public static class FragmentA extends ListFragment {
+    ...
+    // 宿主Activity必须实现这个接口
+    public interface OnArticleSelectedListener {
+        public void onArticleSelected(Uri articleUri);
     }
-}
-</code></pre></div>
-<p><strong>创建对象</strong></p>
 
-<p>为了创建一个类的对象(实例化)，我们使用new关键字。例如，我们要创建一个VirtualPet实例：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">new VirtualPet
-</code></pre></div>
-<p>同一个类可以创建多个实例。例如：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">new VirtualPet
-new VirtualPet
-</code></pre></div>
-<p><strong>Literal语法</strong></p>
-
-<p>对于ActionScript内建类型，有一些类型有更简便的实例化方法。比如，我们创建一个Number值为25.4的变量，可以直接用：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">25.4
-</code></pre></div>
-<p>定义一个字符串使用：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">&quot;hello&quot;
-</code></pre></div>
-<p>定义布尔值：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">true
-</code></pre></div>
-<p>Literal 语法也可以用在Object、Function、RegExp和XML类上。</p>
-
-<p><strong>对象创建实例：向动物园添加一个动物</strong></p>
-
-<p>现在我们知道如何创建对象，我们可以向动物园添加一个动物了：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">package zoo {
-    public class VirtualZoo {
-        public function VirtualZoo() {
-            new VirtualPet
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            mListener = (OnArticleSelectedListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + &quot; must implement OnArticleSelectedListener&quot;);
         }
     }
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        // Append the clicked item&#39;s row ID with the content provider Uri
+        Uri noteUri = ContentUris.withAppendedId(ArticleColumns.CONTENT_URI, id);
+        // Send the event and Uri to the host activity
+        mListener.onArticleSelected(noteUri);
+    }
+
+    ...
 }
 </code></pre></div>
-<p>这里要注意访问权限的问题，在zoo包下的类默认情况下只能访问该包内的其他类，如果要访问外部包的公共类，需要用import关键字引用该类，如：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">package zoo {
+<p><strong>9、Fragment中使用上下文菜单和Menu菜单</strong></p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">public class MyActivity extends Activity {
+    // ...
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+       getMenuInflater().inflate(R.menu.activity_options, menu);
+        return true;
+    }
 
-    import flash.media.Sound;
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        case R.id.menu_activity_info:
+           // Handle activity menu item
+           return true;
+        default:
+           // Handle fragment menu items
+           return super.onOptionsItemSelected(item);
+       }
+    }
+    // ...
+}
 
-    public class VirtualZoo {
-        public function VirtualZoo() {
-            new Sound
+
+
+public class MyFragment extends Fragment {
+    // ...
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+       setHasOptionsMenu( true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu( Menu menu, MenuInflater inflater) {
+       inflater.inflate(R.menu. myfragment_options, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        case R.id.menu_first_info:
+           // Handle fragment menu item
+           return true;
+        default:
+           // Not one of ours. Perform default menu processing
+           return super.onOptionsItemSelected(item);
+       }
+    }
+    // ...
+}
+</code></pre></div>
+<p>Menu菜单：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">public static class ContextMenuFragment extends Fragment {
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout. fragment_context_menu , container, false );
+        registerForContextMenu(root.findViewById(R.id. long_press));
+        return root;
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.add(Menu. NONE, R.id.a_item, Menu.NONE, &quot;Menu A&quot;);
+        menu.add(Menu. NONE, R.id.b_item, Menu.NONE, &quot;Menu B&quot;);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.a_item:
+                Toast. makeText(getActivity(), &quot;Item 1a was chosen&quot;, Toast.LENGTH_SHORT ).show();
+                return true;
+            case R.id.b_item:
+                Toast. makeText(getActivity(), &quot;Item 1b was chosen&quot;, Toast.LENGTH_SHORT ).show();
+                return true;
         }
-    }
-}
-</code></pre></div>
-<p><strong>变量和值</strong></p>
-
-<p>变量和值是一种对应关系，每个变量都会有一个值，但在ActionScript中还有两种特殊情况，null和undefined，分别表示没有值和未定义。变量是关联到一个值的标识符。比如，一个变量可能是标识符submitBtn，它关联到一个设置按钮。</p>
-
-<p>变量可以分为不同的种类：局部变量、实例变量、动态实例变量和静态变量。</p>
-
-<p><strong>局部变量</strong></p>
-
-<p>在函数内定义的变量叫布局变量。定义变量用关键字var，以;结束，&quot;;&quot;表示语句的结束。</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">class SomeClass {
-    public function SomeClass ( ) {
-        var identifier = value;
-    }
-}
-</code></pre></div>
-<p>identifier表示变量的名字，value表示变量的值。</p>
-
-<p><strong>实例变量</strong></p>
-
-<p>实例变量直接在类定义的里面定义：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">class SomeClass {
-    var identifier = value;
-}
-</code></pre></div>
-<p>可以通过类的实例加&quot;.&quot;来访问某个非私有实例变量，如：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">someClass.identifier
-</code></pre></div>
-<p>实例变量与布局变量的区别在于它们的生命周期不同。</p>
-
-<p>变量的访问修饰符有：public、internal、protected、private。public修饰的实例变量可以被包内和包外所有的类访问，internal修饰的实例变量只能被包内的类访问。protected修饰的实例变量只能被类本身或其子类访问。private修饰的实例变量只能在类内部访问。</p>
-
-<p><strong>构造函数参数</strong></p>
-
-<p>构造函数参数是一个特殊的局部变量，但又不像局部变量那样需要用var关键字来定义。定义格式如下：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">class SomeClass {
-    funciton SomeClass(identifier = value){
-    }
-}
-</code></pre></div>
-<p>实例化SomeClass的方法：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">new SomeClass(value)
-</code></pre></div>
-<p>如果构造函数参数有默认值，则表示该参数是可选的。</p>
-
-<p><strong>表达式</strong></p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">new Date()
-2.5
-4 * 2.5
-
-var quality = 100;
-var price = 50;
-var total = quality*price;
-</code></pre></div>
-<p>以上都为表达式，通过不同操作符连接起来。</p>
-
-<p><strong>实例方法</strong></p>
-
-<p>实例方法定义了对象可以做的事情。比如Sound类定义了实例方法play来播放声音。</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">class SomeClass {
-    function identifier ( ) {
+        return super.onContextItemSelected(item);
     }
 }
 </code></pre></div>
 
   <address class="signature">
     <a class="author" href="/">lsj</a> 
-    <span class="date">28 August 2014</span>
+    <span class="date">21 October 2014</span>
     <span class="location"></span>
   </address>
   
   
 	<div class='cloud'>
-		<a style='font-size: 70%' href='/tags.html#java'>java</a>
-<a style='font-size: 96%' href='/tags.html#android'>android</a>
-<a style='font-size: 70%' href='/tags.html#vim'>vim</a>
-<a style='font-size: 112%' href='/tags.html#stock'>stock</a>
-<a style='font-size: 70%' href='/tags.html#ios'>ios</a>
+		<a style='font-size: 70%' href='/tags.html#ios'>ios</a>
+<a style='font-size: 131%' href='/tags.html#essential actionscript3.0'>essential actionscript3.0</a>
 <a style='font-size: 70%' href='/tags.html#p2p'>p2p</a>
 <a style='font-size: 70%' href='/tags.html#error'>error</a>
-<a style='font-size: 112%' href='/tags.html#swf'>swf</a>
-<a style='font-size: 112%' href='/tags.html#crack'>crack</a>
-<a style='font-size: 70%' href='/tags.html#air'>air</a>
-<a style='font-size: 131%' href='/tags.html#essential actionscript3.0'>essential actionscript3.0</a>
-<a style='font-size: 161%' href='/tags.html#actionscript'>actionscript</a>
 <a style='font-size: 170%' href='/tags.html#fms'>fms</a>
+<a style='font-size: 112%' href='/tags.html#stock'>stock</a>
+<a style='font-size: 70%' href='/tags.html#vim'>vim</a>
+<a style='font-size: 112%' href='/tags.html#crack'>crack</a>
+<a style='font-size: 70%' href='/tags.html#java'>java</a>
+<a style='font-size: 70%' href='/tags.html#air'>air</a>
+<a style='font-size: 112%' href='/tags.html#swf'>swf</a>
+<a style='font-size: 161%' href='/tags.html#actionscript'>actionscript</a>
+<a style='font-size: 96%' href='/tags.html#android'>android</a>
 
 	</div>
 	
   <div class="prev-next">
   
-    <a href="/fms/2014/08/29/simple-chat-with-p2p-netgroup-in-fp-101" class="next" title="Simple Chat With P2P NetGroup In FP 10.1">Next Post &rarr;</a>
   
-  
-    <a href="/tools/2014/08/07/vim-markdown-highlight" class="prev" title="windows下的VIM 编辑markdown语法高亮">&larr; Earlier Post</a>
+    <a href="/actionscript/2014/10/16/communication-between-as-and-js" class="prev" title="ActionScript和JavaScript之间的通讯">&larr; Earlier Post</a>
   
   </div>
   
