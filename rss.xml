@@ -5,10 +5,68 @@
         <description>alonepig's blog - lsj</description>
         <link>http://alonepig.github.io</link>
         <link>http://alonepig.github.io</link>
-        <lastBuildDate>2014-10-21T17:59:35+08:00</lastBuildDate>
-        <pubDate>2014-10-21T17:59:35+08:00</pubDate>
+        <lastBuildDate>2014-11-27T20:56:59+08:00</lastBuildDate>
+        <pubDate>2014-11-27T20:56:59+08:00</pubDate>
         <ttl>1800</ttl>
 
+
+        <item>
+                <title>Android 主题和样式</title>
+                <description>&lt;h4&gt;关于Android的主题和样式&lt;/h4&gt;
+
+&lt;p&gt;样式是对某个控件的外观属性的集合，例如高、宽、文字的大小等；很多个控件的样式组合起来就是一个主题。主题可以设置到整个应用，也可以对单个Activity设置。&lt;/p&gt;
+
+&lt;p&gt;系统的样式和主题文件存放在android-sdk/platforms/android-num/data/res/values文件夹中。&lt;/p&gt;
+
+&lt;p&gt;系统是如何选择默认主题的呢？在Resources.java文件中有答案。&lt;/p&gt;
+
+&lt;p&gt;当版本&lt;11时，使用以前低版本的主题；当&gt;=11&amp;amp;&amp;amp;&lt;14时，使用Holo主题；当&gt;14时使用DeviceDefault主题。&lt;/p&gt;
+
+&lt;p&gt;style属性可以继承，自定义style的继承，标签下不需要parent属性，只需在新的样式名称前加上要继承的样式名称作为前缀（以“.”分隔）。而对平台内建样式的继承，必须使用parent属性。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;一、如何自定义主题和样式&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;在项目中，styles.xml中自定义样式，theme.xml文件自定义主题。&lt;/p&gt;
+
+&lt;p&gt;自定义样式：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;lt;style name=&amp;quot;my_edittext_style&amp;quot; parent=&amp;quot;@android:style/Widget.EditText&amp;quot;&amp;gt;
+    &amp;lt;item name=&amp;quot;android:background&amp;quot;&amp;gt;@drawable/inputtext&amp;lt;/item&amp;gt;
+    &amp;lt;item name=&amp;quot;android:singleLine&amp;quot;&amp;gt;true&amp;lt;/item&amp;gt;
+    &amp;lt;item name=&amp;quot;android:gravity&amp;quot;&amp;gt;center_vertical&amp;lt;/item&amp;gt;
+    &amp;lt;item name=&amp;quot;android:paddingLeft&amp;quot;&amp;gt;5dp&amp;lt;/item&amp;gt;
+    &amp;lt;item name=&amp;quot;android:paddingRight&amp;quot;&amp;gt;5dp&amp;lt;/item&amp;gt;
+    &amp;lt;item name=&amp;quot;android:textCursorDrawable&amp;quot;&amp;gt;@null&amp;lt;/item&amp;gt;
+    &amp;lt;item name=&amp;quot;android:textColor&amp;quot;&amp;gt;#FFFFFF&amp;lt;/item&amp;gt;
+    &amp;lt;item name=&amp;quot;android:textColorHint&amp;quot;&amp;gt;@color/white&amp;lt;/item&amp;gt;
+&amp;lt;/style&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;自定义主题：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;lt;style name=&amp;quot;myTheme&amp;quot; parent=&amp;quot;@android:Theme.Light.NoTitleBar.Fullscreen&amp;quot;&amp;gt;
+    &amp;lt;item name=&amp;quot;android:editTextStyle&amp;quot;&amp;gt;@style/my_edittext_style&amp;lt;/item&amp;gt;
+    &amp;lt;item name=&amp;quot;android:textColor&amp;quot;&amp;gt;#FFFFFF&amp;lt;/item&amp;gt;
+&amp;lt;/style&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;二、如何使用样式和主题&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;在布局文件中使用样式：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;lt;LinearLayout
+    style=&amp;quot;@style/customeStyle&amp;quot;
+    ... /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;对整个应用使用自定义主题：&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;lt;application
+    android:theme=&amp;quot;@style/myTheme&amp;quot; 
+    ...&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;对某个Activity应用自定义主题：
+    &lt;activity
+        android:theme=&quot;@style/myTheme&quot; 
+        ...&gt;&lt;/p&gt;
+</description>
+                <link>http://alonepig.github.io/android/2014/11/07/android-theme-and-style</link>
+                <guid>http://alonepig.github.io/android/2014/11/07/android-theme-and-style</guid>
+                <pubDate>2014-11-07T00:00:00+08:00</pubDate>
+        </item>
 
         <item>
                 <title>android fragment学习笔记</title>
