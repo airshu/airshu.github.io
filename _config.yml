@@ -18,8 +18,8 @@ rss_url: /pages/atom.xml
     
 
 # gavatar头像及Favicon
-gavatar: /public/img/logo.png
-favicon: /public/img/logo.png
+gavatar: /public/img/logo.jpg
+favicon: /public/img/logo.jpg
 
 # google analytics 设置
 ga:
