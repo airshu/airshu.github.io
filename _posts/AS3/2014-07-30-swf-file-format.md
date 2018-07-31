@@ -5,7 +5,6 @@ description: ""
 category: ActionScript
 tags: [swf, crack, actionscript]
 ---
-{% include JB/setup %}
 
 关于swf的文件格式，除了官方的文档，也有许多的资料可以参考。在这里只是做一个总结，具体内容请参阅最后给出的链接。
 

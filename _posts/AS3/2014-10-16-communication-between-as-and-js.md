@@ -5,7 +5,7 @@ description: ""
 category: ACTIONSCRIPT
 tags: [actionscript]
 ---
-{% include JB/setup %}
+
 
 
 ActionScript和JavaScript间的通讯主要是对ExternalInterface的使用，在这个类中有两个关键的函数：

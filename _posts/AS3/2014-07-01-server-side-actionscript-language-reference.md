@@ -5,7 +5,7 @@ description: ""
 category: FMS
 tags: [fms]
 ---
-{% include JB/setup %}
+
 
 #### 服务器端ActionScript语言参考手册
 

@@ -5,7 +5,6 @@ description: ""
 category: FMS
 tags: [fms]
 ---
-{% include JB/setup %}
 
 #### 使用实时视频
 

@@ -5,7 +5,6 @@ description: ""
 category: ACTIONSCRIPT
 tags: [actionscript, essential actionscript3.0]
 ---
-{% include JB/setup %}
 
 #### 第一章：核心概念
 

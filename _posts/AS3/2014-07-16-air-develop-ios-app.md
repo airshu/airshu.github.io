@@ -5,7 +5,6 @@ description: ""
 category: AIR
 tags: [air, ios]
 ---
-{% include JB/setup %}
 
 
 记录使用AIR开发IOS应用中的点点滴滴

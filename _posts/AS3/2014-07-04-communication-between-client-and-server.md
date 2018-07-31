@@ -5,8 +5,6 @@ description: ""
 category: FMS
 tags: [fms]
 ---
-{% include JB/setup %}
-
 
 
 #### 一、客户端呼叫服务器

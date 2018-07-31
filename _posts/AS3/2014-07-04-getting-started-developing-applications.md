@@ -5,7 +5,6 @@ description: ""
 category: FMS
 tags: [fms]
 ---
-{% include JB/setup %}
 
 #### 开始开发应用
 

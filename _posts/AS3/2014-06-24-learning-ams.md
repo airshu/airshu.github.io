@@ -5,7 +5,6 @@ description: ""
 category: FMS
 tags: [fms]
 ---
-{% include JB/setup %}
 
 
 ### Adobe Media Server开发笔记

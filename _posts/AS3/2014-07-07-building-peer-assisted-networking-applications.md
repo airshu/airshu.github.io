@@ -5,7 +5,6 @@ description: ""
 category: FMS
 tags: [fms]
 ---
-{% include JB/setup %}
 
 
 #### 构建对等的网络应用

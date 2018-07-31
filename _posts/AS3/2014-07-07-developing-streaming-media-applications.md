@@ -5,7 +5,6 @@ description: ""
 category: FMS
 tags: [fms]
 ---
-{% include JB/setup %}
 
 #### 开发流媒体应用
 

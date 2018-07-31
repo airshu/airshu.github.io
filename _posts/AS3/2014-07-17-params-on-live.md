@@ -5,7 +5,6 @@ description: ""
 category: FMS
 tags: [fms]
 ---
-{% include JB/setup %}
 
 #### 直播过程中NetStream、Camera、Microphone的参数设置
 

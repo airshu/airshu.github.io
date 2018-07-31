@@ -5,7 +5,6 @@ description: ""
 category: FMS
 tags: [fms,p2p]
 ---
-{% include JB/setup %}
 
 
 翻译自：http://tomkrcha.com/?p=1266

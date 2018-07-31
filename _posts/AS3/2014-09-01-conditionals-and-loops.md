@@ -5,7 +5,6 @@ description: ""
 category: ACTIONSCRIPT
 tags: [actionscript, essential actionscript3.0]
 ---
-{% include JB/setup %}
 
 #### 第二章：条件语句和循环
 

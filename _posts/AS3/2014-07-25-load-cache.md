@@ -5,7 +5,6 @@ description: ""
 category: ActionScript
 tags: [actionscript]
 ---
-{% include JB/setup %}
 
 有时候，在使用URLLoader装载资源的时候，会发现装载不到最新的资源。可以使用以下代码测试：
 

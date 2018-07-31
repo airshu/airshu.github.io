@@ -5,7 +5,6 @@ description: "如何破解Flash游戏"
 category: ActionScript
 tags: [swf, crack, actionscript]
 ---
-{% include JB/setup %}
 
 
 学习编程最好的办法之一就是阅读别人的优秀代码，学习AS最好的方法之一就是阅读别人写的优秀的AS代码。当然，优秀的源码太多，在github一搜就能找到大把的开源项目。但，作为曾经的页游从业者。阅读优秀游戏的源码更是成长速度的方法之一。
