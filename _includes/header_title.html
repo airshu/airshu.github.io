@@ -1,0 +1,30 @@
+<meta charset="utf-8">
+<title>{{ page.titlename }} | {{ site.title }}</title>
+<meta name="author" content="{{ site.author.name }}">
+{% if page.keywords %}
+  <meta name="keywords" content="{{ page.keywords }}">
+{% endif %}
+{% if page.description  %}
+  <meta name="description " content="{{ page.description  }}">
+{% endif %}
+<link rel="shortcut icon" href="{{ site.favicon }}" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/public/css/bootstrap.css">
+<link rel="stylesheet" href="/public/css/font-awesome.css">
+<link rel="stylesheet" href="/public/js/prettify/prettify.css">
+<link rel="stylesheet" href="/public/css/base.css">
+<link href="/pages/atom.xml" rel="alternate" title="{{site.title}}" type="application/atom+xml">
+
+<style>
+  table{
+    border-left:1px solid #000000;border-top:1px solid #000000;
+    width: 100%;
+    word-wrap:break-word; word-break:break-all;
+  }
+  table th{
+  text-align:center;
+  }
+  table th,td{
+    border-right:1px solid #000000;border-bottom:1px solid #000000;
+  }
+</style>

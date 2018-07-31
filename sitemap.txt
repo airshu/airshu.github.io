@@ -1,60 +1,11 @@
+---
+title : Sitemap
+---
 
-http://alonepig.github.io/about.html
-http://alonepig.github.io/archive.html
-http://alonepig.github.io/atom.xml
-http://alonepig.github.io/categories.html
-http://alonepig.github.io/index.html
-http://alonepig.github.io/pages.html
-http://alonepig.github.io/rss.xml
-http://alonepig.github.io/sitemap.txt
-http://alonepig.github.io/tags.html
+{% for page in site.pages %}
+  {{site.address}}{{ page.url }}
+{% endfor %}
 
-http://alonepig.github.io/android/2014/11/07/android-theme-and-style
-http://alonepig.github.io/android/2014/10/21/android-fragment
-http://alonepig.github.io/actionscript/2014/10/16/communication-between-as-and-js
-http://alonepig.github.io/java/2014/09/23/java-type-conversion
-http://alonepig.github.io/stock/2014/09/19/subscribe-new-stock
-http://alonepig.github.io/android/2014/09/16/andengine-for-android-game-development1
-http://alonepig.github.io/stock/2014/09/09/stock2
-http://alonepig.github.io/2014/09/04/xml-and-e4x
-http://alonepig.github.io/actionscript/2014/09/04/static-variables-and-static-methods
-http://alonepig.github.io/2014/09/04/statements-and-operators
-http://alonepig.github.io/2014/09/04/scope
-http://alonepig.github.io/2014/09/04/namespaces
-http://alonepig.github.io/2014/09/04/interfaces
-http://alonepig.github.io/actionscript/2014/09/04/inheritance
-http://alonepig.github.io/2014/09/04/garbage-collection
-http://alonepig.github.io/actionscript/2014/09/04/functions
-http://alonepig.github.io/2014/09/04/flash-player-security-restrictions
-http://alonepig.github.io/2014/09/04/exceptions-and-error-handling
-http://alonepig.github.io/2014/09/04/events-and-event-handling
-http://alonepig.github.io/2014/09/04/dynamic-actionscript
-http://alonepig.github.io/2014/09/04/datatypes-and-type-checking
-http://alonepig.github.io/2014/09/04/compliling-andrunning-a-program
-http://alonepig.github.io/2014/09/04/arrays
-http://alonepig.github.io/stock/2014/09/03/stock1
-http://alonepig.github.io/actionscript/2014/09/01/conditionals-and-loops
-http://alonepig.github.io/fms/2014/08/29/simple-chat-with-p2p-netgroup-in-fp-101
-http://alonepig.github.io/actionscript/2014/08/28/essential-actionscript30-reading-note
-http://alonepig.github.io/tools/2014/08/07/vim-markdown-highlight
-http://alonepig.github.io/2014/08/06/bitmapdata
-http://alonepig.github.io/actionscript/2014/07/30/swf-file-format
-http://alonepig.github.io/actionscript/2014/07/30/mmcfg
-http://alonepig.github.io/actionscript/2014/07/29/crack-flash-game
-http://alonepig.github.io/actionscript/2014/07/25/load-cache
-http://alonepig.github.io/actionscript/2014/07/23/stream-error-2032
-http://alonepig.github.io/2014/07/18/about-h264-setting
-http://alonepig.github.io/fms/2014/07/17/params-on-live
-http://alonepig.github.io/air/2014/07/16/air-develop-ios-app
-http://alonepig.github.io/fms/2014/07/07/working-with-live-video
-http://alonepig.github.io/fms/2014/07/07/securing-applications
-http://alonepig.github.io/fms/2014/07/07/developing-streaming-media-applications
-http://alonepig.github.io/fms/2014/07/07/developing-social-applications
-http://alonepig.github.io/fms/2014/07/07/building-peer-assisted-networking-applications
-http://alonepig.github.io/fms/2014/07/04/getting-started-developing-applications
-http://alonepig.github.io/fms/2014/07/04/communication-between-client-and-server
-http://alonepig.github.io/fms/2014/07/03/ams_config_admin_guide
-http://alonepig.github.io/fms/2014/07/01/server-side-actionscript-language-reference
-http://alonepig.github.io/fms/2014/07/01/getting_started_streaming_media
-http://alonepig.github.io/fms/2014/06/24/learning-ams
-http://alonepig.github.io/fms/2014/06/24/adobemediaserver_503_install-
+{% for post in site.posts %}
+  {{site.address}}{{ post.url }}
+{% endfor %}

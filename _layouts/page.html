@@ -1,0 +1,39 @@
+---
+layout: base
+---
+<div class="row">
+  <div class="col-md-13 aside3-title">
+    <br>
+    <h2 id="#identifier">{{ page.title }}</h2>
+  </div>
+
+
+
+  <div class="col-md-13 aside3-content">
+   <div id="page-content">
+    {{ content }}
+  </div>     
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <div id="comment"></div>
+
+  <script>
+    var valine = new Valine();
+    valine.init({
+      el:'#comment',
+      appId:'oHebxNy7EUKpUp7DNX4YoYcp-gzGzoHsz',
+      appKey:'iSoFxGq6O5Ee9F0xh2GeORyU',
+      notify:true,
+    })
+  </script>    
+
+</div>
+
+
+
+</div>
+
+
+
+
