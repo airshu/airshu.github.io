@@ -2,7 +2,7 @@
 layout: post
 title: "ams_config_admin_guide"
 description: ""
-category: FMS
+category: AS3
 tags: [fms]
 ---
 

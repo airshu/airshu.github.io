@@ -2,6 +2,6 @@
 layout: post
 title: "developing social applications"
 description: ""
-category: FMS
+category: AS3
 tags: [fms]
 ---

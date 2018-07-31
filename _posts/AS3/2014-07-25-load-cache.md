@@ -2,7 +2,7 @@
 layout: post
 title: "load的缓存"
 description: ""
-category: ActionScript
+category: AS3
 tags: [actionscript]
 ---
 

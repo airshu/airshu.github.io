@@ -2,7 +2,7 @@
 layout: post
 title: "working with live video"
 description: ""
-category: FMS
+category: AS3
 tags: [fms]
 ---
 

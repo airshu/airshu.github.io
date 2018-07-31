@@ -2,7 +2,7 @@
 layout: post
 title: "getting started developing applications"
 description: ""
-category: FMS
+category: AS3
 tags: [fms]
 ---
 

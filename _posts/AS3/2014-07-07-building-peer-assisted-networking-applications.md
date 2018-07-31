@@ -2,7 +2,7 @@
 layout: post
 title: "building peer assisted networking applications"
 description: ""
-category: FMS
+category: AS3
 tags: [fms]
 ---
 

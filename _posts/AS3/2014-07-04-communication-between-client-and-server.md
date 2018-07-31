@@ -2,7 +2,7 @@
 layout: post
 title: "communication between client and server"
 description: ""
-category: FMS
+category: AS3
 tags: [fms]
 ---
 

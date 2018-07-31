@@ -2,7 +2,7 @@
 layout: post
 title: "developing streaming media applications"
 description: ""
-category: FMS
+category: AS3
 tags: [fms]
 ---
 

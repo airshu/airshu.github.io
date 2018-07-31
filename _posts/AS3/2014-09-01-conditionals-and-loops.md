@@ -2,7 +2,7 @@
 layout: post
 title: "Essential Actionscript3.0 读书笔记(二、条件语句和循环)"
 description: ""
-category: ACTIONSCRIPT
+category: AS3
 tags: [actionscript, essential actionscript3.0]
 ---
 

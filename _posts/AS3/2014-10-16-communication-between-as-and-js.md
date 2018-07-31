@@ -2,7 +2,7 @@
 layout: post
 title: "ActionScript和JavaScript之间的通讯"
 description: ""
-category: ACTIONSCRIPT
+category: AS3
 tags: [actionscript]
 ---
 

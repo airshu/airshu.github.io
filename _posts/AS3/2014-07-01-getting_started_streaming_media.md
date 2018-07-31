@@ -2,7 +2,7 @@
 layout: post
 title: "getting_started_streaming_media"
 description: ""
-category: FMS
+category: AS3
 tags: [fms]
 ---
 

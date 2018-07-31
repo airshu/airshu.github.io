@@ -2,7 +2,7 @@
 layout: post
 title: "params on live"
 description: ""
-category: FMS
+category: AS3
 tags: [fms]
 ---
 

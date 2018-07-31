@@ -2,7 +2,7 @@
 layout: post
 title: "Flash 游戏破解"
 description: "如何破解Flash游戏"
-category: ActionScript
+category: AS3
 tags: [swf, crack, actionscript]
 ---
 

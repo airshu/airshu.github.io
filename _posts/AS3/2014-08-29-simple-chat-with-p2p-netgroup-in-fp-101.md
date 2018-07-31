@@ -2,7 +2,7 @@
 layout: post
 title: "Simple Chat With P2P NetGroup In FP 10.1"
 description: ""
-category: FMS
+category: AS3
 tags: [fms,p2p]
 ---
 

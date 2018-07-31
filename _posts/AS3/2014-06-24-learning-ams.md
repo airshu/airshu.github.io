@@ -2,7 +2,7 @@
 layout: post
 title: "Learning AMS"
 description: ""
-category: FMS
+category: AS3
 tags: [fms]
 ---
 

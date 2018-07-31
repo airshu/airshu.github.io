@@ -2,7 +2,7 @@
 layout: post
 title: "server side actionscript language reference"
 description: ""
-category: FMS
+category: AS3
 tags: [fms]
 ---
 

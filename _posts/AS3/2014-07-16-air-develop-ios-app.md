@@ -2,7 +2,7 @@
 layout: post
 title: "air develop ios app"
 description: ""
-category: AIR
+category: AS3
 tags: [air, ios]
 ---
 

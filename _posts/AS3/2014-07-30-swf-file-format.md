@@ -2,7 +2,7 @@
 layout: post
 title: "swf文件格式"
 description: ""
-category: ActionScript
+category: AS3
 tags: [swf, crack, actionscript]
 ---
 
