@@ -9,6 +9,11 @@ body, html {
   overflow: hidden; 
   background-color: #303030;
 }
+
+a:focus {
+  outline: none;
+  user-select:none;
+}
 .row {
   height: 100%;
 }
