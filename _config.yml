@@ -15,7 +15,7 @@ title: 拍大师的文档中心
 description: 拍大师的文档中心
 url: http://192.168.40.8:4000/index.html
 rss_url: /pages/atom.xml
-    
+
 
 # gavatar头像及Favicon
 gavatar: /public/img/logo.jpg
