@@ -44,11 +44,19 @@ a:focus {
 
   outline: none;
   user-select:none;
+  text-decoration: none;
 }
 
 .aside1> .nav > li > a:hover {
   color:#fff; /*鼠标悬浮文字颜色*/
   background-color: #40464F; /*鼠标悬浮背景色*/
+  text-decoration: none;
+}
+
+/* https://segmentfault.com/q/1010000009615667 */
+.aside1 > .nav > li > a:focus {
+  text-decoration: none;
+  background-color: #2b2b2b;
 }
 
 /*激活时背景色*/
