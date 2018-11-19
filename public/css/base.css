@@ -42,6 +42,8 @@ a:focus {
   font-size: 17px; /*文字大小*/
   padding: 6px 16px;
 
+  outline: none;
+  user-select:none;
 }
 
 .aside1> .nav > li > a:hover {
@@ -49,7 +51,7 @@ a:focus {
   background-color: #40464F; /*鼠标悬浮背景色*/
 }
 
-/*focus时背景色*/
+/*激活时背景色*/
 .aside1 > .nav-pills>li.active>a ,.nav-pills>li.active>a:hover,.nav-pills>li.active>a:focus {
   color: #fff;
   /*background-color: #fafaf6;*/

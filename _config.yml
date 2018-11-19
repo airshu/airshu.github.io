@@ -6,14 +6,14 @@ kmarkdown: redcarpet
 
 # 作者信息
 author: 
-  name: 拍大师
-  email: longshujun@aipai.com
-  link: http://aipai.com
+  name: alonepig
+  email: alonelsj@gmail.com
+  link: 
 
 # 站点信息
-title: 拍大师的文档中心
-description: 拍大师的文档中心
-url: http://192.168.40.8:4000/index.html
+title: alonepig的博客
+description: alonepig的博客
+url: 
 rss_url: /pages/atom.xml
 
 
