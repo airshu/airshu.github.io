@@ -9,24 +9,21 @@ layout: base
 
 
 
-  <div class="col-md-13 aside3-content">
-   <div id="page-content">
-    {{ content }}
-  </div>     
-
-  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
-  <div id="comment"></div>
-
-  <script>
-    var valine = new Valine();
-    valine.init({
-      el:'#comment',
-      appId:'oHebxNy7EUKpUp7DNX4YoYcp-gzGzoHsz',
-      appKey:'iSoFxGq6O5Ee9F0xh2GeORyU',
-      notify:true,
+    <div id="container1"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    var gitment = new Gitment({
+      id: '页面 ID', // 可选。默认为 location.href
+      owner: 'alonepig',
+      repo: 'alonepig.github.io',
+      oauth: {
+        client_id: '15baabca6293e7448ae4',
+        client_secret: 'dbf1b8dc2bb295b5a24804c84efaa76b804bb01d',
+      },
     })
-  </script>    
+    gitment.render('container1')
+    </script>   
 
 </div>
 

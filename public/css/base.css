@@ -56,7 +56,7 @@ a:focus {
 /* https://segmentfault.com/q/1010000009615667 */
 .aside1 > .nav > li > a:focus {
   text-decoration: none;
-  background-color: #2b2b2b;
+  background-color: #303030;
 }
 
 /*激活时背景色*/
