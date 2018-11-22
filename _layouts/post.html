@@ -2,43 +2,36 @@
 layout: base
 ---
 <div class="row">
-    <div class="col-md-13 aside3-title">
-        <h2 id="#identifier">
-            {{ page.title }}
-        </h2>
-        {{ page.date | date:"%Y年%m月%d日" }}
+
+  <div class="col-md-13 aside3-title">
+    <h2 id="#identifier">{{ page.title }}</h2>
+    {{ page.date | date:"%Y年%m月%d日" }}
+  </div>
+  
+  <div class="col-md-13 aside3-content">
+  
+    <br/>
+    <div id="content">
+      {{ content }}
+
     </div>
-    <div class="col-md-13 aside3-content">
-        <br/>
-        <div id="content">
-            {{ content }}
-        </div>
-        <hr>
-            <div id="container1">
-            </div>
-            <link href="/public/css/default.css" rel="stylesheet">
-                <script src="/public/js/gitment.browser.js">
-                </script>
-                <script>
-                    var gitment = new Gitment({
-      id: '页面 ID', // 可选。默认为 location.href
-      owner: 'alonepig',
-      repo: 'alonepig.github.com',
-      oauth: {
-        client_id: '15baabca6293e7448ae4',
-        client_secret: 'dbf1b8dc2bb295b5a24804c84efaa76b804bb01d',
-      },
-    })
-    gitment.render('container1')
-                </script>
-            </link>
-        </hr>
+    <hr>
+  </div>
+
+    
+  
+  <!-- 目录 -->
+  <div id="content_table" style="position:fixed;right:20px;top:120px;display:none;">
+    <div class="panel panel-success">
+      <div class="panel-body" id="nav"></div>
     </div>
-    <!-- 目录 -->
-    <div id="content_table" style="position:fixed;right:20px;top:120px;display:none;">
-        <div class="panel panel-success">
-            <div class="panel-body" id="nav">
-            </div>
-        </div>
-    </div>
+  </div>
+
+  
+
+
+  
 </div>
+
+
+

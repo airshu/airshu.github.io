@@ -39,32 +39,42 @@ function content_click(is_show){
   }
 }
 
+
+
 $(document).ready(function() {
   /* 控制左侧 aside 的动作 */
   $("#nav_btn").on('click', function() {
     isClicked = $(this).data('clicked');
-
     nav_click(isClicked);
-
     $(this).data('clicked', !isClicked);
   });
 
   $("#content_btn").on('click', function(){
     isClicked = $(this).data('clicked');
-
     content_click(!isClicked);
-
     $(this).data('clicked',!isClicked);
-
   });
 
   $(document).pjax('.pjaxlink', '#pjax', { fragment: "#pjax", timeout: 10000 });
   $(document).on("pjax:end", function() {
+
+    var gitment = new Gitment({
+      id: '页面 ID', // 可选。默认为 location.href
+      owner: 'alonepig',
+      repo: 'alonepig.github.com',
+      oauth: {
+        client_id: '15baabca6293e7448ae4',
+        client_secret: 'dbf1b8dc2bb295b5a24804c84efaa76b804bb01d',
+      },
+    })
+    gitment.render('comment-container')
+
     if($("body").find('.container').width() < 992)
       $('#nav_btn').click();
     $('.aside3').scrollTop(0);
-    // contentEffects();
+    contentEffects();
   });
+
   $('body').on('click', '.show-commend', function(){
     var ds_loaded = false;
     window.disqus_shortname = $('.show-commend').attr('name');
@@ -75,8 +85,10 @@ $(document).ready(function() {
       cache: true
     });
   });
-  // contentEffects();
+  contentEffects();
 });
+
+
 function contentEffects(){
   //remove the asidebar
   $('.row-offcanvas').removeClass('active');
