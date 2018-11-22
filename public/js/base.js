@@ -69,7 +69,7 @@ $(document).ready(function() {
           client_id: '15baabca6293e7448ae4',
           client_secret: 'dbf1b8dc2bb295b5a24804c84efaa76b804bb01d',
         },
-      })
+      });
       gitment.render('comment-container')
     }
 
@@ -103,8 +103,6 @@ function contentEffects(){
         tag = current.prop('tagName').substr(-1);
         $("#nav").append("<div style='margin-left:"+15*(tag-1)+"px'><a id='link" + i + "' href='#title" +i + "'>" + current.html() + "</a></div>");
     }); 
-    $("pre").addClass("prettyprint");
-    prettyPrint(); 
     $('#content img').addClass('img-thumbnail').parent('p').addClass('center');
     $('#content_btn').show();
   }else{
