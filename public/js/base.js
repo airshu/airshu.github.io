@@ -58,16 +58,20 @@ $(document).ready(function() {
   $(document).pjax('.pjaxlink', '#pjax', { fragment: "#pjax", timeout: 10000 });
   $(document).on("pjax:end", function() {
 
-    var gitment = new Gitment({
-      id: '页面 ID', // 可选。默认为 location.href
-      owner: 'alonepig',
-      repo: 'alonepig.github.com',
-      oauth: {
-        client_id: '15baabca6293e7448ae4',
-        client_secret: 'dbf1b8dc2bb295b5a24804c84efaa76b804bb01d',
-      },
-    })
-    gitment.render('comment-container')
+    var gitmentInit = $(this).data("gitmentInit");
+    if(typeof gitmentInit == "undefined") {
+      $(this).data('gitmentInit', true);
+      var gitment = new Gitment({
+        id: '页面 ID', // 可选。默认为 location.href
+        owner: 'alonepig',
+        repo: 'alonepig.github.com',
+        oauth: {
+          client_id: '15baabca6293e7448ae4',
+          client_secret: 'dbf1b8dc2bb295b5a24804c84efaa76b804bb01d',
+        },
+      })
+      gitment.render('comment-container')
+    }
 
     if($("body").find('.container').width() < 992)
       $('#nav_btn').click();
