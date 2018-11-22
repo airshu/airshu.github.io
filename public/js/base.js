@@ -39,6 +39,7 @@ function content_click(is_show){
   }
 }
 
+
 $(document).ready(function() {
   /* 控制左侧 aside 的动作 */
   $("#nav_btn").on('click', function() {
@@ -58,13 +59,15 @@ $(document).ready(function() {
 
   });
 
+  /*切换post页面刷新*/
   $(document).pjax('.pjaxlink', '#pjax', { fragment: "#pjax", timeout: 10000 });
   $(document).on("pjax:end", function() {
     if($("body").find('.container').width() < 992)
-      $('#nav_btn').click();
+      $('#nav_btn').click();//只显示博客内容
     $('.aside3').scrollTop(0);
     contentEffects();
   });
+
   $('body').on('click', '.show-commend', function(){
     var ds_loaded = false;
     window.disqus_shortname = $('.show-commend').attr('name');
@@ -75,7 +78,8 @@ $(document).ready(function() {
       cache: true
     });
   });
-  contentEffects();
+  // contentEffects();
+
 });
 function contentEffects(){
   //remove the asidebar
@@ -87,11 +91,10 @@ function contentEffects(){
         tag = current.prop('tagName').substr(-1);
         $("#nav").append("<div style='margin-left:"+15*(tag-1)+"px'><a id='link" + i + "' href='#title" +i + "'>" + current.html() + "</a></div>");
     }); 
-    $("pre").addClass("prettyprint");
-    prettyPrint(); 
     $('#content img').addClass('img-thumbnail').parent('p').addClass('center');
     $('#content_btn').show();
   }else{
     $('#content_btn').hide();
   }
 }
+
