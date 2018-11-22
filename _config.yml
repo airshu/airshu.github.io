@@ -1,6 +1,10 @@
 permalink: /:year/:month/:day/:title.html
 paginate: 10
-plugins: [jekyll-paginate]
+
+
+plugins:
+  - jekyll-paginate
+  - jekyll-feed
 kmarkdown: redcarpet
 
 
@@ -16,28 +20,16 @@ description: alonepig的博客
 url: 
 rss_url: /pages/atom.xml
 
-
 # gavatar头像及Favicon
 gavatar: /public/img/logo.jpg
 favicon: /public/img/logo.jpg
 
-# google analytics 设置
-ga:
-  id: UA-54262064-1 
-  url: painterlin.com
-
-# disqus 设置
-disqus:
-  shortname: painterlin
-  
+# Google Analytics
+google_analytics: UA-32679694-2
 
 # 主题设置，自动激活某个标签
 active: 技术
 
-# 首页除了最新文章外显示分类
-cates: 
-  - Optimization
-  - LaTeX
 
 # 中文本地化
 locals:
