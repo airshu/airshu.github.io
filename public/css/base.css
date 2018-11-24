@@ -90,7 +90,7 @@ a:focus {
   /*background-color: #303030;*/
   height: 100%;
   /*border-right: 2px solid #303030;*/
-  /*overflow-y: auto;*/
+  overflow-y: auto;
   font-color: #fff;
   margin-top: 10px;
 }
