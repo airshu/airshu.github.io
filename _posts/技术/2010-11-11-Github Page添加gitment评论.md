@@ -2,9 +2,9 @@
 layout: post
 title: Github Page添加gitment评论
 category: 技术
-tags: 技术
-keywords: 
-description: 
+tags: Jekyll
+keywords:
+description:
 ---
 
 
@@ -35,8 +35,8 @@ description:
       },
     })
     gitment.render('container1')
-    </script>  
-    
+    </script>
+
 将Github上对应的default.css和gitment.browser.js文件下载到自己的服务器上。
 
 ### 三、安装gh-oauth-server
@@ -45,7 +45,7 @@ description:
 > This service won't record or store anything. It only attaches a CORS header to that request and provides proxy. So that users can login in the frontend without any server-side implementation. 这里我们自己搭建一个转发服务
 
 	git clone https://github.com/imsun/gh-oauth-server.git
-	npm install 
+	npm install
 	nohup npm start &
 
 ### 四、修改gitment.browser.js文件
