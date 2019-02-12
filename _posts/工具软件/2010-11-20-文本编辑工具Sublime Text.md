@@ -3,8 +3,8 @@ layout: post
 title: 文本编辑工具Sublime Text
 category: 工具软件
 tags: 效率
-keywords: 
-description: 
+keywords:
+description:
 ---
 
 
@@ -35,7 +35,7 @@ description:
 | <kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>B</kbd> | List back links
 
 ##### 表格编辑插件
-	
+
 	下载地址：
 	https://packagecontrol.io/packages/Table%20Editor
 
@@ -102,9 +102,9 @@ description:
 	1. Preferences-->Browse Packages-->SublimeREPL文件夹-->config文件夹-->Python文件夹-->Default.sublime-commands
 	2. 找到对应的command，添加到Preferences-->Key Bindings User中。
 
-    { 
-    "keys": ["f5"], 
-    "command": "run_existing_window_command", 
+    {
+    "keys": ["f5"],
+    "command": "run_existing_window_command",
     "args":
     {
         "id": "repl_python",
@@ -142,6 +142,7 @@ description:
 	Sublime PHP Companion
 	All Autocomplete
 	DocBlockr
+	SublimeAStyleFormatter：C, C++, C#, 和 Java文件格式化
 
 
 
@@ -213,7 +214,7 @@ description:
 	    { "keys": ["ctrl+]"], "command": "indent" },
 	    //向右缩进
 		{ "keys": ["ctrl+["], "command": "unindent" },
-		
+
 		//列出当前打开的文件
 		{ "keys": ["ctrl+p"], "command": "show_overlay", "args": {"overlay": "goto", "show_files": true} },
 		{ "keys": ["ctrl+shift+p"], "command": "show_overlay", "args": {"overlay": "command_palette"} },
@@ -243,18 +244,36 @@ description:
 		//移动当前行
 		{ "keys": ["ctrl+shift+up"], "command": "swap_line_up" },
 		{ "keys": ["ctrl+shift+down"], "command": "swap_line_down" },
-		//删除当前行
+		//删除当前
 		{ "keys": ["ctrl+shift+k"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete Line.sublime-macro"} },
-		
+
 		//Ctrl + D选择当前光标所在的词并高亮该词所有出现的位置，再次Ctrl + D选择该词出现的下一个位置，在多重选词的过程中，使用Ctrl + K进行跳过，使用Ctrl + U进行回退，使用Esc退出多重编辑。
 		{ "keys": ["ctrl+d"], "command": "find_under_expand" },
 		{ "keys": ["ctrl+k", "ctrl+d"], "command": "find_under_expand_skip" },
-		
+
 		//打散所选区域
 		{ "keys": ["ctrl+shift+l"], "command": "split_selection_into_lines" },
 		//将选中区域合并为一行
-		{ "keys": ["ctrl+j"], "command": "join_lines" },
-
-		
-
+		{ "keys": ["ctrl+j"], "command": "join_<l></l>ines" },
+		//选择行
+		{ "keys": ["ctrl+l"], "command": "expand_selection", "args": {"to": "line"} },
+		//把选区分割
+		{ "keys": ["ctrl+shift+l"], "command": "split_selection_into_lines" },
 	]
+
+
+如何自定义插件
+
+如何自定义代码块
+
+如何自定义语法
+
+
+
+**参考**
+
+[官方文档](http://docs.sublimetext.info/en/latest)
+
+[Sublime Text非官方文档](https://sublime-undocs-zh.readthedocs.io/en/latest/command_line/command_line.html)
+
+[Sublime Text3文档](http://feliving.github.io/Sublime-Text-3-Documentation/index.html)

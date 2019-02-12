@@ -74,13 +74,10 @@ description:
 
 ### 参考：
 
-[https://github.com/imsun/gitment](https://github.com/imsun/gitment)
-
-[https://github.com/imsun/gh-oauth-server](https://github.com/imsun/gh-oauth-server)
-
-[https://blog.sometimesnaive.org/article/47.html](https://blog.sometimesnaive.org/article/47.html)
-
-[https://github.com/imsun/gitment/issues/170](https://github.com/imsun/gitment/issues/170)
+- [https://github.com/imsun/gitment](https://github.com/imsun/gitment)
+- [https://github.com/imsun/gh-oauth-server](https://github.com/imsun/gh-oauth-server)
+- [https://blog.sometimesnaive.org/article/47.html](https://blog.sometimesnaive.org/article/47.html)
+- [https://github.com/imsun/gitment/issues/170](https://github.com/imsun/gitment/issues/170)
 
 
 
