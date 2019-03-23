@@ -3413,7 +3413,7 @@ var Gitment = function () {
       }, options);
 
       this.state.user.isLoggingIn = true;
-      _utils.http.post('http://207.148.112.198:3000', {
+      _utils.http.post('http://95.179.211.78:3000', {
         code: code,
         client_id: client_id,
         client_secret: client_secret
