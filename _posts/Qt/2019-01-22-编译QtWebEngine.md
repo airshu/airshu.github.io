@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 编译QtWebEngine
-category: 技术
+category: Qt
 tags: Qt QtWebEngine
 keywords:
 description:
