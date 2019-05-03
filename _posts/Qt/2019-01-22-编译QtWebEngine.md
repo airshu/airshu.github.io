@@ -2,7 +2,7 @@
 layout: post
 title: 编译QtWebEngine
 category: 技术
-tags: 技术 Qt
+tags: Qt QtWebEngine
 keywords:
 description:
 ---
@@ -44,19 +44,28 @@ Windows SDK
 
 ### 环境准备
 
-将系统语言设置为英文
+如果出现以下问题，则将系统语言设置为英文
+
+```
+ninja: build stopped: subcommand failed. NMAKE : fatal error U1077: 'call' : return code '0x1' Stop. NMAKE : fatal error U1077: '"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.14.26428\bin\HostX64\x64\nmake.exe"' : return code '0x2' Stop. NMAKE : fatal error U1077: '(' : return code '0x2' Stop. NMAKE : fatal error U1077: 'cd' : return code '0x2' Stop. NMAKE : fatal error U1077: 'cd' : return code '0x2' Stop 
+```
+
+
 
 <br/>
 
 ### 编译
 
+    rem 运行VC环境
     "D:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\vcvars32.bat"
     set PYTHON_PATH=D:\Python\Python27-32
     set PERL_PATH=E:\Perl\bin
     set Bison_Flex_PATH=D:\Qt\Qt5.10.1\5.10.1\build_depends\win_flex_bison
     set Gperf_PATH=D:\Qt\Qt5.10.1\5.10.1\build_depends\gperf-3.0.1-bin\bin
     set PATH=%PYTHON_PATH%;%PERL_PATH%;%Bison_Flex_PATH%;%Gperf_PATH%;%PATH%
+    rem 配置
     "D:\Qt\Qt5.10.1\5.10.1\msvc2015\bin\qmake.exe" -- -webengine-proprietary-codecs
+    rem 编译、安装
     nmake && namek install
 
 
