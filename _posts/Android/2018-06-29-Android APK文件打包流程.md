@@ -133,6 +133,31 @@ res/raw和assets的不同点：
 
 **apksigner**
 
+```
+在Android Studio中点击菜单 Build->Generate signed apk... 打包签名过程中,
+可以看到两种签名选项 V1(Jar Signature)  V2(Full APK Signature),
+刚开始升级AS看到这个懵了,既然是APK Signature,就放心偷懒选了V2,结果安装失败？？？无奈,只能查资料...
+
+从Android 7.0开始, 谷歌增加新签名方案 V2 Scheme (APK Signature);
+但Android 7.0以下版本, 只能用旧签名方案 V1 scheme (JAR signing)
+
+V1签名:
+    来自JDK(jarsigner), 对zip压缩包的每个文件进行验证, 签名后还能对压缩包修改(移动/重新压缩文件)
+    对V1签名的apk/jar解压,在META-INF存放签名文件(MANIFEST.MF, CERT.SF, CERT.RSA), 
+    其中MANIFEST.MF文件保存所有文件的SHA1指纹(除了META-INF文件), 由此可知: V1签名是对压缩包中单个文件签名验证
+    
+V2签名:
+    来自Google(apksigner), 对zip压缩包的整个文件验证, 签名后不能修改压缩包(包括zipalign),
+    对V2签名的apk解压,没有发现签名文件,重新压缩后V2签名就失效, 由此可知: V2签名是对整个APK签名验证
+    
+    V2签名优点很明显:
+        签名更安全(不能修改压缩包)
+        签名验证时间更短(不需要解压验证),因而安装速度加快
+
+注意: apksigner工具默认同时使用V1和V2签名,以兼容Android 7.0以下版本
+
+```
+
     apksigner sign --ks key.jks --out package/app-release.apk package/app-unsigned-aligned.apk
     //检查签名
     apksigner verify app.apk

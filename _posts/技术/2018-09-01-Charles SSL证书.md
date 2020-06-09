@@ -25,9 +25,11 @@ description:
 
 选择将所有的证书都放入`受信任的根证书颁发机构`
 
+Mac需要在钥匙链中将证书设置为永久信任
+
 #### 手机配置
 
-连接Charles代理，浏览器访问`chls.pro/ssl`，下载安装证书
+连接跟电脑一样的网络，配置代理连接charles。浏览器访问`chls.pro/ssl`，下载安装证书
 
 
 
@@ -35,3 +37,4 @@ description:
 **参考**
 
 - [https://www.charlesproxy.com/documentation/using-charles/ssl-certificates/](https://www.charlesproxy.com/documentation/using-charles/ssl-certificates/)
+- [https://juejin.im/post/5b4f005ae51d45191c7e534a](https://juejin.im/post/5b4f005ae51d45191c7e534a)

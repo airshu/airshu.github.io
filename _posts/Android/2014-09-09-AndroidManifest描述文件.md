@@ -13,7 +13,6 @@ description:
                package="com.example.android"
                android:versionCode="1"
                android:versionName="1.0">
--------------------------------------------------------------------------------------------------------------------------------------------
     <uses-permission />
     <permission />
     <permission-tree />                                                      权限配置
@@ -25,13 +24,10 @@ description:
         android:label="string resource"
         android:name="string"
         android:targetPackage="string" />
--------------------------------------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------------------------------------
      <uses-sdk />
      <uses-configuration /> 
      <uses-feature />                                                         环境配置
      <supports-screens /> 
--------------------------------------------------------------------------------------------------------------------------------------------
      <compatible-screens /> 
      <supports-gl-texture /> 
 
@@ -63,7 +59,6 @@ description:
                  android:theme="resource or theme"
                  android:uiOptions=["none" | "splitActionBarWhenNarrow"]
                  android:vmSafeMode=["true" | "false"] >
--------------------------------------------------------------------------------------------------------------------------------------------
         //界面组件配置
         <activity android:allowTaskReparenting=["true" | "false"]
               android:alwaysRetainTaskState=["true" | "false"]
@@ -119,17 +114,14 @@ description:
                  <intent-filter> . . . </intent-filter>
                  <meta-data />
           </activity-alias>
--------------------------------------------------------------------------------------------------------------------------------------------
           <service>
                  <intent-filter> . . . </intent-filter>
                  <meta-data/>                                                  服务组件配置
           </service>
--------------------------------------------------------------------------------------------------------------------------------------------
           <receiver>
                  <intent-filter> . . . </intent-filter>                              触发器组件配置
                  <meta-data />
           </receiver>
--------------------------------------------------------------------------------------------------------------------------------------------
           数据源组件配置
 
 
