@@ -9,13 +9,13 @@ kmarkdown: redcarpet
 
 # 作者信息
 author: 
-  name: alonepig
+  name: loneqd
   email: alonelsj@gmail.com
   link: 
 
 # 站点信息
-title: alonepig的博客
-description: alonepig的博客
+title: loneqd的博客
+description: loneqd的博客
 url: 
 rss_url: /pages/atom.xml
 

@@ -52,11 +52,11 @@ $(document).ready(function() {
             $(this).data('gitmentInit', true);
             var gitment = new Gitment({
                 id: '页面 ID', // 可选。默认为 location.href
-                owner: 'alonepig',
-                repo: 'alonepig.github.com',
+                owner: 'loneqd',
+                repo: 'loneqd.github.com',
                 oauth: {
-                    client_id: '15baabca6293e7448ae4',
-                    client_secret: 'dbf1b8dc2bb295b5a24804c84efaa76b804bb01d',
+                    client_id: 'c6e91dd98b8b4e653512',
+                    client_secret: '1809361fd81effc776d3d6244d4b942f3996d2c0',
                 },
             });
             gitment.render('comment-container')
