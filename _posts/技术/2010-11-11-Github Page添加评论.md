@@ -124,9 +124,32 @@ comment:
 post.html和about.md分别添加 {% include comments.html %}
 
 
+### 添加访问次数
+
+- 设置访问次数开关
+
+```
+new Valine({
+    el:'#vcomments',
+    ...
+    visitor: true // 阅读量统计
+})
+
+```
+
+- 显示配置
+
+```
+    <span id="{{ page.url }}" class="leancloud_visitors" data-flag-title="Your Article Title">
+    <em class="post-meta-item-text">阅读量 </em>
+    <i class="leancloud-visitors-count">0</i>
+    </span>
+```
+
+
 ### 参考：
 
-
+- [https://valine.js.org/visitor.html](https://valine.js.org/visitor.html)
 - [https://www.shuzhiduo.com/A/MyJxY4Be5n/](https://www.shuzhiduo.com/A/MyJxY4Be5n/)
 
 
