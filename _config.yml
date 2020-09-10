@@ -19,6 +19,21 @@ description: loneqd的博客
 url: 
 rss_url: /pages/atom.xml
 
+
+
+
+# Comment
+comment:
+    valine: true
+    # app_id
+    leancloud_appid: oHebxNy7EUKpUp7DNX4YoYcp-gzGzoHsz
+    # app_key
+    leancloud_appkey: iSoFxGq6O5Ee9F0xh2GeORyU
+    # placeholde
+    placeholder: 留下一个脚印吧~
+
+
+
 # gavatar头像及Favicon
 gavatar: /public/img/logo.jpg
 favicon: /public/img/logo.jpg
