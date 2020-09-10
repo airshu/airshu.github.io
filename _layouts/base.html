@@ -18,6 +18,24 @@
             {{ content }}
 
 
+            <!-- /public/js/gitment.browser.js  -->
+<link rel="stylesheet" href="https://jjeejj.github.io/css/gitment.css">
+<script src="https://jjeejj.github.io/js/gitment.js"></script>
+<script>
+var gitment = new Gitment({
+  id: '页面 ID', // 可选。默认为 location.href
+  owner: 'loneqd',
+  repo: 'loneqd.github.io',
+  oauth: {
+    client_id: 'c6e91dd98b8b4e653512',
+    client_secret: '1809361fd81effc776d3d6244d4b942f3996d2c0',
+  },
+})
+gitment.render('comment-container')
+</script>
+
+
+
     <div id="comment-container" class="aside3-content"></div>
     <link rel="stylesheet" href="/public/css/default.css">
           </div>

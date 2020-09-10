@@ -78,6 +78,7 @@ description:
 - [https://github.com/imsun/gh-oauth-server](https://github.com/imsun/gh-oauth-server)
 - [https://blog.sometimesnaive.org/article/47.html](https://blog.sometimesnaive.org/article/47.html)
 - [https://github.com/imsun/gitment/issues/170](https://github.com/imsun/gitment/issues/170)
+- [https://frankjkl.github.io/2019/01/08/blogbuild-%E5%9C%A8Jekyll%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0gitment%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/](https://frankjkl.github.io/2019/01/08/blogbuild-%E5%9C%A8Jekyll%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0gitment%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/)
 
 
 
