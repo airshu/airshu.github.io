@@ -174,7 +174,7 @@ for user in session.query(User):
 ### 参考
 
 - github官方地址：[https://github.com/sqlalchemy/sqlalchemy](https://github.com/sqlalchemy/sqlalchemyÎ)
-- 文档地址：[https://docs.sqlalchemy.org/en/13/](https://docs.sqlalchemy.org/en/13/)
+- 官方文档地址：[https://docs.sqlalchemy.org/en/13/](https://docs.sqlalchemy.org/en/13/)
 - [https://docs.sqlalchemy.org/en/13/orm/tutorial.html](https://docs.sqlalchemy.org/en/13/orm/tutorial.html)
 
 
