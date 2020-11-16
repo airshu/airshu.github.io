@@ -44,8 +44,42 @@ d2 0000000000000000 d3 0000000000000000
 
 **信号类型:**
 
+软中断信号（signal，又简称为信号）用来通知进程发生了事件。进程之间可以通过调用kill库函数发送软中断信号。Linux内核也可能给进程发送信号，通知进程发生了某个事件（例如内存越界）。
+
+信号只是用来通知某进程发生了什么事件，无法给进程传递任何数据，进程对信号的处理方法有三种：
+
+1. 第一种方法是，忽略某个信号，对该信号不做任何处理，就象未发生过一样。
+2. 第二种是设置中断的处理函数，收到信号后，由该函数来处理。
+3. 第三种方法是，对该信号的处理采用系统的默认操作，大部分的信号的默认操作是终止进程。
+
 
 ```C++
+
+//信号监听
+sighandler_t signal(int signum, sighandler_t handler);
+/*
+参数signum表示信号的编号。
+参数handler表示信号的处理方式，有三种情况：
+1）SIG_IGN：忽略参数signum所指的信号。
+2）一个自定义的处理信号的函数，信号的编号为这个自定义函数的参数。
+3）SIG_DFL：恢复参数signum所指信号的处理方法为默认值。
+*/
+
+//发送信号
+int kill(pid_t pid, int sig);
+/*
+kill函数将参数sig指定的信号给参数pid 指定的进程。
+参数pid 有几种情况：
+1）pid>0 将信号传给进程号为pid 的进程。
+2）pid=0 将信号传给和目前进程相同进程组的所有进程，常用于父进程给子进程发送信号，注意，发送信号者进程也会收到自己发出的信号。
+3）pid=-1 将信号广播传送给系统内所有的进程，例如系统关机时，会向所有的登录窗口广播关机信息。
+sig：准备发送的信号代码，假如其值为零则没有任何信号送出，但是系统会执行错误检查，通常会利用sig值为零来检验某个进程是否仍在运行。
+返回值说明： 成功执行时，返回0；失败返回-1，errno被设为以下的某个值。
+EINVAL：指定的信号码无效（参数 sig 不合法）。
+EPERM：权限不够无法传送信号给指定进程。
+ESRCH：参数 pid 所指定的进程或进程组不存在。
+*/
+
 #define SIGHUP 1  // 终端连接结束时发出(不管正常或非正常)
 #define SIGINT 2  // 程序终止(例如Ctrl-C)
 #define SIGQUIT 3 // 程序退出(Ctrl-\)
@@ -162,6 +196,33 @@ sym指项目编译成功之后，obj目录
 dump指崩溃文件
 ```
 
+
+### xCrash的使用
+
+- [https://github.com/iqiyi/xCrash](https://github.com/iqiyi/xCrash)
+
+native异常日志文件的格式
+
+```
+日志分为：
+    头部信息（为应用的基本信息）
+    异常信号部分。（哪个异常信号导致异常，信号参见Linux信号）
+    backtrace
+    so库的编译信息，build id
+    堆栈信息
+    内存信息
+    内存映射
+    logcat日志输出部分，包括main,system,event
+    app应用进程打开的文件描述符
+    内存信息
+    app应用进程信息
+    异常回调填充信息
+```
+
+一般根据backtrace，再使用addr2line命令定位具体的错误代码位置。
+
+<br/>
+
 ### 参考
 
 - [http://gityuan.com/2016/06/25/android-native-crash/](http://gityuan.com/2016/06/25/android-native-crash/)
@@ -170,3 +231,4 @@ dump指崩溃文件
 - [http://www.droidsec.cn/%E5%B8%B8%E8%A7%81android-native%E5%B4%A9%E6%BA%83%E5%8F%8A%E9%94%99%E8%AF%AF%E5%8E%9F%E5%9B%A0/](http://www.droidsec.cn/%E5%B8%B8%E8%A7%81android-native%E5%B4%A9%E6%BA%83%E5%8F%8A%E9%94%99%E8%AF%AF%E5%8E%9F%E5%9B%A0/)
 - [https://github.com/iqiyi/xCrash](https://github.com/iqiyi/xCrash)
 - [https://source.android.com/devices/tech/debug](https://source.android.com/devices/tech/debug)
+- [xCrash日志文件格式](https://blog.csdn.net/cxmfzu/article/details/102624295)
