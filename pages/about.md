@@ -31,7 +31,7 @@ title: 关于
 ### 你可以在这里找到我：
 
 - [豆瓣](https://www.douban.com/people/alonepig/)
-- [Github](loneqd.github.com)
+- [Github](https://github.com/shjlone)
 - [知乎]()
 - [stackoverflow](https://stackoverflow.com/users/1317183/loneqd)
 - [力扣](https://leetcode-cn.com/u/loneqd/)
