@@ -3,3 +3,4 @@ _drafts/
 .DS_Store
 /.vscode/launch.json
 /.idea/
+/.jekyll-cache/Jekyll/Cache/
