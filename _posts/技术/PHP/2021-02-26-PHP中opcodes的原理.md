@@ -91,7 +91,7 @@ OPcache.force_restart_timeout=180   #如果缓存处于非激活状态，等待�
 
 
 - **可视化显示**：[https://github.com/PeeHaa/OpCacheGUI](https://github.com/PeeHaa/OpCacheGUI)
-- **简易的显示缓存信息**：[https://github.com/rlerdorf/opcache-status](https://github.com/rlerdorf/opcache-status)
+- **简易的显示缓存信息(PHP7+)**：[https://github.com/rlerdorf/opcache-status](https://github.com/rlerdorf/opcache-status)
 
 ### 相关PHP的API使用
 
