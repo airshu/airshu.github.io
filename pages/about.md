@@ -28,6 +28,15 @@ title: 关于
 <br/>
 <br/>
 
+
+### 一些小东西
+
+- [ActionScript3版本的Flappy Bird](https://github.com/shjlone/flappybird)
+- [Alfred股票小助手](https://github.com/shjlone/stock-assistant) ： 用于快速查询实时股价
+- [精选的Alfred的workflow](https://github.com/shjlone/alfred_workflow)
+
+<br/>
+
 ### 你可以在这里找到我：
 
 - [豆瓣](https://www.douban.com/people/alonepig/)
