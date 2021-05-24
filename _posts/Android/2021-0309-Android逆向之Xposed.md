@@ -81,7 +81,8 @@ public abstract void handleLoadPackage (XC_LoadPackage.LoadPackageParam lpparam)
 一个基于Xposed写的辅助工具，集成了自动网络抓包、网络堆栈爆破、文件日志、WebView调试环境、自动脱壳、Native函数注册监控、
 记录程序自杀堆栈等功能。
 
-### **ReflectMaster：**
+### **ReflectMaster（反射大师）：**
 [https://github.com/FormatFa/ReflectMaster](https://github.com/FormatFa/ReflectMaster)
 
 可以从当前页面提取dex，对于加壳的App很有用。
+

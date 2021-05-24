@@ -8,15 +8,15 @@ kmarkdown: redcarpet
 
 
 # 作者信息
-author: 
+author:
   name: shjlone
   email: alonelsj@gmail.com
-  link: 
+  link:
 
 # 站点信息
-title: loneqd的博客
-description: loneqd的博客
-url: 
+title: shjlone的博客
+description: shjlone的博客
+url:
 rss_url: /pages/atom.xml
 
 

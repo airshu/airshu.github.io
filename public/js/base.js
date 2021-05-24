@@ -52,8 +52,8 @@ $(document).ready(function() {
             $(this).data('gitmentInit', true);
             var gitment = new Gitment({
                 id: '页面 ID', // 可选。默认为 location.href
-                owner: 'loneqd',
-                repo: 'loneqd.github.com',
+                owner: 'shjlone',
+                repo: 'shjlone.github.com',
                 oauth: {
                     client_id: 'c6e91dd98b8b4e653512',
                     client_secret: '1809361fd81effc776d3d6244d4b942f3996d2c0',
