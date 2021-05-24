@@ -110,15 +110,24 @@ Java 容器的一种错误检测机制。例如：假设存在两个线程（线
 
 ### 常用Map
 
-- HashMap：基于哈希实现
-- HashTable：和 HashMap 类似，但它是线程安全的，这意味着同一时刻多个线程可以同时写入 HashTable 并且不会导致数据不一致。它是遗留类，不应该去使用它。
-  现在可以使用 ConcurrentHashMap 来支持线程安全，并且 ConcurrentHashMap 的效率会更高，因为 ConcurrentHashMap 引入了分段锁。
+- HashMap：在JDK1.8中，基于数组+链表+红黑树，
+- HashTable：哈希表实现，本身是同步的，不支持null键和值
 - LinkedHashMap：使用链表来维护元素的顺序，顺序为插入顺序或者最近最少使用（LRU）顺序。
-- SortedMap
+- SortedMap：
+- TreeMap：基于红黑树的一种提供顺序访问的Map
 
 
 ## Queue
 
 - LinkedList：可以用它来支持双向队列；
 - PriorityQueue 是基于堆结构实现，可以用它来实现优先级队列。
+
+
+
+## 常见面试题
+
+### ArrayList与LinkedList的实现和区别？
+
+- ArrayList由动态数组实现，LinkedList由链表实现
+- ArrayList随机访问快，LinkedList插入删除快
 
