@@ -110,11 +110,13 @@ Java 容器的一种错误检测机制。例如：假设存在两个线程（线
 
 ### 常用Map
 
-- HashMap：在JDK1.8中，基于数组+链表+红黑树，
-- HashTable：哈希表实现，本身是同步的，不支持null键和值
+- HashMap：在JDK1.8中，基于数组+链表+红黑树。需要自动装箱，有hash碰撞问题
+- HashTable：哈希表实现，本身是同步的，put操作直接锁住，不支持null键和值。
+- ConcurrentHashMap：线程安全的HashMap，使用synchronized锁住了链表，性能强于HashTable
 - LinkedHashMap：使用链表来维护元素的顺序，顺序为插入顺序或者最近最少使用（LRU）顺序。
 - SortedMap：
 - TreeMap：基于红黑树的一种提供顺序访问的Map
+- SparseArray：Android平台专有，避免自动装箱，k、v都使用数组实现，k为整型。使用二分查找。删除时将v设置为DELETE。
 
 
 ## Queue

@@ -1,5 +1,9 @@
 ---
-layout: post title: Synchronized category: Java tags: Java keywords:
+layout: post 
+title: Synchronized 
+category: Java 
+tags: Java 
+keywords:
 description:
 ---
 
