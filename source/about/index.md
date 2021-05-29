@@ -2,65 +2,50 @@
 title: About
 date: 2016-10-24 10:24:00
 update: 2016-12-10 22:14:43
-layout: post
+
 ---
 
 
 
 ##  关于我自己
 
-嗨呀，我好菜呀！有什么可说的呢。。。
 
-![此处应该有我好菜啊.jpg](../images/我好菜啊.jpg)
+**关注IT技术，分享学到的知识，分享生活的乐趣。**
 
-
-
-看过太多同龄的大神，体会过各种被碾压得成渣渣的感觉，其中有来自某看着成长起来的[小学生](https://github.com/qiaozhanrong) (虽然截止现在-2016-已经初中了)，在各种博客中随时能发现随手就能碾压我的各种初高中生博主。
-
-受到了有来自无节操赛艇群里各路 dalao 的鼓励，同时也让我默默献上了膝盖。。。
-
-喜欢二次元，天天看着群里 dalao 穿女装、开车，不敢说话。。。受到[某老司机](http://www.saber.我爱你/tag/hentai)的影响，所以自己也想建个车库（咳，我只是说文件应该整理对不对！）
-
-各方面都是辣鸡，但是觉得好玩就不会放弃。
+<br/>
 
 
+此博客内容因博主见识、表达措辞、查阅资料有限、资料时效性变化等因素，内容不能保证完全正确或适合读者使用！！！
 
-###  关于编程
+特别是代码，切勿在不理解的情况下直接复制粘贴执行！！！
 
-蒟蒻。。。各种意义上都是弱鸡。。。能和各位 蒟苣 dalao 生活在同一个时代真是了不起。
+再三忠告，对于非官方文档的资料请始终保持审慎态度！！！
 
-喜欢 C#，热爱玩 Python。因为觉得 C# 代码优美，逻辑关系明确，写的时候很舒服；用 Python 是因为喜欢脚本语言的便捷性，但是一直都吐槽动态语言的各种不爽，Python 学到后面各种黑科技黑魔法，总看到有 dalao 写的代码把我认为应该是 Python 设计不合理的地方当特性玩得飞起，卧槽，谁说 Python 简单来着！
-
-话说回来，shell 和 js 这种丧心病狂、自带混淆、又不得不用的语言，让我还是对 Python 感到别无所求了 (毕竟好那么多是不是)。
-
-写页面向来无视浏览器兼容性，有各种写出失败且不可调试代码的丰富经历。
+此博客乃学习笔记，主要目的是方便自己检阅、巩固学习时的知识整理，其中错漏残缺不可避免，如果读者有任何新发现烦请留言，互勉学习而进步。
 
 
+## Who am I
 
-### 背景图包
-
-本站背景图片均来自网络，因个人喜好所以设为背景，不作商用，部分尚不明出处，绝大部分来自于我所喜爱的几位 [P 站](http://www.pixiv.net/) 画师，此处向各位大触们再次献上膝盖：（以下列举尚不完整~）
-
-[【wlop】](http://www.pixiv.net/member.php?id=2188232)    [【千夜QYS3】](http://www.pixiv.net/member.php?id=7210261)  [【白夜ReKi】](http://www.pixiv.net/member.php?id=10606052)  [【KyoD＋@ミクラブ】](http://www.pixiv.net/member.php?id=7640889)  [【小忍.pr】](http://www.pixiv.net/member.php?id=12793879)  [【ASK】](http://www.pixiv.net/member.php?id=1980643)  [【Cait】](http://www.pixiv.net/member.php?id=573302) 
-
-
-
-### 业余爱好
-
-喜欢写字，喜欢弹钢琴 (虽然我只有手卷琴~)，喜欢画老婆~~
-
-不过还 too young, too naive ! 还需要再学习一个。
-
-也喜欢古文，比如我就念了一句诗：
-
-​      苟利国家生死以 。。。
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 
 
+### 一些小东西
 
-### 最后
+- [ActionScript3版本的Flappy Bird](https://github.com/shjlone/flappybird)
+- [Alfred股票小助手](https://github.com/shjlone/stock-assistant) ： 用于快速查询实时股价
+- [精选的Alfred的workflow](https://github.com/shjlone/alfred_workflow)
 
-放一张齐神的嫌弃脸 - (我跟你讲我就这个表情！) 
+<br/>
 
+### 你可以在这里找到我：
 
+- [豆瓣](https://www.douban.com/people/alonepig/)
+- [Github](https://github.com/shjlone)
+- [知乎]()
+- [stackoverflow](https://stackoverflow.com/users/1317183/loneqd)
+- [力扣](https://leetcode-cn.com/u/loneqd/)
 
-![此处是来自齐神的嫌弃](../images/来自齐神的嫌弃.png)
