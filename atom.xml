@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Shjlone&#39;s Blog</title>
+  
+  <subtitle>Hello World</subtitle>
+  <link href="http://shjlone.github.io/atom.xml" rel="self"/>
+  
+  <link href="http://shjlone.github.io/"/>
+  <updated>2021-05-29T03:14:01.497Z</updated>
+  <id>http://shjlone.github.io/</id>
+  
+  <author>
+    <name>shjlone</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>《Java编程思想》读书笔记</title>
+    <link href="http://shjlone.github.io/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2016-01-17-%E3%80%8AJava%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    <id>http://shjlone.github.io/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2016-01-17-%E3%80%8AJava%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</id>
+    <published>2020-04-23T05:57:29.096Z</published>
+    <updated>2021-05-29T03:14:01.497Z</updated>
+    
+    <content type="html"><![CDATA[<p>final</p><p>finally</p><p>finalize</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;final&lt;/p&gt;
+&lt;p&gt;finally&lt;/p&gt;
+&lt;p&gt;finalize&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    <category term="读书笔记" scheme="http://shjlone.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="读书笔记" scheme="http://shjlone.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《网络是如何连接的》读书笔记</title>
+    <link href="http://shjlone.github.io/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2018-06-12-%E3%80%8A%E7%BD%91%E7%BB%9C%E6%98%AF%E5%A6%82%E4%BD%95%E8%BF%9E%E6%8E%A5%E7%9A%84%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    <id>http://shjlone.github.io/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2018-06-12-%E3%80%8A%E7%BD%91%E7%BB%9C%E6%98%AF%E5%A6%82%E4%BD%95%E8%BF%9E%E6%8E%A5%E7%9A%84%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</id>
+    <published>2020-04-23T05:57:29.096Z</published>
+    <updated>2021-05-29T03:13:57.776Z</updated>
+    
+    
+    
+    
+    <category term="读书笔记" scheme="http://shjlone.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="读书笔记" scheme="http://shjlone.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《计算机是怎么跑起来的》读书笔记</title>
+    <link href="http://shjlone.github.io/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2018-08-10-%E3%80%8A%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%98%AF%E6%80%8E%E6%A0%B7%E8%B7%91%E8%B5%B7%E6%9D%A5%E7%9A%84%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    <id>http://shjlone.github.io/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2018-08-10-%E3%80%8A%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%98%AF%E6%80%8E%E6%A0%B7%E8%B7%91%E8%B5%B7%E6%9D%A5%E7%9A%84%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</id>
+    <published>2020-04-23T05:57:29.096Z</published>
+    <updated>2021-05-29T03:13:54.144Z</updated>
+    
+    <content type="html"><![CDATA[<p>计算机三个根本性基础：</p><ol><li>计算机是执行输入、运算、输出的机器；</li><li>程序是指令和数据的集合；</li><li>计算机的处理方式有时与人们的思维习惯不同。</li></ol><p>计算机的硬件由大量集成电路组成。每块集成电路上都带有许多引脚。这些引脚有些用于输入，有些用于输出。</p><p>时钟发生器</p><p>操作数：操作数笔试是已存储在CPU寄存器中的数字。<br>操作码</p><p>机器语言是唯一一种cpu能直接理解的编程语言。</p><p>CPU内部存储数据的地方也具备对数据进行计算的能力。有些寄存器中存储着接下来要执行的指令的地址。程序就是依靠着不断变花的寄存器的值运行起来的。</p><p>cpu信息<br>cpu的种类：不同的CPU对于二进制的理解是不一样的。<br>时钟信号的频率：时钟发生器发送给cpu的电信号的频率。表示时钟信号频率的单位是MHz（兆赫兹=100万回/秒）。时钟信号是在0和1之间反复变换的电信号。通常把发出一次滴答的时间称作一个时钟周期。</p><p>内存信息<br>地址空间<br>每个地址中可以存储多少比特的信息</p><p>I/O信息<br>I/O的种类<br>地址空间<br>连接着何种周边设备</p><p>最低限度所需的流程图符号</p><p>网卡地址前半部分表示生产商，后半部分表示编号。</p><p>子网掩码的作用是标识出在32比特的IP地址中，从哪一位到哪一位是网络地址，从哪一位到哪一位是主机地址。<br>255.255.255.240用二进制表示：<br>11111111.11111111.11111111.11110000<br>值为1的那些位对应着IP地址中的网络地址，后面为0的那些则对应着主机地址。</p><p>DHCP：Dynamic Host Configuration Protocol 动态主机设置协议</p><p>tracert</p><p>ARP：Address Resolution Protocol，地址解析协议，用于实现由IP地址到MAC地址的转换<br>arp -a    查询apr缓存表</p><p>硬件商发送数据的是网卡，网卡之上是设备驱动程序，之上是实现了IP协议的程序，之上是实现了TCP协议的程序，再之上才是应用程序。<br>TCP协议使用“TCP端口号”的数字识别上层的应用程序。TCP端口中有一些是预先定义好的，比如Web使用80端口，电子邮件使用25端口（用于发送）</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;计算机三个根本性基础：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;计算机是执行输入、运算、输出的机器；&lt;/li&gt;
+&lt;li&gt;程序是指令和数据的集合；&lt;/li&gt;
+&lt;li&gt;计算机的处理方式有时与人们的思维习惯不同。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;计算机的硬件由大量集成电路组成。每块集成电路上都带有</summary>
+      
+    
+    
+    
+    <category term="读书笔记" scheme="http://shjlone.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="读书笔记" scheme="http://shjlone.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>收集的电子书</title>
+    <link href="http://shjlone.github.io/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2018-11-22-%E6%94%B6%E9%9B%86%E7%9A%84%E7%94%B5%E5%AD%90%E4%B9%A6/"/>
+    <id>http://shjlone.github.io/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2018-11-22-%E6%94%B6%E9%9B%86%E7%9A%84%E7%94%B5%E5%AD%90%E4%B9%A6/</id>
+    <published>2020-04-23T05:57:29.096Z</published>
+    <updated>2021-05-29T03:13:48.743Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>如何阅读一本书</li></ul><p><strong>ActionScript、Flex</strong></p><ul><li>Actionscript 3 image effects</li><li>ActionScript 3</li><li>ActionScript Graphing Cookbook</li><li>ActionScript</li><li>ActionScript大型网页游戏开发</li><li>AdvancED ActionScript Animation动画高级编程</li><li>AdvancED Game Design with Flash</li><li>air_buildingapps</li><li>Flash Cinematic Techniques</li><li>Flash Game Development by Example</li><li>Flex4权威指南</li><li>FLEX企业应用开发实战</li><li>Foundation Game Design with Flash</li><li>FriendsofED</li><li>The Essential Guide to Flash Games(flash游戏编程指南)</li><li>优化Flash性能</li><li>AIR_Android应用开发实战</li><li>Developing Android Applications with Flex 4</li><li>Flash+Flex+Air移动开发入门经典</li><li>mobile-encoding-android-v2_7</li><li>Packt Publishing Flash Development for Android Cookbook (2011)</li><li>使用Flex4</li><li>ABCStructure</li><li>amf0_spec_121207</li><li>amf3_spec_121207</li><li>avm2overview</li><li>swf_file_format_spec_v10</li><li>video_file_format_spec_v10_1</li></ul><br/><p><strong>Android</strong></p><ul><li>Android 4高级编程(第3版)</li><li>Android Developer Tools Essentials</li><li>Android Native Development Kit Cookbook</li><li>Android内核剖析(完整版)</li><li>Android多媒体开发高级编程</li><li>Android应用开发详解</li><li>Android开发精要</li><li>ANDROID框架揭秘</li><li>Android系统源代码情景分析</li><li>Android软件安全与逆向分析</li><li>Dalvik-Bytecode</li><li>embedded_android</li><li>Fragments for All Presentation</li><li>Google Android SDK开发范例大全(第3版)</li><li>Groovy in Action</li><li>Groovy中文教程</li><li>Kotlin in Action</li><li>kotlin-for-android-developers-zh</li><li>Kotlin官方参考文档中文版</li><li>Practical</li><li>practical_android_4_games_development</li><li>Smashing_Android_UI</li><li>The Busy Coder’s Guide to Android Development, Version 4</li><li>[Gradle</li><li>[www</li><li>深入理解Android(卷2)</li><li>深入理解android</li><li>疯狂Android讲义</li><li>精通Android3</li></ul><br/><p><strong>C#</strong></p><ul><li>C#入门经典第5版中文高清版</li><li>C#高级编程(中文第七版)</li></ul><br/><p><strong>C、C++</strong></p><ul><li>Accelerated C++中文版</li><li>Andrew Koenig：C 陷阱与缺陷@2002 (扫描版)</li><li>An_Introduction_to_GCC_中文</li><li>c++  Primer 第5版</li><li>C+++GUI+QT3编程_11774607</li><li>C++STL标准程序库开发指南 PDF电子书下载 带书签目录</li><li>C++标准程序库</li><li>C++模板元编程</li><li>C++沉思录(Ruminations on C++)中文第2版</li><li>C++程序设计原理与实践(中文完整版)</li><li>C++编程规范-101条规则准则与最佳实践</li><li>C++语言的设计和演化</li><li>C专家编程</li><li>C和指针(第二版)高清全版469页</li><li>C程序设计(第四版)谭浩强</li><li>C程序设计语言(第2版_新版)</li><li>C程序设计语言(第2版_新版)习题解答</li><li>C程序设计语言(第2版_新版)非扫描版&amp;详细书签版</li><li>C语言入门经典(第四版)</li><li>C语言范例开发大全</li><li>Effective C   中文版第三版 高清PDF</li><li>Effective STL 中文版</li><li>Essential C++中文版</li><li>Head</li><li>STL源码剖析简体中文完整版(清晰扫描带目录)</li><li>你必须知道的495个C语言问题</li><li>像计算机科学家一样思考C++</li><li>嗨翻C语言_13421426(jb51</li><li>易学C++</li></ul><br/><p><strong>English</strong></p><ul><li>无敌初中必考语法</li><li>新编英语语法教程+学生用书+第5版_PDF</li><li>无敌英语语法：全范围</li></ul><br/><p><strong>History</strong></p><ul><li><p>乔治·奥威尔：一九八四</p></li><li><p>何清涟：现代化的陷阱</p></li><li><p>吴思：潜规则——中国历史中的真实游戏</p></li><li><p>吴思：血酬定律——中国历史中的生存游戏</p></li><li><p>威廉·夏伊勒：第三帝国的兴亡 (上)</p></li><li><p>威廉·夏伊勒：第三帝国的兴亡 (下)</p></li><li><p>威廉·夏伊勒：第三帝国的兴亡 (中)</p></li><li><p>学会提问-批判性思维指南</p></li><li><p>弗洛伊德：梦的解析</p></li><li><p>弗洛伊德：精神分析引论</p></li><li><p>徐中约《中国近代史》（PDF-港版完整无删减）上</p></li><li><p>徐中约《中国近代史》（PDF-港版完整无删减）下</p></li><li><p>斯科特·派克：少有人走的路</p></li><li><p>罗伯特·西奥迪尼：影响力</p></li><li><p>金观涛 &amp; 刘青峰：兴盛与危机——论中国社会超稳定结构</p></li><li><p>阿利安：亚历山大远征记</p></li><li><p>高华：在历史的风陵渡口</p></li><li><p>黄仁宇：中国大历史</p></li><li><p>剑桥中国历史</p><ul><li>中华人民共和国史 (上卷 扫描版)</li><li>明史 (扫描版)</li><li>晚清史 (上卷 扫描版)</li><li>晚清史 (下卷 扫描版)</li><li>民国史 (上卷 扫描版)</li><li>民国史 (下卷 扫描版)</li><li>秦汉史 (扫描版)</li><li>辽西夏金元史 (扫描版)</li><li>隋唐史 (扫描版)</li></ul></li></ul><br/><p><strong>iOS</strong></p><ul><li>AppDistributionGuide</li><li>Effective Objective-C 2</li><li>iOS应用逆向工程 分析与实战</li><li>iOS编程+第4版</li><li>Objective C 编程之道</li><li>Objective C程序设计</li><li>Objective-C编程全解 第3版</li><li>Objective-C高级编程 iOS与OS X多线程和内存管理</li><li>OSX与iOS内核编程</li></ul><br/><p><strong>Java</strong></p><ul><li>advancedservletsjsp</li><li>Effective Enterprise Java(Chinese)</li><li>Head First Servlets and JSP  中文版  第2版</li><li>Head First Servlets and JSP 2nd</li><li>Head First Web设计 (中文版)</li><li>JAVA并发编程实践（中文）</li><li>Java并发编程实践（英文版）</li><li>Java本地接口(JNI)编程指南和规范2</li><li>JAVA案例开发集锦</li><li>Java编程思想_第4版_中文完整版</li><li>Java虚拟机规范中文版</li><li>Java迷题</li><li>JAVA面试题解惑系列</li><li>servlet-2_5-mrel2-spec</li><li>Think In Java 4完美高清中文版</li><li>《Java网络编程(第4版)》</li><li>深入浅出数据分析（美）米尔顿著</li><li>Effective Java（第2版）</li></ul><br/><p><strong>Javascript</strong></p><ul><li>HTML5高级程序设计</li><li>javascript dom 编程艺术</li><li>JavaScript权威指南(第6版)(中文版)</li><li>JavaScript高级程序设计(中文)-第3版</li></ul><br/><p><strong>kinect</strong></p><ul><li>51CTO下载-kinect应用开发实战（全书）</li><li>Kinect人机交互开发实践</li></ul><br/><p><strong>Linux</strong></p><ul><li>bash Cookbook Solutions and Examples for bash Users</li><li>Linux Shell Scripting Cookbook 2nd Edition May 2013</li><li>Linux 与 UNIX Shell 编程指南</li><li>Linux</li><li>linux内核源代码情景分析(上)</li><li>linux内核源代码情景分析(下)</li><li>Linux命令行与Shell脚本编程大全 第2版</li><li>Understanding The Linux Kernel</li><li>UNIX操作系统基础使用手册</li><li>精通UNIXShell脚本编程</li><li>高级Bash脚本编程指南(Advanced Bash-Scripting</li><li>鸟哥的Linux私房菜服务器架设篇(第三版)</li></ul><br/><p><strong>Music</strong></p><ul><li>五线谱入门</li><li>基本乐理</li></ul><br/><p><strong>PHP</strong></p><ul><li>PHP和MySQL</li><li>PHP开发实战1200例</li><li>symfony权威指南</li><li>深入PHP面向对象模式与实践</li><li>白帽子讲 Web 安全</li><li>高性能mysql第三版 </li><li>PHP核心技术与最佳实践</li><li>PHP内核剖析</li><li>深入理解PHP内核</li></ul><br/><p><strong>Python</strong></p><ul><li>Beginning Game Development with Python and Pygame</li><li>Dive into Python</li><li>Effective</li><li>Expert Python Programming(2nd)</li><li>make game with python &amp; pyGame</li><li>Python 3</li><li>Python Cookbook</li><li>Python参考手册(第4版)</li><li>Python基础教程(第2版)</li><li>python标准库中文版PDF(带章节书签)</li><li>Python核心编程第二版-习题答案</li><li>Python源码剖析</li><li>Python灰帽子 黑客与逆向工程师的Python编程之道</li><li>Python灰帽子：黑客与逆向工程师的Python编程之道(英文版)</li><li>The Django Book 2</li><li>The Python Standard Library by Example</li><li>深入学习Python 3</li><li>编写高质量代码 改善Python程序的91个建议</li></ul><br/><p><strong>Qt</strong></p><ul><li>C++  Qt设计模式（第2版）</li><li>QmlBook-In-Chinese</li><li>Qt Creator快速入门</li><li>Qt Quick核心编程 13678855</li><li>Qt5开发及实例</li><li>Qt及Qt Quick开发实战精解</li><li>QT学习之路(全)</li><li>QT高级编程_chs</li><li>the_art_of_building_qt_applications</li><li>《C++设计模式–基于Qt4开源跨平台开发框架》</li></ul><br/><p><strong>PyQt</strong></p><ul><li>pyqt-book</li><li>PyQt5 tutorial</li><li>pyqt5__pythonGui入门教程</li><li>PyQt5入门</li><li>Rapid GUI Programming with Python and Qt</li></ul><p><strong>Temp</strong></p><ul><li>51CTO下载-ffmpeg教程</li><li>CMake Practice</li><li>design-patterns</li><li>FFMPEG教程完美排版</li><li>GarageBand使用指南</li><li>growth全栈增长工程师指南</li><li>InstallationGuide</li><li>kotlin-in-action-in-chinese</li><li>OpenSL_ES_Specification_1</li><li>SDL+GUIDE+中文译本</li><li>SWIGDocumentation</li><li>TCP-IP详解(卷一、二、三)</li><li>Wireshark 数据包分析实战(第2版)最新中文版</li><li>Wireshark 数据包分析实战详解</li><li>《图解TCP IP(第5版)》</li><li>图解设计模式</li><li>程序是怎样跑起来的_PDF电子书下载 带书签目录 高清完整版</li><li>网络是怎样连接的</li><li>计算机是怎样跑起来的</li><li>设计模式</li><li>设计模式之禅(完整高清版)</li><li>Java加密与解密的艺术</li><li>一个证券分析师的醒悟 张化桥的股市真话</li><li>游戏之旅-我的编程感悟</li><li>游戏设计-原理与实践</li><li>荣辱二十年-我的股市人生</li><li>计算机程序的构造和解释</li></ul><br/><p><strong>产品、设计、思想</strong></p><ul><li>A Pattern Language</li><li>Head First 设计模式</li><li>Java与模式</li><li>Java夜未眠</li><li>java设计模式</li><li>人件（原书第3版）</li><li>人月神话</li><li>代码之美</li><li>你的灯亮着吗</li><li>启示录：打造用户喜爱的产品（英文）</li><li>大话设计模式</li><li>学会提问-批判性思维指南</li><li>建筑的永恒之道</li><li>数据结构经典问题和算法分析</li><li>浪潮之巅</li><li>漫谈设计模式</li><li>编码的奥秘</li><li>设计心理学</li><li>设计模式-可复用面向对象软件的基础</li><li>设计模式精解</li><li>设计模式：Java语言中的应用</li><li>高效程序的奥秘</li><li>黑客与画家 硅谷创业之父Paul Graham文集</li></ul><br/><p><strong>产品经理</strong></p><ul><li>互联网产品经理改变世界</li><li>产品经理手册  第3版</li><li>产品经理方法论</li><li>区块链将如何改变世界</li><li>用户体验要素</li><li>用户体验面面观-方法、工具与实践</li></ul><br/><p><strong>德州扑克</strong></p><ul><li>let there be range(中文)</li><li>加注的优势：当今锦标赛激进策略</li><li>哈灵顿在现金上2中文版</li><li>扑克蓝图</li></ul><br/><p><strong>摄影</strong></p><ul><li>数码单反摄影从入门到精通第一卷</li><li>美国纽约摄影学院摄影教材</li></ul><br/><p><strong>服务端</strong></p><ul><li>docker_practice</li><li>Docker从入门到实践</li><li>PHP-Debug-Manual-public</li><li>Redis开发运维实践指南</li><li>Redis源代码分析</li><li>云计算架构技术与实践</li><li>亿级流量网站架构核心技术</li><li>伊甸园之河</li><li>大型网站技术架构核心原理与案例分析</li><li>实用负载均衡技术网站性能优化攻略</li><li>极客与团队</li><li>深入分布式缓存从原理到实践</li><li>精通正则表达式</li><li>软件架构设计</li><li>高扩展性网站的50条原则</li></ul><br/><p><strong>算法、数据结构</strong></p><ul><li>《大话数据结构》 程杰</li><li>程序员实用算法</li><li>算法之道</li><li>算法导论(第二版)习题答案(英文版)</li><li>算法导论</li></ul><br/><p><strong>管理</strong></p><ul><li>MBA教不了的创富课</li></ul><br/><p><strong>股票</strong></p><ul><li>与庄共舞（股票实战操作）</li><li>从零开始学炒股</li><li>价值投资系列之25《上市公司财报解读》</li><li>你不知道的中国股事那些事(高清)</li><li>投资正途</li><li>日本蜡烛图技术</li><li>江恩投资几何学原理</li><li>江恩测市法则（经典之作）</li><li>海龟交易法则</li><li>看盘细节(精选)</li><li>看盘细节</li><li>短线炒股就这几招（操盘必读）</li><li>短线点金：揭开市场的底牌</li><li>短线点金：破解股价的运行轨迹</li><li>短线点金：道破股价涨跌之玄机</li><li>缠中说禅《教你炒股票》1-108课图文全版</li><li>缠论解析  缠中说禅技术理论图解(清晰版)</li><li>聪明的投资者（高质量）</li><li>胡立阳股票投资100招（清晰）</li><li>证券市场基础知识</li><li>【投资艺术】作者：查尔斯 艾里斯</li><li>巴菲特教你读财报</li><li>股票作手回忆录</li><li>超越金融  索罗斯的哲学   (美)乔治·索罗斯   2</li><li>金融炼金术(高质量）</li><li>高胜算操盘</li><li>股市操练大全12345</li></ul><br/><p><strong>计算机基础</strong></p><ul><li>深入理解计算机系统(原书第2版)</li><li>编译、链接、装载</li><li>程序员的自我修养—链接、装载与库</li><li>linker and loader</li><li>现代编译原理：Ｃ语言描述</li><li>编译原理及实践</li><li>编译原理基础</li><li>编译原理（龙书）中文版</li><li>编译原理及实践</li></ul><br/><p><strong>音视频相关</strong></p><ul><li>FFmpeg Tutorial</li><li>FFmpegBasics</li><li>ffmpeg基础库编程开发</li><li>OpenCV 2 计算机视觉编程手册_中文版</li><li>学习OpenCV</li></ul><br/><p><strong>项目管理</strong></p><ul><li>Project 2016项目管理自学经典_王菁_清华大学_2016</li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;如何阅读一本书&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;ActionScript、Flex&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Actionscript 3 image effects&lt;/li&gt;
+&lt;li&gt;ActionScript 3&lt;/li&gt;
+&lt;li</summary>
+      
+    
+    
+    
+    <category term="读书笔记" scheme="http://shjlone.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="读书笔记" scheme="http://shjlone.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《Kotlin实战》读书笔记</title>
+    <link href="http://shjlone.github.io/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2019-03-22-%E3%80%8AKotlin%E5%AE%9E%E6%88%98%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    <id>http://shjlone.github.io/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2019-03-22-%E3%80%8AKotlin%E5%AE%9E%E6%88%98%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</id>
+    <published>2020-04-23T05:57:29.096Z</published>
+    <updated>2021-05-29T03:13:40.137Z</updated>
+    
+    <content type="html"><![CDATA[<h5 id="基本规则"><a href="#基本规则" class="headerlink" title="基本规则"></a>基本规则</h5><ul><li>不需要分号</li></ul><h5 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h5><ul><li>fun声明函数</li><li>函数可以定义在文件的最外层</li></ul><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">max</span><span class="params">(a: <span class="type">Int</span>, b: <span class="type">Int</span>)</span></span>: <span class="built_in">Int</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">if</span>(a&gt;b) a <span class="keyword">else</span> b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong>表达式函数体</strong></p><pre><code>fun max(a: Int, b: Int): Int = if(a&gt;b) a else b</code></pre><p>表达式函数体可以省略返回类型，Kotlin会进行类型推导</p><pre><code>fun max(a: Int, b: Int)= if(a&gt;b) a else b</code></pre><p>数组就是类</p><h5 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h5><ul><li>var表示可写属性</li><li>val表示只读属性</li></ul><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> answer = <span class="number">42</span> <span class="comment">//这个变量永不为null</span></span><br><span class="line"><span class="keyword">var</span> answer1:<span class="built_in">Int</span>? = <span class="number">40</span> <span class="comment">// 这个变量可以为null</span></span><br><span class="line"><span class="keyword">val</span> answer:<span class="built_in">Int</span> = <span class="number">42</span></span><br><span class="line"><span class="keyword">val</span>表示不可变引用，使用<span class="keyword">val</span>声明的变量不能在初始化之后再次赋值。</span><br><span class="line"><span class="keyword">var</span>可变引用，可以改变值，但不能改变类型。</span><br><span class="line"><span class="keyword">var</span> answer = <span class="number">13</span></span><br><span class="line">answer = <span class="string">&quot;no &quot;</span> 这样是错误的</span><br></pre></td></tr></table></figure><p><strong>字符串模板</strong></p><pre><code>$name$&#123;name&#125;</code></pre><p><strong>类</strong></p><pre><code>class Person(val name:String)class Person(val name:String, var isMarried:Boolean)</code></pre><p><strong>自定义访问器</strong></p><pre><code>class Rectangle(val height:Int, val width:Int) &#123;    val isSquare:Boolean        get() &#123;            return height == width        &#125;    //或者    get() = height == width&#125;</code></pre><p>包层级结构不需要遵守目录层级结构</p><p><strong>枚举</strong></p><pre><code>enum class Color(val r:Int, val g:Int, val b:Int) &#123;RED(255,0,0),GREEN(0,255,0);fun rgb() = (r*256 + g)*256 + b&#125;println(Color.GREEN.rgb())fun getMnumonic(color: Color) =     when(color) &#123;        Color.RED -&gt; &quot;Richard&quot;        Color.GREEN -&gt; &quot;Gave&quot;    &#125;</code></pre><p>@JvmOverloads， 会生成Java重载函数</p><p>顶层属性和函数</p><p>扩展函数不能被重写</p><h4 id="扩展属性"><a href="#扩展属性" class="headerlink" title="扩展属性"></a>扩展属性</h4><p>vararg 修饰符  可变参数</p><h4 id="中缀调用"><a href="#中缀调用" class="headerlink" title="中缀调用"></a>中缀调用</h4><p>局部函数</p><p>kotlin类声明默认是final和public，要想声明不是final的，将其标记为open</p><p>open、final、abstract</p><p>lateinit</p><p><strong>object</strong></p><p>定义一个类并同事创建一个实例，使用场景：</p><ul><li>对象声明是定义单例的一种方式</li><li>伴生对象可以持有工厂方法和其他与整个类相关，但在调用时并不依赖类实例的方法。</li><li>对象表达式用来替代Java的匿名内部类</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">object DataProviderManager &#123;</span><br><span class="line">    <span class="function">fun <span class="title">registarDataProvider</span><span class="params">(provider: DataProvider)</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DataProviderManager.registarDataProvider(...)</span><br></pre></td></tr></table></figure><p><strong>伴生对象companion</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClaa</span> </span>&#123;</span><br><span class="line">    companion object Factory&#123;</span><br><span class="line">        <span class="function">fun <span class="title">create</span><span class="params">()</span>:MyClass </span>= MyClass()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//该伴生对象的成员可通过只使用类名作为限定符来调用</span></span><br><span class="line">val instance = MyClass.create()</span><br><span class="line"></span><br><span class="line"><span class="comment">//可以省略伴生对象的名称，在这种情况下将使用名称 Companion</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line">    companion object &#123; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">val x = MyClass.Companion</span><br></pre></td></tr></table></figure><p>在 JVM 平台，如果使用 @JvmStatic 注解，你可以将伴生对象的成员生成为真正的静态方法和字段</p><p>直接通过容器类名来访问整个对象的方法和属性的能力</p><p>匿名对象可以实现多个接口或者不实现接口</p><p>lamdba表达式始终用花括号包围</p><pre><code>val sum = &#123;x: Int, y: Int -&gt; x+y&#125;println(sum(1,2))</code></pre><p>允许lamdba内部访问非final变量甚至修改它们</p><p>成员引用</p><pre><code>val getAge = Person::age</code></pre><p>all any  count  find  对集合应用判断式</p><p>with函数<br>apply</p><p>类型系统</p><p>可空性</p><pre><code>fun strLen(s:String) = s.lengthfun strLen(s:String?) = s.length</code></pre><p>安全调用运算符 ?.，只要链式中一个值为null，则整个表达式都返回null</p><pre><code>s?.toUpperCase()val testStr : String? = nullval result = testStr?.length?.plus(5)?.minus(10)println(result)</code></pre><p>?:</p><p>当一个函数有返回值时，如果方法中的代码使用?.去返回一个值，那么方法的返回值的类型后面也要加上?符号</p><pre><code>fun funNullMethod() : Int? &#123;    val str : String? = &quot;123456&quot;    return str?.length&#125;</code></pre><p>as?</p><p>非空断言  “!!”    显示地抛出异常</p><h5 id="let函数"><a href="#let函数" class="headerlink" title="let函数"></a>let函数</h5><p>作用：使用符号?.验证的时候忽略掉null</p><p>用法：变量?.let{…}</p><pre><code>val arrTest : Array&lt;Int?&gt; = arrayOf(1,2,null,3,null,5,6,null)// 传统写法for (index in arrTest) &#123;    if (index == null)&#123;        continue    &#125;    println(&quot;index =&gt; $index&quot;)&#125;// let写法for (index in arrTest) &#123;    index?.let &#123; println(&quot;index =&gt; $it&quot;) &#125;&#125;</code></pre><h5 id="Evils操作符"><a href="#Evils操作符" class="headerlink" title="Evils操作符"></a>Evils操作符</h5><p><strong>?:</strong></p><p>判断一个可空类型时，会返回一个我们自己设定好的默认值</p><pre><code>val testStr : String? = nullvar length = 0// ?: 写法length = testStr?.length ?: -1println(length)</code></pre><p><strong>!!</strong></p><p>判断一个可空类型时，会显示的抛出空引用异常</p><pre><code>val testStr : String? = nullprintln(testStr!!.length)</code></pre><p><strong>as?</strong></p><p>安全的类型转换</p><pre><code>val num2 : Int? = &quot;Koltin&quot; as? Intprintln(&quot;nun2 = $num2)</code></pre><p>基本类型、包装类型的转换需要通过API</p><p>Any  kotlin基类<br>Unit  kotlin中的void<br>Nothing    这个函数永不返回</p><p>List    listOf    mutableListOf、arrayListOf<br>Set    setOf    mutableSetOf、hashSetOf、linkedSetOf、sortedSetOf<br>Map    mapOf    mutableMapOf、hashMapOf、linkedMapOf、sortedMapOf</p><p>重载二元算术运算<br>operator</p><p>委托属性  by lazy()</p><p>kotlin允许使用对应名称的函数来重载一些标准的数学运算，但不能定义自己的运算符。</p><p>函数类型</p><p>内联函数</p><p>注解<br>@JvmName<br>@JvmStatic<br>@JvmOverloads<br>@JvmField</p><p>注解类：用来定义关联到声明和表达式的元数据的结构，它们不能包含任何代码</p><p>元注解<br>@Retention    说明你声明的注解是否会存储到.class文件，以及在运行时是否可以通过反射来访问它。</p><p>kotlin反射API</p><p>invoke</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h5 id=&quot;基本规则&quot;&gt;&lt;a href=&quot;#基本规则&quot; class=&quot;headerlink&quot; title=&quot;基本规则&quot;&gt;&lt;/a&gt;基本规则&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;不需要分号&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&quot;函数&quot;&gt;&lt;a href=&quot;#函数&quot; class=&quot;header</summary>
+      
+    
+    
+    
+    <category term="读书笔记" scheme="http://shjlone.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="读书笔记" scheme="http://shjlone.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CSS 属性声明顺序规范</title>
+    <link href="http://shjlone.github.io/wiki/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/CSS/CSS%20%E5%B1%9E%E6%80%A7%E5%A3%B0%E6%98%8E%E9%A1%BA%E5%BA%8F%E8%A7%84%E8%8C%83/"/>
+    <id>http://shjlone.github.io/wiki/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/CSS/CSS%20%E5%B1%9E%E6%80%A7%E5%A3%B0%E6%98%8E%E9%A1%BA%E5%BA%8F%E8%A7%84%E8%8C%83/</id>
+    <published>2017-10-24T13:28:59.000Z</published>
+    <updated>2021-05-29T02:17:24.336Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="CSS-属性声明顺序规范"><a href="#CSS-属性声明顺序规范" class="headerlink" title="CSS 属性声明顺序规范"></a>CSS 属性声明顺序规范</h1><p>很多 CSS 规范的属性顺序都各不一样，这东西也不像 <a href="https://vuejs.org/v2/style-guide/index.html#Component-instance-options-order-recommended">Vue 组件属性顺序</a> 一样有官方规范，这里记录下我目前认为合适的一种顺序。</p><h2 id="属性分类顺序"><a href="#属性分类顺序" class="headerlink" title="属性分类顺序"></a>属性分类顺序</h2><ul><li>显示方法 &amp; 布局</li><li>定位</li><li>盒模型框<ul><li>外边距</li><li>边框</li><li>内边距</li></ul></li><li>尺寸</li><li>文本样式<ul><li>字体</li><li>文本</li><li>文字颜色</li></ul></li><li>背景</li><li>轮廓</li><li>透明度 &amp; 阴影</li><li>动效<ul><li>过渡</li><li>转换变形</li><li>动画</li></ul></li><li>其他<ul><li>伪类 &amp; 伪元素</li><li>引用</li><li>媒体查询</li></ul></li></ul><h2 id="属性顺序列表"><a href="#属性顺序列表" class="headerlink" title="属性顺序列表"></a>属性顺序列表</h2><blockquote><p>源自 AlloyTeam <a href="http://alloyteam.github.io/CodeGuide/#css-declaration-order">CSS Code Guide</a></p></blockquote><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  [</span><br><span class="line">    <span class="string">&quot;display&quot;</span>,</span><br><span class="line">    <span class="string">&quot;visibility&quot;</span>,</span><br><span class="line">    <span class="string">&quot;float&quot;</span>,</span><br><span class="line">    <span class="string">&quot;clear&quot;</span>,</span><br><span class="line">    <span class="string">&quot;overflow&quot;</span>,</span><br><span class="line">    <span class="string">&quot;overflow-x&quot;</span>,</span><br><span class="line">    <span class="string">&quot;overflow-y&quot;</span>,</span><br><span class="line">    <span class="string">&quot;clip&quot;</span>,</span><br><span class="line">    <span class="string">&quot;zoom&quot;</span></span><br><span class="line">  ],</span><br><span class="line">  [</span><br><span class="line">    <span class="string">&quot;table-layout&quot;</span>,</span><br><span class="line">    <span class="string">&quot;empty-cells&quot;</span>,</span><br><span class="line">    <span class="string">&quot;caption-side&quot;</span>,</span><br><span class="line">    <span class="string">&quot;border-spacing&quot;</span>,</span><br><span class="line">    <span class="string">&quot;border-collapse&quot;</span>,</span><br><span class="line">    <span class="string">&quot;list-style&quot;</span>,</span><br><span class="line">    <span class="string">&quot;list-style-position&quot;</span>,</span><br><span class="line">    <span class="string">&quot;list-style-type&quot;</span>,</span><br><span class="line">    <span class="string">&quot;list-style-image&quot;</span></span><br><span class="line">  ],</span><br><span class="line">  [</span><br><span class="line">    <span class="string">&quot;position&quot;</span>,</span><br><span class="line">    <span class="string">&quot;top&quot;</span>,</span><br><span class="line">    <span class="string">&quot;right&quot;</span>,</span><br><span class="line">    <span class="string">&quot;bottom&quot;</span>,</span><br><span class="line">    <span class="string">&quot;left&quot;</span>,</span><br><span class="line">    <span class="string">&quot;z-index&quot;</span></span><br><span class="line">  ],</span><br><span class="line">  [</span><br><span class="line">    <span class="string">&quot;margin&quot;</span>,</span><br><span class="line">    <span class="string">&quot;margin-top&quot;</span>,</span><br><span class="line">    <span class="string">&quot;margin-right&quot;</span>,</span><br><span class="line">    <span class="string">&quot;margin-bottom&quot;</span>,</span><br><span class="line">    <span class="string">&quot;margin-left&quot;</span>,</span><br><span class="line">    <span class="string">&quot;box-sizing&quot;</span>,</span><br><span class="line">    <span class="string">&quot;border&quot;</span>,</span><br><span class="line">    <span class="string">&quot;border-width&quot;</span>,</span><br><span class="line">    <span class="string">&quot;border-style&quot;</span>,</span><br><span class="line">    <span class="string">&quot;border-color&quot;</span>,</span><br><span class="line">    <span class="string">&quot;border-top&quot;</span>,</span><br><span class="line">    <span class="string">&quot;border-top-width&quot;</span>,</span><br><span class="line">    <span class="string">&quot;border-top-style&quot;</span>,</span><br><span class="line">    <span class="string">&quot;border-top-color&quot;</span>,</span><br><span class="line">    <span class="string">&quot;border-right&quot;</span>,</span><br><span class="line">    <span class="string">&quot;border-right-width&quot;</span>,</span><br><span class="line">    <span class="string">&quot;border-right-style&quot;</span>,</span><br><span class="line">    <span class="string">&quot;border-right-color&quot;</span>,</span><br><span class="line">    <span class="string">&quot;border-bottom&quot;</span>,</span><br><span class="line">    <span class="string">&quot;border-bottom-width&quot;</span>,</span><br><span class="line">    <span class="string">&quot;border-bottom-style&quot;</span>,</span><br><span class="line">    <span class="string">&quot;border-bottom-color&quot;</span>,</span><br><span class="line">    <span class="string">&quot;border-left&quot;</span>,</span><br><span class="line">    <span class="string">&quot;border-left-width&quot;</span>,</span><br><span class="line">    <span class="string">&quot;border-left-style&quot;</span>,</span><br><span class="line">    <span class="string">&quot;border-left-color&quot;</span>,</span><br><span class="line">    <span class="string">&quot;border-radius&quot;</span>,</span><br><span class="line">    <span class="string">&quot;border-top-left-radius&quot;</span>,</span><br><span class="line">    <span class="string">&quot;border-top-right-radius&quot;</span>,</span><br><span class="line">    <span class="string">&quot;border-bottom-right-radius&quot;</span>,</span><br><span class="line">    <span class="string">&quot;border-bottom-left-radius&quot;</span>,</span><br><span class="line">    <span class="string">&quot;border-image&quot;</span>,</span><br><span class="line">    <span class="string">&quot;border-image-source&quot;</span>,</span><br><span class="line">    <span class="string">&quot;border-image-slice&quot;</span>,</span><br><span class="line">    <span class="string">&quot;border-image-width&quot;</span>,</span><br><span class="line">    <span class="string">&quot;border-image-outset&quot;</span>,</span><br><span class="line">    <span class="string">&quot;border-image-repeat&quot;</span>,</span><br><span class="line">    <span class="string">&quot;padding&quot;</span>,</span><br><span class="line">    <span class="string">&quot;padding-top&quot;</span>,</span><br><span class="line">    <span class="string">&quot;padding-right&quot;</span>,</span><br><span class="line">    <span class="string">&quot;padding-bottom&quot;</span>,</span><br><span class="line">    <span class="string">&quot;padding-left&quot;</span>,</span><br><span class="line">    <span class="string">&quot;width&quot;</span>,</span><br><span class="line">    <span class="string">&quot;min-width&quot;</span>,</span><br><span class="line">    <span class="string">&quot;max-width&quot;</span>,</span><br><span class="line">    <span class="string">&quot;height&quot;</span>,</span><br><span class="line">    <span class="string">&quot;min-height&quot;</span>,</span><br><span class="line">    <span class="string">&quot;max-height&quot;</span></span><br><span class="line">  ],</span><br><span class="line">  [</span><br><span class="line">    <span class="string">&quot;font&quot;</span>,</span><br><span class="line">    <span class="string">&quot;font-family&quot;</span>,</span><br><span class="line">    <span class="string">&quot;font-size&quot;</span>,</span><br><span class="line">    <span class="string">&quot;font-weight&quot;</span>,</span><br><span class="line">    <span class="string">&quot;font-style&quot;</span>,</span><br><span class="line">    <span class="string">&quot;font-variant&quot;</span>,</span><br><span class="line">    <span class="string">&quot;font-size-adjust&quot;</span>,</span><br><span class="line">    <span class="string">&quot;font-stretch&quot;</span>,</span><br><span class="line">    <span class="string">&quot;font-effect&quot;</span>,</span><br><span class="line">    <span class="string">&quot;font-emphasize&quot;</span>,</span><br><span class="line">    <span class="string">&quot;font-emphasize-position&quot;</span>,</span><br><span class="line">    <span class="string">&quot;font-emphasize-style&quot;</span>,</span><br><span class="line">    <span class="string">&quot;font-smooth&quot;</span>,</span><br><span class="line">    <span class="string">&quot;line-height&quot;</span>,</span><br><span class="line">    <span class="string">&quot;text-align&quot;</span>,</span><br><span class="line">    <span class="string">&quot;text-align-last&quot;</span>,</span><br><span class="line">    <span class="string">&quot;vertical-align&quot;</span>,</span><br><span class="line">    <span class="string">&quot;white-space&quot;</span>,</span><br><span class="line">    <span class="string">&quot;text-decoration&quot;</span>,</span><br><span class="line">    <span class="string">&quot;text-emphasis&quot;</span>,</span><br><span class="line">    <span class="string">&quot;text-emphasis-color&quot;</span>,</span><br><span class="line">    <span class="string">&quot;text-emphasis-style&quot;</span>,</span><br><span class="line">    <span class="string">&quot;text-emphasis-position&quot;</span>,</span><br><span class="line">    <span class="string">&quot;text-indent&quot;</span>,</span><br><span class="line">    <span class="string">&quot;text-justify&quot;</span>,</span><br><span class="line">    <span class="string">&quot;letter-spacing&quot;</span>,</span><br><span class="line">    <span class="string">&quot;word-spacing&quot;</span>,</span><br><span class="line">    <span class="string">&quot;text-outline&quot;</span>,</span><br><span class="line">    <span class="string">&quot;text-transform&quot;</span>,</span><br><span class="line">    <span class="string">&quot;text-wrap&quot;</span>,</span><br><span class="line">    <span class="string">&quot;text-overflow&quot;</span>,</span><br><span class="line">    <span class="string">&quot;text-overflow-ellipsis&quot;</span>,</span><br><span class="line">    <span class="string">&quot;text-overflow-mode&quot;</span>,</span><br><span class="line">    <span class="string">&quot;word-wrap&quot;</span>,</span><br><span class="line">    <span class="string">&quot;word-break&quot;</span></span><br><span class="line">  ],</span><br><span class="line">  [</span><br><span class="line">    <span class="string">&quot;color&quot;</span>,</span><br><span class="line">    <span class="string">&quot;background&quot;</span>,</span><br><span class="line">    <span class="string">&quot;background-color&quot;</span>,</span><br><span class="line">    <span class="string">&quot;background-image&quot;</span>,</span><br><span class="line">    <span class="string">&quot;background-repeat&quot;</span>,</span><br><span class="line">    <span class="string">&quot;background-attachment&quot;</span>,</span><br><span class="line">    <span class="string">&quot;background-position&quot;</span>,</span><br><span class="line">    <span class="string">&quot;background-position-x&quot;</span>,</span><br><span class="line">    <span class="string">&quot;background-position-y&quot;</span>,</span><br><span class="line">    <span class="string">&quot;background-clip&quot;</span>,</span><br><span class="line">    <span class="string">&quot;background-origin&quot;</span>,</span><br><span class="line">    <span class="string">&quot;background-size&quot;</span></span><br><span class="line">  ],</span><br><span class="line">  [</span><br><span class="line">    <span class="string">&quot;outline&quot;</span>,</span><br><span class="line">    <span class="string">&quot;outline-width&quot;</span>,</span><br><span class="line">    <span class="string">&quot;outline-style&quot;</span>,</span><br><span class="line">    <span class="string">&quot;outline-color&quot;</span>,</span><br><span class="line">    <span class="string">&quot;outline-offset&quot;</span>,</span><br><span class="line">    <span class="string">&quot;opacity&quot;</span>,</span><br><span class="line">    <span class="string">&quot;box-shadow&quot;</span>,</span><br><span class="line">    <span class="string">&quot;text-shadow&quot;</span></span><br><span class="line">  ],</span><br><span class="line">  [</span><br><span class="line">    <span class="string">&quot;transition&quot;</span>,</span><br><span class="line">    <span class="string">&quot;transition-delay&quot;</span>,</span><br><span class="line">    <span class="string">&quot;transition-timing-function&quot;</span>,</span><br><span class="line">    <span class="string">&quot;transition-duration&quot;</span>,</span><br><span class="line">    <span class="string">&quot;transition-property&quot;</span>,</span><br><span class="line">    <span class="string">&quot;transform&quot;</span>,</span><br><span class="line">    <span class="string">&quot;transform-origin&quot;</span>,</span><br><span class="line">    <span class="string">&quot;animation&quot;</span>,</span><br><span class="line">    <span class="string">&quot;animation-name&quot;</span>,</span><br><span class="line">    <span class="string">&quot;animation-duration&quot;</span>,</span><br><span class="line">    <span class="string">&quot;animation-play-state&quot;</span>,</span><br><span class="line">    <span class="string">&quot;animation-timing-function&quot;</span>,</span><br><span class="line">    <span class="string">&quot;animation-delay&quot;</span>,</span><br><span class="line">    <span class="string">&quot;animation-iteration-count&quot;</span>,</span><br><span class="line">    <span class="string">&quot;animation-direction&quot;</span></span><br><span class="line">  ],</span><br><span class="line">  [</span><br><span class="line">    <span class="string">&quot;content&quot;</span>,</span><br><span class="line">    <span class="string">&quot;quotes&quot;</span>,</span><br><span class="line">    <span class="string">&quot;counter-reset&quot;</span>,</span><br><span class="line">    <span class="string">&quot;counter-increment&quot;</span>,</span><br><span class="line">    <span class="string">&quot;resize&quot;</span>,</span><br><span class="line">    <span class="string">&quot;cursor&quot;</span>,</span><br><span class="line">    <span class="string">&quot;user-select&quot;</span>,</span><br><span class="line">    <span class="string">&quot;nav-index&quot;</span>,</span><br><span class="line">    <span class="string">&quot;nav-up&quot;</span>,</span><br><span class="line">    <span class="string">&quot;nav-right&quot;</span>,</span><br><span class="line">    <span class="string">&quot;nav-down&quot;</span>,</span><br><span class="line">    <span class="string">&quot;nav-left&quot;</span>,</span><br><span class="line">    <span class="string">&quot;tab-size&quot;</span>,</span><br><span class="line">    <span class="string">&quot;hyphens&quot;</span>,</span><br><span class="line">    <span class="string">&quot;pointer-events&quot;</span></span><br><span class="line">  ]</span><br><span class="line">]</span><br></pre></td></tr></table></figure><h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><blockquote><ul><li><a href="http://codeguide.co/#css-declaration-order">Code Guide by @mdo</a></li><li><a href="https://github.com/twitter/recess/blob/master/lib/lint/strict-property-order.js#L36">RECESS | property order</a></li><li><a href="http://alloyteam.github.io/CodeGuide/#css-declaration-order">Code Guide by @AlloyTeam</a></li></ul></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;CSS-属性声明顺序规范&quot;&gt;&lt;a href=&quot;#CSS-属性声明顺序规范&quot; class=&quot;headerlink&quot; title=&quot;CSS 属性声明顺序规范&quot;&gt;&lt;/a&gt;CSS 属性声明顺序规范&lt;/h1&gt;&lt;p&gt;很多 CSS 规范的属性顺序都各不一样，这东西也不像 &lt;a </summary>
+      
+    
+    
+    
+    <category term="程序语言" scheme="http://shjlone.github.io/categories/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/"/>
+    
+    <category term="CSS" scheme="http://shjlone.github.io/categories/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/CSS/"/>
+    
+    
+    <category term="CSS" scheme="http://shjlone.github.io/tags/CSS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Webpack 中 css import 使用 alias 相对路径</title>
+    <link href="http://shjlone.github.io/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF/Webpack-%E4%B8%AD-css-import-%E4%BD%BF%E7%94%A8-alias-%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84/"/>
+    <id>http://shjlone.github.io/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF/Webpack-%E4%B8%AD-css-import-%E4%BD%BF%E7%94%A8-alias-%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84/</id>
+    <published>2017-09-20T16:11:38.000Z</published>
+    <updated>2021-05-29T02:17:24.331Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>在用 Webpack 处理打包时，可将某一目录配置一个别名，代码中就能使用与别名的相对路径引用资源。</p><p>在 Vue 项目中，我们通常使用 <code>vue-webpack</code> 脚手架生成工程模板，然后配置 <code>@</code> 为项目根目录下放资源和源码的 <code>/src</code> 目录的别名；</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...,</span><br><span class="line"><span class="attr">resolve</span>: &#123;</span><br><span class="line">  ...,</span><br><span class="line">  <span class="attr">alias</span>: &#123;</span><br><span class="line">    <span class="string">&#x27;@&#x27;</span>: resolve(<span class="string">&#x27;src&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>这样我们就可以在 js 文件中用形如 <code>import tool from &#39;@/utils/xxx&#39;</code> 的方式引用 <code>/src/utils/xxx.js</code> 文件，并且 Webpack 能正确识别并打包。</p><p>但是在 css 文件，如 less, sass, stylus 中，使用 <code>@import &quot;@/style/theme&quot;</code> 的语法引用相对 <code>@</code> 的目录确会报错，”找不到 ‘@’ 目录”，说明 webpack 没有正确识别资源相对路径。</p><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>原因是 css 文件会被用 <code>css-loader</code> 处理，这里 css <code>@import</code> 后的字符串会被 <code>css-loader</code> 视为绝对路径解析，因为我们并没有添加 <a href="https://github.com/webpack-contrib/css-loader#alias"><code>css-loader</code> 的 alias</a>，所以会报找不到 <code>@</code> 目录。</p><h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>在 Webpack 中 css import 使用 alias 相对路径的解决办法有两种；</p><p>一是直接为 <code>css-loader</code> 添加 <a href="https://github.com/webpack-contrib/css-loader#alias">ailas</a> 的路径，但是在 <code>vue-webpack</code> 给的模板中，单独针对这个插件添加配置就显得麻烦冗余了；</p><p>二是在引用路径的字符串最前面添加上 <code>~</code> 符号，如 <code>@import &quot;~@/style/theme&quot;</code>；Webpack 会将以 <code>~</code> 符号作为前缀的路径视作依赖模块而去解析，这样 <code>@</code> 的 alias 配置就能生效了。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><code>~</code> 视为模块解析是 webpack 做的事，不是 css-loader 做的事。</p><p>各类非 js 直接引用（<code>import</code> <code>require</code>）静态资源，依赖相对路径加载问题，都可以用 <code>~</code> 语法完美解决；</p><p>例如 css module 中： <code>@import &quot;~@/style/theme&quot;</code></p><p>css 属性中： <code>background: url(&quot;~@/assets/xxx.jpg&quot;)</code></p><p>html 标签中： <code>&lt;img src=&quot;~@/assets/xxx.jpg&quot; alt=&quot;alias&quot;&gt;</code></p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote><ul><li><a href="https://hq5544.github.io/vue-webpack/static.html#%E8%B5%84%E6%BA%90%E8%B7%AF%E5%BE%84%E7%9A%84%E5%A4%84%E7%90%86">vue-webpack 资源路径的处理</a></li><li><a href="https://github.com/webpack-contrib/css-loader/issues/49">Using url(path) with resolve.alias</a></li><li><a href="https://github.com/webpack-contrib/css-loader#url">CSS Loader Usage Url</a></li></ul></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;起因&quot;&gt;&lt;a href=&quot;#起因&quot; class=&quot;headerlink&quot; title=&quot;起因&quot;&gt;&lt;/a&gt;起因&lt;/h2&gt;&lt;p&gt;在用 Webpack 处理打包时，可将某一目录配置一个别名，代码中就能使用与别名的相对路径引用资源。&lt;/p&gt;
+&lt;p&gt;在 Vue 项目中，我们</summary>
+      
+    
+    
+    
+    <category term="技术开发" scheme="http://shjlone.github.io/categories/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/"/>
+    
+    <category term="前端" scheme="http://shjlone.github.io/categories/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+    <category term="前端" scheme="http://shjlone.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+    <category term="webpack" scheme="http://shjlone.github.io/tags/webpack/"/>
+    
+    <category term="css-loader" scheme="http://shjlone.github.io/tags/css-loader/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>GitHub 团队任务管理流程</title>
+    <link href="http://shjlone.github.io/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/GitHub%E5%9B%A2%E9%98%9F%E4%BB%BB%E5%8A%A1%E7%AE%A1%E7%90%86%E6%B5%81%E7%A8%8B/"/>
+    <id>http://shjlone.github.io/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/GitHub%E5%9B%A2%E9%98%9F%E4%BB%BB%E5%8A%A1%E7%AE%A1%E7%90%86%E6%B5%81%E7%A8%8B/</id>
+    <published>2017-09-17T11:41:28.000Z</published>
+    <updated>2021-05-29T02:17:24.332Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>注：本篇是针对团队的任务管理，非开发规范。</strong></p><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>GitHub 本身是非常推崇和支持团队合作，也有一些帮助项目管理的插件如 <a href="https://www.zenhub.com/">ZenHub</a>，但这里我主要记录使用原生 GitHub 功能的团队任务管理模型构想。</p><p>在开始之前，我搜索过大量中文资料，但关于基于 GitHub 的团队管理方面资料很少，尝试英文搜索后，发现我所有的问题都能在官方的 <a href="https://help.github.com/categories/managing-your-work-on-github/">GitHub Help</a> 文档中找到答案；</p><p><strong># 再次强调官方文档的重要性 #</strong></p><p>所以本篇也不会讲如何操作 GitHub，更不会讲如何使用 Git。</p><h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>实验室内部需要一套规范化的团队管理方案，总体采用用任务驱动制，因此产生了一套</p><p><strong>制定任务 –&gt; 安排任务 –&gt; 分配人员 –&gt; 追踪进度 –&gt; 审核成果 –&gt; 解决任务</strong></p><p>的管理需求。</p><p>细分来说，制定任务包括建立项目，规划项目的几个进行阶段，每个阶段具体有哪些任务，每个任务有哪些要点。</p><p>对整个团队来说，有不同方向的人员分组，制定的各项任务应该安排给适合的分组去完成，并且按照拟定的计划，阶段内的任务应该有时限，有明确的截止期限。</p><p>在分组内部，再通过分解步骤拟定各项任务和要点，分配给相应的成员。</p><p>审核人员根据各项任务完成进度，及时调整，对完成的任务做审核评估，最终标记任务为已解决。</p><h2 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h2><p>GitHub 提供的诸多特性都是应对管理模式的，各项概念中，Issues 提出问题与讨论；Milestone 里程碑，用于将 Issues 划分阶段进行追踪管理；Project 规划和管理项目；Organization 组织，下属成员可分为多个 Team，Team 可多层细分，并有不同的权限；对项目开发来说，能建立 Repositories 放置文件代码，人员相互之间形成 collaborator 合作者；以上这些特性完全能胜任我们需求的管理模式。</p><p>对应以上需求，实验室所有人员组成一个 <a href="https://help.github.com/articles/about-organizations/">Organization</a>;</p><p>按不同研究方向将 Organization 划分为多个 <a href="https://help.github.com/articles/about-teams/">Team</a>，每个 Team 中按照小组关系进一步<a href="https://help.github.com/articles/requesting-to-add-a-child-team/">建立二级、三级 Team</a>。</p><p>实验室需要做的项目按照敏捷管理的方式建立 Organization 的 <a href="https://help.github.com/articles/tracking-the-progress-of-your-work-with-project-boards/">Project</a>，具体划分的不同模块建立多个 Repositories，Organization 的 Project 能跨不同的 Repositories <a href="https://help.github.com/articles/adding-issues-and-pull-requests-to-a-project-board/">管理 Issues</a>。</p><p>Repositories 没有层级，一个 Repository 能被分配给多个 Team 并<a href="https://help.github.com/articles/managing-team-access-to-an-organization-repository/">赋予不同的权限</a>，但我们可以将一个 Repository 只分配给一个 Team，这样看作是 Team 拥有自己的 Repository。</p><p>在 Team 的 Repository 中，通过建立 <a href="https://help.github.com/articles/about-milestones/">Milestone</a> 来安排任务目标和截止时间，在 Milestone 中<a href="https://help.github.com/articles/associating-milestones-with-issues-and-pull-requests/">添加 Issues</a> 用作安排具体的任务，Issue 中能建立 <a href="https://help.github.com/articles/about-task-lists/">Task List</a>，用来表示一个任务的完成步骤和要点；每个 Issue 能<a href="https://help.github.com/articles/assigning-issues-and-pull-requests-to-other-github-users/">指派不同的人员或 Team</a>；Milestone 中会显示所属 <a href="https://help.github.com/articles/viewing-your-milestone-s-progress/">Issues 的完成进度</a>，用作任务管理再合适不过了。</p><p>Issues 之间能互相<a href="https://help.github.com/articles/autolinked-references-and-urls/">提及(关联)</a>这在相互沟通上很有帮助；整个 Issues 面板功能都可以被<a href="https://help.github.com/articles/disabling-issues/">关闭</a>，但我们更常用的是针对一条 Issue 使用 <a href="https://help.github.com/articles/locking-conversations/">Locking conversations</a> 功能锁住权限，这样就只有拥有仓库权限的人能在这条 Issue 下评论，通常用于防止 spam，在合作管理中也就防止了不相关的人来捣乱。</p><p>一般来说，如果 Team 需要合作完成一项具体的项目，那么可以建一个管理敏捷开发的 Project；如果只是一般的日常任务需求，那么在任务仓库建立几个 Milestone 就够了。两者核心都是 <a href="https://help.github.com/articles/about-issues/">Issues track</a>。</p><p>审核任务包括 <a href="https://help.github.com/articles/about-pull-request-reviews/">Code Review</a> 和审核 Issues 完成情况；Code Review 可以在完成一个 Issue 或 完成一项 Milestone 时进行；Issues 进度跟踪需要在日常进行，如果 Issue 是考核任务，那么在超时未 <a href="https://help.github.com/articles/closing-issues-using-keywords/">Close</a> 后应认为考核失败。</p><p>解决任务的表现形式就是 Close，Close Issues、Close Milestone、Close Project。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上方案就是目前构想的基于 GitHub 的团队任务管理模型，之所以说构想，是因为这套方案未被实施验证，实际进行中肯定会有各种修改和补充的细节。</p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote><ul><li><a href="https://help.github.com/"><strong>GitHub</strong> Help</a></li><li><a href="https://www.zenhub.com/">ZenHub | Agile project management within GitHub</a></li></ul></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;strong&gt;注：本篇是针对团队的任务管理，非开发规范。&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;GitHub 本身是非常推崇和支持团队合作，也有</summary>
+      
+    
+    
+    
+    <category term="技术开发" scheme="http://shjlone.github.io/categories/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/"/>
+    
+    <category term="软件工程" scheme="http://shjlone.github.io/categories/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+    
+    
+    <category term="Git" scheme="http://shjlone.github.io/tags/Git/"/>
+    
+    <category term="GitHub" scheme="http://shjlone.github.io/tags/GitHub/"/>
+    
+    <category term="团队协作" scheme="http://shjlone.github.io/tags/%E5%9B%A2%E9%98%9F%E5%8D%8F%E4%BD%9C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Selenium 中使用 Chrome 路径问题</title>
+    <link href="http://shjlone.github.io/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF/Selenium-%E4%B8%AD%E4%BD%BF%E7%94%A8-Chrome-%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/"/>
+    <id>http://shjlone.github.io/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF/Selenium-%E4%B8%AD%E4%BD%BF%E7%94%A8-Chrome-%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/</id>
+    <published>2017-05-05T16:37:50.000Z</published>
+    <updated>2021-05-29T02:17:24.331Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>这个问题的起因是折腾了好久，vue2 官方模板 <code>vue init webpack</code> 初始化后，<code>npm install</code> 完，直接 <code>npm run e2e</code> 都报错。。。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Error retrieving a new session from the selenium server</span><br><span class="line"></span><br><span class="line">Connection refused! Is selenium server started?</span><br></pre></td></tr></table></figure><h2 id="排查"><a href="#排查" class="headerlink" title="排查"></a>排查</h2><p><code>nightwatch.conf.js</code> 中，对服务器和浏览器的地址描述，用的分别是</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">server_path: <span class="built_in">require</span>(<span class="string">&#x27;selenium-server&#x27;</span>).path</span><br><span class="line"><span class="string">&#x27;webdriver.chrome.driver&#x27;</span>: <span class="built_in">require</span>(<span class="string">&#x27;chromedriver&#x27;</span>).path</span><br></pre></td></tr></table></figure><p>在 <code>node</code> 中检查地址没问题，包也没问题。</p><p>查找官网资料未果，后在各网友经验中发现两句关键描述：</p><p><strong>在 selenium 中使用 chromedriver 驱动，除了需要下载 chromedriver.exe 然后放置在 chrome 浏览器的安装目录之外，还要将 chrome 安装目录添加到环境变量 path 中。</strong></p><h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><ol><li>从 <code>node_modules</code> 的 <code>chormedriver</code> 包中复制出 <code>chromedriver.exe</code> 到 Chrome 安装目录下（<code>Google/Chrome/Application/</code>），和 <code>chromed.exe</code> 放在同一目录中。</li><li>将 Chrome 安装目录（<code>Google/Chrome/Application/</code>）添加到环境变量 <code>path</code> 下。</li><li>把 <code>nightwatch.conf.js</code> 中的 <code>webdriver.chrome.driver</code> 对应的路径手动指定到 Chrome 安装目录下的 <code>chromedriver.exe</code>，Win 下记得字符转义。</li></ol><p>此时 <code>npm run e2e</code> 能成功启动 Chrome 并测试。</p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote><ul><li><a href="http://blog.csdn.net/carsonzhang_/article/details/46318531">selenium chromedriver配置</a></li><li><a href="http://www.cnblogs.com/Jeff-cui/p/4940410.html">使用webdriver打开本地浏览器</a></li></ul></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;起因&quot;&gt;&lt;a href=&quot;#起因&quot; class=&quot;headerlink&quot; title=&quot;起因&quot;&gt;&lt;/a&gt;起因&lt;/h2&gt;&lt;p&gt;这个问题的起因是折腾了好久，vue2 官方模板 &lt;code&gt;vue init webpack&lt;/code&gt; 初始化后，&lt;code&gt;npm i</summary>
+      
+    
+    
+    
+    <category term="技术开发" scheme="http://shjlone.github.io/categories/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/"/>
+    
+    <category term="前端" scheme="http://shjlone.github.io/categories/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+    <category term="前端" scheme="http://shjlone.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>awk 管道操作小结</title>
+    <link href="http://shjlone.github.io/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/Linux/Shell/awk-%E7%AE%A1%E9%81%93%E6%93%8D%E4%BD%9C%E5%B0%8F%E7%BB%93/"/>
+    <id>http://shjlone.github.io/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/Linux/Shell/awk-%E7%AE%A1%E9%81%93%E6%93%8D%E4%BD%9C%E5%B0%8F%E7%BB%93/</id>
+    <published>2017-04-25T15:04:48.000Z</published>
+    <updated>2021-05-29T02:17:24.328Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>大致是希望使用 awk 读取一个文本文件，通过空行把文本分割成多个文本块，依次把每个文本块输入到一个程序，并把结果依次输出到指定文件。</p><p>先看文件结构：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ls</span><br><span class="line">plus.sh  data.txt</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>其中， <strong><code>plus.sh</code></strong> 文件内容如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">IFS=<span class="string">&quot; &quot;</span></span><br><span class="line"><span class="built_in">read</span> a b</span><br><span class="line">((c=a+b)) </span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;c&#125;</span></span><br></pre></td></tr></table></figure><p>代码含义是从标准输入读入两个数， <code>a</code> 、<code>b</code>，返回 <code>a+b</code> 的结果。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ./plus.sh</span><br><span class="line">2 3    <span class="comment"># &lt;-- its my input</span></span><br><span class="line">5      <span class="comment"># --&gt; its result</span></span><br></pre></td></tr></table></figure><p><strong><code>data.txt</code></strong> 中的数据如下：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">0 30</span><br><span class="line"></span><br><span class="line">30 40</span><br><span class="line"></span><br><span class="line">40 80</span><br><span class="line"></span><br><span class="line">80 100</span><br></pre></td></tr></table></figure><p>目标是使用 awk 从 <code>data.txt</code> 中读入 4 组数据，分别输入到 <code>plus.sh</code> 中，返回 4 个结果值，并依次输入到 <code>output.txt</code> 中。预期结果 <code>output.txt</code> 如下：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">30</span><br><span class="line">70</span><br><span class="line">120</span><br><span class="line">180</span><br></pre></td></tr></table></figure><h2 id="经过"><a href="#经过" class="headerlink" title="经过"></a>经过</h2><p>一开始，简单的思路是，awk 使用<strong>空行分割文本文件</strong>，把每组文本块<strong>通过管道输入</strong>到调用的 <code>plus.sh</code> 中，再把每组的结果通过<strong>重定向追加</strong>到 <code>output.txt</code> 文件中。</p><p>根据思路于是写出如下代码：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ awk -v RS=<span class="string">&quot;&quot;</span> <span class="string">&#x27;&#123;print | &quot;./plus.sh &gt;&gt; output.txt&quot;&#125;&#x27;</span> data.txt</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>然而一看结果，只有第一个分段中求出来的值；</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ ls</span><br><span class="line">plus.sh  data.txt  output.txt</span><br><span class="line"></span><br><span class="line">$ cat output.txt</span><br><span class="line">30</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>经过调试和单独输出，发现分段也没问题，单独 <code>print</code> 也是分段的没问题，于是大概猜测<strong>问题出在重定向上</strong>，除了第一个值以外的其他结果并没有被重定向到文件（此处只是当时猜测，其实不对，请看下文分析）；</p><p>通过查阅 <strong>「awk 使用管道输出到 shell 中」</strong> 的相关资料，找到问题答案：</p><blockquote><p>如果在 awk 程序中打开了管道，必须<strong>先关闭该管道才能打开另一个管道</strong>。也就是说一次只能打开一个管道。</p><p><strong>shell 命令必须被双引号引用起来。</strong></p><p>如果打算<strong>再次</strong>在 awk 程序中使用某个文件或管道进行读写，则可能要先关闭程序，因为其中的管道会保持打开状态直至脚本运行结束。注意，管道一旦被打开，就会保持打开状态直至 awk 退出。</p><p>对于 <code>awk output | shell input</code> 来说，shell 接收 awk 的输出，并进行处理。需要注意的是，<strong>awk 的 output 是先缓存在 pipe 中，等输出完毕后再调用 shell 命令 处理</strong>，shell 命令只处理一次，而且<strong>处理的时机是 「awk程序结束时，或者管道关闭时（需要显式的关闭管道）」</strong></p></blockquote><p>对于刚才的问题，简单的解释就是因为管道缓存，<code>print</code> 的所有输出被堆到一起只传了一次给 <code>plus.sh</code>，而且这一次相当于传了整个文件，但 <code>plus.sh</code> 在读了两个数计算完后就退出了，后面的所有数都没用上，由于 <code>plus.sh</code> 只计算了一次，因此结果也只有一个。（并非上面猜测的结果未被重定向）</p><h2 id="解决尝试"><a href="#解决尝试" class="headerlink" title="解决尝试"></a>解决尝试</h2><p>最初的解决尝试是使用 awk 中的 <code>close</code> 命令关闭文件管道，于是写出如下命令：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ awk -v RS=<span class="string">&quot;&quot;</span> <span class="string">&#x27;&#123;print | &quot;./plus.sh &gt;&gt; output.txt&quot;; close(&quot;output.txt&quot;)&#125;&#x27;</span> data.txt</span><br></pre></td></tr></table></figure><p>结果依然只有一个值。。。</p><p>继续查阅资料才知道，<code>close</code> 关闭时需要输入的是<strong>管道描述符</strong>，而非只是文件名，而管道描述符是包含<strong>对管道调用的整个命令在内的 shell 命令字符串</strong>，也就是说，应该是 <code>close(&quot;./plus.sh &gt;&gt; output.txt&quot;)</code> 。</p><p>再次尝试代码修改如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ awk -v RS=<span class="string">&quot;&quot;</span> <span class="string">&#x27;&#123;print | &quot;./plus.sh &gt;&gt; output.txt&quot;; close(&quot;./plus.sh &gt;&gt; output.txt&quot;)&#125;&#x27;</span> data.txt</span><br><span class="line"></span><br><span class="line">$ cat output.txt</span><br><span class="line">30</span><br><span class="line">70</span><br><span class="line">120</span><br><span class="line">180</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>OK，解决问题，这句代码就是能用的了。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>总结下刚刚踩的坑，再做些优化；</p><ol><li><p>awk 中先关闭该管道才能打开另一个管道；</p></li><li><p><code>awk output | shell input</code> 时，awk 输出缓存到管道中，只有 awk 程序结束时，或者管道关闭时，才把缓存中的所有输出交由 shell 处理；</p></li><li><p>管道描述符是<strong>调用管道的整个 shell 命令字符串</strong>；（如在 <code>print | &quot;./plus.sh &gt;&gt; output.txt&quot;;</code> 中就是 <code>&quot;./plus.sh &gt;&gt; output.txt&quot;</code>）</p></li><li><p>awk 语句中使用 shell 变量</p><ol><li><p><code>&quot;&#39;$var&#39;&quot;</code> 的形式</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var=<span class="string">&quot;test&quot;</span></span><br><span class="line">awk <span class="string">&#x27;BEGIN&#123;print &quot;&#x27;</span><span class="variable">$var</span><span class="string">&#x27;&quot;&#125;&#x27;</span></span><br></pre></td></tr></table></figure></li></ol></li></ol><ol start="2"><li><p>变量中有空格时使用 <code>&quot;&#39;&quot;$var&quot;&#39;&quot;</code></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var=<span class="string">&quot;this is a test&quot;</span> </span><br><span class="line">awk <span class="string">&#x27;BEGIN&#123;print &quot;&#x27;</span><span class="string">&quot;<span class="variable">$var</span>&quot;</span><span class="string">&#x27;&quot;&#125;&#x27;</span> </span><br></pre></td></tr></table></figure></li><li><p>变量中有空格，并且变量当作 shell 命令执行时，使用 <code>&quot;\&quot;&#39;&quot;$&#123;var&#125;&quot;&#39;\&quot;&quot;</code> 形式</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cmd=<span class="string">&quot;./plus a and b.sh&quot;</span></span><br><span class="line">awk <span class="string">&#x27;BEGIN&#123;print | &quot;\&quot;&#x27;</span><span class="string">&quot;<span class="variable">$&#123;cmd&#125;</span>&quot;</span><span class="string">&#x27;\&quot;&quot;&#125;&#x27;</span></span><br></pre></td></tr></table></figure></li></ol><p>再把上面 awk 语句写入到一个脚本中，方便调用：</p><p><strong>input_test.sh</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">cmd=<span class="string">&quot;<span class="variable">$&#123;1:-&quot;./main.sh&quot;&#125;</span>&quot;</span></span><br><span class="line">data=<span class="string">&quot;<span class="variable">$&#123;2:-&quot;test_data.txt&quot;&#125;</span>&quot;</span></span><br><span class="line">output=<span class="string">&quot;<span class="variable">$&#123;3:-&quot;stdout.txt&quot;&#125;</span>&quot;</span></span><br><span class="line"></span><br><span class="line">awk -v RS=<span class="string">&quot;&quot;</span> <span class="string">&#x27;&#123;print $n | &quot;\&quot;&#x27;</span><span class="string">&quot;<span class="variable">$&#123;cmd&#125;</span>&quot;</span><span class="string">&#x27;\&quot; &gt;&gt; \&quot;&#x27;</span><span class="string">&quot;<span class="variable">$&#123;output&#125;</span>&quot;</span><span class="string">&#x27;\&quot;&quot;;close(&quot;\&quot;&#x27;</span><span class="string">&quot;<span class="variable">$&#123;cmd&#125;</span>&quot;</span><span class="string">&#x27;\&quot; &gt;&gt; \&quot;&#x27;</span><span class="string">&quot;<span class="variable">$&#123;output&#125;</span>&quot;</span><span class="string">&#x27;\&quot;&quot;)&#125;&#x27;</span> <span class="variable">$&#123;data&#125;</span></span><br></pre></td></tr></table></figure><p>然后我们可以调用这个脚本，帮我们分割文本做输入输出。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># input_test.sh [command] [data-file] [output-file]</span></span><br><span class="line"></span><br><span class="line">$ ./input_test.sh <span class="string">&quot;./plus.exe&quot;</span></span><br><span class="line"><span class="comment"># 接收三个参数，要测试的命令，数据文件，输出文件，都有默认值</span></span><br><span class="line"><span class="comment"># ==&gt; 将自动分割 test_data.txt 中的文本块分别对 plus.exe 做输入，并把结果依次写入 stdout.txt 中</span></span><br></pre></td></tr></table></figure><p><a href="./input_test.sh">可从这里获取 <code>input_test.sh</code> 源文件</a>。</p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote><ul><li><a href="http://www.cnblogs.com/dong008259/archive/2011/12/06/2277287.html">linux之awk用法 | 东方雨中漫步者</a></li></ul></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;大致是希望使用 awk 读取一个文本文件，通过空行把文本分割成多个文本块，依次把每个文本块输入到一个程序，并把结果依次输出到指定文件。&lt;/p</summary>
+      
+    
+    
+    
+    <category term="技术开发" scheme="http://shjlone.github.io/categories/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/"/>
+    
+    <category term="Linux" scheme="http://shjlone.github.io/categories/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/Linux/"/>
+    
+    <category term="Shell" scheme="http://shjlone.github.io/categories/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/Linux/Shell/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>八大排序算法复杂度</title>
+    <link href="http://shjlone.github.io/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E7%AE%97%E6%B3%95/%E5%85%AB%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E5%BA%A6/"/>
+    <id>http://shjlone.github.io/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E7%AE%97%E6%B3%95/%E5%85%AB%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E5%BA%A6/</id>
+    <published>2017-04-20T09:49:14.000Z</published>
+    <updated>2021-05-29T02:17:24.332Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="排序算法时间空间复杂度表"><a href="#排序算法时间空间复杂度表" class="headerlink" title="排序算法时间空间复杂度表"></a>排序算法时间空间复杂度表</h2><table><thead><tr><th align="center">排序方法</th><th align="center">平均时间</th><th align="center">最坏时间</th><th align="center">辅助空间</th><th align="center">稳定性</th></tr></thead><tbody><tr><td align="center">冒泡排序</td><td align="center">$O(n^2)$</td><td align="center">$O(n^2)$</td><td align="center">$O(1)$</td><td align="center">稳定</td></tr><tr><td align="center">简单选择排序</td><td align="center">$O(n^2)$</td><td align="center">$O(n^2)$</td><td align="center">$O(1)$</td><td align="center">稳定</td></tr><tr><td align="center">直接插入排序</td><td align="center">$O(n^2)$</td><td align="center">$O(n^2)$</td><td align="center">$O(1)$</td><td align="center">稳定</td></tr><tr><td align="center">希尔排序</td><td align="center">$O(n \log n)$</td><td align="center">$O(n^2)$</td><td align="center">$O(1)$</td><td align="center">不稳定</td></tr><tr><td align="center">堆排序</td><td align="center">$O(n \log n)$</td><td align="center">$O(n \log n)$</td><td align="center">$O(1)$</td><td align="center">不稳定</td></tr><tr><td align="center">并归排序</td><td align="center">$O(n \log n)$</td><td align="center">$O(n \log n)$</td><td align="center">$O(n)$</td><td align="center">稳定</td></tr><tr><td align="center">快速排序</td><td align="center">$O(n \log n)$</td><td align="center">$O(n^2)$</td><td align="center">$O(n \log n)$</td><td align="center">不稳定</td></tr><tr><td align="center">基数排序</td><td align="center">$O(d(n+r))$</td><td align="center">$O(d(n+r))$</td><td align="center">$O(n)$</td><td align="center">稳定</td></tr></tbody></table><p>注：基数排序中，d 为位数，r 为基数，n 为原数组个数。</p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote><ul><li>大话数据结构 | 程杰</li><li><a href="https://www.toptal.com/developers/sorting-algorithms/">Sorting Algorithms Animations</a></li><li><a href="https://zh.wikipedia.org/wiki/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F">冒泡排序 | Wikipedia</a> </li><li><a href="https://zh.wikipedia.org/wiki/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F">选择排序 | Wikipedia</a> </li><li><a href="https://zh.wikipedia.org/wiki/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F">快速排序 | Wikipedia</a> </li><li><a href="https://zh.wikipedia.org/wiki/%E5%A0%86%E6%8E%92%E5%BA%8F">堆排序| Wikipedia</a> </li><li><a href="https://zh.wikipedia.org/wiki/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F">希尔排序 | Wikipedia</a> </li><li><a href="https://zh.wikipedia.org/wiki/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F">归并排序 | Wikipedia</a> </li><li><a href="http://blog.csdn.net/21aspnet/article/details/7199579">维基百科上的算法和数据结构链接很强大 | 21aspnet</a></li></ul></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;排序算法时间空间复杂度表&quot;&gt;&lt;a href=&quot;#排序算法时间空间复杂度表&quot; class=&quot;headerlink&quot; title=&quot;排序算法时间空间复杂度表&quot;&gt;&lt;/a&gt;排序算法时间空间复杂度表&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;c</summary>
+      
+    
+    
+    
+    <category term="技术开发" scheme="http://shjlone.github.io/categories/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/"/>
+    
+    <category term="算法" scheme="http://shjlone.github.io/categories/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="算法" scheme="http://shjlone.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>IaaS, PaaS, SaaS 概念</title>
+    <link href="http://shjlone.github.io/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E6%9E%B6%E6%9E%84/IaaS-PaaS-SaaS-%E6%A6%82%E5%BF%B5/"/>
+    <id>http://shjlone.github.io/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E6%9E%B6%E6%9E%84/IaaS-PaaS-SaaS-%E6%A6%82%E5%BF%B5/</id>
+    <published>2017-04-18T15:15:15.000Z</published>
+    <updated>2021-05-29T02:17:24.331Z</updated>
+    
+    <content type="html"><![CDATA[<p>云服务通常将其提供的服务自下而上分成三层：**基础设施(infrastructure)、平台(platform)和软件(software)**。</p><h2 id="IaaS"><a href="#IaaS" class="headerlink" title="IaaS"></a>IaaS</h2><p><strong>Infrastructure-as-a-Service(基础设施即服务)</strong></p><p>第一层叫做 IaaS，有时候也叫做 Hardware-as-a-Service，如果你想在办公室或者公司的网站上运行一些应用（比如自己开发好的 APP 或是网络游戏，你需要去买服务器，成本太高了。</p><p>但是现在有IaaS，你可以将硬件外包给这些专业的公司，这些公司会提供场外服务器，存储和网络硬件，你花钱租用就行。</p><p>这样就节省了维护成本和办公场地，并且你可以在任何时候利用这些硬件来运行其应用。</p><h2 id="PaaS"><a href="#PaaS" class="headerlink" title="PaaS"></a>PaaS</h2><p><strong>Platform-as-a-Service（平台即服务）</strong></p><p>第二层就是 PaaS，某些时候也叫做中间件。PaaS 是面向软件开发者的服务，云计算平台提供硬件，OS， 编程语言，开发库，部署工具， 帮助软件开发者更快的开发软件服务。</p><p>云服务商将软件开发的云端开发平台和软件运营的云端运行环境（包括中间件、数据库、we b服务、消息总线等基础通用服务）作为一种服务，提供给最终用户。</p><p>换句话说，这些 PaaS 服务商提供的都是基础开发服务平台，主要目的就是让你把精力专注在应用层面的开发上面，而不需要浪费在这些基础重复性的事情上，也不用担心开发完成后部署问题。</p><h2 id="SaaS"><a href="#SaaS" class="headerlink" title="SaaS"></a>SaaS</h2><p><strong>Software-as-a-Service（软件即服务）</strong></p><p>简单说就是人家把你想要的功能开发好成应用软件，然后直接卖账号给你用，你也不需要担心服务器、带宽、应用开发等问题，直接交钱使用就行。</p><p>不再面向开发，而是直接面向企业或普通用户，企业改改 logo，直接给用户使用。</p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote><ul><li><a href="https://www.aliyun.com/zixun/content/1_5_15871.html">IaaS PaaS和SaaS公司的作用 | 盐漂浮草</a></li><li><a href="https://zhihu.com/question/21641778/answer/91301221">谁能举个通俗易懂的例子告诉我IAAS，SAAS，PAAS的区别？ | 东坪子的回答</a></li><li><a href="https://zhihu.com/question/21641778/answer/62523535">谁能举个通俗易懂的例子告诉我IAAS，SAAS，PAAS的区别？ | 何足道的回答</a></li></ul></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;云服务通常将其提供的服务自下而上分成三层：**基础设施(infrastructure)、平台(platform)和软件(software)**。&lt;/p&gt;
+&lt;h2 id=&quot;IaaS&quot;&gt;&lt;a href=&quot;#IaaS&quot; class=&quot;headerlink&quot; title=&quot;IaaS</summary>
+      
+    
+    
+    
+    <category term="技术开发" scheme="http://shjlone.github.io/categories/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/"/>
+    
+    <category term="架构" scheme="http://shjlone.github.io/categories/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E6%9E%B6%E6%9E%84/"/>
+    
+    
+    <category term="云服务" scheme="http://shjlone.github.io/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java 访问控制符</title>
+    <link href="http://shjlone.github.io/wiki/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/Java/Java-%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E7%AC%A6/"/>
+    <id>http://shjlone.github.io/wiki/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/Java/Java-%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E7%AC%A6/</id>
+    <published>2017-04-17T16:28:59.000Z</published>
+    <updated>2021-05-29T02:17:24.337Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="访问控制符与访问控制级别"><a href="#访问控制符与访问控制级别" class="headerlink" title="访问控制符与访问控制级别"></a>访问控制符与访问控制级别</h2><p>Java 提供了 3 个访问控制符：private、protected 和 public，分别代表了 3 个访问控制级别，另外还有一个不加任何访问控制符的默认访问控制级别（friendly，也称 default），也就是共 4 个访问控制级别。</p><p>Java的访问控制级别由大到小为：</p><p><strong>public</strong> –&gt; <strong>protected</strong> –&gt; <strong>friendly</strong> –&gt; <strong>private</strong></p><h2 id="访问控制表"><a href="#访问控制表" class="headerlink" title="访问控制表"></a>访问控制表</h2><p>小结一下其控制可访问作用域</p><table><thead><tr><th align="center">控制级别与作用域</th><th align="center">同一类中</th><th align="center">同一包中</th><th align="center">子类中</th><th align="center">外部包任意类</th></tr></thead><tbody><tr><td align="center">public</td><td align="center">√</td><td align="center">√</td><td align="center">√</td><td align="center">√</td></tr><tr><td align="center">protected</td><td align="center">√</td><td align="center">√</td><td align="center">√</td><td align="center"></td></tr><tr><td align="center">friendly</td><td align="center">√</td><td align="center">√</td><td align="center"></td><td align="center"></td></tr><tr><td align="center">private</td><td align="center">√</td><td align="center"></td><td align="center"></td><td align="center"></td></tr></tbody></table>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;访问控制符与访问控制级别&quot;&gt;&lt;a href=&quot;#访问控制符与访问控制级别&quot; class=&quot;headerlink&quot; title=&quot;访问控制符与访问控制级别&quot;&gt;&lt;/a&gt;访问控制符与访问控制级别&lt;/h2&gt;&lt;p&gt;Java 提供了 3 个访问控制符：private、prot</summary>
+      
+    
+    
+    
+    <category term="程序语言" scheme="http://shjlone.github.io/categories/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/"/>
+    
+    <category term="Java" scheme="http://shjlone.github.io/categories/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/Java/"/>
+    
+    
+    <category term="Java" scheme="http://shjlone.github.io/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git 清理已追踪或未添加追踪的文件</title>
+    <link href="http://shjlone.github.io/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/Git/Git-%E6%B8%85%E7%90%86%E5%B7%B2%E8%BF%BD%E8%B8%AA%E6%88%96%E6%9C%AA%E6%B7%BB%E5%8A%A0%E8%BF%BD%E8%B8%AA%E7%9A%84%E6%96%87%E4%BB%B6/"/>
+    <id>http://shjlone.github.io/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/Git/Git-%E6%B8%85%E7%90%86%E5%B7%B2%E8%BF%BD%E8%B8%AA%E6%88%96%E6%9C%AA%E6%B7%BB%E5%8A%A0%E8%BF%BD%E8%B8%AA%E7%9A%84%E6%96%87%E4%BB%B6/</id>
+    <published>2017-04-17T14:51:30.000Z</published>
+    <updated>2021-05-29T02:17:24.326Z</updated>
+    
+    <content type="html"><![CDATA[<p><code>git add</code> 将文件及其修改添加到 Git 索引和追踪当中，也就是将文件快照放入暂存区当中，但我们有时候想要<strong>丢弃本次修改过并添加到暂存区的内容</strong>，或者需要<strong>删除未被追踪的文件</strong>。</p><h2 id="git-checkout"><a href="#git-checkout" class="headerlink" title="git checkout"></a>git checkout</h2><p><code>git checkout</code> 是把文件<strong>从暂存区中恢复到工作区</strong>，也就是说源文件如果被修改，再使用 <code>git add</code> 添加到暂存区了，<code>git checkout</code> 无法把他再恢复到源文件，只能恢复到暂存时的状态。</p><h2 id="git-reset"><a href="#git-reset" class="headerlink" title="git reset"></a>git reset</h2><p><code>git reset</code> 可以用来重置工作区和暂存区还能更改 <code>HEAD</code> 指向，可以达到我们的丢弃本次修改到暂存区的目的。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Usage: git reset [&lt;mode&gt;] [&lt;commit&gt;]</span></span><br><span class="line"><span class="comment"># eg: git reset --mixed HEAD</span></span><br><span class="line">$ git reset HEAD</span><br><span class="line">$ git checkout .</span><br></pre></td></tr></table></figure><p>首先使用 <code>git reset HEAD</code> 把暂存区重置到本次提交，再用 <code>checkout</code> 恢复文件到暂存区的状态，但我们暂存区已经重置了，所以实际 <code>checkout</code> 恢复到的是本次提交时的初始状态了。</p><p><code>git reset</code> 有五种模式，不写明模式参数时，默认为 <code>--mixed</code>，几种模式间主要的差异在于重置的区域不同，这里总结下其异同：（表中不写的位置代表无操作）</p><table><thead><tr><th align="center"></th><th align="center">重置工作区</th><th align="center">重置暂存区</th><th align="center">将 HEAD 指向指定 commit</th></tr></thead><tbody><tr><td align="center">–hard</td><td align="center">√</td><td align="center">√</td><td align="center">√</td></tr><tr><td align="center">–soft</td><td align="center"></td><td align="center"></td><td align="center">√</td></tr><tr><td align="center">–mixed</td><td align="center"></td><td align="center">√</td><td align="center">√</td></tr><tr><td align="center">–merge</td><td align="center"></td><td align="center">暂存区有文件则重置失败</td><td align="center">√</td></tr><tr><td align="center">–keep</td><td align="center"></td><td align="center">暂存区有文件则重置失败</td><td align="center">√</td></tr></tbody></table><p>所以刚才上面两行命令， <code>reset</code> 后再 <code>checkou</code> ，可以用 <code>--hard</code> 代替：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD</span><br></pre></td></tr></table></figure><h2 id="git-clean"><a href="#git-clean" class="headerlink" title="git clean"></a>git clean</h2><p>顺便一提，<code>git reset --hard</code> 是直接重置整个工作区，所以也会把未被添加追踪的新文件也删除了；但 <code>git checkout</code> 是恢复，所以不会影响未添加追踪的新文件。</p><p><code>git clean</code> 就是用来删除未被添加追踪的文件和文件夹的。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git clean -n  <span class="comment"># 将显示哪些未被追踪的文件和文件夹可以清理</span></span><br><span class="line">git clean -d  <span class="comment"># 清理未被追踪的文件夹</span></span><br><span class="line">git clean -f  <span class="comment"># 清理未被追踪的文件</span></span><br><span class="line">git clean -df  <span class="comment"># 清理未被追踪的文件和文件夹</span></span><br></pre></td></tr></table></figure><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote><ul><li><a href="http://blog.csdn.net/hudashi/article/details/7664464/">git reset简介</a></li><li><a href="http://blog.csdn.net/felix_f/article/details/8777463">Git 工作区、暂存区和版本库</a></li><li><a href="http://blog.csdn.net/yang3wei/article/details/9399723">git 删除已经 add 的文件</a></li></ul></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;code&gt;git add&lt;/code&gt; 将文件及其修改添加到 Git 索引和追踪当中，也就是将文件快照放入暂存区当中，但我们有时候想要&lt;strong&gt;丢弃本次修改过并添加到暂存区的内容&lt;/strong&gt;，或者需要&lt;strong&gt;删除未被追踪的文件&lt;/strong&gt;。&lt;/p</summary>
+      
+    
+    
+    
+    <category term="技术开发" scheme="http://shjlone.github.io/categories/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/"/>
+    
+    <category term="Git" scheme="http://shjlone.github.io/categories/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/Git/"/>
+    
+    
+    <category term="Git" scheme="http://shjlone.github.io/tags/Git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>语义化版本号 2.0.0</title>
+    <link href="http://shjlone.github.io/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E8%AF%AD%E4%B9%89%E5%8C%96%E7%89%88%E6%9C%AC%E5%8F%B7-2-0-0/"/>
+    <id>http://shjlone.github.io/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E8%AF%AD%E4%B9%89%E5%8C%96%E7%89%88%E6%9C%AC%E5%8F%B7-2-0-0/</id>
+    <published>2017-03-28T09:20:08.000Z</published>
+    <updated>2021-05-29T02:17:24.332Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>版本格式：主版本号.次版本号.修订号，版本号递增规则如下：</p><ol><li>主版本号：当你做了不兼容的 API 修改，</li><li>次版本号：当你做了向下兼容的功能性新增，</li><li>修订号：当你做了向下兼容的问题修正。</li></ol><p>先行版本号及版本编译信息可以加到“主版本号.次版本号.修订号”的后面，作为延伸。</p><p>考虑使用这样的版本号格式：XYZ （主版本号.次版本号.修订号）修复问题但不影响API 时，递增修订号；API 保持向下兼容的新增及修改时，递增次版本号；进行不向下兼容的修改时，递增主版本号。</p><p>我称这套系统为“语义化的版本控制”，在这套约定下，版本号及其更新方式包含了相邻版本间的底层代码和修改内容的信息。</p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote><ul><li><a href="http://semver.org/">Semantic Versioning 2.0.0</a></li></ul></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;&lt;p&gt;版本格式：主版本号.次版本号.修订号，版本号递增规则如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;主版本号：当你做了不兼容的 API 修改，&lt;/li&gt;
+</summary>
+      
+    
+    
+    
+    <category term="技术开发" scheme="http://shjlone.github.io/categories/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/"/>
+    
+    <category term="软件工程" scheme="http://shjlone.github.io/categories/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+    
+    
+    <category term="版本控制" scheme="http://shjlone.github.io/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/"/>
+    
+    <category term="开发规范" scheme="http://shjlone.github.io/tags/%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows 系统入门操作导图</title>
+    <link href="http://shjlone.github.io/wiki/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Windows%E7%B3%BB%E7%BB%9F%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C%E5%AF%BC%E5%9B%BE/"/>
+    <id>http://shjlone.github.io/wiki/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Windows%E7%B3%BB%E7%BB%9F%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C%E5%AF%BC%E5%9B%BE/</id>
+    <published>2017-03-22T12:18:52.000Z</published>
+    <updated>2021-05-29T02:17:24.341Z</updated>
+    
+    <content type="html"><![CDATA[<p>本导图适合刚接触电脑，刚开始使用 Windows 系统，以后可能会经常使用电脑做<strong>技术</strong>工作，但目前<strong>零基础的新手</strong>，作为入门引导。</p><p>目的为改善现有不良使用习惯，规范一些操作行为，了解一些操作背后的原理，避免安装病毒和流氓软件，简单提高电脑使用效率。</p><p>整个导图分为 <strong>「1-文件、2-文件系统、3-命令行界面、4-搜索引擎使用、5-软件下载安装、6-常用系统工具」</strong> ，共六个大点，请依次阅读学习；整个<strong>主线</strong>以第五点 <strong>软件下载安装</strong> 为中心，将前四点内容依次串联起来，形成结构化知识。</p><p>导图类似于大纲框架，每点的分支<strong>只具体到内容要点</strong>，每个要点需要根据讲解或者查阅详细资料深入其内容。</p><p><img src="./Windows%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%AD%A6%E6%93%8D%E4%BD%9C%E5%9F%BA%E7%A1%80.svg" alt="Windows 系统初学入门操作基础导图"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;本导图适合刚接触电脑，刚开始使用 Windows 系统，以后可能会经常使用电脑做&lt;strong&gt;技术&lt;/strong&gt;工作，但目前&lt;strong&gt;零基础的新手&lt;/strong&gt;，作为入门引导。&lt;/p&gt;
+&lt;p&gt;目的为改善现有不良使用习惯，规范一些操作行为，了解一些操作背后的原</summary>
+      
+    
+    
+    
+    <category term="计算机基础知识" scheme="http://shjlone.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>字符集与字符编码</title>
+    <link href="http://shjlone.github.io/wiki/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%AD%97%E7%AC%A6%E9%9B%86%E4%B8%8E%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/"/>
+    <id>http://shjlone.github.io/wiki/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%AD%97%E7%AC%A6%E9%9B%86%E4%B8%8E%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/</id>
+    <published>2017-03-21T09:10:49.000Z</published>
+    <updated>2017-04-03T14:10:49.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="字符集（Charset）"><a href="#字符集（Charset）" class="headerlink" title="字符集（Charset）"></a>字符集（Charset）</h2><blockquote><p>是一个系统支持的所有抽象字符的集合。字符是各种文字和符号的总称，包括各国家文字、标点符号、图形符号、数字等。</p></blockquote><p>简单的说字符集相当于一种映射关系，一个种类的集合中，把每个字符分配一个唯一的、一一对应的编号。</p><p>举个例子比如：</p><table><thead><tr><th align="center">编号</th><th align="center">编号表示字符</th></tr></thead><tbody><tr><td align="center">1</td><td align="center">A</td></tr><tr><td align="center">2</td><td align="center">B</td></tr><tr><td align="center">3</td><td align="center">C</td></tr><tr><td align="center">…</td><td align="center">…</td></tr><tr><td align="center">26</td><td align="center">Z</td></tr><tr><td align="center">27</td><td align="center">[</td></tr><tr><td align="center">28</td><td align="center">\</td></tr><tr><td align="center">…</td><td align="center">…</td></tr></tbody></table><p>像例子中这样，<strong>一组映射想要表示的字符与其编号的集合就叫字符集</strong>。</p><p>不同的字符集有不同的映射，比如 <code>ASCII 字符集</code> 的映射中， 映射 <code>A-Z</code> 的编号就是 <code>65-90</code>，与上面例子中的编号就不一样，这就是两个不兼容的字符集。</p><h2 id="字符编码（Character-Encoding）"><a href="#字符编码（Character-Encoding）" class="headerlink" title="字符编码（Character Encoding）"></a>字符编码（Character Encoding）</h2><p>在上面过程中，我们已经给每个字符都分配了一个唯一的编号，但是我们要怎么把打出来的一段文字存到文件中去呢？你可能会觉得的奇怪，这还不简单，计算机是存储的二进制文件，我们把文字中每一个字符编号数字对应的十六进制保存为一个字节，按照字节把文字中的所有字符编号依次写入到文件中不就完了么？</p><p>额，这就会出问题了。上面我们是以 ASCII 字符集来举例的，ASCII 字符集将字母、数字和其它符号编号，并用 8 比特的二进制来表示这个整数；因为每个字符都只有一个字节，所以看起来好像没什么问题；那我们再来考虑下其他的一些字符集。</p><p>比如说中文的 GBK 字符集中部分：</p><table><thead><tr><th align="center">编号</th><th align="center">编号表示字符</th></tr></thead><tbody><tr><td align="center">45217</td><td align="center">啊</td></tr><tr><td align="center">45218</td><td align="center">阿</td></tr><tr><td align="center">45219</td><td align="center">埃</td></tr><tr><td align="center">…</td><td align="center">…</td></tr></tbody></table><p>这些编号超过 255 的字符，显然不能用一个字节来表示了，最少也要两个字符。再来按照上面的说法，把它们编号对应的十六进制依次写进文件中，假如这段文本中既有中文又有英文，那么问题来了：</p><p>我们在读取文件的时候，<strong>读到了 4 个字节，那它究竟是表示两个汉字，还是四个英文字母，还是一个汉字两个字母呢？</strong></p><p>看吧，不加限制的直接保存编号会产生一定的歧义。为了消除这种歧义，方便计算机能够简单的识别和存储字符，我们引入一种 <strong>编码规则</strong>，比如 <strong>所有字符编号对应的十六进制均按两字节存储，不够两字节的编号在前面添加 <code>0x00</code> 来补齐两字节</strong>。这样就解决了上面的歧义问题，所有字符都储存为两字节，每次读取两字节来表示一个字符，包括英文也是；这就是一种典型的 <strong>双字节定长编码</strong>。</p><p>嗯，歧义的问题是解决了，但是又有新的问题，上面我们是说至少要两个字节的字符集，要是哪天我们遇到一个要四个字节才能表示字符的字符集，那就得使用 <strong>四字节定长编码</strong>，这里就存在巨大的浪费。我们这个字符集中前十分之一编号的常用字符时，本来只需要一个字节来表示的字符，现在统统使用四个字节，一篇文章的体积无形中变大了三倍，这就 <strong>极大的浪费了存储空间</strong>。</p><p>于是人们就在想，能不能<strong>让原来只需要一个字节表示的字符编号，现在还是用一个字节来储存，原来只需要两个字节表示的字符编号，还是用两个字节来储存，依次类推，都只用其能表示的最小编码长度呢？</strong></p><p>答案是有的，于是有了 <strong>变长字符编码</strong>。</p><p>上面字符集处我们讲到过，每个字符有唯一的，一一对应的编号，在编码后也应如此。这就要求 <strong>每个字符有唯一编码，每个码字是唯一可译的</strong>。</p><p><strong>《信息论》</strong> 中指出，<strong>只有异前置码是唯一可译码</strong>。如果一个码的任何一个码字都不是其他码字的前缀，则称该码为异前置码（前缀码）。异前置码的充要条件是满足<strong>克拉夫特不等式</strong>（Kraft Inequality），即：<br>$$<br>\sum_{i=1}^n m{-k_i} \leq 1<br>,<br>\text{ ($m$ 为码元数，$k_i$ 指第 $i$ 个码元长度)}<br>$$<br>我们来看一个常见的变长编码（UTF-8）的部分（前三字节）：</p><table><thead><tr><th align="center">Byte0</th><th align="center">Byte1</th><th align="center">Byte2</th></tr></thead><tbody><tr><td align="center">0xxxxxxx</td><td align="center"></td><td align="center"></td></tr><tr><td align="center">110xxxxx</td><td align="center">10xxxxxx</td><td align="center"></td></tr><tr><td align="center">1110xxxx</td><td align="center">10xxxxxx</td><td align="center">10xxxxxx</td></tr></tbody></table><blockquote><p>在 ASCII 码的范围，用一个字节表示，超出 ASCII 码的范围就用字节表示，这就形成了我们上面看到的 UTF-8 的表示方法，这様的好处是当 Unicode 文件中只有 ASCII 码时，存储的文件都为一个字节，所以就是普通的 ASCII 文件无异，读取的时候也是如此，所以能与以前的 ASCII 文件兼容。</p><p>大于 ASCII 码的，就会由上面的第一字节的前几位表示该 Unicode 字符的长度，比如 <code>110xxxxx</code> 前三位的二进制表示告诉我们这是个 2Bytes 的 Unicode 字符；<code>1110xxxx</code> 是个三位的 Unicode 字符，依此类推；<code>xxx</code> 的位置由字符编码数的二进制表示的位填入。越靠右的<code>x</code>具有越少的特殊意义。只用最短的那个足够表达一个字符编码数的多字节串。注意在多字节串中，第一个字节的开头<code>1</code>的数目就是整个串中字节的数目。</p></blockquote><p>上面提到的 <strong>Unicode</strong> 就是一种伟大的编码方案标准！<strong>Unicode</strong> 是计算机科学领域里的一项<strong>业界标准</strong>，它为让计算机方便的使用统一而兼容的编码表达任意语言的任意字符、用以取代现有的字符编码而设计，也被称为 <strong>万国码、统一码</strong>。Unicode 标准涵盖的内容很宽，除了视觉上的字形、编码方法、标准的字符编码外，还包含了字符特性，如大小写字母。</p><p>我们常说的 Unicode 指的是 <strong>Unicode 字符集</strong>，是将世界上大部分国家的文字做了整理、编排，不断发展更新的多个文字种类平面的编号集合；Unicode 字符集的编码有多种，其实现方式都称为 <strong>Unicode 转换格式</strong> （Unicode Transformation Format，简称为 <strong>UTF</strong>）。</p><p>而 <strong>UTF-8</strong> 就是只 <strong>Unicode 字符集</strong> 实现中的一种字符编码方式。</p><h2 id="字符集与字符编码的混称"><a href="#字符集与字符编码的混称" class="headerlink" title="字符集与字符编码的混称"></a>字符集与字符编码的混称</h2><p>总的来说，简单的理解， <strong>字符编码就是字符集这种映射编号具体到计算机处理时，所用编码规则的实现方式。</strong> </p><p>比如 Unicode 字符集的字符编码方式就有 UTF-8、UTF-16、UTF-32 等。</p><p>但是也有很多我们常说的字符编码标准中，即包含了字符集也包含了字符编码，比如 <code>ASCII 字符集</code> 和 <code>ASCII 字符编码</code>，<code>GB2312 字符集</code> 和 <code>GB2312 字符编码</code>，<code>GBK 字符集</code> 和 <code>GBK 字符编码</code> 等；</p><p>于是人们也常把它们混称，将字符集和字符编码都用标准方案的名称来统称，比如 <code>ASCII 编码</code>、 <code>GBK 编码</code>、<code>GB2312 编码</code>。但是我们在谈论的时候，应该自己根据话语环境分辨其具体指代意思而不至出现歧义。</p><h2 id="现代编码模型"><a href="#现代编码模型" class="headerlink" title="现代编码模型"></a>现代编码模型</h2><p>在 Unicode 技术报告 Unicode Technical Report (UTR) 中，将现代编码模型分为五个层次：</p><ol><li><strong>抽象字符表</strong>（Abstract character repertoire）是一个系统支持的所有抽象字符的集合。字符表反映了如何将书写系统分解成线性信息单元。例如拉丁、希腊字母表分为字母、数字、标点这样的一些字符，它们都能按照一种简单的线性序列排列，字符表包括预先编号的字母和符号的组合。</li><li><strong>编码字符集</strong>（CCS: Coded Character Set）是将字符集 $\displaystyle C$ 中每个字符映射到一个坐标（整数值对：x, y）或者表示为一个非负整数 $\displaystyle N$ 。字符集及码位的映射称为编码字符集。多个编码字符集可以表示同样的字符表，由此产生了<strong>编码空间</strong>（encoding space）的概念：简单说就是包含所有字符的表的维度。编码空间还可以用其子集来表述，如行、列、面（plane）等。编码空间中的一个位置（position）称为 <strong>码位</strong>（code point）。一个字符所占用的码位称为 <strong>码位值</strong>（code point value）。编码字符集就是把抽象字符映射为码位值。</li><li><strong>字符编码表</strong>（CEF: Character Encoding Form），也称为 <code>storage format</code>，是将编码字符集的非负整数值（即抽象的码位）转换成有限比特长度的整型值（称为 <strong>码元</strong> code units）的序列。对于定长编码来说是个到自身的映射（mapping），但对于变长编码来说，该映射比较复杂，即把一些码位映射到一个码元，把另外一些码位映射到由多个码元组成的序列。</li><li><strong>字符编码方案</strong>（CES: Character Encoding Scheme），也称作 <code>serialization format</code>。将定长的整型值（即码元）映射到 8 位字节序列，以便编码后的数据的文件存储或网络传输。例如在使用Unicode的场合，使用一个简单的字符来指定字节顺序是大端序或者小端序（UTF-16BE, UTF-16LE）。</li><li><strong>传输编码语法</strong>（transfer encoding syntax），用于处理上一层次的字符编码方案提供的字节序列。一般其功能包括两种：一是把字节序列的值映射到一套更受限制的值域内，以满足传输环境的限制，例如 Base64；另一是压缩字节序列的值，如 LZW 或者进程长度编码等无损压缩技术。</li></ol><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote><ul><li><a href="https://en.wikipedia.org/wiki/Character_encoding">Character encoding | Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Unicode">Unicode | Wikipedia</a></li><li><a href="http://www.cnblogs.com/skynet/archive/2011/05/03/2035105.html">字符集和字符编码 | 吴秦</a></li><li><a href="http://zhihu.com/question/24340504/answer/28902204">计算机系统是如何显示一个字符的？ - 知乎</a></li><li><a href="http://zhihu.com/question/20650946/answer/15745831">Windows 记事本的 ANSI、Unicode、UTF-8 这三种编码模式有什么区别？ - 知乎 | 梁海的回答</a></li></ul></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;字符集（Charset）&quot;&gt;&lt;a href=&quot;#字符集（Charset）&quot; class=&quot;headerlink&quot; title=&quot;字符集（Charset）&quot;&gt;&lt;/a&gt;字符集（Charset）&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;是一个系统支持的所有抽象字符的集合</summary>
+      
+    
+    
+    
+    <category term="计算机基础知识" scheme="http://shjlone.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>曲线调整工具与直方图</title>
+    <link href="http://shjlone.github.io/wiki/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%9B%BE%E5%BD%A2%E5%9B%BE%E5%83%8F/%E6%9B%B2%E7%BA%BF%E8%B0%83%E6%95%B4%E5%B7%A5%E5%85%B7/"/>
+    <id>http://shjlone.github.io/wiki/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%9B%BE%E5%BD%A2%E5%9B%BE%E5%83%8F/%E6%9B%B2%E7%BA%BF%E8%B0%83%E6%95%B4%E5%B7%A5%E5%85%B7/</id>
+    <published>2017-03-21T07:05:28.000Z</published>
+    <updated>2021-05-29T02:17:24.344Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p><strong>「曲线工具」</strong>这个东西，经常修图或做视频的人一定不陌生，它在很多图像视频工具中都有出现，比如 AE、PR、PS、LR 等中；其强大之处自不用我多说，这里主要针对还未入门的 <strong>零基础</strong> 的朋友作一个基本的介绍和认识。</p><p><img src="./PS%E6%9B%B2%E7%BA%BF%E5%B7%A5%E5%85%B7.jpg" alt="PS中的曲线工具"></p><p>在谈到「曲线工具」之前，不得不先谈到图像<strong>「直方图」</strong>这个东西；</p><h2 id="「直方图」"><a href="#「直方图」" class="headerlink" title="「直方图」"></a>「直方图」</h2><p>简单的来说，<strong>直方图是统计图片中按照不同的明暗级别从黑到白（从暗到明），统计在某个亮度的像素数量有多少。</strong>（以下谈到直方图，若无特指，那均指 RGB 全通道亮度直方图，不谈论色相）</p><p>我们先看看 PS 中的直方图是什么样的；</p><p><img src="./PS%E5%9B%BE%E5%83%8F%E7%9B%B4%E6%96%B9%E5%9B%BE.jpg" alt="PS中的图像直方图"></p><p>四个框中，最上面就是全通道的直方图，下面三个依次是 RGB 三个通道的直方图；<strong>直方图的横轴表示亮度级别</strong>，左边表示最暗，向右依次变亮，最右边表示最亮最白；<strong>纵轴表示像素数量</strong>。</p><p>我们再来看一个简化版的示意图；</p><p><img src="./%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%90%E6%A0%87%E8%BD%B4%E8%A7%A3%E9%87%8A.jpg" alt="直方图简化示意"></p><p>举个例子，假设上面这张简化的直方图是统计一张 <strong>只有 22 个像素</strong>的图片，那么可以从直方图中看到 <strong>统计结果</strong>：</p><p>纯黑的像素有 3 个、灰度一级的像素有 2 个、中度灰色的有 5 个、 …… 、纯白的有 2 个。</p><p>嗯，上面这个图结合例子很好理解吧，那让我们<strong>把它扩展一下，道理还是不变，只是把分级加精细一点，像素加多一点</strong>，导出一张真实一点的我们实际中常见样子的直方图；</p><p><img src="./%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%B8%B8%E8%A7%81%E5%BD%A2%E5%BC%8F%E7%A4%BA%E4%BE%8B.jpg" alt="直方图常见形式示例"></p><p>直观看出，这张直方图所代表的原始图片中，<strong>中等偏亮的像素点在整个图片中占主体</strong>；也就是图片整体颜色是偏亮系的，看起来不是暗色调的。</p><p><strong>类似的，假设图片直方图中只形成了一个山峰，如果山峰位置偏右边，就表示图片整体是暗色调的；如果山峰位置偏左，就表示图片整体看起来是亮色系的，整体色调是明亮的。</strong></p><p>【这里注意，摄影和修图的重点都是自己到底想表达什么，不要过度纠结于传统观念，就认为山峰靠右就一定是曝光失误造成欠曝一定要调整曝光等等；主要是看自己的想法，有些场景可能就需要这样，不是失误欠曝，比如表现夜空中的明月或星空。】</p><p>说完直方图，我们就可以回过来看<strong>「曲线工具」</strong>了。</p><h2 id="「曲线工具」"><a href="#「曲线工具」" class="headerlink" title="「曲线工具」"></a>「曲线工具」</h2><p><img src="./PS%E6%9B%B2%E7%BA%BF%E5%B7%A5%E5%85%B7.jpg" alt="PS中的曲线工具"></p><p>再看到曲线工具，就要注意调整框内，背景中的 <strong>阴影山峰</strong> 了，这就是刚刚讲的 <strong>直方图</strong>。</p><p><strong>「曲线工具」</strong> 其实是 <strong>曲线调整 + 直方图</strong>，两者 <strong>横坐标共用，含义都一样</strong>，指 <strong>亮度分级</strong>；</p><p><strong>但纵坐标含义就不一样了</strong>。</p><p><strong>曲线工具的纵坐标也是指亮度分级，没错，纵坐标和横坐标的含义与数值分布完全一样！</strong></p><p>再看上面这条线，虽然名字叫「曲线工具」，但是打开工具初始状态下这根线就是直线，只不过可以添加关键点来把直线拖成曲线。</p><p>初始状态下的直线，是从左下连到右上的，相当于是从横纵轴都最暗的地方，连到横纵轴都最亮的地方；</p><p>也就是： </p><p>$$y = f(x) = x , (0 \leq x \leq 255)$$</p><p>现在我们再说一下纵坐标 y 和横坐标 x 的一点区别；<strong>这条线上一个点的横坐标值，表示图片上的某个原始亮度值，纵坐标表示这个原始亮度经过调整后的亮度变成了多少。</strong></p><p>合起来的意思就是，这条曲线（或直线）表示对原图色彩的一种映射，<strong>把原图的每个色彩亮度，映射到现在的每个对应的色彩亮度</strong>，即：</p><p>$$y = f(x) , (0 \leq x \leq 255 , x = 原始亮度 , y = 调整后亮度)$$</p><p>比如说常见的 S 型曲线可以加深对比度，其实就是把原本暗的变得更暗，把原本亮的变得更亮，所以对比度就变高了。</p><p>基于这个道理，接下来解释几种基本曲线的调整方式；</p><h3 id="初始直线"><a href="#初始直线" class="headerlink" title="初始直线"></a>初始直线</h3><p><img src="./%E6%9B%B2%E7%BA%BF%E8%B0%83%E6%95%B4-%E5%88%9D%E5%A7%8B.jpg" alt="初始直线"></p><p>初始直线相当于原本什么亮度现在还是什么亮度，什么都没变，就是画面原本的样子。</p><h3 id="上凸曲线"><a href="#上凸曲线" class="headerlink" title="上凸曲线"></a>上凸曲线</h3><p><img src="./%E6%9B%B2%E7%BA%BF%E8%B0%83%E6%95%B4-%E4%B8%8A%E5%87%B8-%E5%8A%A0%E4%BA%AE.jpg" alt="上凸曲线把整个画面变亮"></p><p>对比原始图片，现在用的上凸曲线除了端点的每个点都在 $y = x$ 直线上方，也就是不管是暗的还是亮的每个点都不同程度的加亮了一些，所以整个画面看起来都亮了。</p><h3 id="下凸曲线"><a href="#下凸曲线" class="headerlink" title="下凸曲线"></a>下凸曲线</h3><p><img src="./%E6%9B%B2%E7%BA%BF%E8%B0%83%E6%95%B4-%E4%B8%8B%E5%87%B8-%E5%87%8F%E6%9A%97.jpg" alt="下凸曲线将画面整体调暗"></p><p>与上凸曲线刚好相反，下凸曲线都在 $y = x$ 直线之下，每个点都不同程度的调暗了一点，所以整体画面变暗。</p><h3 id="S-型曲线"><a href="#S-型曲线" class="headerlink" title="S 型曲线"></a>S 型曲线</h3><p><img src="./%E6%9B%B2%E7%BA%BF%E8%B0%83%E6%95%B4-S%E5%9E%8B-%E6%8F%90%E9%AB%98%E5%AF%B9%E6%AF%94%E5%BA%A6.jpg" alt="S 型曲线提高画面对比度"></p><p>S 型曲线最常见，通常修图都会先拉起对比度，也就是调了个 S 型曲线；刚刚也说过，S 型曲线左边暗部在 $y = x$ 之下，右边亮部在 $y = x$ 之上，相当于把暗的点调的更暗，把亮的点调得更亮，于是明暗差异变大，对比度也就提高了。</p><h3 id="反-S-型曲线"><a href="#反-S-型曲线" class="headerlink" title="反 S 型曲线"></a>反 S 型曲线</h3><p><img src="./%E6%9B%B2%E7%BA%BF%E8%B0%83%E6%95%B4-%E5%8F%8DS%E5%9E%8B-%E9%99%8D%E4%BD%8E%E5%AF%B9%E6%AF%94%E5%BA%A6.jpg" alt="反 S 型曲线降低对比度"></p><p>反 S 型曲线与 S 型曲线方向看起来相反，作用也刚好相反，它是把暗部调亮，亮部调暗，明暗差异变小，用来降低对比度的。</p><h3 id="反对角线"><a href="#反对角线" class="headerlink" title="反对角线"></a>反对角线</h3><p><img src="./%E6%9B%B2%E7%BA%BF%E8%B0%83%E6%95%B4-%E5%8F%8D%E5%AF%B9%E8%A7%92%E7%BA%BF-%E5%8F%8D%E7%9B%B8.jpg" alt="反对角线颜色反相"></p><p>对比初始直线，这里反对角线其实就是 $y = -x$ 直线，相当于把所有明暗亮度对称颠倒过来，这里的亮度也包括相位，于是所有颜色反相了，看起来就是将图片反色处理了。</p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote><ul><li><a href="http://academy.fengniao.com/322/3228845_all.html#p3228845">如何读懂直方图</a></li><li><a href="https://www.zhihu.com/question/20511799">如何看懂照片的直方图？</a></li><li><a href="http://www.nphoto.net/news/2010-04/28/6e47b1395e6f0f5d.shtml">『摄影入门』怎样知道照片曝光是否合适？直方图！</a></li><li><a href="http://www.uisdc.com/ps-curve-skill">教你轻松掌握PS曲线工具</a></li><li><a href="http://www.jb51.net/photoshop/465856.html">ps曲线工具的详细使用方法介绍</a></li></ul></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;引入&quot;&gt;&lt;a href=&quot;#引入&quot; class=&quot;headerlink&quot; title=&quot;引入&quot;&gt;&lt;/a&gt;引入&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;「曲线工具」&lt;/strong&gt;这个东西，经常修图或做视频的人一定不陌生，它在很多图像视频工具中都有出现，比如 AE、PR、P</summary>
+      
+    
+    
+    
+    <category term="计算机基础知识" scheme="http://shjlone.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    
+    <category term="图形图像" scheme="http://shjlone.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%9B%BE%E5%BD%A2%E5%9B%BE%E5%83%8F/"/>
+    
+    
+    <category term="图像格式" scheme="http://shjlone.github.io/tags/%E5%9B%BE%E5%83%8F%E6%A0%BC%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>平面设计入门导图</title>
+    <link href="http://shjlone.github.io/wiki/%E8%89%BA%E6%9C%AF/%E5%B9%B3%E9%9D%A2%E8%AE%BE%E8%AE%A1/%E5%B9%B3%E9%9D%A2%E8%AE%BE%E8%AE%A1%E5%85%A5%E9%97%A8%E5%AF%BC%E5%9B%BE/"/>
+    <id>http://shjlone.github.io/wiki/%E8%89%BA%E6%9C%AF/%E5%B9%B3%E9%9D%A2%E8%AE%BE%E8%AE%A1/%E5%B9%B3%E9%9D%A2%E8%AE%BE%E8%AE%A1%E5%85%A5%E9%97%A8%E5%AF%BC%E5%9B%BE/</id>
+    <published>2017-03-12T11:34:55.000Z</published>
+    <updated>2021-05-29T02:17:24.337Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="./%E5%B9%B3%E9%9D%A2%E8%AE%BE%E8%AE%A1%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80.svg" alt="平面设计入门基础导图"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;./%E5%B9%B3%E9%9D%A2%E8%AE%BE%E8%AE%A1%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80.svg&quot; alt=&quot;平面设计入门基础导图&quot;&gt;&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    <category term="艺术" scheme="http://shjlone.github.io/categories/%E8%89%BA%E6%9C%AF/"/>
+    
+    <category term="平面设计" scheme="http://shjlone.github.io/categories/%E8%89%BA%E6%9C%AF/%E5%B9%B3%E9%9D%A2%E8%AE%BE%E8%AE%A1/"/>
+    
+    
+    <category term="平面设计" scheme="http://shjlone.github.io/tags/%E5%B9%B3%E9%9D%A2%E8%AE%BE%E8%AE%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《干就对了：业绩增长九大关键》读书笔记</title>
+    <link href="http://shjlone.github.io/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2021-03-04-%E3%80%8A%E5%B9%B2%E5%B0%B1%E5%AF%B9%E4%BA%86%E3%80%8B/"/>
+    <id>http://shjlone.github.io/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2021-03-04-%E3%80%8A%E5%B9%B2%E5%B0%B1%E5%AF%B9%E4%BA%86%E3%80%8B/</id>
+    <published>2017-03-11T16:00:00.000Z</published>
+    <updated>2021-05-29T03:13:23.275Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="摘要1"><a href="#摘要1" class="headerlink" title="摘要1"></a>摘要1</h2><blockquote><p>宁愿要三流的战略加上一流的组织，也不要一流的战略、三流的组织。</p></blockquote><p><strong>感悟：</strong> </p><p>好的团队很重要，一群优秀的人，目的明确，团结一致，想不成功都难。在团队建设过程中，一定要尽量留下优秀的人才。</p><h2 id="摘要2"><a href="#摘要2" class="headerlink" title="摘要2"></a>摘要2</h2><p><strong>组织架构的设计原则：</strong></p><p>1.自上而下和自下而上要结合。<br><br/><br><img src="/public/img/book_1.png"></p><p>2.组织架构设计要保持弹性，也就是要跳出KPI做正确的事。<br/><br><br/><br><img src="/public/img/book_2.png"></p><h2 id="摘要3"><a href="#摘要3" class="headerlink" title="摘要3"></a>摘要3</h2><p><strong>中台建设原则：</strong></p><ol><li>客户第一</li><li>赋能而非管控</li><li>前线要有授权</li><li>总部要有看板</li><li>善用双线汇报</li></ol><h2 id="摘要4"><a href="#摘要4" class="headerlink" title="摘要4"></a>摘要4</h2><p><strong>岗位职责的设计注意点：</strong></p><ol><li>切忌“大而全”</li><li>要有颗力度和明确的比重</li><li>人事部门不能包揽岗位职责编写工作</li><li>岗位职责不能一成不变</li><li>岗位职责再纵深层次上不能一样</li></ol><p><strong>感悟：</strong> </p><p>每个岗位都应该有明确的职责要求，实际工作当中，很多人会把模棱两可的任务推来推去。</p><h2 id="摘要5"><a href="#摘要5" class="headerlink" title="摘要5"></a>摘要5</h2><p><strong>如何扣动员工的心灵扳机：</strong></p><ul><li>寻找心动点</li><li>寻找成就点</li><li>生理需求和安全需求</li><li>情感和归属需求</li><li>尊重需求</li><li>自我实现需求</li><li>管理者不要站在自己的角度思考员工的原动力</li><li>管理者要看到目标实现的可能性，不能画大饼</li></ul><p><strong>感悟：</strong></p><p>说到底还是要关注”人”本身，关注他的真实需求，尽量在现有框架下满足他的需求，他才能给团队带来更多的价值。</p><h2 id="摘要6"><a href="#摘要6" class="headerlink" title="摘要6"></a>摘要6</h2><blockquote><ol><li>“No Surprise”：管理者在日常过程中发现问题没有及时提醒<br/><br/></li><li>当员工犯错的时候，不要急于批评，因为大多数批评解决不了问题。正确的步骤是判断这些错误会产生什么影响，然后再做处理。一般从两个维度判断——业绩和价值观。</li></ol></blockquote><p><strong>感悟：</strong></p><p>自己在实际工作中就出现过类似的问题，在问题刚刚出现时没有及时去处理，最终那个团队成员离职了。回过头想，其实在问题刚出现的时候，就处理的话，<br>他应该在近期是不会离职的。</p><h2 id="摘要6-1"><a href="#摘要6-1" class="headerlink" title="摘要6"></a>摘要6</h2><p><strong>设计KPI时要关注的6个要素：</strong></p><ol><li>目标值；</li><li>权重；</li><li>计算方式；</li><li>评分标准；</li><li>评估周期。</li></ol><p><img src="/public/img/book_3.png"></p><h2 id="摘要7"><a href="#摘要7" class="headerlink" title="摘要7"></a>摘要7</h2><blockquote><p>裸心会，真正的关心员工，而不是流于形式。</p></blockquote><p><strong>感悟：</strong></p><p>阿里所谓但裸心会，说到底还是要真正但关心团队成员的内心真实想法，流于表面的生日会、聚餐，并不能跟大家交心。想要交心，是要真正的去了解对方，<br>把对方当成好哥们，哥们家人生病了，你是要关怀的。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;摘要1&quot;&gt;&lt;a href=&quot;#摘要1&quot; class=&quot;headerlink&quot; title=&quot;摘要1&quot;&gt;&lt;/a&gt;摘要1&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;宁愿要三流的战略加上一流的组织，也不要一流的战略、三流的组织。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;</summary>
+      
+    
+    
+    
+    <category term="读书笔记" scheme="http://shjlone.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="读书笔记" scheme="http://shjlone.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+</feed>
