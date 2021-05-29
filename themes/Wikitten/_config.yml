@@ -1,10 +1,10 @@
 # Menus
 menu:
-  首页: /
-  归档: /archives
-  分类: /categories
-  标签: /tags
-  关于: /about
+    首页: /
+    归档: /archives
+    分类: /categories
+    标签: /tags
+    关于: /about
 
 # Customize
 customize:
@@ -26,23 +26,23 @@ customize:
     category_perExpand: false # enable article categories list per expanding
     thumbnail: true # enable posts thumbnail, options: true, false
     favicon: /favicon.ico # path to favicon
-    default_index_file: index.md # if this, it will display at site index instead of default index page
+    #    default_index_file: index.md # if this, it will display at site index instead of default index page
     social_links:
-        github: https://github.com/zthxxx/zthxxx.github.io
-        stack-overflow: http://stackoverflow.com/users/7277090/zthxxx?tab=profile
-        codepen: http://codepen.io/zthxxx/
+        github: https://github.com/shjlone/shjlone.github.io
+        stack-overflow: https://stackoverflow.com/users/1317183/loneqd
+        codepen:
         rss: /atom.xml
     social_link_tooltip: true # enable the social link tooltip, options: true, false
 
 # Widgets
 widgets: # default use category only
     - category
-#     - recent_posts
+    #     - recent_posts
     # - archive
     # - tag
     # - tagcloud
     # - links
-    
+
 # Excerpt 
 ## Auto creat excerpt with not <!--more-->
 ## Enable will truncate auto_excerpt.lines rows in post head to replace excerpt.
@@ -60,15 +60,22 @@ search:
 history_control: # make you wiki has history version control in page
     enable: false
     server_link: https://github.com # recommend use GitHub https://github.com
-    user: zthxxx
-    repertory: Wiki-site
-    branch: writing
+    user: shjlone
+    repertory: shjlone.github.io
+    branch: gh-page
 
 # Comment
 comment:
     disqus: # enter disqus shortname here
     duoshuo: # enter duoshuo shortname here
     youyan: # enter youyan uid here
+    valine:
+        # app_id leancloud的应用-->设置-->应用Keys
+        leancloud_appid: oHebxNy7EUKpUp7DNX4YoYcp-gzGzoHsz
+        # app_key
+        leancloud_appkey: iSoFxGq6O5Ee9F0xh2GeORyU
+        # placeholde
+        placeholder: 留下一个脚印吧~
 
 # Share
 share: default # options: jiathis, bdshare, addtoany, default

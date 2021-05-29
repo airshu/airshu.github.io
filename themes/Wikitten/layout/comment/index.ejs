@@ -5,5 +5,7 @@
         <section id="comments"> <%- partial('comment/duoshuo') %> </section>
     <% } else if (theme.comment.youyan) { %>
         <section id="comments"> <%- partial('comment/youyan') %> </section>
+    <% } else if (theme.comment.valine) { %>
+        <section id="comments"> <%- partial('comment/valine') %> </section>
     <% } %>
 <% } %>

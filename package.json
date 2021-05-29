@@ -14,7 +14,7 @@
     "push-theme": "git subtree push --prefix=themes/Wikitten Wikitten master --squash"
   },
   "dependencies": {
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-clean-css": "^4.3.0",
     "gulp-htmlclean": "^2.7.22",
     "gulp-htmlmin": "^5.0.1",
