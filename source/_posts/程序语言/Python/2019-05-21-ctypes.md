@@ -1,0 +1,187 @@
+---
+title: ctypes模块
+tags: Python 
+---
+
+
+ctypes 是 Python 的外部函数库。它提供了与 C 兼容的数据类型，并允许调用 DLL 或共享库中的函数。可使用该模块以纯 Python 形式对这些库进行封装。
+
+
+## Hello World
+
+1. 编写C文件
+2. 编译C文件
+3. 编写Python文件、测试
+
+### 1. 编写C文件
+
+```C
+#include <stdio.h>
+
+int hello(const char* name) {
+    printf("~~~hello %s ! \n", name);
+    return 0;
+}
+
+```
+### 2. 编译C文件
+
+不同平台生成不同格式的动态库，windows下为dll，linux下为so
+
+> gcc -fPIC -shared hello_module.c -o hello_module.dylib
+
+### 3. 编写Python文件
+
+```python
+
+import ctypes
+from ctypes import c_char_p
+
+lib = ctypes.cdll.LoadLibrary("hello_module.dylib")
+lib.hello(c_char_p(bytes("world", "utf-8")))
+```
+
+
+## 类型映射关系
+
+| ctypes       | C 类型                                   | Python类型       |  
+| ------------ | -------------------------------------- | ----------------- | 
+| c_bool       | _Bool                                  | bool (1)          |
+| c_char       | char                                   | 单字符字节对象    |
+| c_wchar      | wchar_t                                | 单字符字符串      |
+| c_byte       | char                                   | int               |
+| c_ubyte      | unsigned char                          | int               |
+| c_short      | short                                  | int               |
+| c_ushort     | unsigned short                         | int               |
+| c_int        | int                                    | int               |
+| c_uint       | unsigned int                           | int               |
+| c_long       | long                                   | int               |
+| c_ulong      | unsigned long                          | int               |
+| c_longlong   | __int64 或 long long                   | int               |
+| c_ulonglong  | unsigned __int64 或 unsigned long long | int               |
+| c_size_t     | size_t                                 | int               |
+| c_ssize_t    | ssize_t 或 Py_ssize_t                  | int               |
+| c_float      | float                                  | float             |
+| c_double     | double                                 | float             |
+| c_longdouble | long double                            | float             |
+| c_char_p     | char * (NUL terminated)                | 字节串对象或 None |
+| c_wchar_p    | wchar_t * (NUL terminated)             | 字符串或 None     |
+| c_void_p     | void *                                 | int 或 None       |
+
+
+## 回调函数
+
+```C
+############## main.c ##############
+#include <stdint.h>
+#include <stdio.h>
+
+struct mes_t
+{
+    uint32_t field1;
+    uint32_t field2;
+    void* data;
+};
+
+typedef int function_callback(struct mes_t* message );
+
+function_callback* my_callback;
+
+int function_one(function_callback fcb){
+	//Set to a global variable for later use
+	my_callback = fcb;
+
+	//Declare object in stack
+	struct mes_t mes;
+	mes.field1 = 132;
+	mes.field2 = 264;
+	mes.data = NULL;
+
+	//Pass pointer of object in stack, and print the return value
+	printf("Got from python: %d\n", my_callback( &mes ) );
+}
+
+```
+
+```Python
+
+############ main.py ################
+import ctypes
+
+testlib = ctypes.CDLL('./testlib.so')
+
+#Declare the data structure
+class mes_t(ctypes.Structure):
+    _fields_ = (
+        ('field1', ctypes.c_uint32),
+        ('field2', ctypes.c_uint32),
+        ('data', ctypes.c_void_p))
+
+#Declare the callback type, since that is not stored in the library
+callback_type = ctypes.CFUNCTYPE(ctypes.c_int, ctypes.POINTER(mes_t) )
+
+def the_callback(mes_p):
+    #dereference the pointer
+    my_mes = mes_p[0]
+
+    print "I got a mes_t object! mes.field1=%r, mes.field2=%r, mes.data=%r" \
+          % (my_mes.field1, my_mes.field2, my_mes.data)
+
+    #Return some random value
+    return 999
+
+#Let the library know about the callback function by calling "function_one"
+result = testlib.function_one(callback_type(the_callback) )
+
+#########################
+gcc -shared -o testlib.so -fPIC main.c
+python main.py 
+
+```
+
+参考：[http://blog.sina.com.cn/s/blog_6e22d8fb0102y462.html](http://blog.sina.com.cn/s/blog_6e22d8fb0102y462.html)
+
+
+## 线程状态和GIL
+
+Python解释器不是完全线程安全的。为了支持多线程Python程序，有一个全局锁，称为global interpreter lock或GIL，它必须由当前线程持有才能安全访问Python对象。没有锁，即使最简单的操作也可能导致多线程程序中的问题：例如，当两个线程同时增加同一对象的引用计数时，引用计数可能最终只增加一次而不是两次。
+
+
+### 释放GIL
+
+```
+Py_BEGIN_ALLOW_THREADS
+... Do some blocking I/O operation ...
+Py_END_ALLOW_THREADS
+```
+
+### 非Python创建的线程
+
+当使用专用的Python API（例如threading模块）创建线程时，线程状态会自动关联到它们，因此上面显示的代码是正确的。但是，当从C创建线程时（例如由具有自己的线程管理的第三方库），它们不持有GIL，也没有线程状态结构。
+
+如果你需要从这些线程调用Python代码（通常这将是上述第三方库提供的回调API的一部分），你必须首先通过创建线程状态数据结构来注册这些线程和解释器，然后获取GIL，最后存储他们的线程状态指针，然后才能开始使用Python / C API。当你完成后，你应该重置线程状态指针，释放GIL，最后释放线程状态数据结构。
+
+```
+PyGILState_STATE gstate;
+gstate = PyGILState_Ensure();
+
+/* Perform Python actions here. */
+result = CallSomeFunction();
+/* evaluate result or handle exception */
+
+/* Release the thread. No Python API allowed beyond this point. */
+PyGILState_Release(gstate);
+```
+
+**释放GIL和非python创建的线程中调用python函数都没有测试成功...**
+
+
+## 参考
+
+- [http://icejoywoo.github.io/2018/12/10/intro-python-ctyps.html](http://icejoywoo.github.io/2018/12/10/intro-python-ctyps.html)
+- [https://anribras.github.io/tech/2019/01/03/python-ctypes%E6%80%BB%E7%BB%93/](https://anribras.github.io/tech/2019/01/03/python-ctypes%E6%80%BB%E7%BB%93/)
+
+
+
+
+
