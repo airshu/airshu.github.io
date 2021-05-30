@@ -1,7 +1,9 @@
 ---
 title: Android APK打包流程
+toc: true
 ---
 
+<!-- toc -->
 
 APK文件的结构
 
@@ -46,7 +48,7 @@ res目录有9种目录
 
 - values。这类资源以XML文件保存在res/values目录下，用来描述一些简单值，例如，数组、颜色、尺寸、字符串和样式值等，一般来说，这六种不同的值分别保存在名称为arrays.xml、colors.xml、dimens.xml、strings.xml和styles.xml文件中。
 - xml。这类资源以XML文件保存在res/xml目录下，一般就是用来描述应用程序的配置信息。
-
+toc
 ##### R.java 
 
     public final class R {
