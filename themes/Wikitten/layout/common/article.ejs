@@ -52,7 +52,7 @@
             <% } %>
         <% } else { %>
             <% if (post.toc) { %>
-                <div id="toc" class="toc-article" style="position:fixed;right:28px;top:20px;"><!--文章的目录，固定死位置-->
+                <div id="toc" class="toc-article" style="position:fixed;right:28px;top:0px;">
                 <strong class="toc-title"><%= __('article.catalogue') %></strong>
                     <%- toc(post.content) %>
                 </div>

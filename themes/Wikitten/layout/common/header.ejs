@@ -9,6 +9,7 @@
                 <% for (var i in theme.menu) { %>
                     <a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a>
                 <% } %>
+                <%- partial('search/index') %>
             </nav>
             <% if(theme.customize.profile && theme.customize.profile.enabled) { %>
                 <% var profile = theme.customize.profile; %>
@@ -21,7 +22,7 @@
                     </div>
                 </nav>
             <% } %>
-            <%- partial('search/index') %>
+
         </div>
     </div>
     <div id="main-nav-mobile" class="header-sub header-inner">
