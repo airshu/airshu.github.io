@@ -3,8 +3,6 @@ title: Android APK打包流程
 toc: true
 ---
 
-<!-- toc -->
-
 APK文件的结构
 
 - xxx.apk
