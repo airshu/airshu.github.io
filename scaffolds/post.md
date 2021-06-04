@@ -1,14 +1,14 @@
 ---
 title: {{ title }}
 date: {{ date }}
-toc: false
+toc: true
 tags: 
 ---
 
 
 
 
+## 参考
 
-## 参考资料
 > - []()
 > - []()

@@ -1,6 +1,6 @@
 ---
 title: AndroidManifest描述文件
-
+toc: true
 ---
 
 ```

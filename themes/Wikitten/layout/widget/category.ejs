@@ -7,8 +7,8 @@
                 <i class="fa fa-angle-double-<%- theme.customize.category_perExpand ? 'up' : 'down' %> fa-2x"></i>
             </a>
         </h3>
-        
-        <% 
+
+        <%
             function listCategories(categories, posts) {
                 function layArticles(posts) {
                     var classifiedArticles = {'_root': []};
@@ -44,8 +44,8 @@
                   if(!tree.name) tree = {"name": "_root", "_id": "_root", "children": [], "articles": classifiedArticles['_root']};
                   prepareQuery(categories, parent).forEach(function(cat, i) {
                       var now_category = {
-                          "_id": cat._id, 
-                          "name": cat.name, 
+                          "_id": cat._id,
+                          "name": cat.name,
                           "children": [],
                           "articles": classifiedArticles[cat._id]
                       };
@@ -65,7 +65,7 @@
                 return categoriesTree;
             }
         %>
-        <% 
+        <%
             function visitTreePosts(branch, perExpand) {
              %> <ul class="unstyled" id="tree" <% if(perExpand) { %>style="display: block;"<% } %>> <%
                 if(branch.children && branch.children.length) {
@@ -78,10 +78,10 @@
                             <%- category.name %>
                         </a>
                         <% visitTreePosts(category, perExpand) %>
-                    </li> 
-                    <%  
+                    </li>
+                    <%
                     });
-                } 
+                }
                 if(branch.articles && branch.articles.length) {
                     branch.articles.forEach(function(post){
                         %> <li class="file<%- (is_post() && post._id == page._id) ? ' active' : '' %>"><a href="<%- post.path %>"><%- post.title %></a></li> <%
@@ -125,7 +125,7 @@
             // 右键展开下属所有目录
             $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
                 event.preventDefault();
-                
+
                 var icon = $(this).children('.fa');
                 var expanded = icon.hasClass(iconFolderOpenClass);
                 var listNode = $(this).siblings('ul');
@@ -143,7 +143,7 @@
             // 展开关闭所有目录按钮
             $(document).on('click', '#allExpand', function (event) {
                 event.preventDefault();
-                
+
                 var icon = $(this).children('.fa');
                 var expanded = icon.hasClass(iconAllExpandClass);
                 icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
@@ -156,7 +156,7 @@
                     $('#categories li ul').slideUp({ duration: 100 });
                     icon.addClass(iconAllExpandClass);
                 }
-            });  
+            });
         });
     </script>
 <% } %>

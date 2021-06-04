@@ -16,11 +16,11 @@ customize:
     profile:
         enabled: false # Whether to show profile bar
         avatar: # css/images/avatar.png
-        gravatar: zth_9451@qq.com # Gravatar email address, if you enable Gravatar, your avatar config will be overriden
-        author: zthxxx
+        gravatar: alonelsj@gmail.com # Gravatar email address, if you enable Gravatar, your avatar config will be overriden
+        author: shjlone
         author_title: Designer & Programmer
-        location: Chengdu, China
-        follow: https://github.com/zthxxx/
+        location: Guangdong, China
+        follow: https://github.com/shjlone/
     highlight: monokai
     sidebar: left # sidebar position, options: left, right
     category_perExpand: false # enable article categories list per expanding
@@ -39,11 +39,11 @@ widgets: # default use category only
     - category
     #     - recent_posts
     # - archive
-    # - tag
-    # - tagcloud
+    #- tag
+    #- tagcloud
     # - links
 
-# Excerpt 
+# Excerpt
 ## Auto creat excerpt with not <!--more-->
 ## Enable will truncate auto_excerpt.lines rows in post head to replace excerpt.
 auto_excerpt:
@@ -56,7 +56,7 @@ search:
     swiftype: # enter swiftype install key here
     baidu: false # you need to disable other search engines to use Baidu search, options: true, false
 
-# History version 
+# History version
 history_control: # make you wiki has history version control in page
     enable: false
     server_link: https://github.com # recommend use GitHub https://github.com
