@@ -155,6 +155,33 @@ A位于栈底，D位于栈顶，这个时候假设要再次启动D，如果D的�
 后续的请求均不会创建新的Activity，除非这个独特的任务栈被系统销毁了。"来电显示"界面就可以使用该模式。
 
 
+## Activity中的Flags
+
+标记位的作用很多，有的标记位可以设定Activity的启动模式，比如FLAG_ACTIVITY_NEW_TASK和FLAG_ACTIVITY_SINGLE_TOP等; 
+还有的标记位可以影响Activity的运行状态，比如FLAG_ACTIVITY_CLEAR_TOP和FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS等。
+下面主要介绍几个比较常用的标记位，剩下的标记位读者可以查看官方文档去了解，大部分情况下，我们不需要为Activity指定标记位，因此，对于标记位理解即可。
+在使用标记位的时候，要注意有些标记位是系统内部使用的，应用程序不需要去手动设置这些标记位以防出现问题。
+
+FLAG_ACTIVITY_NEW_TASK
+
+这个标记位的作用是为Activity指定“singleTask”启动模式，其效果和在XML中指定该启动模式相同。 
+
+FLAG_ACTIVITY_SINGLE_TOP
+
+这个标记位的作用是为Activity指定“singleTop”启动模式，其效果和在XML中指定该启动模式相同。 
+
+FLAG_ACTIVITY_CLEAR_TOP
+
+具有此标记位的Activity，当它启动时，在同一个任务栈中所有位于它上面的Activity都要出栈。这个模式一般需要和FLAG_ACTIVITY_NEW_TASK配合使用，
+在这种情况下，被启动Activity的实例如果已经存在，那么系统就会调用它的onNewIntent。如果被启动的Activity采用standard模式启动，
+那么它连同它之上的Activity都要出栈，系统会创建新的Activity实例并放入栈顶。
+
+FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS
+
+具有这个标记的Activity不会出现在历史Activity的列表中，当某些情况下我们不希望用户通过历史列表回到我们的Activity的时候这个标记比较有用。
+它等同于在XML中指定Activity的属性 android:excludeFromRecents="true"。
+
+## Activity之间如何通信
 
 
 

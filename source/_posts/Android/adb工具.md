@@ -121,6 +121,7 @@ stop |停止执行模拟器/设备实例。
     adb shell kill -10 pid  触发垃圾回收
 
     adb kill-server && adb server && adb shell  重制adb连接
+    adb shell dumpsys activity activities   查看当前任务栈
 
 
 

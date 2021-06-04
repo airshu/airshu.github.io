@@ -229,13 +229,13 @@ android:configChanges|当配置变化时，activity将会重启，但声明了�
 android:screenOrientation|activity在设别中的显示方向
 android:parentActivityName|指定父级的activity。系统根据这个属性来决定当使用actionbar的向上按钮时那个activity响应
 android:taskAffinity|表示当前activity进入的task
-adnroid:finishOnTaskLanuch|
-android:allowTaskReparenting|
+adnroid:finishOnTaskLanuch|离开这个Task栈, 则系统会马上清除这个Activity,不管这个Activity在堆栈的任何位置.
+android:allowTaskReparenting|允许当前Activity可以在任务栈中移动
 android:alwaysRetaainTaskState|
 android:excludeFromRecents|
 android:stateNotNeeded|
-android:exported|
-android:clearTaskOnLaunch|
+android:exported|是否可以导出，是否可以被外部访问
+android:clearTaskOnLaunch|当值为true, 只要你一离开这个Task栈, 则系统会马上清理除了Root Activity的全部Activity.
 android:windowSoftInputMode|
 android:permission|
 android:alwaysRetainTaskState|
