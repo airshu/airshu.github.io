@@ -1,0 +1,147 @@
+---
+title: PyQt5开发心得
+tags: Qt
+---
+
+
+其实大部分的客户端开发都有共通性。一套GUI API，Button、Text、Dialog等等，绘制机制，事件传递机制，都是根据不同平台的特性做了封装。但开发的时候，用法是类似的。而Python由于语法的简易性，开发效率比使用C++版的Qt高很多。所谓的性能损耗其实在大部分的应用中是可以忽略的。
+
+
+
+### 基础结构的搭建
+
+不管是做一个项目还是多个项目，准备一套基础框架，对开发效率是非常有帮助的。这个基础框架通常包括：
+
+- 基础结构
+	基础工具类、工具函数：字符串处理、时间处理、日期处理、线程处理、网络请求、拖拽工具、缩放工具、资源下载工具、
+	基础控件：弹窗提示、确认框、webview的封装和通讯模块、loading框、全局样式处理
+	日志工具：
+	数据模拟工具：mock
+	单元测试框架：
+	性能分析工具：分析代码质量	
+- 打包工具：分发安装包
+- 更新工具
+- 异常捕获分析工具：分析线上可能存在的问题
+- 项目框架的搭建：分层、抽象、解耦、MVC思想的体现。随着业务的增长，在重构代码的时候要遵循高内聚、低耦合的思想。
+
+
+
+### 关于线程的使用
+
+随着业务的增长，项目会越来越复杂，不可避免的会使用到多线程。使用的过程中，要注意以下几点：
+
+
+**线程要及时释放**
+
+比如有一个场景，用户点击某个按钮，需要向服务器请求数据，然后将数据更新到文本框中。你需要在非UI线程中请求http接口，收到服务器响应后，切换回UI线程更新。但有时候由于网络原因，响应的时间较长，在收到响应结果时，UI已经被销毁了。所以要注意在UI销毁的同时，对应的线程都要进行释放。同样的场景还有下载器，各种定时操作。都要进行及时的清理。
+
+最好能封装几个工具类、工具函数，统一管理。
+
+
+QTimer初始化时带上parent，创建和start在同一个线程
+
+Model初始化的时候需要传入parent
+
+
+### 关于性能
+
+虽然前面说性能问题可以忽略，但如果你很随意的在主线程中做一些频繁的复杂的运算，UI也是会卡顿的。这里介绍一点自己的经验。
+
+1. 非UI操作尽量全部放到非UI线程处理。
+2. 对于非常频繁的操作使用间隔，比如1秒中调用一次。直白说就是降低UI刷新的频率。
+3. 由于python GIL的存在，当某些计算需要消耗较多CPU时，需要考虑是否将其移到C/C++中处理。
+4. 使用更优秀的json处理库
+
+
+
+
+
+
+### 关于程序崩溃
+
+[http://enki-editor.org/2014/08/23/Pyqt_mem_mgmt.html](http://enki-editor.org/2014/08/23/Pyqt_mem_mgmt.html)
+
+
+[https://stackoverflow.com/questions/11945183/what-are-good-practices-for-avoiding-crashes-hangs-in-pyqt](https://stackoverflow.com/questions/11945183/what-are-good-practices-for-avoiding-crashes-hangs-in-pyqt)
+
+[http://python-camelot.s3.amazonaws.com/gpl/release/pyqt/doc/advanced/development.html](http://python-camelot.s3.amazonaws.com/gpl/release/pyqt/doc/advanced/development.html)
+
+
+
+
+
+
+
+### 常见问题汇总
+
+
+
+**libpng warning: iCCP: known incorrect sRGB profile**
+
+
+
+
+
+**UpdateLayeredWindowIndirect failed for ptDst=**
+
+程序使用一段时间后，关闭某个窗口，会造成整个程序崩溃。crashrpt捕获到的dump指向的是Qt的某个函数。可无法定位到业务层的代码。后打包成debug模式，在崩溃的时候控制台输出了以上信息，google进行搜索，看到了[这里](https://bugreports.qt.io/browse/QTBUG-58602)，想起来边框阴影的实现就是使用了QGraphicsDropShadowEffect滤镜。去掉后，果然没有再出现了。
+
+**如何彻底销毁QWidget**
+
+
+<b>close()</b>
+
+
+在Qt中，每个 QObject 内部都有一个list，用来保存所有的 children，还有一个指针，保存自己的parent。当它自己析构时，它会将自己从parent的列表中删除，并且析构掉所有的children。
+
+
+调用close()方法后首先它会向widget发送一个关闭事件（QCloseEvent）。如果widget接受了关闭事件（QCloseEvent），窗口将会隐藏（实际上调用hide()）。如果widget不接受关闭事件，那么窗口将什么也不做。默认情况下widget会接受关闭事件,我们可以重写QCloseEvent事件，可以选择接受或者不接受。
+
+如果widget设置了Qt::WA_DeleteOnClose属性，widget将会被释放。不管widget是否可见，关闭事件都会传递给widget。即接收到QCloseEvent事件后，除了调用hide()方法将窗口隐藏，同时会调用deleteLater()方法将窗口释放掉，不会再占用资源。
+
+所以说调用close()并不一定就会将窗口对象销毁。而只有设置了 Qt::WA_DeleteOnClose属性才会删除销毁。如果这个属性没有设置，close()的作用和hide（），setvisible（false）一样，只会隐藏窗口对象而已，并不会销毁该对象。
+
+
+<b>deleteLater()</b>
+
+走Qt的事件循环，延迟删除。
+
+
+<b>sip.delete(widget)</b>
+
+调用了Qt的delete来删除对象
+
+
+
+QWidget的Qt.WA_TranslucentBackground默认值是False。
+
+参考：
+
+- [https://blog.csdn.net/GoForwardToStep/article/details/53647146](https://blog.csdn.net/GoForwardToStep/article/details/53647146)
+
+
+```
+class FooWidget(QWidget):
+
+	def __init__(self):
+		super(FooWidget, self).__init__()
+		self.setAttribute(Qt.WA_TranslucentBackground, True)
+
+
+    def closeEvent(self, event):
+    	# accept退出，ingore取消退出，默认值为accept
+    	print('closeEvent')
+
+self.foo = FooWidget()
+self.foo.close()
+self.foo = None
+
+```
+
+
+### 一些资源
+
+- [https://doc.qt.io](https://doc.qt.io)
+- [http://c.biancheng.net/view/1864.html](http://c.biancheng.net/view/1864.html)
+
+
