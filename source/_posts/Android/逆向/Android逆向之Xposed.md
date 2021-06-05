@@ -1,6 +1,7 @@
 ---
 title: Android逆向之Xposed
 tags: Android
+toc: true
 ---
 
 [Xposed](https://repo.xposed.info)的作用非常强大，以前虽然也大致了解，但没有自己实践过。最近在做其他App分析的时候，发现其限制了模拟器的
@@ -9,7 +10,7 @@ tags: Android
 首先阅读下官网，嗯，版本很久没有更新了，后面又出现了"太极"之类的新的工具。就不折腾那么多了，先以快速解决问题为目标。下载雷电模拟器，其版本为Android7.1.2。
 进入"雷电游戏中心"搜索xposed，下载对应的App，打开后点击安装，重启。
 
-![](/public/img/mac/xposed_1.png)
+![](./xposed_1.png)
 
 
 ## Hello World

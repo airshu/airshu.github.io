@@ -1,6 +1,7 @@
 ---
 title: Android逆向之脱壳
 tags: Android
+toc: true
 ---
 
 有些App为了安全，会使用相关加壳工具来提高破解难度。但其实意义不大，通过hook，应该是很容易获取内存dump出dex文件的。还记得以前进行

@@ -1,6 +1,7 @@
 ---
 title: Android View绘制流程
-tags: [Android,Android基础]
+tags: Android
+toc: true
 ---
 
 
