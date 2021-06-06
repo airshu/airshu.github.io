@@ -1,11 +1,12 @@
 ---
 title: 编译QtWebEngine
 tags: Qt QtWebEngine
+toc: true
 ---
 
 由于QtWebEngine本身并不支持H.264编码的音视频，现自行编译，整个过程如下：
 
-### 依赖准备
+## 依赖准备
 
 VS2015 **Update3**
 
@@ -38,7 +39,7 @@ Windows SDK
 
 <br/>
 
-### 环境准备
+## 环境准备
 
 如果出现以下问题，则将系统语言设置为英文
 
@@ -50,7 +51,7 @@ ninja: build stopped: subcommand failed. NMAKE : fatal error U1077: 'call' : ret
 
 <br/>
 
-### 编译
+## 编译
 
     rem 运行VC环境
     "D:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\vcvars32.bat"
@@ -73,7 +74,7 @@ ninja: build stopped: subcommand failed. NMAKE : fatal error U1077: 'call' : ret
 
 
 
-**参考**
+## **参考**
 
 - [https://wiki.qt.io/Building_Qt_5_from_Git](https://wiki.qt.io/Building_Qt_5_from_Git)
 - [http://doc.qt.io/qt-5/build-sources.html](http://doc.qt.io/qt-5/build-sources.html)

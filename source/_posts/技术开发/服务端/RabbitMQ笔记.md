@@ -1,6 +1,7 @@
 ---
 title: RabbitMQ笔记
 tags: 服务端
+toc: true
 ---
 
 ## 安装

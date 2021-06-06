@@ -1,10 +1,7 @@
 ---
-layout: post
 title: 高效的使用Mac
-category: 技术
-tags: 
-keywords:
-description:
+tags: mac
+toc: true
 ---
 
 Effective use of XXX系列
@@ -34,11 +31,11 @@ Effective use of XXX系列
 此文致力于提高使用效率，基本的操作请读者自行阅读[官方文档](https://support.apple.com/zh-cn/guide/mac-help)或其他文档。
 
 
-## 1 Mac的基本优化
+## Mac的基本优化
 
-### 1.1 访达的优化
+### 访达的优化
 
-#### 1.1.1Ï显示隐藏文件
+#### 显示隐藏文件
 
 **方法一：**
 
@@ -55,7 +52,7 @@ defaults write com.apple.finder AppleShowAllFiles -boolean true;killall Finder
 defaults write com.apple.finder AppleShowAllFiles -boolean false;killall Finder
 ```
 
-#### 1.2 顶部栏显示完整路径
+#### 顶部栏显示完整路径
 
 可以通过在访达中设置显示路径栏的方式显示，不过这种方式会在访达底部多一栏。可以通过终端输入以下命令。
 
@@ -69,24 +66,24 @@ defaults delete com.apple.finder _FXShowPosixPathInTitle;killall Finder
 
 ```
 
-![](/public/mac/finder_1.png)
+![](./finder_1.png)
 
 
-#### 1.3 标签的使用
+#### 标签的使用
 
 这是一个非常实用的功能，将文件/文件夹标记成不同的标签，然后通过点击标签来快速定位。对于目录层次很深的文件非常有用。
 
 使用也很简单，右键某个文件或文件夹，点击某个标签即可。标签也可以进行管理，标签的图标也可以自定义，选中标签栏中某个标签，使用command+control+空格。
 
-![](/public/mac/finder_2.png)
+![](./finder_2.png)
 
 对于使用频率非常高的文件夹，可以直接拖拽到`个人收藏`栏，也可以拖拽到工具栏
 
-![](/public/mac/finder_3.png)
+![](./finder_3.png)
 
 
 
-### 2.1 开机启动脚本设置
+### 开机启动脚本设置
 
 首先创建一个shell文件，根据自己的需求实现一些逻辑，比如：
 
@@ -110,24 +107,24 @@ open /Applications/QQ.app
 
 
 
-## 2.Mac上的提高效率的软件
+## Mac上的提高效率的软件
 
-### 2.1 Alfred（神器）
+### Alfred（神器）
 
 由于此软件非常强大，因此单独写一篇来介绍它，`[点击查看]()`
 
-### 2.2 switchhost（hosts切换）
+### switchhost（hosts切换）
 
 该软件是用来做hosts管理的，对于程序员来说非常友好，用法也很简单。可以建立一个个tab来分组管理，每个tab可以的显示隐藏互不影响。点击行号可以对该行进行快速注释或者取消注释。
 
 [img]
 
 
-### 2.3 iTerm（终端的替代品）
+### iTerm（终端的替代品）
 
 配置
 
-### 2.4 资源管理器工具Commander One
+### 资源管理器工具Commander One
 
 不完善的地方：
 
@@ -135,17 +132,17 @@ open /Applications/QQ.app
 - 无法直接使用快捷键将当前页面显示到另外一测。Total Commander可以直接使用Ctrl+←→来操作。
 - 不可配置编辑所使用的软件，只能用默认的。
 
-### 2.5 BatterZip（文件解压压缩）
+### BatterZip（文件解压压缩）
 
-### 2.6 Sublime Text（文件编辑器）
+### Sublime Text（文件编辑器）
 
 轻量级文本编辑器，可配置性很强。
 
-### 2.7 CleanMyMac（优化工具）
+### CleanMyMac（优化工具）
 
-### 2.8 Dash（程序员API查询工具）
+### Dash（程序员API查询工具）
 
-## 3 Mac常用命令
+## Mac常用命令
 
 
 ```
@@ -154,7 +151,7 @@ kill pid  杀死进程
 ```
 
 
-# 参考
+## 参考
 
 
 

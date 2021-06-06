@@ -9,7 +9,7 @@ toc: true
 
 
 
-### 基础结构的搭建
+## 基础结构的搭建
 
 不管是做一个项目还是多个项目，准备一套基础框架，对开发效率是非常有帮助的。这个基础框架通常包括：
 
@@ -27,7 +27,7 @@ toc: true
 
 
 
-### 关于线程的使用
+## 关于线程的使用
 
 随着业务的增长，项目会越来越复杂，不可避免的会使用到多线程。使用的过程中，要注意以下几点：
 
@@ -44,7 +44,7 @@ QTimer初始化时带上parent，创建和start在同一个线程
 Model初始化的时候需要传入parent
 
 
-### 关于性能
+## 关于性能
 
 虽然前面说性能问题可以忽略，但如果你很随意的在主线程中做一些频繁的复杂的运算，UI也是会卡顿的。这里介绍一点自己的经验。
 
@@ -58,7 +58,7 @@ Model初始化的时候需要传入parent
 
 
 
-### 关于程序崩溃
+## 关于程序崩溃
 
 [http://enki-editor.org/2014/08/23/Pyqt_mem_mgmt.html](http://enki-editor.org/2014/08/23/Pyqt_mem_mgmt.html)
 
@@ -73,7 +73,7 @@ Model初始化的时候需要传入parent
 
 
 
-### 常见问题汇总
+## 常见问题汇总
 
 
 
@@ -113,13 +113,7 @@ Model初始化的时候需要传入parent
 调用了Qt的delete来删除对象
 
 
-
 QWidget的Qt.WA_TranslucentBackground默认值是False。
-
-参考：
-
-- [https://blog.csdn.net/GoForwardToStep/article/details/53647146](https://blog.csdn.net/GoForwardToStep/article/details/53647146)
-
 
 ```python
 class FooWidget(QWidget):
@@ -139,9 +133,9 @@ self.foo = None
 
 ```
 
+### 参考
 
-### 一些资源
-
+- [https://blog.csdn.net/GoForwardToStep/article/details/53647146](https://blog.csdn.net/GoForwardToStep/article/details/53647146)
 - [https://doc.qt.io](https://doc.qt.io)
 - [http://c.biancheng.net/view/1864.html](http://c.biancheng.net/view/1864.html)
 

@@ -1,10 +1,11 @@
 ---
 title: RxPY学习笔记
 tags: Python
+toc: true
 ---
 
 
-基本概念参考[这里](/技术/2019/05/06/ReactiveX.html)，Python的版本也是根据这些概念，通过使用自己的特性实现。但由于种种原因，Python的不同版本间变化很大。可以参考[这里](https://rxpy.readthedocs.io/en/latest/migration.html#)。
+基本概念参考[这里](/ReactiveX.html)，Python的版本也是根据这些概念，通过使用自己的特性实现。但由于种种原因，Python的不同版本间变化很大。可以参考[这里](https://rxpy.readthedocs.io/en/latest/migration.html#)。
 
 基本的用法可以参考文档和源码中的test，这里只记录一些自己遇到的问题和解决方案
 

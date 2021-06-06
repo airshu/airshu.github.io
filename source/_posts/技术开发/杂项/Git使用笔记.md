@@ -1,6 +1,7 @@
 ---
 title: Git使用笔记
 tags: Git
+toc: true
 ---
 
 <br/>

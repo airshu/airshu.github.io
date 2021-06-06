@@ -1,6 +1,7 @@
 ---
 title: pandas
 tags: Python 
+toc: true
 ---
 
 数据分析清洗使用pandas，numpy。 [http://pandas.pydata.org/](http://pandas.pydata.org/)

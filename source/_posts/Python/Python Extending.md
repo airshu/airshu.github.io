@@ -1,6 +1,7 @@
 ---
 title: Python扩展
 tags: Python 
+toc: true
 ---
 
 官方文档：[https://docs.python.org/zh-cn/3/extending/extending.html](https://docs.python.org/zh-cn/3/extending/extending.html)

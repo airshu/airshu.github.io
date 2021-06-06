@@ -1,6 +1,7 @@
 ---
 title: Pillow
 tags: Python 
+toc: true
 ---
 
 Pillow是用于图像处理的库，可用于图像存储、图像显示、图像处理（改变大小、旋转等）。

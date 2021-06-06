@@ -1,6 +1,7 @@
 ---
 title: 编译PyQt5
 tags: PyQt5
+toc: true
 ---
 
 
@@ -12,7 +13,7 @@ tags: PyQt5
 - 编译VS版本
 
 
-**下载SIP**
+## **下载SIP**
 
 SIP必现在编译和使用PyQt5之前安装。你可以从[https://www.riverbankcomputing.com/software/sip/download](https://www.riverbankcomputing.com/software/sip/download)使用最新的发布版本的源码。
 
@@ -22,13 +23,13 @@ SIP的安装说明请参阅[http://pyqt.sourceforge.net/Docs/sip4/installation.h
 >  <br/>
 >  python configure.py --sip-module PyQt5.sip --no-tools
 
-**下载PyQt5**
+## **下载PyQt5**
 
 你可以从[https://www.riverbankcomputing.com/software/pyqt/download5](https://www.riverbankcomputing.com/software/pyqt/download5)下载最新的源码
 
 如果你使用商业版的PyQt5，则需要购买商业授权，并下载属于你的pyqt-commercial.sip授权文件
 
-**配置PyQt5**
+## **配置PyQt5**
 
 解压后，你应该阅读相应平台的README文件。
 
@@ -273,14 +274,14 @@ Compiler commands and any output issued during configuration is displayed instea
 
 <br/>
 
-**编译PyQt5**
+## **编译PyQt5**
 
     make
     make install
 
 <br/>
 
-**配置配置文件**
+## **配置配置文件**
 
 配置文件的格式如下：
 
@@ -383,8 +384,7 @@ is the name of the target directory where the PyQt5 .sip files will be installed
 is the name of the Python interpreter (as it would be called from the target system) that will be used to run pyuic5. It can be overridden by the --pyuic5-interpreter option.
 
 
-<br/>
 
-**参考**
+## **参考**
 
 - [http://pyqt.sourceforge.net/Docs/PyQt5/installation.html](http://pyqt.sourceforge.net/Docs/PyQt5/installation.html)

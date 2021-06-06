@@ -1,6 +1,7 @@
 ---
 title: Mac软件安装笔记
 tags: mac
+toc: true
 ---
 
 

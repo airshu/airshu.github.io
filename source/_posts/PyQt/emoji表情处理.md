@@ -1,6 +1,7 @@
 ---
 title: emoji表情处理
 tags: PyQt
+toc: true
 ---
 
 在QLabel上显示emoji表情，win10和win7显示的效果不一样，win10能显示出彩色的，但win7只能显示黑白色，且有些表情甚至不能显示。 

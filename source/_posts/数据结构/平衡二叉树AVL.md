@@ -1,6 +1,7 @@
 ---
 title: 数据结构（平衡二叉树AVL）
 tags: 算法 数据结构
+toc: true
 ---
 
 ## 定义

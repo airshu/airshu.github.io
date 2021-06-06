@@ -1,6 +1,7 @@
 ---
 title: MySQL知识点 
-tags: 服务端 
+tags: 服务端
+toc: true
 ---
 
 ## explain 使用

@@ -1,19 +1,12 @@
 ---
 title: QListWidget
 tags: Qt
+toc: true
 ---
 
+## 一些技巧
 
-
-
-
-
-
-
-
-### 一些技巧
-
-#### 让QListWidget的高度跟着内容的高度变化
+### 让QListWidget的高度跟着内容的高度变化
 
 ```Python
 from PySide import QtGui, QtCore
@@ -35,6 +28,6 @@ app.exec_()
 ```
 
 
-**参考**
+## **参考**
 
 - [https://stackoverflow.com/questions/6337589/qlistwidget-adjust-size-to-content](https://stackoverflow.com/questions/6337589/qlistwidget-adjust-size-to-content)

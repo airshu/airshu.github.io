@@ -1,6 +1,7 @@
 ---
 title: Linux常用命令
 tags: 服务端
+toc: true
 ---
 
 

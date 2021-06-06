@@ -1,6 +1,7 @@
 ---
 title: Linux常用操作
 tags: linux
+toc: true
 ---
 
 
