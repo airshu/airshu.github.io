@@ -1,5 +1,5 @@
 ---
-title: Android View绘制流程
+title: View的工作原理
 tags: Android
 toc: true
 ---

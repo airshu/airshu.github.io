@@ -1,5 +1,5 @@
 ---
-title: Android事件分发机制
+title: View的事件分发机制
 tags: Android
 ---
 
