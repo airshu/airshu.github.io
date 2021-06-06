@@ -1,14 +1,12 @@
 ---
-
 title: Firefox插件推荐
 category: 工具软件
 tags: 效率
-keywords:
-description:
+toc: true
 ---
 
 
-**AdGuard**
+## **AdGuard**
 
 去广告神器
 
@@ -16,42 +14,43 @@ description:
 
 <br/>
 
-**In My Pocket**
+## **In My Pocket**
 
 将网页内容缓存起来，方便以后阅读，查看。
 
 <br/>
 
-**JSON Lite**
+## **JSON Lite**
 
 对json类型格式化显示
 
 <br/>
 
-**Octotree**
+## **Octotree**
 
 Github的文件目录用树形表示
 
 <br/>
 
-**Greasemonkey**
+## **Greasemonkey**
 
 脚本管理器
 
 <br/>
 
-**Dark Reader**
+## **Dark Reader**
 
 设置黑色主题
 
 <br/>
-**印象笔记·剪藏**
+
+## **印象笔记·剪藏**
 
 保存网页内容到Evernote
 
 <br/>
 
-**iCloud书签**
+## **iCloud书签**
 
 同步Firefox和Safira书签
 

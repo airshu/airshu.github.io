@@ -1,10 +1,8 @@
 ---
-
 title: Proxifier使用
 category: 工具软件
 tags:
-keywords:
-description:
+toc: true
 ---
 
 Proxifier的作用：让电脑上的软件的网络请求先经过代理，可用于翻墙、接口抓取等。

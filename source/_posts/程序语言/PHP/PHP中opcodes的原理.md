@@ -1,7 +1,7 @@
 ---
-
 title: PHP中opcodes的原理
 tags: PHP
+toc: true
 ---
 
 ## PHP代码的生命周期

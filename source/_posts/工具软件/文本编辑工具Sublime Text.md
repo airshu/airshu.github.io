@@ -1,21 +1,20 @@
 ---
-
 title: 文本编辑工具Sublime Text
 category: 工具软件
 tags: 效率
-keywords:
+toc: true
 description:
 ---
 
 
-####  Markdown环境搭建
+##  Markdown环境搭建
 
-##### 安装扩展MarkdownEditing
+### 安装扩展MarkdownEditing
 
 	下载地址：
 	https://github.com/SublimeText-Markdown/MarkdownEditing
 
-##### 快捷键
+### 快捷键
 
 | Windows/Linux | 描述 |
 |---------------|-------------|
@@ -34,20 +33,20 @@ description:
 | <kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>J</kbd> | Open journal page for today
 | <kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>B</kbd> | List back links
 
-##### 表格编辑插件
+### 表格编辑插件
 
 	下载地址：
 	https://packagecontrol.io/packages/Table%20Editor
 
 
 
-#### PHP环境搭建
+### PHP环境搭建
 
 
 
-#### Python环境搭建
+### Python环境搭建
 
-##### 安装Anaconda插件(代码提示、自动补全、格式化)
+### 安装Anaconda插件(代码提示、自动补全、格式化)
 
 	//快捷键配置
 	[
@@ -81,7 +80,7 @@ description:
 	]
 
 
-##### 配置Python解释器
+### 配置Python解释器
 
 	打开Preferences-->Package Settings-->Anaconda-->Settings-User
 
@@ -96,9 +95,9 @@ description:
 
 
 
-##### Sublime中console交互，安装SublimeREPL
+### Sublime中console交互，安装SublimeREPL
 
-##### 配置SUblimeREPL快捷键
+### 配置SUblimeREPL快捷键
 
 	1. Preferences-->Browse Packages-->SublimeREPL文件夹-->config文件夹-->Python文件夹-->Default.sublime-commands
 	2. 找到对应的command，添加到Preferences-->Key Bindings User中。
@@ -115,16 +114,16 @@ description:
 
 
 
-**如何设置快捷键**
+## **如何设置快捷键**
 
 	打开Preferences-->Key Bindings，对于向要定义自己喜好的快捷键的操作，复制左边默认的配置到用户栏，进行修改。
 
-**如何修改默认配置**
+## **如何修改默认配置**
 
 	打开Preferences-->Settings，重写默认配置即可。
 
 
-**Sublime 插件**
+## **Sublime 插件**
 
 	Anaconda:Python插件
 	CodeFormatter：代码提示插件
@@ -147,14 +146,14 @@ description:
 
 
 
-**如何备份插件**
+## **如何备份插件**
 
 备份Preferences-->Browse Packages的内容
 
 
 
 
-**属性配置**
+## **属性配置**
 
 	{
 	//默认字体大小
@@ -170,7 +169,7 @@ description:
 	}
 
 
-**常用快捷键配置**
+## **常用快捷键配置**
 
 	[
 		//跳转到定义
@@ -271,7 +270,7 @@ description:
 
 
 
-**参考**
+## **参考**
 
 [官方文档](http://docs.sublimetext.info/en/latest)
 

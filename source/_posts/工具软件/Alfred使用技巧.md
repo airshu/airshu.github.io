@@ -1,16 +1,12 @@
 ---
-
 title: Alfred使用技巧
 category: 工具软件
 tags: 
-keywords:
-description:
+toc: true
 ---
 
 
-
 ## 基本操作
-
 
 
 ![](./alfred_1.png)

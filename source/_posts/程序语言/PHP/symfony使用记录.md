@@ -1,7 +1,7 @@
 ---
-
 title: Symfony使用记录
 tags: PHP
+toc: true
 ---
 
 ## Symfony中请求的流程

@@ -1,6 +1,7 @@
 ---
 title: PyQt5开发心得
 tags: Qt
+toc: true
 ---
 
 
@@ -120,7 +121,7 @@ QWidget的Qt.WA_TranslucentBackground默认值是False。
 - [https://blog.csdn.net/GoForwardToStep/article/details/53647146](https://blog.csdn.net/GoForwardToStep/article/details/53647146)
 
 
-```
+```python
 class FooWidget(QWidget):
 
 	def __init__(self):
