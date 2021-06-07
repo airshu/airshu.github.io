@@ -1,12 +1,13 @@
 ---
 title: Handler原理
 tags: Android
+toc: true
 ---
 
 
 
 
-### 基本概念
+## 基本概念
 
 使用Handler的原因是多个线程并发更新UI的同时保证线程安全。
 
@@ -26,7 +27,7 @@ tags: Android
   
 
 
-### 工作流程
+## 工作流程
 
 1. 异步通信准备
    - 在主线程中创建
@@ -38,7 +39,7 @@ tags: Android
 4. 消息处理
 
 
-### 用法
+## 用法
 
 ```Java
     post（Runnable） 
@@ -50,8 +51,11 @@ tags: Android
     sendMessageDelayed（Message，long）
 ```
 
-### Handler引起的内存泄露原因以及最佳解决方案
+## Handler引起的内存泄露原因以及最佳解决方案
 
 Handler允许我们发送延时消息，如果在延时期间用户关闭了Activity，那么该 Activity 会泄露。 这个泄露是因为 Message 会持有 Handler，而又因为 Java 的特性，内部类会持有外部类，使得 Activity 会被 Handler 持有，这样最终就导致 Activity 泄露。
 
 将 Handler 定义成静态的内部类，在内部持有 Activity 的弱引用，并在Acitivity的onDestroy()中调用handler.removeCallbacksAndMessages(null)及时移除所有消息。
+
+
+## 参考
