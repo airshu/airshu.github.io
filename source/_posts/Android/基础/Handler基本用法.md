@@ -207,6 +207,27 @@ BackgroundHandlerThread.getInstance().getHandler().post(Runnable)
 
 ```
 
+## API介绍
+
+`sendMessage(Message message)`
+
+发送消息到消息队列
+
+`post(Runnable runable)`
+
+把一个Runnable对象添加到消息队列中，这个方法会在对应Looper的线程中运行。
+
+dispatchMessage(Message msg)
+
+将消息分发给对应的Handler
+
+`handleMessage`
+
+根据某个消息类型进行处理
+
+
+
+
 
 ## 参考
 
