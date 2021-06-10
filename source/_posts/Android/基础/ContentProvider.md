@@ -1,7 +1,7 @@
 ---
-title: Android基础：ContentProvider
+title: ContentProvider
 tags: Android
-keywords: Android
+toc: true
 ---
 
 

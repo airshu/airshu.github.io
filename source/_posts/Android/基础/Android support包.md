@@ -1,6 +1,7 @@
 ---
 title: Android中support的使用
 tags: Android
+toc: true
 ---
 
 ### 使用support-vX包的原因

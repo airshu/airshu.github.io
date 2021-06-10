@@ -1,9 +1,11 @@
 ---
 title: View的事件分发机制
 tags: Android
+toc: true
 ---
 
 
+## 分发过程
 
 事件分发过程由三个方法共同完成：
 
@@ -11,24 +13,25 @@ dispatchTouchEvent：方法返回值为true表示事件被当前视图消费掉�
 
 onInterceptTouchEvent：方法返回值为true表示拦截这个事件并交由自身的onTouchEvent方法进行消费；返回false表示不拦截，需要继续传递给子视图。如果return super.onInterceptTouchEvent(ev)， 事件拦截分两种情况: 　
 
-    1.如果该View存在子View且点击到了该子View, 则不拦截, 继续分发 给子View 处理, 此时相当于return false。
-    2.如果该View没有子View或者有子View但是没有点击中子View(此时ViewGroup 相当于普通View), 则交由该View的onTouchEvent响应，此时相当于return true。
+1. 如果该View存在子View且点击到了该子View, 则不拦截, 继续分发 给子View 处理, 此时相当于return false。
+2. 如果该View没有子View或者有子View但是没有点击中子View(此时ViewGroup 相当于普通View), 则交由该View的onTouchEvent响应，此时相当于return true。
 
 注意：一般的LinearLayout、 RelativeLayout、FrameLayout等ViewGroup默认不拦截， 而 ScrollView、ListView等ViewGroup则可能拦截，得看具体情况。
 
 onTouchEvent：方法返回值为true表示当前视图可以处理对应的事件；返回值为false表示当前视图不处理这个事件，它会被传递给父视图的onTouchEvent方法进行处理。如果return super.onTouchEvent(ev)，事件处理分为两种情况：
 
-    1.如果该View是clickable或者longclickable的,则会返回true, 表示消费 了该事件, 与返回true一样;
-    2.如果该View不是clickable或者longclickable的,则会返回false, 表示不 消费该事件,将会向上传递,与返回false一样。
+1. 如果该View是clickable或者longclickable的,则会返回true, 表示消费 了该事件, 与返回true一样;
+2. 如果该View不是clickable或者longclickable的,则会返回false, 表示不 消费该事件,将会向上传递,与返回false一样。
 
 注意：在Android系统中，拥有事件传递处理能力的类有以下三种：
 
-    Activity：拥有分发和消费两个方法。
-    ViewGroup：拥有分发、拦截和消费三个方法。
-    View：拥有分发、消费两个方法。
+- Activity：拥有分发和消费两个方法。
+- ViewGroup：拥有分发、拦截和消费三个方法。
+- View：拥有分发、消费两个方法。
 
 三个方法的关系用伪代码表示如下：
 
+```java
 public boolean dispatchTouchEvent(MotionEvent ev) {
     boolean consume = false;
     if (onInterceptTouchEvent(ev)) {
@@ -39,6 +42,8 @@ public boolean dispatchTouchEvent(MotionEvent ev) {
     
     return consume;
 }
+```
+
 
 通过上面的伪代码，我们可以大致了解点击事件的传递规则：对应一个根ViewGroup来说，点击事件产生后，首先会传递给它，这是它的dispatchTouchEvent就会被调用，如果这个ViewGroup的onInterceptTouchEvent方法返回true就表示它要拦截当前事件，接着事件就会交给这个ViewGroup处理，这时如果它的mOnTouchListener被设置，则onTouch会被调用，否则onTouchEvent会被调用。在onTouchEvent中，如果设置了mOnCLickListener，则onClick会被调用。只要View的CLICKABLE和LONG_CLICKABLE有一个为true，onTouchEvent()就会返回true消耗这个事件。如果这个ViewGroup的onInterceptTouchEvent方法返回false就表示它不拦截当前事件，这时当前事件就会继续传递给它的子元素，接着子元素的dispatchTouchEvent方法就会被调用，如此反复直到事件被最终处理。
 一些重要的结论：
@@ -82,3 +87,7 @@ ACTION_CANCEL什么时候触发，触摸button然后滑动到外部抬起会触�
 
     外部拦截法：指点击事件都先经过父容器的拦截处理，如果父容器需要此事件就拦截，否则就不拦截。具体方法：需要重写父容器的onInterceptTouchEvent方法，在内部做出相应的拦截。
     内部拦截法：指父容器不拦截任何事件，而将所有的事件都传递给子容器，如果子容器需要此事件就直接消耗，否则就交由父容器进行处理。具体方法：需要配合requestDisallowInterceptTouchEvent方法。
+
+
+## 参考
+
