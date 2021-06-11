@@ -50,6 +50,7 @@ toc: true
 - [ActionScript3版本的Flappy Bird](https://github.com/shjlone/flappybird)
 - [Alfred股票小助手](https://github.com/shjlone/stock-assistant) ： 用于快速查询实时股价
 - [精选的Alfred的workflow](https://github.com/shjlone/alfred_workflow)
+- [Java设计模式代码整理](https://github.com/shjlone/design-pattern)
 
 <br/>
 

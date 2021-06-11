@@ -217,7 +217,7 @@ BackgroundHandlerThread.getInstance().getHandler().post(Runnable)
 
 把一个Runnable对象添加到消息队列中，这个方法会在对应Looper的线程中运行。
 
-dispatchMessage(Message msg)
+`dispatchMessage(Message msg)`
 
 将消息分发给对应的Handler
 
