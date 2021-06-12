@@ -27,6 +27,7 @@ public class OOMInnerClassActivity extends Activity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //如果这里进行网络请求，然后拿到数据后进行UI刷新
                 textView.setText(s.toString());
             }
 

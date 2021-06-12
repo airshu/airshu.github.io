@@ -21,7 +21,7 @@ toc: true
 
 ### 回调函数
 
-#### onCreate(@Nullable Bundle savedInstanceState)
+#### onCreate
 
 生命周期中的第一个函数，整个生命周期中只会调用一次。savedInstanceState参数如果不为空，表示Activity暂时销毁时有存储一些数据，此时可以恢复。
 
@@ -49,7 +49,7 @@ toc: true
 
 表示Activity即将被销毁，一般在这个方法中进行资源释放。
 
-#### savedInstanceState(Bundle bundle)
+#### savedInstanceState
 
 界面销毁时可保存数据
 

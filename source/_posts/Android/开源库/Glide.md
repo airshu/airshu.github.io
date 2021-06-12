@@ -4,62 +4,44 @@ tags: Android
 toc: true
 ---
 
-## 概述
+
+> 此篇文章只是用于记录使用Glide时要注意的点和一些使用技巧，如需查看基本使用，
+请查阅[官方文档](http://bumptech.github.io/glide/)。也可以看看[Glide原理分析](../Glide原理分析/)。
+
+## 注意点
 
 
-## 开始使用
+### **缓存等级**
 
-### gradle配置
+- 活动缓存：
+- 内存缓存：
+- 磁盘缓存：InternalCacheDiskCacheFactory（默认）
 
-```
-dependencies {
-    implementation 'com.github.bumptech.glide:glide:4.11.0'
-    // Skip this if you don't want to use integration libraries or configure Glide.
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
-}
-```
+### **资源缓存方式**
 
+- DiskCacheStrategy.NONE 不缓存文件
+- DiskCacheStrategy.SOURCE 只缓存原图
+- DiskCacheStrategy.RESULT 只缓存最终加载的图（默认）
+- DiskCacheStrategy.ALL 同时缓存原图和结果图
 
-### 权限配置
-
-```
-<uses-permission android:name="android.permission.INTERNET"/>
-<!--
-Allows Glide to monitor connectivity status and restart failed requests if users go from a
-a disconnected to a connected network state.
--->
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-```
-
-### 混淆文件配置
-
-```
--keep public class * implements com.bumptech.glide.module.GlideModule
--keep public class * extends com.bumptech.glide.module.AppGlideModule
--keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
-  **[] $VALUES;
-  public *;
-}
-
-If you're targeting any API level less than Android API 27, also include:
-```pro
--dontwarn com.bumptech.glide.load.resource.bitmap.VideoDecoder
-```
-
-VideoDecoder uses API 27 APIs which may cause proguard warnings even though the newer APIs won’t be called on devices with older versions of Android.
-
-If you use DexGuard you may also want to include:
-
-```
-# for DexGuard only
--keepresourcexmlelements manifest/application/meta-data@value=GlideModule
-```
-
-### 基本使用
+### **缓存键**
 
 ```java
-
+//缓存的键包括图片的宽、高、signature等参数
+EngineKey key = keyFactory.buildKey(model, signature, width, height, transformations,
+resourceClass, transcodeClass, options);
 ```
+
+默认策略配置
+
+
+
+## 重要知识点
+
+- 通过attach一个Fragment来监听Context的生命周期，合理的管理图片的加载和释放。
+- Glide默认采用的是RGB-565，相比ARGB-8888内存占用会减小一半。
+- 会根据ImageView的尺寸来缓存图片，
+
 
 ## 常用配置
 
