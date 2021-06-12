@@ -39,6 +39,17 @@
         $('#profile').toggleClass('card');
     }).on('click', '.profile-inner', function (e) {
         e.stopPropagation();
+    }).on('click', '#toc-allexpand', function(e) {
+        e.stopPropagation();
+        document.getElementById("toc-content").style.visibility="visible";
+        document.getElementById("toc").style.height=document.getElementById("toc-content").style.height;
+        document.getElementById("toc-allhide").style.display="";
+        document.getElementById("toc-allexpand").style.display="none";
+    }).on('click', '#toc-allhide', function (e) {
+        document.getElementById("toc-content").style.visibility="hidden";
+        document.getElementById("toc").style.height=20 + "px";
+        document.getElementById("toc-allhide").style.display="none";
+        document.getElementById("toc-allexpand").style.display="";
     });
 
     // To Top

@@ -54,8 +54,18 @@
             <% if (post.toc) { %>
                 <div id="toc" class="toc-article" style="position:fixed;right:28px;top:30px;">
                 <strong class="toc-title"><%= __('article.catalogue') %></strong>
+                &nbsp;&nbsp;
+                <a id='toc-allexpand' href="javascript:void(0);" style="display:none">
+                    <i class="fa fa-angle-double-down fa-2x"></i>
+                </a>
+                <a id='toc-allhide' href="javascript:void(0);" >
+                    <i class="fa fa-angle-double-up fa-2x"></i>
+                </a>
+                <div id="toc-content">
                     <%- toc(post.content) %>
                 </div>
+                </div>
+
             <% } %>
         <% } %>
         <% if (show_all_content) { %>
@@ -84,5 +94,5 @@
 <!-- baidu url auto push script -->
 <script type="text/javascript">
     !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
-</script>     
+</script>
 <% } %>
