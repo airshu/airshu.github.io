@@ -1,5 +1,5 @@
 ---
-title: 数据结构（B树、B+树）
+title: B树、B+树
 tags: [算法, 数据结构]
 toc: true
 ---
