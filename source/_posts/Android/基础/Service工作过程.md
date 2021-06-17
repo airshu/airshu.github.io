@@ -19,27 +19,13 @@ Service是Android四大组件之一，用于执行长时间运行且不需要用
 
 服务既可以是启动服务（以无限期运行），也支持绑定。唯一的问题在于是否实现一组回调方法：onStartCommand()（让组件启动服务）和 onBind()（实现服务绑定）。
 
-## 基本使用
+### 基本使用
 
 Service的使用跟Activity类似，需要先在清单文件中声明，然后使用Context启动（startService(Intent)）或绑定服务。服务在其托管进程的主线程中运行，
 它既不创建自己的线程，也不在单独的进程中运行（除非在清单文件中配置）。如果有耗时操作，则可以在服务内创建线程来处理。
 
 
-### 配置
-
-```
-<manifest ... >
-  ...
-  <application ... >
-      <service android:name=".ExampleService" />
-      ...
-  </application>
-</manifest>
-```
-
 ### API
-
-
 
 
 方法 | 描述
