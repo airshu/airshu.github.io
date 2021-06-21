@@ -13,13 +13,16 @@ toc: true
 ## 参考
 
 - [https://appuals.com/how-to-get-windows-10-emojis-on-windows-7-8/](https://appuals.com/how-to-get-windows-10-emojis-on-windows-7-8/)
-	这篇文章说明win7是不支持的系统显示彩色emoji的
+	
+这篇文章说明win7是不支持的系统显示彩色emoji的
 
 - [https://github.com/carpedm20/emoji](https://github.com/carpedm20/emoji)
-	unicode值和对应表情的字符串之间的互相转换，有一些非标准的emoji表情，比如**:thumbs_up:**表示 👍
+	
+unicode值和对应表情的字符串之间的互相转换，有一些非标准的emoji表情，比如**:thumbs_up:**表示 👍
 
 - [https://github.com/googlefonts/noto-emoji](https://github.com/googlefonts/noto-emoji)
-	google 彩色字体库
+	
+google 彩色字体库
 
 - [https://github.com/DeeDeeG/noto-color-emoji-font](https://github.com/DeeDeeG/noto-color-emoji-font)
 
