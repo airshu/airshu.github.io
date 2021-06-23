@@ -1,6 +1,7 @@
 ---
 title: Java锁
 tags: Java
+toc: true
 ---
 
 

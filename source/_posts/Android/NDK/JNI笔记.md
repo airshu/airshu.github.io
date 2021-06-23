@@ -31,7 +31,7 @@ toc: true
 
 ### JNI调用构造方法和父类实例方法
 
-### 参考
+## 参考
 
 - [https://developer.android.com/training/articles/perf-jni](https://developer.android.com/training/articles/perf-jni)
 - [wiki.jikexueyuan.com/project/jni-ndk-developer-guide/](wiki.jikexueyuan.com/project/jni-ndk-developer-guide/)
