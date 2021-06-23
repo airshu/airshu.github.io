@@ -392,5 +392,5 @@ class MainActivity extends AppCompatActivity {
 
 ## 参考资料
 
-> - [https://developer.android.com/guide/components/fragments?hl=zh-cn](https://developer.android.com/guide/components/fragments?hl=zh-cn)
-> - [https://developer.android.com/guide/fragments?hl=zh-cn](https://developer.android.com/guide/fragments?hl=zh-cn)
+- [https://developer.android.com/guide/components/fragments?hl=zh-cn](https://developer.android.com/guide/components/fragments?hl=zh-cn)
+- [https://developer.android.com/guide/fragments?hl=zh-cn](https://developer.android.com/guide/fragments?hl=zh-cn)
