@@ -4,13 +4,17 @@ tags: Android
 toc: true
 ---
 
+## 概述
 
-
+`ContentProvider`是一种数据共享型组件，可以在应用之间共享数据。所以与BroadcastReceiver一样，其可以脱离Activity实现。在实现ContentProvider时，
+需要继承ContentProvider抽象类，然后在AndroidManifest.xml中注册类名和ContentProvider的域名。同样的，不需要重写onCreat()方法，而是实现CRUD操作，
+所以ContentProvider没有启动和停止的概念，更像是一个系统级的监听器。与前三个组件不同的是，ContentProvider并没有使用intent，
+而是使用URI来判定能否为ContentResolver提供数据共享。
 
 关于ContentProvider，用来提供其他地方（包括其他App）调用的一种全局（系统级）方式。有了ContentProvider，我们就能方便的调用相册的东西、
 进行文件选择，在我们自己的App中，也可以提供一个数据中心。
 
-在Jetpack中，也运用了ContentProvider的特性来提升启动速度。
+在很多开源库中，也运用了ContentProvider的特性来进行初始化。
 
 ## 一些注意点
 
@@ -19,7 +23,7 @@ toc: true
 因为Android7的变化，所以在使用FileProvider时需要做一些处理，关于如何处理，网上一大把资料，总结出来需要以下步骤：
 
 1. 配置Manifest文件，添加provider
-1. 对于Android7以上，在FileProvider.getUriForFile时使用配置的authority
+2. 对于Android7以上，在FileProvider.getUriForFile时使用配置的authority
 
 
 

@@ -7,6 +7,10 @@ toc: true
 
 ## 概述
 
+Service是一种计算型组件，其生命是嵌套在主线程中的。Service有两种状态：启动状态和绑定状态，并且只能显示启动，因此在AndroidManifest.xml中注册Service时，
+只需要注册服务的类名即可。启动状态和绑定状态的区别在于：启动之后，Service的动作不受Activity的控制；而绑定之后，Service的动作是由Activity控制的。
+在实现Service时，需要继承Service抽象类，并且重写onCreat()方法，因此，Service也具有启动和停止的概念。
+
 Service是Android四大组件之一，用于执行长时间运行且不需要用户交互的任务。即使应用被销毁也依然可以工作。
 组件可通过绑定到服务与之进行交互，甚至是执行进程间通信 (IPC)。例如，服务可在后台处理网络事务、播放音乐，执行文件 I/O 或与内容提供程序进行交互。
 
@@ -419,6 +423,7 @@ private void handleServiceArgs(ServiceArgsData data) {
 ```
 
 由以上代码可知
+
 - scheduleCreateService发送了CREATE_SERVICE消息。ActivityThread的内部类H处理此消息，在handleCreateService方法中，
 运行了Service的onCreate方法。
 - scheduleServiceArgs发送了SERVICE_ARGS的消息。在handleServiceArgs中处理，调用了onStartCommand方法

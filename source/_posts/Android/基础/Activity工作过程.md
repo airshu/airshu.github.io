@@ -7,6 +7,8 @@ toc: true
 
 ## 概述
 
+Activity是一种展示型组件，具有两种启动方式，一种是显示的，通过intent实现；另一种是隐式的，也需要intent，但还需要在AndroidManifest.xml
+中添加intentfilter。在实现Activity时，需要继承Activity抽象类，并且重写onCreat()方法，因此，Activity具有启动和停止的概念。
 
 
 ## 流程分析
