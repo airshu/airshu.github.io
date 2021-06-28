@@ -40,7 +40,7 @@ resourceClass, transcodeClass, options);
 
 - 通过attach一个Fragment来监听Context的生命周期，合理的管理图片的加载和释放。
 - Glide默认采用的是RGB-565，相比ARGB-8888内存占用会减小一半。
-- 会根据ImageView的尺寸来缓存图片，
+- 会根据ImageView的尺寸来缓存图片。
 
 
 ## 常用配置

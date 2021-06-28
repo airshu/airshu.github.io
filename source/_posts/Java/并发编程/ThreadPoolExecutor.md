@@ -4,6 +4,8 @@ tags: Java
 toc: true
 ---
 
+## 参数
+
 ```java
 public ThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, 
                           TimeUnit unit, BlockingQueue<Runnable> workQueue, 
@@ -20,7 +22,7 @@ public ThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveT
 - handler: 指定了当任务队列已满，并且没有可用线程执行任务时对新添加的任务的处理策略；
 
 
-### 调度策略
+## 调度策略
 
 当初始化一个线程池之后，池中是没有任何用户执行任务的活跃线程的，当新的任务到来时，根据配置的参数其主要的执行任务如下：
 
