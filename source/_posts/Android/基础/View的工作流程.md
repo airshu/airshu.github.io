@@ -1,29 +1,11 @@
 ---
-title: View的工作原理
+title: View的工作流程
 tags: Android
 toc: true
 ---
 
-
-
-
-
-# 目录
-
-- [绘制的流程概要](#jump1)
-- measure
-    - MeasureSpec
-    - ViewGroup的measure
-    - View的measure
-- layout
-    - View的layout流程
-    - Layout的onLayout
-- draw
-- 常见问题
-- 参考
-
-
-DecorView是视图的顶级View，我们添加的布局文件是它的一个子布局，而ViewRootImpl则负责渲染视图，它调用了一个performTraveals方法使得ViewTree开始三大工作流程，然后使得View展现在我们面前。
+DecorView是视图的顶级View，我们添加的布局文件是它的一个子布局，而ViewRootImpl则负责渲染视图，它调用了一个performTraveals方法使得ViewTree开始
+三大工作流程，然后使得View展现在我们面前。
 
 ## 绘制的流程概要
 
@@ -33,9 +15,17 @@ DecorView是视图的顶级View，我们添加的布局文件是它的一个子�
 
 三个步骤：
 
-- 测量（Measure）：测量视图大小。从顶层父View到子View递归调用measure方法，measure方法又回调OnMeasure。
-- 布局（Layout）：确定View位置，进行页面布局。从顶层父View向子View的递归调用view.layout方法的过程，即父View根据上一步measure子View所得到的布局大小和布局参数，将子View放在合适的位置上。
-- 绘制（draw）：绘制视图。ViewRoot创建一个Canvas对象，然后调用OnDraw()。六个步骤：①、绘制视图的背景；②、保存画布的图层（Layer）；③、绘制View的内容；④、绘制View子视图，如果没有就不用；⑤、还原图层（Layer）；⑥、绘制滚动条
+- 测量（measure）：测量视图大小。从顶层父View到子View递归调用measure方法，measure方法又回调OnMeasure。
+- 布局（layout）：确定View位置，进行页面布局。从顶层父View向子View的递归调用view.layout方法的过程，即父View根据上一步measure子View所得到的布局大小
+  和布局参数，将子View放在合适的位置上。
+- 绘制（draw）：绘制视图。ViewRoot创建一个Canvas对象，然后调用OnDraw()。六个步骤：
+  
+    1. 绘制视图的背景；
+    2. 保存画布的图层（Layer）；
+    3. 绘制View的内容；
+    4. 绘制View子视图，如果没有就不用；
+    5. 还原图层（Layer）；
+    6. 绘制滚动条
 
 绘制从ViewRootImpl的performTraversals()方法开始，从上到下遍历整个视图树，每个View控件负责绘制自己，而ViewGroup还需要负责通知自己的子View进行绘制操作。
 

@@ -30,6 +30,7 @@ constraintXXX表示约束View自己，XXX分别表示上下左右等位置，toX
 - android:layout_marginBottom
 
 **目标View隐藏时，以下属性生效**
+
 - layout_goneMarginStart
 - layout_goneMarginEnd
 - layout_goneMarginLeft

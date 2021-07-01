@@ -25,7 +25,7 @@ APK文件的结构
 
 
 
-#### 一、资源打包
+## 一、资源打包
 
 使用aapt来打包res资源文件，生成R.java、resources.arsc和res文件（二进制 & 非二进制如res/raw和pic保持原样）
 
@@ -47,7 +47,7 @@ res目录有9种目录
 - values。这类资源以XML文件保存在res/values目录下，用来描述一些简单值，例如，数组、颜色、尺寸、字符串和样式值等，一般来说，这六种不同的值分别保存在名称为arrays.xml、colors.xml、dimens.xml、strings.xml和styles.xml文件中。
 - xml。这类资源以XML文件保存在res/xml目录下，一般就是用来描述应用程序的配置信息。
 toc
-##### R.java 
+### R.java 
 
     public final class R {
         public static final class layout {
@@ -56,7 +56,7 @@ toc
         ...
     }
 
-##### resources.arsc
+### resources.arsc
 
 记录了所有的应用程序资源目录的信息，包括每一个资源名称、类型、值、ID以及所配置的维度信息。
 
@@ -82,13 +82,13 @@ toc
 
 
 
-#### 二、aidl阶段
+## 二、aidl阶段
 
 处理.aidl文件，生成对应的Java接口文件
 
 **aidl命令**
 
-#### 三、Java编译阶段
+## 三、Java编译阶段
 
 编译R.java、Java接口文件、Java源文件，生成.class文件
 
@@ -96,7 +96,7 @@ toc
 
     javac -encoding UTF-8 -bootclasspath -d gen/out src/main/java/com/test/MainActivity.java -classpath 
 
-#### 四、dex阶段
+## 四、dex阶段
 
 通过dex命令，将.class文件和第三方库中的.class文件处理生成classes.dex
 
@@ -105,7 +105,7 @@ toc
     dx --dex --output=gen/classes.dex gen/out/java/com/test/
      
 
-#### 五、apkbuilder阶段
+## 五、apkbuilder阶段
 
 将classes.dex、resources.arsc、res文件夹(res/raw资源被原装不动地打包进APK之外，其它的资源都会被编译或者处理)、Other Resources(assets文件夹)、AndroidManifest.xml打包成apk文件。
 
@@ -122,7 +122,7 @@ res/raw和assets的不同点：
 
     aapt add package/res.apk classes.dex
 
-#### 六、签名阶段
+## 六、签名阶段
 
 对apk进行签名
 
@@ -158,7 +158,7 @@ V2签名:
     apksigner verify app.apk
 
 
-#### 七、zipalign阶段
+## 七、zipalign阶段
 
 对apk中未压缩的数据进行4字节对齐，对齐后就可以使用mmap函数读取文件，可以像读取内存一样对普通文件进行操作。如果没有4字节对齐，就必须显式的读取，这样比较缓慢并且会耗费额外的内存。
 

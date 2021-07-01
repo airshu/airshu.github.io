@@ -1,6 +1,7 @@
 ---
 title: Binder
 tags: Android
+toc: true
 ---
 
 
