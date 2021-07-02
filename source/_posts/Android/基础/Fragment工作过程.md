@@ -20,7 +20,7 @@ toc: true
 
 ## 启动流程
 
-根据[Activity工作过程](/Android/基础/Activity工作过程/)可知，启动一个Activity会来到ActivityThreadp的erformLaunchActivity方法。在这个方法中
+根据[Activity工作过程](/wiki/Android/基础/Activity工作过程/)可知，启动一个Activity会来到ActivityThreadp的erformLaunchActivity方法。在这个方法中
 
 ```java
 //ActivityThread

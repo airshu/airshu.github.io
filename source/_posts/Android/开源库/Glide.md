@@ -31,7 +31,9 @@ Glide.with(this)
     
 默认开启，可以通过skipMemoryCache(true)关闭内存缓存。
   
-#### 磁盘缓存：InternalCacheDiskCacheFactory（默认）
+#### 磁盘缓存：
+
+InternalCacheDiskCacheFactory（默认）
 
 - DiskCacheStrategy.NONE 不缓存文件
 - DiskCacheStrategy.DATA 对应 Glide 3 中的 DiskCacheStrategy.SOURCE， 只缓存原图

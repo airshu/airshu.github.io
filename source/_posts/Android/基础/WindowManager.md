@@ -157,7 +157,7 @@ mDyingViews则存储了那些正在被删除的View对象，或者说是那些�
 
 ### Activity的Window创建过程
 
-由[Activity工作过程](/Android/基础/Activity工作过程/)可知，Activity启动时会调用ActivityThread的performLaunchActivity方法来完成
+由[Activity工作过程](/wiki/Android/基础/Activity工作过程/)可知，Activity启动时会调用ActivityThread的performLaunchActivity方法来完成
 整个启动流程。
 
 performLaunchActivity会调用Activity的attach方法。在这个方法里，会创建PhoneWindow对象。
