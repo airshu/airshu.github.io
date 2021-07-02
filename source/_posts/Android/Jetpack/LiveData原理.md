@@ -1,5 +1,8 @@
 ---
-title: Dalvik虚拟机
+title: LiveData原理
 tags: Android
 toc: true
 ---
+
+
+

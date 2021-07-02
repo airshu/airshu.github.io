@@ -1,12 +1,8 @@
 ---
-title: WMRouter
+title: WorkManager
 tags: Android
 toc: true
 ---
-
-
-
-## 参考
 
 
 

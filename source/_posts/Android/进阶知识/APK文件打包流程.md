@@ -1,6 +1,7 @@
 ---
-title: Android APK打包流程
+title: APK打包流程
 toc: true
+tags: Android
 ---
 
 APK文件的结构
