@@ -1,9 +1,5 @@
 # hexo-theme-Wikitten
 
-[中文版文档](./README_zh-CN.md)
-
-### A personal wiki imitate [Wikitten](https://wikitten.vizuina.com/) style for Hexo. >[Preview](http://wiki.zthxxx.me/)
-
 some features:
 
 - Applicable to personal wiki knowledge management

@@ -1,9 +1,5 @@
 # hexo-theme-Wikitten
 
-[English Page](./README.md)
-
-### 一个仿 [Wikitten](https://wikitten.vizuina.com/) 样式的 Hexo 个人 wiki 系统主题。 >[预览](http://wiki.zthxxx.me/)
-
 一些特性：
 
 - 适用于个人 wiki 知识管理
