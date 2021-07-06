@@ -1,6 +1,7 @@
 ---
 title: Java容器
 tags: Java
+toc: true
 ---
 
 ![](./collections_1.png)
