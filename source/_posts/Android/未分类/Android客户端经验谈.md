@@ -7,7 +7,10 @@ toc: true
 
 ## 一些技巧
 
-### 异步线程应该在Activity、Fragment的生命周期结束时停止掉
+- 异步线程应该在Activity、Fragment的生命周期结束时停止掉
+- 减少不必要的线程切换
+
+
 
 
 

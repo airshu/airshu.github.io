@@ -142,6 +142,11 @@ open /Applications/QQ.app
 
 ### Dash（程序员API查询工具）
 
+### iShot（截图、录屏工具）
+
+### Commander One（访达替代品）
+
+
 ## Mac常用命令
 
 
