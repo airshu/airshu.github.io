@@ -13,6 +13,21 @@ Activity是一种展示型组件，具有两种启动方式，一种是显示的
 
 ## 流程分析
 
+**类介绍**
+
+- Activity：startActivity方法的真正实现在Activity中。
+- Instrumentation:用来辅助Activity完成启动Activity的过程。
+- ActivityThread(包含ApplicationThread + ApplicationThreadNative + IApplicationThread):真正启动Activity的实现都在这里。
+- ApplicationThread
+- ActivityTaskManager
+- ActivityStarter
+- RootActivityContainer
+- ActivityStack
+- ActivityStackSupervisor
+- ClientLifecycleManager
+- ClientTransaction
+
+
 ### 流程图
 
 ![](./1.png)

@@ -17,3 +17,9 @@ toc: true
 ### 关于隐私策略
 
 由于政策要求，隐私策略需要放到运行时就弹出并由用户确认。这里有个点需要注意，只有当用户确认后才可进行后续的数据请求。
+
+
+
+## 参考
+
+- [https://developer.android.com/training/articles/perf-tips?hl=zh-cn](https://developer.android.com/training/articles/perf-tips?hl=zh-cn)

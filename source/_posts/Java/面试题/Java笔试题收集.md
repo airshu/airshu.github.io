@@ -169,19 +169,19 @@ Java基础
 2.String 类能被继承吗，为什么。
 3. 两个对象的 hashCode() 相同，则 equals() 也一定为 true，对吗？
 4. String 属于基础的数据类型吗？
-   5.Java 中操作字符串都有哪些类？它们之间有什么区别？
-   6.Java 中 IO 流分为几种？
-   7.BIO、NIO、AIO 有什么区别？
-   8.用过哪些 Map 类，都有什么区别，HashMap 时线程安全的吗，并发下使用的 Map 是什么，他们的内部原理分别是什么，比如存储方法，hashcode，扩容，默认容量等。
+5.Java 中操作字符串都有哪些类？它们之间有什么区别？
+6.Java 中 IO 流分为几种？
+7.BIO、NIO、AIO 有什么区别？
+8.用过哪些 Map 类，都有什么区别，HashMap 时线程安全的吗，并发下使用的 Map 是什么，他们的内部原理分别是什么，比如存储方法，hashcode，扩容，默认容量等。
 9. 如何将字符串反转？
-   10.抽象类必须要有抽象方法吗？
-   11.普通类和抽象类有哪些区别？
-   12.抽象类能使用 final 修饰吗？
-   13.ArrayList 和 LinkedList 有什么区别？
-   14.ConcurrentHashMap的数据结构 
-   15.volatile作用 
-   16.Atomic类如何保证原子性（CAS操作） 
-   17.为什么要使用线程池 
+10.抽象类必须要有抽象方法吗？
+11.普通类和抽象类有哪些区别？
+12.抽象类能使用 final 修饰吗？
+13.ArrayList 和 LinkedList 有什么区别？
+14.ConcurrentHashMap的数据结构 
+15.volatile作用 
+16.Atomic类如何保证原子性（CAS操作） 
+17.为什么要使用线程池 
 
 
 JVM

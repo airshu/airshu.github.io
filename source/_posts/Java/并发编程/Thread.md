@@ -50,3 +50,36 @@ t1.join();//要等待t1执行完后，当前线程才会继续往下执行
 使用时机|只能在同步块(Synchronized)中使用|在任何时候使用
 唤醒条件|其他线程调用notify()或notifyAll()方法|超时或调用Interrupt()方法
 cpu占用|不占用cpu，程序等待n秒|占用cpu，程序等待n秒
+
+
+### interrupt
+
+Thread类的sleep(),wait()等方法，在接收到interrupt()方法中断时，会抛出异常，同时会将中断标志置为false,如果确实需要中断该线程，则应该在捕捉到异常后，
+继续调用interrupt()方法进行中断。
+
+```java
+//为什么不在异常时直接中断线程呢?主要是为了防止线程的资源没有得到释放而中断了线程
+public class UserThread extends Thread {
+    public void run() {
+        while (!isInterrupt()) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                System.out.println(Thread.currentThread().getName + " Exception,interrupt flag is" + isInterrupted()); //释放资源
+                doRelease();
+                interrupt();
+                e.printStackTrace();
+            }
+            System.out.println(Thread.currentThread().getName + " runing");
+        }
+        System.out.println(Thread.currentThread().getName + " interrupt flag is " + isInterrupted());
+    }
+
+    public static void main(String args) {
+        UserThread thread = new UserThread();
+        thread.start();
+        Thread.sleep(30);
+        thread.interrupt();
+    }
+}
+```
