@@ -433,6 +433,10 @@ private void handleServiceArgs(ServiceArgsData data) {
 ![](./service_process_1.jpg)
 
 
+## 关于Service保活
+
+应该是利用service的机制，当service下一次重新创建时判断应用中的某些场景是否也可以跟着一起恢复。比如直播房间。
+
 ## 参考
 
 - [Android 10 Service 工作过程](https://www.jianshu.com/p/d3d5f3673829)

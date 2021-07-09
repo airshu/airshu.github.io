@@ -26,7 +26,11 @@ Activity是一种展示型组件，具有两种启动方式，一种是显示的
 - ActivityStackSupervisor
 - ClientLifecycleManager
 - ClientTransaction
-
+- ActivityRecord：
+    - service（ActivityManager）：AMS的引用
+    - info（ActivityInfo）： 节点信息，比如lanuchMode
+    - state：当前状态
+    - task（TaskRecord）
 
 ### 流程图
 

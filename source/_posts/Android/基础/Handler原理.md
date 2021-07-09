@@ -282,6 +282,14 @@ public void dispatchMessage(@NonNull Message msg) {
 
 
 
+## 底层原理
+
+![](./handler_native.png)
+
+采用管道的方式完成线程间通信
+
+
+
 
 ## Handler引起的内存泄露原因以及最佳解决方案
 

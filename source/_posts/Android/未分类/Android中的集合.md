@@ -8,7 +8,7 @@ toc: true
 
 ## SparseArray
 
-SparseArray由两个数组mKeys和mValues存放数据;其中key的类型为int型，这就显得SparseArray比HashMap更省内存一些。SparseArray存储的元素都是按元素的key
+SparseArray由两个数组mKeys和mValues存放数据;其中key的类型为int型，这就显得SparseArray比HashMap`更省内存`一些。SparseArray存储的元素都是按元素的key
 值从小到大排列好的。使用二分查找来判断元素的位置，数据量较小时比HashMap更快。
 
 

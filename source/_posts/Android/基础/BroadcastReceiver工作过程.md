@@ -93,11 +93,16 @@ public Intent registerReceiver(IApplicationThread caller, String callerPackage,
 
 ### 发送和接收过程
 
-广播分为三种类型：
+**广播类型：**
 
-- 普通广播
-- 有序广播
-- 粘性广播
+- 普通广播(Normal Broadcast)
+- 系统广播(System Broadcast)
+- 有序广播(Ordered Broadcast)
+- 粘性广播(Sticky Broadcast)
+- App应用内广播(Local Broadcast)
+
+
+
 
 发送广播从sendBroadcast开始
 

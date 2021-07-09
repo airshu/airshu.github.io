@@ -56,6 +56,8 @@ static final int SERVICE_BACKGROUND_TIMEOUT = SERVICE_TIMEOUT * 10;
 - onCreate 和 onResume 回调中尽量避免耗时的代码
 - View 的 onOnTouchevent 和 onclick 中避免耗时的代码
 
+
+
 AMS系统时间调节原理
 
 
