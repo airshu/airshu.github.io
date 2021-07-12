@@ -85,6 +85,10 @@ public final class OkHttpLibraryGlideModule extends LibraryGlideModule {
 }
 ```
 
+## 注意点
+
+- 使用时尽量传生命周期所对应的Context（比如Activity、Fragment）
+- 如果使用ApplicationContext，则使用弱引用
 
 ## 参考
 

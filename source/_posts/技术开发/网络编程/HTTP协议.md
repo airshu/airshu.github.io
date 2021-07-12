@@ -6,16 +6,58 @@ toc: true
 
 
 
+
+
 HTTP 协议的请求报文和响应报文的结构基本相同，主要由三大部分组成：
 
 - 状态行（status line）：描述响应的基本信息，也就是服务器响应的状态；
 - 头部字段集合（header）：使用 key-value 形式更详细地说明报文；
 - 消息正文（entity）：实际响应的数据，它不一定是纯文本，可以是图片、视频等二进制数据。
 
+## header参数
+
+### 请求头
+
+- Request URL( 请 求 的 地 址 ) 
+- Request Method(请求的方式) 
+- Status Code(状态码)
+- Accept: /(客户端能接收的资源类型)
+- Accept-Language: en-us( 客 户 端 接 收 的 语 言 类 型 )
+- Connection: Keep-Alive(维护客户端和服务端的连接关系)
+- Host:localhost:8080(连接的目标主机和端口号)
+- Referer: http://localhost/links.asp(告诉服务器我来自哪里)
+- `User-Agent`:Mozilla/4.0(客户端版本号的名字)
+- Accept-Encoding:gzip, deflate(客户端能接收的压缩数据的类型)
+- If-Modified-Since: Tue, 11 Jul 2000 18:23:51 GMT( 缓 存 时 间 )
+- `Cookie`(客户端暂存服务端的信息)
+- Date: Tue, 11 Jul 2000 18:23:51 GMT(客户端请求服务端的时间)
+
+### 响应
+
+- Location:http://www.baidu.com(服务端需要客户端访问的页面路径) 
+- Server:apache tomcat(服务端的Web服务端名)
+- Content-Encoding:gzip(服务端能够发送压缩编码类型)
+- Content-Length:80(服务端发送的压缩数据的长度)
+- Content-Language:zh-cn(服务端发送的语言类型)
+- Content-Type:text/html;charset=GB2312(服务端发送的类型及采用的编码方式)
+- Last-Modified:Tue, 11 Jul 2000 18:23:51 GMT(服务端对该资源最后修改的时间)
+- Refresh:1;url=http://www.it315.org(服务端要求客户端一秒钟后，刷新，然后访问指定的页面 路径)
+- Content-Disposition:attachment;filename=aaa.zip(服务端要求客户端以下载文件的方式打开 该文件)
+- Transfer-Encoding:chunked(分块传递数据到客户端) 
+- Set-Cookie:SS=Q0=5Lb_nQ;path=/search(服务端发送到客户端的暂存数据) 
+- Expires:-1//3种(服务端禁止客户端缓存页面数据) Cache-Control:no-cache(服务端禁止客户端缓存页面数据) Pragma:no-cache(服务端禁止客户端缓存页面数据)
+- Connection: close(1.0)/(1.1)Keep-Alive(维护客户端和服务端的连接关系) 
+- Date: Tue, 11 Jul 2000 18:23:51 GMT(服务端响应客户端的时间)
+- Cache-Control：缓存配置
+    - private: 客户端可以缓存
+    - public: 客户端和代理服务器都可缓存
+    - max-age=xxx: 缓存的内容将在 xxx 秒后失效
+    - no-cache: 需要使用对比缓存来验证缓存数据(后面介绍)
+    - no-store: 所有内容都不会缓存，强制缓存，对比缓存都不会触发
 
 ## 状态码
 
-## 1xx
+### 1xx
 
 1×× 类状态码属于提示信息，是协议处理的中间状态，实际能够用到的时候很少。
 
@@ -70,3 +112,13 @@ HTTP 协议的请求报文和响应报文的结构基本相同，主要由三大
 - “502 Bad Gateway” 通常是服务器作为网关或者代理时返回的错误码，表示服务器自身工作正常，访问后端服务器时发生了错误，但具体的错误原因也是不知道的。
 
 - “503 Service Unavailable”表示服务器当前很忙，暂时无法响应服务，我们上网时有时候遇到的“网络服务正忙，请稍后重试”的提示信息就是状态码 503。
+
+
+## HTTP请求过程
+
+
+
+
+
+
+## 参考
