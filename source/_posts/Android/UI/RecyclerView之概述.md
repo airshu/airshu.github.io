@@ -1,9 +1,62 @@
 ---
-title: RecyclerView
+title: RecyclerView之概述
 toc: true
 tags: [Android, RecyclerView]
 ---
 
+## 目录
+
+- [RecyclerView之概述](/Android/UI/RecyclerView之概述/)
+- [RecyclerView之绘制流程](/Android/UI/RecyclerView之绘制流程/)
+- [RecyclerView之Adapter](/Android/UI/RecyclerView之Adapter/)  
+- [RecyclerView之ItemDecoration](/Android/UI/RecyclerView之ItemDecoration/)
+- [RecyclerView之ItemAnimator](/Android/UI/RecyclerView之ItemAnimator/)
+- [RecyclerView之缓存策略](/Android/UI/RecyclerView之缓存策略/)
+
+
+
+
+## 相关类
+
+- RecyclerView
+    - SmoothScroller(RecyclerView内部类)：平滑的速度处理
+        - LinearSmoothScroller：水平方向的处理，用于LinearSnapHelper中
+  - ItemAnimator(RecyclerView内部类)：元素动画类
+      - DefaultItemAnimator：默认动画类
+      - SimpleItemAnimator：抽象类
+- RecyclerView.State：测量状态
+- RecyclerListener：当ViewHolder回收时的监听器
+- LayoutManager：布局管理器基类
+    - LinearLayoutManager：水平布局管理器
+        - GridLayoutManager：方格布局管理器
+    - StaggeredGridLayoutManager：不规则高度的方格管理器
+
+- Adapter：视图和数据绑定的适配器，视图复用
+  - ConcatAdapter
+- ViewHolder：视图容器
+- AdapterHelper： 管理和执行更新操作的帮助类，RecyclerView将每一次更新操作封装成了一个UpdateOp操作，然后通过AdapterHelper进行管理和执行。
+- OpReorderer：记录操作指令
+- ChildHelper：布局管理器和RecyclerView的child的处理器，有Callback接口可以对相应事件进行回调
+- Recycler
+- RecyclerViewPool：缓存池
+- ItemDecoration：元素隔间，比如绘制分隔符
+    - DividerItemDecoration
+    - FastScroller
+- ItemTouchHelper
+- DiffUtil：用于比较前后数据的工具类，提升多个item更新的效率
+- AsyncListDiffer
+- AsyncListUtil
+- ScrollbarHelper
+- SnapHelper：用于辅助RecyclerView在滚动结束时将Item对齐到某个位置
+    - LinearSnapHelper：水平速率计算的帮助类
+    - PagerSnapHelper：类似ViewPage滑动速率帮助类
+- StableIdStorage
+- ItemTouchHelper
+- AdapterListUpdateCallback
+- OrientationHelper：LayoutManager用于测量child的一个辅助类，可以根据Layoutmanager的布局方式和布局方向来计算得到ItemView的大小位置等信息。
+- ViewBoundsCheck
+- ViewInfoStore：存放当前VH和相关的InfoRecord
+    - InfoRecord（ViewInfoStore内部类）：VH的状态：出现、消失、预布局、实际布局
 
 
 
