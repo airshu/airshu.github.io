@@ -21,9 +21,10 @@ tags: [Android, RecyclerView]
 - RecyclerView
     - SmoothScroller(RecyclerView内部类)：平滑的速度处理
         - LinearSmoothScroller：水平方向的处理，用于LinearSnapHelper中
-  - ItemAnimator(RecyclerView内部类)：元素动画类
+    - ItemAnimator(RecyclerView内部类)：元素动画类
       - DefaultItemAnimator：默认动画类
       - SimpleItemAnimator：抽象类
+    - Recycler(RecyclerView内部类)：保存缓存的类
 - RecyclerView.State：测量状态
 - RecyclerListener：当ViewHolder回收时的监听器
 - LayoutManager：布局管理器基类
@@ -37,7 +38,7 @@ tags: [Android, RecyclerView]
 - AdapterHelper： 管理和执行更新操作的帮助类，RecyclerView将每一次更新操作封装成了一个UpdateOp操作，然后通过AdapterHelper进行管理和执行。
 - OpReorderer：记录操作指令
 - ChildHelper：布局管理器和RecyclerView的child的处理器，有Callback接口可以对相应事件进行回调
-- Recycler
+
 - RecyclerViewPool：缓存池
 - ItemDecoration：元素隔间，比如绘制分隔符
     - DividerItemDecoration

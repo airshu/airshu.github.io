@@ -1,9 +1,59 @@
 ---
 title: 自定义View
-date: 2021-06-01
 toc: true
-tags:
+tags: Android
 ---
+
+
+## 概述
+
+
+## 自定义属性
+
+
+### 声明属性
+
+使用declare-styleable声明属性
+
+```xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <attr name="enableOnPad" format="boolean" />
+  <attr name="supportDeviceType" format="reference"/>
+    <!-- 如果有通用的属性，可以抽离出来 -->  
+    <declare-styleable name="ExTextView">
+        <attr name="enableOnPad"/>
+        <attr name="supportDeviceType"/>
+    </declare-styleable>
+
+    <declare-styleable name="ExEditText">
+        <attr name="enableOnPad"/>
+        <attr name="supportDeviceType"/> 
+        <attr name="line_color" format="color" />
+        <attr name="line_stroke_height" format="dimension"/>
+    </declare-styleable>
+</resources>
+
+
+```
+
+### 使用属性
+
+```java
+public class CustomView extends View {
+
+    public DottedLineView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        // 根据Style拿到TypedArray
+        TypedArray array = getContext().obtainStyledAttributes(attrs, R.styleable.ExEditText);
+        mLineColor = array.getColor(R.styleable.ExEditText_line_color, getResources().getColor(R.color.Red));
+        mLineStrokeHeight = array.getDimension(R.styleable.ExEditText_line_stroke_height, dp2px(getContext(), 1));
+        array.recycle();
+    }
+}
+```
+
 
 
 ## 需要注意的点
@@ -30,8 +80,14 @@ tags:
 
 ### View带有滑动嵌套情形时，需要处理好滑动冲突
 
+
+
+
+
+
 ## 参考
 
 - 《Android开发艺术探索》 
+- [自定义控件进阶:declare-styleable重用attr](https://droidyue.com/blog/2014/07/16/better-in-android-include-attrs-in-declare-stylable/)
 
 
