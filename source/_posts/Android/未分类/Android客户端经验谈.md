@@ -9,6 +9,8 @@ toc: true
 
 - 异步线程应该在Activity、Fragment的生命周期结束时停止掉
 - 减少不必要的线程切换
+- 主线程中throw的异常要catch
+- 不要在主线程做耗时的操作
 
 
 

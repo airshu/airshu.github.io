@@ -1,17 +1,18 @@
 ---
 title: native crash 分析
 toc: true
+tags: Android
 ---
 
 
-**Crash类型：**
+## **Crash类型：**
 
 - Framework/App Crash：Java层崩溃
 - Native Crash：C/C++层崩溃
 - Kernel Crash：内核崩溃
 
 
-### **tombstone文件的组成部分：**
+## **tombstone文件的组成部分：**
 
 - Build fingerprint
 - Crashed process and PIDS
@@ -38,9 +39,10 @@ d2 0000000000000000 d3 0000000000000000
 
 <b>signal指定异常类型。如果pid等于tid，则说明程序是在主线程中崩溃。</b>
 
-**信号类型:**
+### **信号类型:**
 
-软中断信号（signal，又简称为信号）用来通知进程发生了事件。进程之间可以通过调用kill库函数发送软中断信号。Linux内核也可能给进程发送信号，通知进程发生了某个事件（例如内存越界）。
+软中断信号（signal，又简称为信号）用来通知进程发生了事件。进程之间可以通过调用kill库函数发送软中断信号。Linux内核也可能给进程发送信号，
+通知进程发生了某个事件（例如内存越界）。
 
 信号只是用来通知某进程发生了什么事件，无法给进程传递任何数据，进程对信号的处理方法有三种：
 
@@ -114,9 +116,10 @@ ESRCH：参数 pid 所指定的进程或进程组不存在。
 tombstone 文件位于路径 /data/tombstones/下
 
 
-**调用栈信息**
+### **调用栈信息**
 
-调用栈信息是分析程序崩溃的非常重要的一个信息，它主要记录了程序在 Crash 前的函数调用关系以及当前正在执行函数的信息，它对应的是我们 tombstone 文件中 backtrace 符号开始的信息，上面例子中的 backtrace 的信息如下所示
+调用栈信息是分析程序崩溃的非常重要的一个信息，它主要记录了程序在 Crash 前的函数调用关系以及当前正在执行函数的信息，它对应的是我们tombstone
+文件中 backtrace 符号开始的信息，上面例子中的 backtrace 的信息如下所示
 
 ```
 backtrace:
@@ -131,19 +134,19 @@ backtrace:
     最后一行表示当前指令在哪个文件
 ```
 
-### 如何定位崩溃位置
+## 如何定位崩溃位置
 
-#### 常用工具
+### 常用工具
 
 
-**nm**
+#### **nm**
 
 ```
 查看动态库的符号表
 nm -D libName.so | grep symbel symbolName
 ```
 
-**addr2line**
+#### **addr2line**
 
 ```
 Usage: /Users/loneqd/Android/sdk/ndk-bundle/toolchains/aarch64-linux-android-4.9/prebuilt/darwin-x86_64/bin/aarch64-linux-android-addr2line [option(s)] [addr(s)]
@@ -170,7 +173,7 @@ addr2line -f -e libui.so 00006639 _ZN7android5Fence11waitForeverE
 
 
 
-**ndk-stack**
+#### **ndk-stack**
 
 将崩溃时的调用内存地址和C++代码对应起来
 
@@ -193,7 +196,7 @@ dump指崩溃文件
 ```
 
 
-### xCrash的使用
+## xCrash的使用
 
 - [https://github.com/iqiyi/xCrash](https://github.com/iqiyi/xCrash)
 
