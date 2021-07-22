@@ -97,7 +97,7 @@ System Apps：这里存放的是Android自带的一些App，比如：电话、�
         - amm：Actionable Memory Metric
 - bionic：google自己开发的内核库，比GNU的内核更适合移动设备
     - apex：
-    - libc：不同指令集的内核库
+    - libc：对系统调用的封装
         - arch-arm：
         - arch-arm64：
         - arch-common：
@@ -105,10 +105,11 @@ System Apps：这里存放的是Android自带的一些App，比如：电话、�
         - arch-x86_64：
         - stdio：标准IO
         - tools：一些python工具脚本
-    - libdl：   
+    - libdl：   用于动态库的装载
     - libm：数学库
         - upstream-freebsd：很多来自FreeBSD的函数库
-    - libstdc++：
+    - libstdc++：标准的C++的功能库
+    - linker：链接模块 
     - tools：
 - bootable：启动引导相关代码
     - recovery：这个目录用于创建恢复程序
