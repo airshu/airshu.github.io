@@ -4,8 +4,12 @@ tags: Android
 toc: true
 ---
 
+## 概述
 
+约束布局，可以降低布局的层次，对性能提升有帮助。
 
+使用约束布局，主要要理解不同控件的约束。比如A控件在B控件上方，则可以使用layout_constraintBottom_toTopOf="B"，同理可设置不同方位。
+如果是挨着边，则可以设置控件与父级约束。layout_constraintLeft_toLeftOf="parent"表示挨着父级的左边。
 
 ### layout_constraintLeft_toRightOf的理解
 
@@ -38,17 +42,15 @@ constraintXXX表示约束View自己，XXX分别表示上下左右等位置，toX
 - layout_goneMarginRight
 - layout_goneMarginBottom
 
+### 偏移
 
-
-水平居中 layout_constraintLeft_toLeftOf & layout_constraintRight_toRightOf
-垂直居中 layout_constraintTop_toTopOf & layout_constraintBottom_toBottomOf
-
-
-
-layout_constraintHorizontal_bias 水平偏移
-layout_constraintVertical_bias 垂直偏移
+- layout_constraintHorizontal_bias 水平偏移
+- layout_constraintVertical_bias 垂直偏移
 
 两个属性的取值范围在0-1。在水平偏移中，0表示最左，1表示最右；在垂直偏移，0表示最上，1表示最下；0.5表示中间。
+
+
+
 
 
 ## 参考
