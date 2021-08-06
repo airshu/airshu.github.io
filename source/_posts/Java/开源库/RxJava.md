@@ -5,6 +5,11 @@ toc: true
 ---
 
 
+## 概要
+
+使用观察者模式、装饰器模式，类似Java的IO流。将不同的操作符一层层的封装，然后再进行一层层的解封。
+
+
 基本概念
 
 - Observable(可观察者，即被观察者)
@@ -24,6 +29,20 @@ toc: true
 - Scheduler.mainThread() 在android主线程中运行
 
 
+## BackpressureStrategy
+
+当异步情况下, 被观察者发送数据过快, 而消费者无法及时处理数据, 导致缓存内存增大, 最终导致OOM, 背压就是为了处理这种情况。
+
+策略 | 效果
+--- | ---
+MISSING | 无任何背压策略执行, 除非调用onBackpressureXXX
+ERROR | 抛出异常
+BUFFER | 内部维护可扩容的缓存池, 效果与Observer一样, 可能导致OOM
+DROP | 如果下流无法跟上上流发射速度, 则会丢弃这块数据
+LATEST | 当下流无法跟上上流的发射速度的时候, 则只保存最近生产的数据
+
+
+
 ## 参考
 
-- []()
+- [RxJava源码解析(三)-背压](https://yutiantina.github.io/2019/03/05/RxJava%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90(%E4%B8%89)-%E8%83%8C%E5%8E%8B/)

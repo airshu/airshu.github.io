@@ -116,9 +116,9 @@ Observable什么时候开始发射数据序列？这取决于Observable的实现
 **转换被一个Observable发送的项目的操作付**
 
 - Buffer
-- FlatMap
+- FlatMap：进行一对多或多对多转换
 - GroupBy
-- Map
+- Map:进行一对一转换
 - Scan
 - Window
 

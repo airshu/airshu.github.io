@@ -15,7 +15,8 @@ public ThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveT
 
 - corePoolSize: 线程池核心线程的数量；
 - maximumPoolSize: 线程池可创建的最大线程数量；
-- keepAliveTime: 当线程数量超过了corePoolSize指定的线程数，并且空闲线程空闲的时间达到当前参数指定的时间时该线程就会被销毁，如果调用过allowCoreThreadTimeOut(boolean value)方法允许核心线程过期，那么该策略针对核心线程也是生效的；
+- keepAliveTime: 当线程数量超过了corePoolSize指定的线程数，并且空闲线程空闲的时间达到当前参数指定的时间时该线程就会被销毁，
+  如果调用过allowCoreThreadTimeOut(boolean value)方法允许核心线程过期，那么该策略针对核心线程也是生效的；
 - unit: 指定了keepAliveTime的单位，可以为毫秒，秒，分，小时等；
 - workQueue: 存储未执行的任务的队列；
 - threadFactory: 创建线程的工厂，如果未指定则使用默认的线程工厂；
@@ -62,7 +63,7 @@ public static ExecutorService newFixedThreadPool(int nThreads) {
 **特征**
 
 - 这是一种线程数量固定的线程池，因为corePoolSize和maximunPoolSize都为用户设定的线程数量nThreads
-- keepAliveTime为0，意味着一旦有多余的空闲线程，就会被立即停止掉，不过因为最多只有nThreads个线程，且corePoolSize和maximunPoolSize值一致，所以不会发送线程停掉的情况；
+- keepAliveTime为0，意味着一旦有多余的空闲线程，就会被立即停止掉，不过因为最多只有nThreads个线程，且corePoolSize和maximunPoolSize值一致，所以不会发生线程停掉的情况；
 - 阻塞队列采用了LinkedBlockingQueue，它是一个无界队列，由于阻塞队列是一个无界队列，因此永远不可能拒绝任务
 
 **弊端**
