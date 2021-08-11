@@ -25,7 +25,7 @@ Handler是Android子线程和主线程之间通信的一种机制。
 | 消息队列（MessageQueue） | 一种数据结构                                     | 存储Handler发送过来的信息（Message）                                       |
 | 处理者（Handler）        | 主线程与子线程的通信媒介，线程消息的主要处理者   | 添加消息到消息队列，处理Looper分派过来的消息                               |
 | 循环器（Looper）         | 消息队列与处理器的通信媒介                       | 消息获取：循环取出消息队列的消息，消息分发：将取出的消息发送给对应的处理者 |
-|[ThreadLocal]() | |用于不同线程保存自己的信息
+| ThreadLocal | |用于不同线程保存自己的信息
 
 ### 工作流程
 
@@ -165,7 +165,7 @@ public static void loop() {
     }
     final MessageQueue queue = me.mQueue;
 
-    Binder.clearCallingIdentity();   //这里大家不用管，我个人理解是对进程的校验，有知道的同学也可以留言告诉我。
+    Binder.clearCallingIdentity();
     final long ident = Binder.clearCallingIdentity();
 
     for (;;) {

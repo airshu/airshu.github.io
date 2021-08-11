@@ -17,7 +17,7 @@ toc: true
 
 方法返回值为true表示拦截这个事件并交由自身的onTouchEvent方法进行消费；返回false表示不拦截，需要继续传递给子视图。如果return super.onInterceptTouchEvent(ev)， 事件拦截分两种情况: 　
 
-1. 如果该View存在子View且点击到了该子View, 则不拦截, 继续分发 给子View 处理, 此时相当于return false。
+1. 如果该View存在子View且点击到了该子View, 则不拦截, 继续分发给子View处理, 此时相当于return false。
 2. 如果该View没有子View或者有子View但是没有点击中子View(此时ViewGroup 相当于普通View), 则交由该View的onTouchEvent响应，此时相当于return true。
 
 `注意`：一般的LinearLayout、 RelativeLayout、FrameLayout等ViewGroup默认不拦截， 而ScrollView、ListView等ViewGroup则可能拦截，得看具体情况。
@@ -27,8 +27,8 @@ toc: true
 方法返回值为true表示当前视图可以处理对应的事件；返回值为false表示当前视图不处理这个事件，它会被传递给父视图的onTouchEvent方法进行处理。
 如果return super.onTouchEvent(ev)，事件处理分为两种情况：
 
-1. 如果该View是clickable或者longclickable的,则会返回true, 表示消费 了该事件, 与返回true一样;
-2. 如果该View不是clickable或者longclickable的,则会返回false, 表示不 消费该事件,将会向上传递,与返回false一样。
+1. 如果该View是clickable或者longclickable的,则会返回true, 表示消费了该事件, 与返回true一样;
+2. 如果该View不是clickable或者longclickable的,则会返回false, 表示不消费该事件,将会向上传递,与返回false一样。
 
 注意：在Android系统中，拥有事件传递处理能力的类有以下三种：
 
@@ -84,6 +84,7 @@ ACTION_CANCEL什么时候触发，触摸button然后滑动到外部抬起会触�
 **点击事件被拦截，但是想传到下面的View，如何操作？**
 
 重写子类的requestDisallowInterceptTouchEvent()方法返回true就不会执行父类的onInterceptTouchEvent()，即可将点击事件传到下面的View。
+
 如何解决View的事件冲突？举个开发中遇到的例子？
 
 常见开发中事件冲突的有ScrollView与RecyclerView的滑动冲突、RecyclerView内嵌同时滑动同一方向。

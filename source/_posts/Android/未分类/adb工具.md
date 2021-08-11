@@ -70,11 +70,11 @@ tags:
 
 | 命令                           | 说明                                                             |
 | ------------------------------ | ---------------------------------------------------------------- |
-| list packages [options] filter | 输出所有软件包，或者，仅输出包名称包含 filter 中的文本的软件包。 |
+| list packages [options] filter | 输出所有软件包，或者，仅输出包名称包含filter中的文本的软件包。 |
 | list permission-groups         | 输出所有已知的权限组。                                           |
 | list features                  | 输出系统的所有功能。                                             |
 | list libraries                 | 输出当前设备支持的所有库。                                       |
-| install [options] path         | 将软件包（通过 path 指定）安装到系统。                           |
+| install [options] path         | 将软件包（通过path指定）安装到系统。                           |
 | clear package                  | 删除与软件包关联的所有数据。                                     |
 | set-install-location location  | 更改默认安装位置。                                               |
 

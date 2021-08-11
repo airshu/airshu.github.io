@@ -17,10 +17,14 @@ public ThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveT
 - maximumPoolSize: 线程池可创建的最大线程数量；
 - keepAliveTime: 当线程数量超过了corePoolSize指定的线程数，并且空闲线程空闲的时间达到当前参数指定的时间时该线程就会被销毁，
   如果调用过allowCoreThreadTimeOut(boolean value)方法允许核心线程过期，那么该策略针对核心线程也是生效的；
+    - allowCoreThreadTimeOut为true,则线程池数量最后销毁到0个。
+    - allowCoreThreadTimeOut为false,超过核心线程数时，而且（超过最大值或者timeout），就会销毁。
 - unit: 指定了keepAliveTime的单位，可以为毫秒，秒，分，小时等；
 - workQueue: 存储未执行的任务的队列；
 - threadFactory: 创建线程的工厂，如果未指定则使用默认的线程工厂；
 - handler: 指定了当任务队列已满，并且没有可用线程执行任务时对新添加的任务的处理策略；
+
+
 
 
 ## 调度策略
