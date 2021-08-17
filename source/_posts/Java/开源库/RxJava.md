@@ -43,6 +43,100 @@ LATEST | 当下流无法跟上上流的发射速度的时候, 则只保存最近
 
 
 
+## 操作符
+
+### create
+
+```java
+Observable.create(new ObservableOnSubscribe<String>() {
+        @Override
+        public void subscribe(ObservableEmitter<String> observableEmitter) throws Exception {
+            observableEmitter.onNext("1");
+            observableEmitter.onNext("2");
+            observableEmitter.onNext("3");
+            observableEmitter.onNext("4");
+            observableEmitter.onError(new Throwable());
+            observableEmitter.onComplete();//执行完complete之后就不能执行其他操作了
+
+        }
+    }).map(new Function<String, String>() {
+        @Override
+        public String apply(@NonNull String s) throws Exception {
+            return s + "---";//进行转换
+        }
+    }).subscribe(new Observer<String>() {
+
+        private Disposable mDisposable;
+
+        @Override
+        public void onSubscribe(Disposable disposable) {
+            Log.d(TAG, "onSubscribe");
+            mDisposable = disposable;
+        }
+
+        @Override
+        public void onNext(String s) {
+            Log.d(TAG, "onNext=" + s);
+        }
+
+        @Override
+        public void onError(Throwable throwable) {
+            Log.d(TAG, "onError");
+
+        }
+
+        @Override
+        public void onComplete() {
+            Log.d(TAG, "onComplete");
+
+        }
+    });
+```
+
+### map
+
+一对一变换
+
+```java
+
+```
+
+### flatmap
+
+一对多、多对多变换
+
+```java
+
+```
+
+### intervalRange
+
+间隔触发
+
+```java
+/*
+start：起始数值
+count：发射数量
+initialDelay：延迟执行时间
+period：发射周期时间
+unit：时间单位
+scheduler：使用的线程策略
+*/
+public static Flowable<Long> intervalRange(long start, long count, long initialDelay, long period, TimeUnit unit, Scheduler scheduler)
+
+public static Flowable<Long> intervalRange(long start, long count, long initialDelay, long period, TimeUnit unit)
+
+// 从0-100，每个100毫秒刷新一次，刷新100次，在Android主线程
+Flowable.intervalRange(1, 100, 0, 100, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
+                .subscribe(aLong -> {
+                    Log.d(TAG, "   =" + (100-aLong) + "   " +  Thread.currentThread().getName());
+                });
+```
+
+
+
+
+
 ## 参考
 
 - [RxJava源码解析(三)-背压](https://yutiantina.github.io/2019/03/05/RxJava%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90(%E4%B8%89)-%E8%83%8C%E5%8E%8B/)

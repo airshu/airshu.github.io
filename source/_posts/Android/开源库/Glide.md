@@ -46,7 +46,7 @@ InternalCacheDiskCacheFactory（默认）
 ```java
 //缓存的键包括图片的宽、高、signature等参数
 EngineKey key = keyFactory.buildKey(model, signature, width, height, transformations,
-resourceClass, transcodeClass, options);
+resourceClass, transcodeClass, options)
 ```
 
 ### submit

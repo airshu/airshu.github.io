@@ -46,6 +46,23 @@ tags: Android
 ### 使用属性
 
 ```java
+
+
+xml中使用属性
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto" //自动查找
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+    <CustomView 
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:line_color=""
+    />
+</RelativeLayout>
+
 public class CustomView extends View {
 
     public DottedLineView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {

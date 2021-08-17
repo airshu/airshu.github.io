@@ -13,7 +13,14 @@ Hanlder系列目录：
 
 ## 概要
 
-Handler是Android子线程和主线程之间通信的一种机制。
+Handler是Android子线程和主线程之间通信的一种机制。像Qt等技术使用的也是类似的消息机制。
+
+我们站在设计者的角度思考，如果要自己搭建一套线程间通信会怎么做？
+
+首先应该有个消息队列queue，然后在线程中无线轮询，发现队列里面有数据了，就拿出来，调用其target的回调。Android就是这样来设计的，而Handler类只是一个
+辅助，它有消息和对象的引用，方便调用。HandlerThread呢，又帮我们封装了一个用于两个子线程的通信。它帮我们考虑到了异步调用的时间先后问题。
+
+在native层，还是基于pthread相关API的封装。
 
 使用Handler的原因是多个线程并发更新UI的同时保证线程安全。
 
@@ -45,6 +52,7 @@ Handler是Android子线程和主线程之间通信的一种机制。
 
 - 每个线程只有一个Looper
 - 一个Looper可以绑定多个线程的Handler（实现线程间通信）
+- 在Looper中有一个setMessageLogging方法，可以添加日志的监听，用于分析所有的消息
   
 
 ## 源码分析
@@ -286,7 +294,6 @@ public void dispatchMessage(@NonNull Message msg) {
 
 ![](./handler_native.png)
 
-采用管道的方式完成线程间通信
 
 
 
