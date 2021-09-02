@@ -1,6 +1,7 @@
 ---
 title: Java笔试题收集
 tags: Java
+toc: true
 ---
 
 

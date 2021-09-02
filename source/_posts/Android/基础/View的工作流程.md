@@ -7,6 +7,9 @@ toc: true
 DecorView是视图的顶级View，我们添加的布局文件是它的一个子布局，而ViewRootImpl则负责渲染视图，它调用了一个performTraveals方法使得ViewTree开始
 三大工作流程，然后使得View展现在我们面前。
 
+
+![](./绘制流程.png)
+
 ## 绘制的流程概要
 
 ![](./draw_1.jpeg)

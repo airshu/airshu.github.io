@@ -26,6 +26,12 @@ Fragment跟Activity的生命周期类似，不过只有在显示调用`addToBack
 
 系统会在片段首次绘制其界面时调用此方法。如要为片段绘制界面，从此方法中返回的 View 必须是片段布局的根视图。如果片段未提供界面，可以返回 null。
 
+我们创建视图的方法。
+
+***onViewCreated***
+
+onCrateView执行后立即执行，此时可以获取view
+
 ***onPause()***
 
 系统会将此方法作为用户离开片段的第一个信号（但并不总是意味着此片段会被销毁）进行调用。
@@ -35,13 +41,10 @@ Fragment跟Activity的生命周期类似，不过只有在显示调用`addToBack
 
 在片段已与 Activity 关联时进行调用（Activity 传递到此方法内）。
 
-***onCreateView()***
-
-调用它可创建与片段关联的视图层次结构。
 
 ***onActivityCreated()***
 
-当 Activity 的 onCreate() 方法已返回时进行调用。
+当 Activity 的 onCreate() 方法已返回时进行调用。此时可以进行fragment与activity的交换操作。
 
 ***onDestroyView()***
 
@@ -51,6 +54,21 @@ Fragment跟Activity的生命周期类似，不过只有在显示调用`addToBack
 
 在取消片段与 Activity 的关联时进行调用。
 
+
+### Activity和Fragment的生命周期
+
+![](./complete_android_fragment_lifecycle.png)
+
+
+### Activity, Fragment和FragmentManager生命周期
+
+![](./android-lifecycle-activity-to-fragments.png)
+
+
+
+**注意点**
+
+- 注意生命周期的对应，比如Eventbus的注册和取消注册
 
 
 ## 事务
@@ -78,6 +96,8 @@ Fragment跟Activity的生命周期类似，不过只有在显示调用`addToBack
 有几个注意点：
 
 - FragmentActivity和Fragment都有自己的FragmentManager
+
+
 
 ### 事务的操作
 
@@ -394,3 +414,4 @@ class MainActivity extends AppCompatActivity {
 
 - [https://developer.android.com/guide/components/fragments?hl=zh-cn](https://developer.android.com/guide/components/fragments?hl=zh-cn)
 - [https://developer.android.com/guide/fragments?hl=zh-cn](https://developer.android.com/guide/fragments?hl=zh-cn)
+- [https://github.com/xxv/android-lifecycle](https://github.com/xxv/android-lifecycle)

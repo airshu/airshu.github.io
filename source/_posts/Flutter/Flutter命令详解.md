@@ -150,6 +150,49 @@ flutter emulators --create Pixel_API_28 # 创建
 flutter format dartfile
 ```
 
+## run
+
+参考：[源码解读Flutter run机制](http://gityuan.com/2019/09/07/flutter_run/)
+
+1. flutter build apk：通过gradle来构建APK，由以下两部分组成：
+    - flutter build aot，分为如下两个核心过程，该过程详情见下一篇文章
+    - frontend_server前端编译器生成kernel文件
+    - gen_snapshot来编译成AOT产物 - flutter build bundle，将相关文件放入flutter_assets目录
+2. 通过adb install来安装APK
+3. 通过adb am start来启动应用
+
+
+```shell
+# profile方式运行，对于Profile模式，启动Observatory调试器，可通过127.0.0.1:xxx地址，打开网页版性能分析工具Observatory，其中包含有timeline工具，类似于Android的systrace。
+flutter run --profile --disable-service-auth-codes --local-engine-src-path=<FLUTTER_ROOT>/engine/src --local-engine android_profile
+
+# 关闭鉴权
+flutter run --disable-service-auth-codes
+
+```
+
+
+参数 |	说明
+--- | ---
+–debug |	调试版本，这是默认模式
+–profile| 	profile版本
+–release |	发布版本
+–target-platform| 	指定app运行的目标平台，比如android-arm/android-arm64，iOS平台不可用
+–target=| 	主入口，默认值lib/main.dart
+–observatory-port| 	指定observatory端口，默认为0（随机生成可用端口）
+–disable-service-auth-codes| 	关闭observatory服务鉴权
+–trace-startup| 	跟踪应用启动/退出，并保存trace到文件
+–trace-skia |	跟踪skia，用于调试GPU线程
+–trace-systrace| 	转为systrace，适用于Android/Fuchsia
+–dump-skp-on-shader-compilation| 	转储触发着色器编译的skp，默认关闭
+–verbose-system-logs |	包括来自flutter引擎的详细日志记录
+–enable-software-rendering |	开启软件渲染，默认采用OpenGL或者Vulkan
+–skia-deterministic-rendering |	确定性采用skia渲染
+–no-hot |	可关闭热重载，默认是开启
+–start-paused| 	应用启动后暂停
+–local-engine-src-path |	指定本地引擎源码路径，比如xxx/engine/src
+–local-engine |	指定本地引擎类型，比如android_profile
+
 ## verion
 
 列出或者切换flutter版本,默认是列出所有版本

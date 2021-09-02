@@ -143,7 +143,7 @@ backtrace:
 
 ```
 查看动态库的符号表
-nm -D libName.so | grep symbel symbolName
+nm -D libName.so
 ```
 
 #### **addr2line**
@@ -231,3 +231,4 @@ native异常日志文件的格式
 - [https://github.com/iqiyi/xCrash](https://github.com/iqiyi/xCrash)
 - [https://source.android.com/devices/tech/debug](https://source.android.com/devices/tech/debug)
 - [xCrash日志文件格式](https://blog.csdn.net/cxmfzu/article/details/102624295)
+- [介绍addr2line调试命令](http://gityuan.com/2017/09/02/addr2line/)
