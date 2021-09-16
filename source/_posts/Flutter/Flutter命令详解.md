@@ -67,6 +67,7 @@ flutter analyze --no-pub
 
 ```shell
 flutter build apk
+flutter build apk --debug
 
 flutter build appbundle
 ```

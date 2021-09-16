@@ -65,9 +65,18 @@ Flutter引擎启动过程，会创建UI/GPU/IO这3个线程，会为这些线程
 
 ## 虚拟机工作
 
+
+
 Flutter引擎启动会创建Dart虚拟机以及Root Isolate。DartVM自身也拥有自己的Isolate，完全由虚拟机自己管理的，Flutter引擎也无法直接访问。Dart的UI相关操作，是由Root Isolate通过Dart的C++调用，或者是发送消息通知的方式，将UI渲染相关的任务提交到UIRunner执行，这样就可以跟Flutter引擎相关模块进行交互。
 
 何为Isolate，从字面上理解是“隔离”，isolate之间是逻辑隔离的。Isolate中的代码也是按顺序执行，因为Dart没有共享内存的并发，没有竞争的可能性，故不需要加锁，也没有死锁风险。对于Dart程序的并发则需要依赖多个isolate来实现。
+
+isolate是Dart对actor并发模式的实现。运行中的Dart程序由一个或多个actor组成，这些actor也就是Dart概念里面的isolate。isolate是有自己的内存和单线程控制的运行实体。isolate本身的意思是“隔离”，因为isolate之间的内存在逻辑上是隔离的。isolate中的代码是按顺序执行的，任何Dart程序的并发都是运行多个isolate的结果。
+
+由于isolate之间没有共享内存，所以他们之间的通信唯一方式只能是通过Port进行，而且Dart中的消息传递总是异步的。
+
+
+
 
 ![](./15_isolate_heap.png)
 
@@ -122,12 +131,15 @@ Flutter框架提供了UI的控件支持，对于APP除了UI还有其他依赖于
 
 Platform Channel用于Flutter与Native之间的消息传递，整个过程的消息与响应是异步执行，不会阻塞用户界面。Flutter引擎框架已完成桥接的通道，这样开发者只需在Native层编写定制的Android/iOS代码，即可在Dart代码中直接调用，这也就是Flutter Plugin插件的一种形式。
 
-## 环境搭建
+## Engine环境搭建
 
-[官方文档](https://github.com/flutter/flutter/wiki/Setting-up-the-Framework-development-environment)
+- [官方文档](https://github.com/flutter/flutter/wiki/Setting-up-the-Framework-development-environment)
+- [https://github.com/flutter/flutter/wiki/Compiling-the-engine](https://github.com/flutter/flutter/wiki/Compiling-the-engine)
+- [https://github.com/flutter/flutter/wiki/The-flutter-tool](https://github.com/flutter/flutter/wiki/The-flutter-tool)
 
 
 ## 参考
 
 - [Introduction to Dart VM](https://mrale.ph/dartvm/)
 - [Flutter 跨平台演进及架构开篇](http://gityuan.com/flutter/)
+- [Flutter System Architecture](https://docs.google.com/presentation/d/1cw7A4HbvM_Abv320rVgPVGiUP2msVs7tfGbkgdrTy0I/edit#slide=id.gbb3c3233b_0_187)
