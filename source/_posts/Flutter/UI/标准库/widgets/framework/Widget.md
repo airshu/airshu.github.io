@@ -82,7 +82,6 @@ class MyChildWidget extends StatelessWidget {
    }
 }
 
-
 ```
 
 ### StatelessWidget、StatefulWidget选择策略：
