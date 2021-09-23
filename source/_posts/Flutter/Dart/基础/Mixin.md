@@ -1,7 +1,7 @@
 ---
 title: Mixin
 toc: true
-tags: Flutter
+tags: Dart
 ---
 
 
