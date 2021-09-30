@@ -16,6 +16,7 @@ AppBar通常用于Scaffold.appBar属性，它将应用栏固定高度的小部�
 ## 常用属性
 
 - leading → Widget - 在标题前面显示的一个控件，在首页通常显示应用的 logo；在其他界面通常显示为返回按钮。
+- automaticallyImplyLeading： 隐藏leading
 - title → Widget - Toolbar 中主要内容，通常显示为当前界面的标题文字。
 - actions → List - 一个 Widget 列表，代表 Toolbar 中所显示的菜单，对于常用的菜单，通常使用 IconButton 来表示；对于不常用的菜单通常使用 PopupMenuButton 来显示为三个点，点击后弹出二级菜单。
 - bottom → PreferredSizeWidget - 一个 AppBarBottomWidget 对象，通常是 TabBar。用来在 Toolbar 标题下面显示一个 Tab 导航栏。
@@ -27,6 +28,7 @@ AppBar通常用于Scaffold.appBar属性，它将应用栏固定高度的小部�
 - textTheme → TextTheme - Appbar 上的文字样式。
 - centerTitle → bool - 标题是否居中显示，默认值根据不同的操作系统，显示方式不一样。
 - toolbarOpacity → double
+
 
 
 
