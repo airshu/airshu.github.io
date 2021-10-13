@@ -121,3 +121,4 @@ factory StreamTransformer.fromHandlers({
 
 - [Dart 语言异步编程之Stream](https://cloud.tencent.com/developer/article/1510821)
 - [在 Dart 里使用 Stream](https://dart.cn/articles/libraries/creating-streams)
+- [全面深入理解Stream](https://wizardforcel.gitbooks.io/gsyflutterbook/content/Flutter-11.html)
