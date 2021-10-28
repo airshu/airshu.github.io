@@ -29,10 +29,11 @@ Stream 也有同步流和异步流之分。它们的区别在于同步流会在�
 **相关类：**
 
 - Stream
-- StreamController
+- StreamController：流的控制器
 - StreamSink：事件输入口
 - StreamSubscription：用于管理事件的注册、暂停与取消等
 - StreamTransformer
+- MultiStreamController
 
 ## 创建Stream
 
