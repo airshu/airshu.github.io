@@ -63,7 +63,7 @@ toc: true
     Host:*
     Port:443
 
-### 证书配置
+### 证书配置(不用设置)
 
 点击 `Help` -> `SSL Proxying` -> `Install Charles Root Certificate` -> `安装证书`
 
