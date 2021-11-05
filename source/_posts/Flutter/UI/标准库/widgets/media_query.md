@@ -1,5 +1,5 @@
 ---
-title: MediaQuery、MediaQueryData
+title: media_query
 toc: true
 tags: Flutter
 ---
@@ -28,7 +28,6 @@ var height = deviceData.size.height;//返回context所在的窗口高度
 
 
 ## MediaQueryData
-
 
 
 ```
