@@ -160,7 +160,7 @@ Platform Channel用于Flutter与Native之间的消息传递，整个过程的消
 		- flutter_driver:
 		- flutter_goldens:
 		- flutter_goldens_client:
-		- flutter_localizations:
+		- flutter_localizations:国际化相关
 		- flutter_test:
 		- flutter_tools:
 		- flutter_web_plugins:
