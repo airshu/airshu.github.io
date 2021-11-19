@@ -138,6 +138,92 @@ Platform Channel用于Flutter与Native之间的消息传递，整个过程的消
 - [https://github.com/flutter/flutter/wiki/The-flutter-tool](https://github.com/flutter/flutter/wiki/The-flutter-tool)
 
 
+## 源码目录结构
+
+- flutter	根目录
+	- packages：
+		- flutter：
+			- lib：
+				- src：标准库的源码文件夹
+					- animation：动画库
+					- cupertino：iOS风格UI库
+					- foundation：基础
+					- gestures：手势识别
+					- material：Android风格UI库
+					- painting：自绘
+					- physics：移动的物理效果，Android、iOS不一样
+					- rendering：渲染相关
+					- scheduler：调度相关，底层传入数据给到Flutter进行操作
+					- semantics：语义化的东西？
+					- services
+					- widgets：UI库
+		- flutter_driver:
+		- flutter_goldens:
+		- flutter_goldens_client:
+		- flutter_localizations:国际化相关
+		- flutter_test:
+		- flutter_tools:
+		- flutter_web_plugins:
+		- fuchsia_remote_debug_protocol:
+		- integration_test:
+	- bin:
+		- internal
+		- cache:
+			- artifacts:
+				- engine:
+					- android-arm:
+					- android-arm64:
+					- android-arm64-profile:
+					- android-arm64-release:
+					- android-arm-profile:
+					- android-arm-release:
+					- android-x64:
+					- android-x64-profile:
+					- android-x86:
+					- android-x86-jit-release:
+					- common:
+					- windows-x64:
+				- gradle_wrapper:
+				- ios-deploy:
+				- libimobiledevice:
+				- libplist:
+				- material_fonts:
+				- openssl:
+				- usbmuxd:
+			- dart-sdk:
+			- downloads:
+			- flutter_web_sdk:
+			- pkg:
+				- sky_engine:
+		- mingit:
+			- cmd
+			- etc
+			- mingw64
+			- usr
+			- dart：dart命令
+			- dart.bat
+			- flutter:linux相关平台的命令
+			- flutter.bat：windows上的命令
+		- dev:Flutter团队开发框架时用到的工具
+			- automated_tests:
+			- benchmarks:
+			- bots:
+			- ci:
+			- conductor:
+			- customer_testing:
+			- devicelab:
+			- docs:
+			- forbidden_from_release_tests:
+			- integration_tests:
+			- manual_tests:
+			- missing_dependency_tests:
+			- snippets:
+			- tools:
+			- tracing_tests:
+	- examples
+
+
+
 ## 参考
 
 - [Introduction to Dart VM](https://mrale.ph/dartvm/)
