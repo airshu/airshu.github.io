@@ -10,35 +10,35 @@ tags: Flutter
 
 AppBar({
 Key? key,
-this.leading,
-this.automaticallyImplyLeading = true,
-this.title,
-this.actions,
-this.flexibleSpace,
-this.bottom,
-this.elevation,
+this.leading, //widget类型，即可任意设计样式，表示左侧leading区域，通常为icon，如返回icon
+this.automaticallyImplyLeading = true, // 如果leading!=null，该属性不生效；如果leading==null且为true，左侧leading区域留白；如果leading==null且为false，左侧leading区域扩展给title区域使用
+this.title,// 如果leading!=null，该属性不生效；如果leading==null且为true，左侧leading区域留白；如果leading==null且为false，左侧leading区域扩展给title区域使用
+this.actions,// List<Widget>类型，即可任意设计样式，表示右侧actions区域，可放置多个widget，通常为icon，如搜索icon、菜单icon
+this.flexibleSpace, //可缩放区域，吸顶后被title挡住
+this.bottom,//PreferredSizeWidget类型，appbar底部区域，通常为Tab控件
+this.elevation,//PreferredSizeWidget类型，appbar底部区域，通常为Tab控件
 this.shadowColor,
-this.shape,
+this.shape, //描边
 this.backgroundColor,
 this.foregroundColor,
 @Deprecated(
   'This property is no longer used, please use systemOverlayStyle instead. '
   'This feature was deprecated after v2.4.0-0.0.pre.',
 )
-this.brightness,
-this.iconTheme,
+this.brightness,//Brightness类型，表示当前appbar主题是亮或暗色调，有dark和light两个值，可影响系统状态栏的图标颜色
+this.iconTheme, //IconThemeData类型，可影响包括leading、title、actions中icon的颜色、透明度，及leading中的icon大小。
 this.actionsIconTheme,
 @Deprecated(
   'This property is no longer used, please use toolbarTextStyle and titleTextStyle instead. '
   'This feature was deprecated after v2.4.0-0.0.pre.',
 )
-this.textTheme,
-this.primary = true,
-this.centerTitle,
+this.textTheme,// TextTheme类型，文本主题样式，可设置appbar中文本的许多样式，如字体大小、颜色、前景色、背景色等...
+this.primary = true,//true时，appBar会以系统状态栏高度为间距显示在下方；false时，会和状态栏重叠，相当于全屏显示。
+this.centerTitle,// boolean 类型，表示标题是否居中显示
 this.excludeHeaderSemantics = false,
 this.titleSpacing,
-this.toolbarOpacity = 1.0,
-this.bottomOpacity = 1.0,
+this.toolbarOpacity = 1.0,//toolbar区域透明度
+this.bottomOpacity = 1.0,//bottom区域透明度
 this.toolbarHeight,
 this.leadingWidth,
 @Deprecated(

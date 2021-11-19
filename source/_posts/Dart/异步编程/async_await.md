@@ -30,3 +30,8 @@ String lookUpVersion() => '1.0.0';
 
 Future<String> lookUpVersion() async => '1.0.0';
 ```
+
+
+## 参考
+
+- [sync* 和 async* 、yield 和yield* 、async 和 await](https://blog.csdn.net/qq_30447263/article/details/107248522)
