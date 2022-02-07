@@ -146,11 +146,27 @@ open /Applications/QQ.app
 
 ### Commander One（访达替代品）
 
+### KeyCue（显示快捷键）
+
 
 ## Mac常用命令
 
 
-```
+```shell
+
+# finder中标题栏显示全路径
+~ defaults write com.apple.finder _FXShowPosixPathInTitle -bool TRUE;killall Finder
+# finder中标题栏只显示文件夹名字
+~ defaults delete com.apple.finder _FXShowPosixPathInTitle;killall Finder
+
+
+# 关闭声音
+$ sudo nvram SystemAudioVolume=%80
+# 如果想要恢复正常的开机声音，只要在终端中再次输入如下命令即可：
+$ sudo nvram -d SystemAudioVolume
+
+
+
 lsof -i:port  查询端口对应的进程id
 kill pid  杀死进程
 ```

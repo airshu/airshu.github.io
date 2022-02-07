@@ -26,6 +26,13 @@ brew install jenv
 
 ```shell
 
+运行以下命令添加环境变量
+export PATH="$HOME/.jenv/bin:$PATH" eval "$(jenv init -)"
+
+添加JAVA_HOME，每次切换后只需要source一下，就会更新此变量
+export JAVA_HOME="$HOME/.jenv/versions/`jenv version-name`"
+
+
 # 添加java版本
 jenv add /Library/Java/JavaVirtualMachines/jdk1.7.0_80.jdk/Contents/Home
 
@@ -61,3 +68,4 @@ jenv version
 
 - [Java8相关环境下载地址](https://www.oracle.com/java/technologies/javase/javase8-archive-downloads.html)
 - [https://www.jenv.be/](https://www.jenv.be/)
+- [https://github.com/jenv/jenv/issues/44](https://github.com/jenv/jenv/issues/44)
