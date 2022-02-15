@@ -154,3 +154,14 @@ git push 远程分支 本地分支    //提交分支
 ```
 
 
+## SourceTree
+
+### Could not read from remote repository解决办法
+
+```shell
+cd ~/.ssh
+# 确认将公钥添加到服务器
+# 验证
+ssh -T git@github.com
+ssh-add id-rsa
+```
