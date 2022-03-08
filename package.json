@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "private": true,
   "hexo": {
-    "version": "6.0.0"
+    "version": "5.4.0"
   },
   "scripts": {
     "build": "hexo clean && hexo g && gulp",
@@ -14,11 +14,11 @@
     "push-theme": "git subtree push --prefix=themes/Wikitten Wikitten master --squash"
   },
   "dependencies": {
-    "gulp": "^4.0.2",
+    "gulp": "^3.9.1",
     "gulp-clean-css": "^4.3.0",
     "gulp-htmlclean": "^2.7.22",
     "gulp-htmlmin": "^5.0.1",
-    "gulp-imagemin": "^2.4.0",
+    "gulp-imagemin": "^4.1.0",
     "gulp-uglify": "^3.0.2",
     "hexo": "^6.0.0",
     "hexo-autonofollow": "^1.0.1",
@@ -28,13 +28,13 @@
     "hexo-generator-category": "^1.0.0",
     "hexo-generator-feed": "^3.0.0",
     "hexo-generator-index": "^2.0.0",
-    "hexo-generator-json-content": "^1.4.0",
-    "hexo-generator-sitemap": "^2.1.0",
+    "hexo-generator-json-content": "^4.2.3",
+    "hexo-generator-sitemap": "^2.2.0",
     "hexo-generator-tag": "^1.0.0",
-    "hexo-renderer-ejs": "^1.0.0",
+    "hexo-renderer-ejs": "^2.0.0",
     "hexo-renderer-marked": "^5.0.0",
     "hexo-renderer-stylus": "^2.0.1",
-    "hexo-server": "^2.0.0",
-    "minimatch": "^3.0.4"
+    "hexo-server": "^3.0.0",
+    "minimatch": "^5.0.0"
   }
 }
