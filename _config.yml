@@ -123,5 +123,5 @@ theme: Wikitten
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: git@github.com:shjlone/blog
+  repository: git@github.com:shjlone/shjlone.github.io.git
   branch: gh-pages
