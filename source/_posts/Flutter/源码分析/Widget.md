@@ -10,6 +10,11 @@ Flutter中的一切都是Widget。关于Flutter的UI绘制原理可以参考[纷
 
 简要概括就是，我们写各种widget，Flutter框架帮我们解析成element树，最终转换成renderobject树，再通过底层skia绘制。
 
+![](./widget_1.png)
+
+
+
+
 ### context
 
 如果 widget `A` 拥有子 widget，那么 widget `A` 的 context 将成为其直接关联子 context 的父 context。

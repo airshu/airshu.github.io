@@ -237,5 +237,23 @@ flutter screenshot -o /home/work
 
 ## pub
 
+```shell
+flutter pub get #获取依赖
+
+flutter pub deps    #用于显示当前Package使用的所有依赖项
+
+flutter pub cache add/clear/repair  #管理本地Package缓存
+
+flutter pub upgrade #检索当前Package所依赖的其他Package的最新版本，如果pubspec.lock存在，则忽略其保存的版本并以pubspec文件中指定的最新版本为主。
+
+
+
+pub run 命令可以调用当前 Package 或当前 Package 所依赖的其它 Package 中的 Dart 脚本。
+
+pub global 命令可以让你使用那些可以全局可用的 Package。
+
+pub publish #发布
+
+```
 
 
