@@ -165,3 +165,39 @@ cd ~/.ssh
 ssh -T git@github.com
 ssh-add id-rsa
 ```
+
+
+## Sourcetree使用
+
+### Permission denied错误
+
+```
+git@github.com: Permission denied (publickey).
+
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+
+and the repository exists.
+```
+
+Mac每次重启之后就无法在Sourcetree连接服务器了，原因是私钥没有添加到钥匙链中，需要执行以下命令：
+
+```shell
+#ssh-add参数
+-D：删除ssh-agent中的所有密钥.
+-d：从ssh-agent中的删除密钥
+-e pkcs11：删除PKCS#11共享库pkcs1提供的钥匙。
+-s pkcs11：添加PKCS#11共享库pkcs1提供的钥匙。
+-L：显示ssh-agent中的公钥
+-l：显示ssh-agent中的密钥
+-t life：对加载的密钥设置超时时间，超时ssh-agent将自动卸载密钥
+-X：对ssh-agent进行解锁
+-x：对ssh-agent进行加锁
+
+ssh-add -K !/.ssh/id_rsa
+
+#查看ssh-agent中的密钥
+ssh-add -l
+
+```
