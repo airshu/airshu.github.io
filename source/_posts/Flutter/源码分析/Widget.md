@@ -12,7 +12,9 @@ Flutter中的一切都是Widget。关于Flutter的UI绘制原理可以参考[纷
 
 ![](./widget_1.png)
 
-
+- Component Widget：组合类Widget，这类Widget都继承StatelessWidget或StatefulWidget；
+- Render Widget：渲染类Widget，参与layout、paint流程，有与之对应的Render Object；
+- Proxy Widget：代理类Widget，提供一些附加的功能，比如InheritedWidget用于共享信息，ParentDataWidget用于为其他Widget提供信息；
 
 
 ### context
@@ -29,6 +31,24 @@ Widget主要有两种类型：
 - StatefulWidget：根据状态会发生变化
 
 感觉这样设计还是处于性能考虑，当某些控件不需要改变UI时，使用StatelessWidget就不会重绘。
+
+## Widget
+
+```dart
+abstract class Widget extends DiagnosticableTree {
+
+   final Key? key;//标识
+
+   Element createElement();//每个Widget对应一个Element
+
+   /// 是否需要更新，根据runtimeType和key来判断
+   static bool canUpdate(Widget oldWidget, Widget newWidget) {
+    return oldWidget.runtimeType == newWidget.runtimeType
+        && oldWidget.key == newWidget.key;
+  }
+
+}
+```
 
 ## StatelessWidget
 
@@ -104,6 +124,7 @@ class MyChildWidget extends StatelessWidget {
 InheritedWidget 组件的所有子组件都可以直接通过 BuildContext.dependOnInheritedWidgetOfExactType 获取数据。
 
 updateShouldNotify方法来决定是否通知子树中依赖data的Widget。 如果返回true，则子树中依赖(build函数中有调用)本widget的子widget的`state.didChangeDependencies`会被调用
+
 
 
 ## 参考

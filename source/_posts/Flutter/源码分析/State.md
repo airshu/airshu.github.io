@@ -7,12 +7,15 @@ tags: Flutter
 
 ## 概述
 
+State表示对应的StatefulElement需要保存的信息。
+
+
 ## 生命周期
 
 ![](./state_lifecycle.png)
 
 
-## 常用属性
+## 常用属性 
 
 ### widget
   
@@ -31,6 +34,8 @@ StatefulWidget对应的BuildContext，作用同StatelessWidget的BuildContext，
 如状态初始化、订阅子树的事件通知等。不能在该回调中调用BuildContext.dependOnInheritedWidgetOfExactType
 （该方法用于在Widget树上获取离当前widget最近的一个父级InheritFromWidget，关于InheritedWidget我们将在后面章节介绍），原因是在初始化完成后，
 Widget树中的InheritFromWidget也可能会发生变化，所以正确的做法应该在build()方法或didChangeDependencies()中调用它。
+
+Element.mount--->Element._firstBuild--->Element.rebuild--->state.initState()
 
 
 ### didChangeDependencies()
