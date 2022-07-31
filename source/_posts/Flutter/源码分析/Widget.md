@@ -37,7 +37,7 @@ Widget主要有两种类型：
 ```dart
 abstract class Widget extends DiagnosticableTree {
 
-   final Key? key;//标识
+   final Key? key;//标识 https://medium.com/flutter/keys-what-are-they-good-for-13cb51742e7d
 
    Element createElement();//每个Widget对应一个Element
 

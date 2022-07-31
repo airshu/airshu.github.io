@@ -12,20 +12,15 @@ Widget是UI元素的配置数据，Element代表屏幕显示元素。主要作�
 - 维护这棵Element Tree，根据Widget Tree的变化来更新Element Tree，包括：节点的插入、更新、删除、移动等；
 - 将Widget和RenderObject关联到Element Tree上。
 
-
-
 ![](./element_1.png)
 
 - ComponentElement：用来组合其他更基础的Element，开发时常用到的StatelessWidget和StatefulWidget相对应的Element：StatelessElement和StatefulElement。其子节点对应的Widget需要通过build方法创建，该类型Element只有一个子节点。
-- RenderObjectElement：渲染类Element，对应Renderer Widget，是框架最核心的Element。RenderObjectElement主要包括LeafRenderObjectElement，SingleChildRenderObjectElement，和MultiChildRenderObjectElement。     
-    - LeafRenderObjectElement对应的Widget是LeafRenderObjectWidget，没有子节点；
-    - SingleChildRenderObjectElement对应的Widget是SingleChildRenderObjectWidget，有一个子节点；
-    - MultiChildRenderObjectElement对应的Widget是MultiChildRenderObjecWidget，有多个子节点。
-
-
+- RenderObjectElement：渲染类Element，对应Renderer Widget，是框架最核心的Element。RenderObjectElement主要包括LeafRenderObjectElement，SingleChildRenderObjectElement，和MultiChildRenderObjectElement。
+  - LeafRenderObjectElement对应的Widget是LeafRenderObjectWidget，没有子节点；
+  - SingleChildRenderObjectElement对应的Widget是SingleChildRenderObjectWidget，有一个子节点；
+  - MultiChildRenderObjectElement对应的Widget是MultiChildRenderObjecWidget，有多个子节点。
 
 ![](./element_9.png)
-
 
 ## 重要属性和方法
 
@@ -51,6 +46,19 @@ class InheritedElement extends ProxyElement {
 }
 
 abstract class Element extends DiagnosticableTree implements BuildContext {
+
+
+  // 槽，用来存储一些额外信息，比如坐标
+  Object? get slot => _slot;
+  Object? _slot;
+
+  // element tree上的深度
+  late int _depth;
+
+  // 开发人员需要处理的Widget
+  Widget _widget;
+
+  BuildOwner _owner;//用来处理Element的对象，全局一个，将element tree转换成renderobject tree
 
   @override
   InheritedWidget dependOnInheritedElement(InheritedElement ancestor, { Object? aspect }) {
@@ -84,7 +92,6 @@ abstract class Element extends DiagnosticableTree implements BuildContext {
 从根节点到子节点，以runtimeType作为key，保存最新的Element对象。getElementForInheritedWidgetOfExactType方法可以通过类型查找离自己最近的类型的对象。
 dependOnInheritedWidgetOfExactType方法会注册依赖，当InheritedWidget发生变化时就会更新依赖它的子组件。
 
-
 ### updateChild
 
 ```dart
@@ -99,9 +106,7 @@ Element? updateChild(Element? child, Widget? newWidget, Object? newSlot) { }
 
 ```
 
-
 ### update
-
 
 #### Element
 
@@ -110,20 +115,18 @@ void update(covariant Widget newWidget) {
     _widget = newWidget;
 }
 
-  void rebuild() {
-    if (_lifecycleState != _ElementLifecycle.active || !_dirty)
-      return;
-    Element? debugPreviousBuildTarget;
-    performRebuild();//ComponentElement中调用build、updateChild
-  }
+void rebuild() {
+  if (_lifecycleState != _ElementLifecycle.active || !_dirty)
+    return;
+  Element? debugPreviousBuildTarget;
+  performRebuild();//ComponentElement中调用build、updateChild
+}
 
-  Element? updateChild(Element? child, Widget? newWidget, Object? newSlot) {}
+Element? updateChild(Element? child, Widget? newWidget, Object? newSlot) {}
 
 ```
 
-
 #### StatelessElement
-
 
 ```dart
   @override
@@ -137,10 +140,15 @@ void update(covariant Widget newWidget) {
 
 rebuild调用performRebuild，调用当前build方法和updateChild。
 
-
 #### StatefulElement
 
 ```dart
+
+class StatefulElement extends ComponentElement {
+
+  //开发者操作的对象，同样有相应生命周期，参考_StateLifecycle
+  State<StatefulWidget>? _state;
+
   @override
   void update(StatefulWidget newWidget) {
     super.update(newWidget);
@@ -160,6 +168,8 @@ rebuild调用performRebuild，调用当前build方法和updateChild。
     }
     rebuild();
   }
+}
+  
 ```
 
 处理State：
@@ -190,7 +200,6 @@ rebuild调用performRebuild，调用当前build方法和updateChild。
 ```
 
 update方法会通知关联对象Widget有更新。不同子类的notifyClients实现不同。
-
 
 #### RenderObjectElement
 
@@ -237,7 +246,6 @@ update方法会通知关联对象Widget有更新。不同子类的notifyClients�
 
 updateChildren中处理子节点的插入、移动、更新、删除等操作。
 
-
 ### inflateWidget
 
 ```dart
@@ -282,7 +290,6 @@ updateChildren中处理子节点的插入、移动、更新、删除等操作。
 
 ```
 
-
 #### ComponentElement
 
 ```dart
@@ -304,7 +311,6 @@ updateChildren中处理子节点的插入、移动、更新、删除等操作。
 ```
 
 组合型 Element 在挂载时会执行_firstBuild->rebuild操作。
-
 
 #### RenderObjectElement
 
@@ -329,7 +335,6 @@ void mount(Element parent, dynamic newSlot) {
 }
 ```
 
-
 #### MultiChildRenderObjectElement
 
 ```dart
@@ -347,10 +352,7 @@ void mount(Element parent, dynamic newSlot) {
 
 对每个子节点调用inflateWidget。
 
-
 ### markNeedsBuild
-
-
 
 ```dart
 void markNeedsBuild() {
@@ -372,7 +374,6 @@ void markNeedsBuild() {
 - Element.didChangeDependencies：
 - StatefulElement.activate
 
-
 ### rebuild
 
 ```dart
@@ -384,12 +385,12 @@ void rebuild() {
 }
 
 ```
+
 活跃的或脏节点会执行performRebuild，以下场景会调用rebuild：
 
 - 对于dirty element，在新一帧绘制过程中由BuildOwner.buildScope
 - 在element挂载时，由Element.mount调用
 - 在update方法内被调用
-
 
 ### performRebuild
 
@@ -406,7 +407,6 @@ void performRebuild() {
 
 组合型Element，先build自己，再更新子节点
 
-
 #### RenderObjectElement
 
 ```dart
@@ -416,9 +416,7 @@ void performRebuild() {
 }
 ```
 
-
 ## 生命周期
-
 
 Element有4种状态：initial，active，inactive，defunct。其对应的意义如下：
 
@@ -430,7 +428,6 @@ Element有4种状态：initial，active，inactive，defunct。其对应的意�
 ![](./element_2.png)
 
 ## ComponentElement
-
 
 ### 创建
 
@@ -444,9 +441,7 @@ Element有4种状态：initial，active，inactive，defunct。其对应的意�
 
 ![](./element_5.jpg)
 
-
 ## RenderObjectElement
-
 
 ### 创建
 
@@ -461,6 +456,9 @@ Element有4种状态：initial，active，inactive，defunct。其对应的意�
 ![](./element_8.jpg)
 
 
+## 总结
+
+Element继承自BuildContext，所以我们在平常使用的context其实就是Element。各种of方法其实就是操作Element树来获取相应对象。
 
 ## 参考
 

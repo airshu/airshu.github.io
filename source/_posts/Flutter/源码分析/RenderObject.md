@@ -8,7 +8,7 @@ tags: Flutter
 ## 概念
 
 
-RenderObject表示渲染树的一个对象，负责真正的渲染工作，比如基本布局和绘制。但并没有定义子节点模型，也没有定义坐标系统和布局协议。这些功能由其子类实现。
+RenderObject表示渲染树的一个对象，负责真正的渲染工作，比如基本布局和绘制。但并没有定义子节点模型，也没有定义坐标系统和布局协议，这些功能由其子类实现。
 
 **作用：**
 
@@ -28,7 +28,18 @@ RenderObject拥有一个parent和parentData插槽（slot）：
 - isRepaintBoundary：绘制边界点，单独的一层渲染，提升性能
 - needsCompositing：
 
+### Dirty RenderObjects
+
+Render Object 有4种`Dirty State`需要PipelineOwner维护：
+
+- Needing Layout：Render Object需要重新layout
+- Needing Compositing Bits Update：Render Object合成标志位有变化
+- Needing Paint：Render Object需要重新绘制
+- Needing Semantice：Render Object辅助信息有变化
+
 ### 核心函数比较
+
+![](./RendObject_2.png)
 
 |作用|Flutter RenderObject|	Android View|
 |---|---|---|
@@ -202,3 +213,9 @@ bool hitTest(BoxHitTestResult result, { @required Offset position }) {
 ```
 
 如果点击事件位置处于RenderObject之内，如果在其内，并且hitTestSelf或者hitTestChildren返回true，则表示RenderObject通过了命中测试，需要响应事件，此时需要将被点击的RenderObject加入BoxHitTestResult列表，同时点击事件不再向下传递。否则认为没有通过命中测试，事件继续向下传递。其中，hitTestSelf函数表示节点是否通过命中测试，hitTestChildren表示子节点是否通过命中测试。
+
+
+
+## 参考
+
+- [深入浅出 Flutter Framework 之 RenderObject](https://zxfcumtcs.github.io/2021/03/27/deepinto-flutter-renderobject/)

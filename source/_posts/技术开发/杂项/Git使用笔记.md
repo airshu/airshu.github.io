@@ -22,8 +22,8 @@ git clone git@github.com:xxx/gitskills.git #克隆仓库
 
 #checkout 检查工作目录代码与本地仓库中的代码的差异
 git checkout -b dev #创建并切换分支，相当于下面的两句
-	git branch experimental     #创建分支
-	git checkout experimental #切换到分支
+git branch experimental     #创建分支
+git checkout experimental #切换到分支
 
 
 
@@ -45,7 +45,7 @@ git remote rename pb paul #重名远程仓库 本地也会跟着修改
 
 #git push -u <远程仓库名字> <远程仓库的某一分支名字>
 git push -u test mater  #将本地仓库的变更推送远程仓库的master分支
-git push origin 标签名 推送标签到远程仓库
+git push origin 标签名 #推送标签到远程仓库
 git push origin --tags #推送所有标签到远程仓库
 git push origin :refs/tags/标签名 #从远程仓库中删除标签
 git push origin --delete <branchname>     #删除远程分支
@@ -77,6 +77,7 @@ git tag 标签名 commit_id #对某一提交记录打标签
 git tag -a 标签名 -m '描述' #创建新标签并增加备注
 git show 标签名 #查看标签信息
 git tag -d 标签名 #删除本地标签
+
 
 #git rm提交删除文件的变更到暂存区
 

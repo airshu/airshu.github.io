@@ -50,19 +50,24 @@ answer = "no " 这样是错误的
 
 **字符串模板**
 
+```kotlin
     $name
     ${name}
+```
+
 
 **类**
 
+```kotlin
     class Person(val name:String)
 
     class Person(val name:String, var isMarried:Boolean)
-
+```
 
 
 **自定义访问器**
 
+```kotlin
     class Rectangle(val height:Int, val width:Int) {
         val isSquare:Boolean
             get() {
@@ -71,11 +76,13 @@ answer = "no " 这样是错误的
         //或者
         get() = height == width
     }
+```
 
 包层级结构不需要遵守目录层级结构
 
 **枚举**
 
+```kotlin
     enum class Color(val r:Int, val g:Int, val b:Int) {
     RED(255,0,0),GREEN(0,255,0);
 
@@ -89,7 +96,7 @@ answer = "no " 这样是错误的
             Color.RED -> "Richard"
             Color.GREEN -> "Gave"
         }
-
+```
 
 
 @JvmOverloads， 会生成Java重载函数
@@ -114,7 +121,7 @@ lateinit
 
 **object**
 
-定义一个类并同事创建一个实例，使用场景：
+定义一个类并同时创建一个实例，使用场景：
 
 - 对象声明是定义单例的一种方式
 - 伴生对象可以持有工厂方法和其他与整个类相关，但在调用时并不依赖类实例的方法。
@@ -180,27 +187,31 @@ apply
 类型系统
 
 可空性
-
+```kotlin
     fun strLen(s:String) = s.length
     fun strLen(s:String?) = s.length
+```
 
 安全调用运算符 ?.，只要链式中一个值为null，则整个表达式都返回null
 
+```kotlin
     s?.toUpperCase()
 
     val testStr : String? = null
     val result = testStr?.length?.plus(5)?.minus(10)
     println(result)
+```
 
 ?:
 
 当一个函数有返回值时，如果方法中的代码使用?.去返回一个值，那么方法的返回值的类型后面也要加上?符号
 
+```kotlin
     fun funNullMethod() : Int? {
         val str : String? = "123456"
         return str?.length
     }
-
+```
 
 as?
  
@@ -212,6 +223,7 @@ as?
 
 用法：变量?.let{...}
 
+```kotlin
     val arrTest : Array<Int?> = arrayOf(1,2,null,3,null,5,6,null)
 
     // 传统写法
@@ -226,6 +238,7 @@ as?
     for (index in arrTest) {
         index?.let { println("index => $it") }
     }
+```
 
 ##### Evils操作符
 
@@ -233,26 +246,31 @@ as?
 
 判断一个可空类型时，会返回一个我们自己设定好的默认值
 
+```kotlin
     val testStr : String? = null
     var length = 0
     // ?: 写法
     length = testStr?.length ?: -1
     println(length)
+```
 
 **!!**
 
 判断一个可空类型时，会显示的抛出空引用异常
 
+```kotlin
     val testStr : String? = null
     println(testStr!!.length)
+```
 
 **as?**
 
 安全的类型转换
 
+```kotlin
     val num2 : Int? = "Koltin" as? Int
     println("nun2 = $num2)
-
+```
 
 
 基本类型、包装类型的转换需要通过API
