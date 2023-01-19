@@ -95,3 +95,15 @@ void paintChild(RenderObject child, Offset offset) {
 
 
 而RepaintBoundary就是一个isRepaintBoundary为true的类。
+
+
+
+## 使用场景
+
+- 自定义paint的组件
+- 会唤起输入框的界面
+
+
+## 参考
+
+- [Flutter - Using RepaintBoundary Examples](https://www.woolha.com/tutorials/flutter-using-repaintboundary-examples)

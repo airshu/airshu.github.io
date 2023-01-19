@@ -63,10 +63,17 @@ git stash clear 清除暂存
 
 #回退操作：
 #Git服务有一个叫HEAD的版本指针，当用户申请还原数据时，其实就是将HEAD指针指向到某个特定的提交版本。
+#git reset 通过把分支记录回退几个提交记录来实现撤销改动。你可以将这想象成“改写历史”。git reset 向上移动分支，原来指向的提交记录就跟从来没有提交过一样。在reset后， C2 所做的变更还在，但是处于未加入暂存区状态。
+#虽然在你的本地分支中使用 git reset 很方便，但是这种“改写历史”的方法对大家一起使用的远程分支是无效的哦！
+#为了撤销更改并分享给别人，我们需要使用 git revert。新提交记录 C2' 引入了更改 —— 这些更改刚好是用来撤销 C2 这个提交的。也就是说 C2' 的状态与 C1 是相同的。
+
 git reset --hard HEAD^ #回退到上一个版本
 git reset --hard ahdhs1(commit_id) #回退到某个版本
 git checkout -- file  #撤销修改的文件(如果文件加入到了暂存区，则回退到暂存区的，如果文件加入到了版本库，则还原至加入版本库之后的状态)
 git reset HEAD file #撤回暂存区的文件修改到工作区
+git revert HEAD
+
+
 
 #标签操作：
 #tag的作用是方便用户回滚操作，只需要记住tag的名字就能迅速回滚
@@ -83,6 +90,9 @@ git tag -d 标签名 #删除本地标签
 
 git diff test.txt 本地工作目录中到文件与本地仓库中的文件对比
 
+
+# 时光机，查看提交记录
+git reflog 
 
 ```
 
@@ -200,5 +210,19 @@ ssh-add -K !/.ssh/id_rsa
 
 #查看ssh-agent中的密钥
 ssh-add -l
+
+```
+
+
+## 移动HEAD
+
+```
+# 切换到指定id
+git checkout commit_id
+# 指定提交
+git branch -f branch_name HEAD~1
+# 上一个提交
+git branch -f branch_name HEAD^ 
+
 
 ```

@@ -52,7 +52,7 @@ environment:
 #      git:
 #          url: https://github.com/felangel/bloc.git
 #          ref: bloc_fixes_issue_110
-#          path: packages/bloc
+#          path: packages/bloc //pub 会默认假定 package 位于 Git 仓库的根目录。如果不是这种情况，你可以使用 path 参数指定位置
 # 4. 依赖我们自己的 pub仓库:
 #  bloc: 
 #      hosted:
