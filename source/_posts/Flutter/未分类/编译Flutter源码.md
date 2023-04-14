@@ -55,8 +55,7 @@ gclient sync
 
 ```shell
 cd xxx/source #source目录为自定义的源码目录
-# 下载对应Engine的Flutter Framework源码
-https://github.com/flutter/flutter
+# 下载对应Engine的Flutter Framework源码 https://github.com/flutter/flutter
 cd flutter
 # 不建议使用master分支，这里使用2.5.1的分支
 git pull origin flutter-2.5-candidate.1:flutter-2.5-candidate.1

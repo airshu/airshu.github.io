@@ -107,7 +107,7 @@ RenderObjectWithChildMixin为只有一个child的RenderObject提供child管理�
 
 
 ```dart
-
+ 
 void layout(Constraints constraints, { bool parentUsesSize = false }) {
   RenderObject? relayoutBoundary;
   // 先确定当前组件的布局边界
@@ -128,7 +128,7 @@ void layout(Constraints constraints, { bool parentUsesSize = false }) {
   _constraints = constraints;
   _relayoutBoundary = relayoutBoundary;
 
-  // 后面解释
+  // sizedByParent表示当前的Widget虽然不是isTight，但是通过其他约束属性，也可以明确的知道size，比如Expanded，并不一定需要明确的size
   if (sizedByParent) {
     performResize();
   }

@@ -50,6 +50,12 @@ abstract class Widget extends DiagnosticableTree {
 }
 ```
 
+
+`为什么widget都是immutable?`
+
+@immutable 代表 Widget 是不可变的，这会限制 Widget 中定义的属性（即配置信息）必须是不可变的（final），为什么不允许 Widget 中定义的属性变化呢？这是因为，Flutter 中如果属性发生变化则会重新构建Widget树，即重新创建新的 Widget 实例来替换旧的 Widget 实例，所以允许 Widget 的属性变化是没有意义的，因为一旦 Widget 自己的属性变了自己就会被替换。这也是为什么 Widget 中定义的属性必须是 final 的原因。
+
+
 ## StatelessWidget
 
 对于StatelessWidget，只需要重写build方法即可。
@@ -58,7 +64,7 @@ abstract class Widget extends DiagnosticableTree {
 
 StatefulWidget是通过State来管理状态，State的生命周期也就是State的生命周期。参考：[State](/wiki/Flutter/UI/标准库/widgets/framework/State/)
 
-### 唯一表示Key
+### Key
 
 在 Fultter 中，每一个 Widget 都是被唯一标识的。这个唯一标识在 build/rendering 阶段由框架定义。该唯一标识对应于可选的 Key 参数。如果省略该参数，Flutter 将会为你生成一个。
 
