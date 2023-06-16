@@ -401,6 +401,49 @@ AppRegistry.registerComponent('MyReactNativeApp', () => HelloWorld);
 ```
 
 
+> React Native也封装了一个ReactActivity，直接继承它更方便
+
+```Java
+public class RNActivity1 extends ReactActivity implements PermissionAwareActivity, DefaultHardwareBackBtnHandler {
+
+    @Override
+    protected ReactActivityDelegate createReactActivityDelegate() {
+
+        return new ReactActivityDelegate(this, getMainComponentName()) {
+            @Nullable
+            @Override
+            public String getMainComponentName() {
+                return "index";
+            }
+        };
+    }
+}
+
+//使用这种方式Application需要实现ReactApplication，实现getReactNativeHost方法，将对应的Package进行注册
+public class LQDApplication extends Application implements ReactApplication {
+
+    @Override
+    public ReactNativeHost getReactNativeHost() {
+        return new ReactNativeHost(this) {
+            @Override
+            public boolean getUseDeveloperSupport() {
+                return false;
+            }
+
+            @Override
+            protected List<ReactPackage> getPackages() {
+                List<ReactPackage> packages = new PackageList(getApplication()).getPackages();
+                packages.add(new IndexPackage());
+                packages.add(new ImagePickerPackage());
+                return packages;
+            }
+        };
+    }
+    
+}
+
+```
+
 
 ### 4.4 编译bundle
 
@@ -418,6 +461,8 @@ npx react-native bundle --platform android --dev false --entry-file index.js --b
 ```shell
 yarn react-native run-android
 ```
+
+
 
 
 
