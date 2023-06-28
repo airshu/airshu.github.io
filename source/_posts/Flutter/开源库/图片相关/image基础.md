@@ -54,6 +54,11 @@ Widget image = Image.memory(byteList);
 
 ```
 
+### 属性
+
+- image：ImageProvider类型，定义了图片数据获取和加载的相关接口
+
+
 ### CircleAvatar
 
 圆形图片
@@ -94,7 +99,12 @@ ImageIcon(AssetImage("images/timg.jpeg"));
 ### FadeInImage
 
 
+## 注意
+
+flutter默认提供图片内存的缓存，但没有磁盘缓存，可以使用[flutter_cached_network_image](https://github.com/Baseflow/flutter_cached_network_image)来做磁盘缓存
+
 ## 参考
 
 - [Flutter实战：图片及ICON](https://book.flutterchina.club/chapter3/img_and_icon.html)
+- [Flutter实战：图片加载原理与缓存](https://book.flutterchina.club/chapter14/image_and_cache.html)
 - [Flutter中的Image入门讲解](https://juejin.cn/post/6844903735873765384)

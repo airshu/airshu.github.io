@@ -7,4 +7,4 @@ tags: React
 
 ## 参考
 
-- [](https://github.com/purplebamboo/blog/issues/3)
+- [reactjs源码分析-下篇（更新机制实现原理）](https://github.com/purplebamboo/blog/issues/3)

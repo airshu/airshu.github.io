@@ -12,6 +12,7 @@ tags: Flutter
 ```dart
 
   // 1. compress file and get Uint8List
+  // 根据配置压缩图片
   Future<Uint8List> testCompressFile(File file) async {
     var result = await FlutterImageCompress.compressWithFile(
       file.absolute.path,
@@ -26,6 +27,7 @@ tags: Flutter
   }
 
   // 2. compress file and get file.
+  // 将图片压缩成新的图片
   Future<File> testCompressAndGetFile(File file, String targetPath) async {
     var result = await FlutterImageCompress.compressAndGetFile(
         file.absolute.path, targetPath,
@@ -40,6 +42,7 @@ tags: Flutter
   }
 
   // 3. compress asset and get Uint8List.
+  // 压缩asset的图片，返回Uint8List类型
   Future<Uint8List> testCompressAsset(String assetName) async {
     var list = await FlutterImageCompress.compressAssetImage(
       assetName,
@@ -53,6 +56,7 @@ tags: Flutter
   }
 
   // 4. compress Uint8List and get another Uint8List.
+  // 对Uint8List图片数据进行压缩
   Future<Uint8List> testComporessList(Uint8List list) async {
     var result = await FlutterImageCompress.compressWithList(
       list,
