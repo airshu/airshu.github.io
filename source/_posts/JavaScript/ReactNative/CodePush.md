@@ -15,37 +15,62 @@ tags: React Native
 6. 发布
 
 ```shell
-#安装
-npm install -g code-push-cli
 
-#注册
-code-push register
+#安装appcenter工具
+npm install -g appcenter-cli
 
 #登录
-code-push login
+appcenter login
 
-#列出登录的token
-code-push access-key ls
-
-#删除某个key
-code-push access-key rm [accessKey] 
-
-#注册App
-# <os> - ios、windows、android
-# <platform> - react-native、cordova...
-code-push app add [appName] [os] [platform]
+#登出
+appcenter logout
 
 
-code-push app add 在账号里面添加一个新的 App
-code-push app rm 在账号里移除一个 App
-code-push app rename 重命名一个存在 App
-code-push app ls 列出账号下面的所有 App
-code-push app transfer 把 app 的所有权转移到另外一个账号
+appcenter tokens list
+appcenter tokens delete <machineName>
+
+
+
+#查看账户信息
+appcenter profile list
+
+
+# 1、创建iOS应用
+appcenter apps create -d MyApp-iOS -o iOS -p React-Native
+# 2、创建Android应用
+appcenter apps create -d MyApp-Android -o Android -p React-Native
+
+
+# 查询账号下的所有应用
+appcenter apps list
+
+appcenter apps delete -a <ownerName>/<appName>
+
+
+
+# ownerName：用户名称
+# appName：创建的应用名称
+
+# 创建部署
+appcenter codepush deployment add -a <ownerName>/<appName> Staging
+# 配置生产环境
+appcenter codepush deployment add -a <ownerName>/<appName> Productionn
+
+# ownerName：用户名称
+# appName：创建的应用名称
+
+# 删除应用的开发环境
+appcenter codepush deployment remove -a <ownerName>/<appName> Staging
+# 删除应用的生产环境
+appcenter codepush deployment remove -a <ownerName>/<appName> Production
+
+
+#查询应用key
+appcenter codepush deployment list -a <ownerName>/<appName> -k
 
 #发布
-code-push release-react [AppName] android
+appcenter codepush release-react -a airdady/test -t 1.0.11 -o ./build -d Staging
 
-code-push release-react [AppName] ios
 ```
 
 
