@@ -218,18 +218,18 @@ Explicit Animations
 - DecoratedBoxTransition
 - DefaultTextStyleTransition
 - RelativePositionedTransition
-- RotationTransition
-- ScaleTransition
-- FadeTransition
-- SizeTransition
-- SlideTransition
+- RotationTransition：旋转
+- ScaleTransition：缩放动画，可以指定中心点
+- FadeTransition：透明度动画
+- SizeTransition：宽高变化，不会引起内容的变形
+- SlideTransition：位移动画
 
 
 ## 交织动画
 
 多个动画交错在一起，通过一个controller控制。
 
-```
+```dart
 // 多个tween绑定controller
 AnimationController controller = AnimationController();
 Tween<double>(begin: 0, end: 100).animate(CurvedAnimation(parent: controller, curve: Interval(0.0, 0.5, curve: Curves.ease)));

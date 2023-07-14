@@ -103,6 +103,25 @@ ImageIcon(AssetImage("images/timg.jpeg"));
 
 flutter默认提供图片内存的缓存，但没有磁盘缓存，可以使用[flutter_cached_network_image](https://github.com/Baseflow/flutter_cached_network_image)来做磁盘缓存
 
+
+
+## 源码分析
+
+**相关类：**
+
+- Image：用来显示图片
+- _ImageState：状态类，处理生命周期、调用加载
+- ImageProvider：图片提供者，用于加载图片，例如NetworkImage、ResizeImage
+- ImageStreamCompleter：图片资源的管理类
+- ImageStream：图片资源的句柄，持有图片资源，加载完毕后的回调和图片资源的管理着，ImageStreamCompleter对象就是图片资源的管理类
+- MultiFrameImageStreamCompleter：多帧图片解析器
+- ImageStreamListener：监听图片的加载结果，加载完成后会进行回调，然后刷新页面显示
+
+
+
+
+
+
 ## 参考
 
 - [Flutter实战：图片及ICON](https://book.flutterchina.club/chapter3/img_and_icon.html)
