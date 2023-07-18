@@ -55,6 +55,10 @@ Github的文件目录用树形表示
 同步Firefox和Safira书签
 
 
+## New Tab Suspender
+
+内存占用过大时，自动挂起标签页。省内存
+
 
 
 

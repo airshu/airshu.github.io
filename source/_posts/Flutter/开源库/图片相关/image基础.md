@@ -127,3 +127,4 @@ flutter默认提供图片内存的缓存，但没有磁盘缓存，可以使用[
 - [Flutter实战：图片及ICON](https://book.flutterchina.club/chapter3/img_and_icon.html)
 - [Flutter实战：图片加载原理与缓存](https://book.flutterchina.club/chapter14/image_and_cache.html)
 - [Flutter中的Image入门讲解](https://juejin.cn/post/6844903735873765384)
+- [Flutter图片内存优化实践](https://mp.weixin.qq.com/s/yUm4UFggYLgDbj4_JCjEdg)

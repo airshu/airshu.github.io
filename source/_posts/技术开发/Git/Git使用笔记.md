@@ -137,11 +137,22 @@ git branch -d 功能1   # 删除功能1分支（当前不能在功能1分支、�
 ## 拉取体积很大的仓库
 
 ```
+
 git clone --depth 1 仓库地址
+git fetch --unshallow
+
+#以上方式只有主分支
+
+#拉取所有分支
+git fetch -all
+
+
+#拉取某一个分支
 git branch -a
 git remote set-branches origin '远程分支名称’
 git fetch --depth 1 origin 远程分支名称
 git checkout ‘远程分支名称’
+
 ```
 
 <br/>

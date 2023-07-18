@@ -68,7 +68,7 @@ import com.lqd.androidpractice.R;
 import java.lang.ref.WeakReference;
 
 /**
- * @author: shjlone
+ * @author: Airshu
  * @Date 2021/6/18
  */
 public class OOMHandlerRightActivity extends Activity {
