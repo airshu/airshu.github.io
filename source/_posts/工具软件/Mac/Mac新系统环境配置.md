@@ -51,11 +51,18 @@ toc: true
 
 ### 安装Ruby版本管理
 
+使用rbenv
+
 ### 安装Pytho版本管理
+
+使用pyenv
 
 
 ### 安装Java版本管理
 
+使用jenv
+
 ### 安装Flutter版本管理
 
+使用fvm
 

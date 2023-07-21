@@ -94,6 +94,8 @@ git diff test.txt 本地工作目录中到文件与本地仓库中的文件对�
 # 时光机，查看提交记录
 git reflog 
 
+# 取消xxx的修改内容
+git restore xxx
 ```
 
 

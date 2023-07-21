@@ -7,7 +7,7 @@ tags: Flutter
 
 ## 概要
 
-![](./PaintingContext_1.png)
+![](PaintingContext_1.png)
 
 - 继承自ClipContext，提供裁剪相关辅助方法
 - _currentLayer、_recorder、_canvas用于具体的绘制操作

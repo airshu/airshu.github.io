@@ -12,7 +12,7 @@ Widget是UI元素的配置数据，Element代表屏幕显示元素。主要作�
 - 维护这棵Element Tree，根据Widget Tree的变化来更新Element Tree，包括：节点的插入、更新、删除、移动等；
 - 将Widget和RenderObject关联到Element Tree上。
 
-![](./element_1.png)
+![](element_1.png)
 
 - ComponentElement：用来组合其他更基础的Element，开发时常用到的StatelessWidget和StatefulWidget相对应的Element：StatelessElement和StatefulElement。其子节点对应的Widget需要通过build方法创建，该类型Element只有一个子节点。
 - RenderObjectElement：渲染类Element，对应Renderer Widget，是框架最核心的Element。RenderObjectElement主要包括LeafRenderObjectElement，SingleChildRenderObjectElement，和MultiChildRenderObjectElement。
@@ -20,7 +20,7 @@ Widget是UI元素的配置数据，Element代表屏幕显示元素。主要作�
   - SingleChildRenderObjectElement对应的Widget是SingleChildRenderObjectWidget，有一个子节点；
   - MultiChildRenderObjectElement对应的Widget是MultiChildRenderObjecWidget，有多个子节点。
 
-![](./element_9.png)
+![](element_9.png)
 
 ## 重要属性和方法
 
