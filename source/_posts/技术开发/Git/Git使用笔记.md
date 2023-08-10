@@ -52,6 +52,7 @@ git remote add <仓库名字> <仓库的URL>
 git remote add pb git://github.com/paulboone/ticgit.git #添加一个远程仓库 并用pb命名。
 git remote rm paul #删除远程仓库
 git remote rename pb paul #重名远程仓库 本地也会跟着修改
+git remote set-url origin xxx.git # 修改远程仓库
 
 
 #git push -u <远程仓库名字> <远程仓库的某一分支名字>
