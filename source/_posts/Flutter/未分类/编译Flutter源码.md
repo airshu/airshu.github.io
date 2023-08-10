@@ -31,7 +31,7 @@ solutions = [
 	{
 		"managed": False,
 		"name": "src/flutter",
-		"url": "git@github.com:shjlone/engine.git",//这里使用自己的仓库地址
+		"url": "git@github.com:airshu/engine.git",//这里使用自己的仓库地址
 		"custom_deps": {},
 		"deps_file": "DEPS",
 		"safesync_url": "",

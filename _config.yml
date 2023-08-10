@@ -3,16 +3,16 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Shjlone's Blog
+title: Airshu's Blog
 subtitle: Hello World
 description: Hello World
-author: shjlone
+author: airshu
 language: en
 timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://shjlone.github.io
+url: http://airshu.github.io
 root: /
 permalink: wiki/:title/
 permalink_defaults:
@@ -114,7 +114,7 @@ sitemap:
 nofollow:
   enable: true
   exclude:
-    - shjlone.github.me
+    - airshu.github.me
 
 ## Themes: https://hexo.io/themes/
 theme: Wikitten
@@ -123,5 +123,5 @@ theme: Wikitten
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: git@github.com:shjlone/shjlone.github.io.git
+  repository: git@github.com:airshu/airshu.github.io.git
   branch: gh-pages
