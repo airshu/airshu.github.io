@@ -7,6 +7,7 @@ tags: Flutter
 
 ## Mac下编译Engine
 
+Engine实现了Flutter的核心库，包括动画、图形、文件、网络、访问支持、插件架构、Dart的运行时、编译工具链等
 
 
 ### 准备工作
@@ -50,6 +51,21 @@ gclient sync
 ```
 
 
+### 调整版本
+
+```shell
+
+#查看engine对应版本获取commit id
+vim src/flutter/bin/internal/engine.version
+
+# 调整代码
+cd engine/src/flutter
+git reset --hard <commit id>
+gclient sync -D --with_branch_heads --with_tags
+
+```
+
+
 ### 编译iOS平台
 
 
@@ -84,10 +100,11 @@ cd hello_world
 
 ```shell
 
+
 # 预编译设备侧可执行文件
 ./flutter/tools/gn --android --unoptimized
 #预编译arm64设备的预编译文件
-./flutter/tools/gn --android --unoptimized --android-cpu=arm64
+./flutter/tools/gn --android --android-cpu arm64 --unoptimized 
 #预编译host-side可执行文件
 ./flutter/tools/gn --unoptimized
 
@@ -109,7 +126,10 @@ ninja -C out/host_debug_unopt
 2. 用本地Engine运行Flutter项目
 
 ```shell
-../flutter/bin/flutter run --local-engine-src-path ~/flutter/source/src --local-engine=ios_debug_unopt
+#local-engine-src-path指向源码目录
+#local-engine指向编译的目标
+#也可以直接在gradle.properties中配置这两个属性
+../flutter/bin/flutter run --local-engine=android_debug_unopt --local-engine-src-path=/Users/xpeng/flutter/source/src
 ```
 3. Flutter引擎项目进行attach，选中Show all processes
 
@@ -121,7 +141,7 @@ attach的时候，有些代码已经运行过了。如果想要早一点断点�
 // 添加App文件，配置Application
 package com.yourdomain.your_app_name
 import android.os.Debug
-import io.flutter.app.FlutterAplication
+import io.flutter.app.FlutterApplication
 
 class App:FlutterApplication() {
     override fun onCreate() {

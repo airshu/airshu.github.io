@@ -6,6 +6,15 @@ toc: true
 
 <br/>
 
+
+## 基本概念
+
+- Working Space/Working Directory：工作区/工作目录，平时存放项目代码的地方
+- Index/Stage：暂存区，用于临时存放你的改动，事实上它只是一个文件，保存即将提交到文件列表信息
+- Local Repository：本地仓库
+- Stash：用于保存工作区的临时状态，方便后续恢复
+- Remote Repository：远程仓库
+
 ## 基本命令
 
 ```shell
@@ -33,6 +42,8 @@ git fetch -u origin master #拉取远程仓库名为origin的master分支代码�
 git merge 分支名 #合并分支到当前分支上
 
 #git pull相当于git fetch + git merge
+
+#git pull --rebase 相当于 git fetch + git rebase
 
 #remote 用于管理远程仓库
 git remote -v #查看现有的远程仓库
