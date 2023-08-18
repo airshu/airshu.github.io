@@ -1,6 +1,6 @@
 ---
 title: JavaScript入门
-tags: React Native 
+tags: JavaScript
 ---
 
 
