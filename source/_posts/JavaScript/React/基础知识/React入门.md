@@ -40,4 +40,4 @@ moz-todo-react
 ```
 
 
-- [React示例-代办列表](https://github.com/shjlone/BestPractice_JavaScript/tree/main/moz-todo-react)
+- [React示例-代办列表](https://github.com/airshu/BestPractice_JavaScript/tree/main/moz-todo-react)

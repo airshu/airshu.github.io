@@ -17,10 +17,10 @@ customize:
         enabled: false # Whether to show profile bar
         avatar: # css/images/avatar.png
         gravatar: alonelsj@gmail.com # Gravatar email address, if you enable Gravatar, your avatar config will be overriden
-        author: shjlone
+        author: airshu
         author_title: Designer & Programmer
         location: Guangdong, China
-        follow: https://github.com/shjlone/
+        follow: https://github.com/airshu/
     highlight: monokai
     sidebar: left # sidebar position, options: left, right
     category_perExpand: false # enable article categories list per expanding
@@ -29,7 +29,7 @@ customize:
     favicon: /favicon.ico # path to favicon
     #    default_index_file: index.md # if this, it will display at site index instead of default index page
     social_links:
-        github: https://github.com/shjlone/shjlone.github.io
+        github: https://github.com/airshu/airshu.github.io
         stack-overflow: https://stackoverflow.com/users/1317183/loneqd
         codepen:
         rss: /atom.xml
@@ -61,8 +61,8 @@ search:
 history_control: # make you wiki has history version control in page
     enable: false
     server_link: https://github.com # recommend use GitHub https://github.com
-    user: shjlone
-    repertory: shjlone.github.io
+    user: airshu
+    repertory: airshu.github.io
     branch: gh-page
 
 # Comment
