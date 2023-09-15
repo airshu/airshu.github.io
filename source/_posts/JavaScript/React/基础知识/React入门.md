@@ -7,7 +7,8 @@ React时一个用于构建用户界面的库，使用JSX（JavaScript和XML）�
 
 React依赖Node.js。Node包含npm（Node程序包管理器）和npx（Node程序包运行器）
 
-创建React项目
+
+**创建React项目**
 
 ```shell
 #默认使用yarn
@@ -41,3 +42,5 @@ moz-todo-react
 
 
 - [React示例-代办列表](https://github.com/airshu/BestPractice_JavaScript/tree/main/moz-todo-react)
+
+

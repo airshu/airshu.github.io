@@ -75,6 +75,20 @@ echo -n 'admin:admin' | openssl base64
 ```
 
 
+## nvm
+
+```
+
+# 查看当前安装的node版本
+nvm list
+
+
+
+# 设置默认的node版本
+nvm alias default v18.17.1
+```
+
+
 ## npm与npx的区别
 
 npm从5.2.0开始增加了npx命令

@@ -406,6 +406,12 @@ AppRegistry.registerComponent('MyReactNativeApp', () => HelloWorld);
 ```Java
 public class RNActivity1 extends ReactActivity implements PermissionAwareActivity, DefaultHardwareBackBtnHandler {
 
+
+    protected String getMainComponentName() {
+        return "index";
+    }
+
+
     @Override
     protected ReactActivityDelegate createReactActivityDelegate() {
 
@@ -458,8 +464,22 @@ npx react-native bundle --platform android --dev false --entry-file index.js --b
 
 ## 5. 运行Android端
 
+
+
+
 ```shell
+#开发环境时调试
+#1.先启动Metro服务器
+#如果自定义端口，则需要在开发者菜单中配置对应的ip:port
+npm run start --verbose -- --port 8088 
+#或yarn start
+
+#2.运行程序
 yarn react-native run-android
+
+
+#生产环境
+#通过codepush进行热更新或者编译bundle到assets目录下
 ```
 
 
@@ -471,3 +491,8 @@ yarn react-native run-android
 ### 找不到PackageList
 
 这个文件是生成的，删除build文件夹，执行以下yarn react-native run-android
+
+
+## 参考
+
+- [集成到现有原生应用](https://reactnative.cn/docs/integration-with-existing-apps)
