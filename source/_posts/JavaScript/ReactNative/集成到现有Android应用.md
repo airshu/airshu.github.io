@@ -478,6 +478,9 @@ npm run start --verbose -- --port 8088
 yarn react-native run-android
 
 
+#3.打开开发者工具，配置ip:port
+
+
 #生产环境
 #通过codepush进行热更新或者编译bundle到assets目录下
 ```
