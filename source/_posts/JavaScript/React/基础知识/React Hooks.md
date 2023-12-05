@@ -56,8 +56,8 @@ const Hello = (props) => {
 ![](./hooks_1.png)
 
 - useState：状态管理，某个状态发生变化，组件重新渲染
-- useEffect： 在函数组件中执行副作用操作，方便，且避免不必要的bug
-- useRef：
+- useEffect： 在**函数组件中**执行副作用操作，方便，且避免不必要的bug
+- useRef：用于在不进行渲染的情况下存储和访问最新的值
 - useReducer：
 - useCallback：
 

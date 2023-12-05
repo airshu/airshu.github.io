@@ -257,3 +257,13 @@ pub publish #发布
 ```
 
 
+## 修改源码调试
+
+> /path/to/flutter/bin/cache/flutter_tools.stamp
+
+当你修改了flutter tools的源码，删除上面这个文件，代码即可生效
+
+
+## 参考
+
+- [Flutter Tools 断点调试](https://fucknmb.com/2019/03/21/Flutter-Tools-%E6%96%AD%E7%82%B9%E8%B0%83%E8%AF%95/)

@@ -262,3 +262,18 @@ body h1 + p .special {
 - Angular：一种基于组件的框架，使用声明式的 HTML 模板。在应用构建时，框架的编译器将 HTML 模板转换为优化好的 JavaScript 指令，这一过程对开发者是透明的。Angular 使用 TypeScript
 - Vue
 - React：2013年Facebook发布
+
+
+
+
+## .js .jsx .ts .tsx
+
+- .js：JavaScript文件
+- .jsx：JavaScript文件并使用JSX语法
+- .ts：TypeScript文件
+- .tsx：TypeScript文件并使用JSX语法
+
+JSX 就是Javascript和XML结合的一种格式。
+React发明了JSX，利用HTML语法来创建虚拟DOM。
+当遇到<，JSX就当HTML解析，遇到就当JavaScript解析。JSX 只是为 React.createElement(component, props, …children) 方法提供的语法糖。
+

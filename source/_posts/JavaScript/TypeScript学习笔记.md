@@ -1,6 +1,6 @@
 ---
 title: TypeScript入门
-tags: TypeScript
+tags: TypeScript JavaScript
 ---
 
 
@@ -86,6 +86,49 @@ let tom: Person = {
     declare global 扩展全局变量
     declare module 扩展模块
     /// <reference /> 三斜线指令
+```
+
+
+
+
+## import中@的作用
+
+路径映射，可以在tsconfig.json中配置
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@nui/*": ["src/*"]
+    }
+  }
+}
+```
+
+使用
+
+```JavaScript
+
+import { YYYY } from '@nui/xxx';
+
+```
+
+
+## 扩展全局变量的类型
+
+```ts
+interface String {
+    // 这里是扩展，不是覆盖，所以放心使用
+    double(): string;
+}
+
+String.prototype.double = function () {
+    return this + '+' + this;
+};
+console.log('hello'.double());
+
+
 ```
 
 ## 参考
