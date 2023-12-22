@@ -121,6 +121,6 @@ https://betterprogramming.pub/flutter-and-sonarqube-for-static-code-analysis-513
 ## 参考
 
 - [自定义静态分析](https://dart.cn/guides/language/analysis-options)
-- [官方默认规则]((https://github.com/flutter/flutter/blob/master/analysis_options.yaml)
+- [官方默认规则](https://github.com/flutter/flutter/blob/master/analysis_options.yaml)
 - [Linter for Dart](https://dart-lang.github.io/linter/lints/index.html)
 - [flutter_lints](https://pub.dev/packages/flutter_lints)
