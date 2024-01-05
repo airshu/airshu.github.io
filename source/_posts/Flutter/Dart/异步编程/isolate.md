@@ -46,4 +46,4 @@ isolate.cc
 
 - [Dart 异步编程：隔离区和事件循环](https://medium.com/dartlang/dart-asynchronous-programming-isolates-and-event-loops-bffc3e296a6a)
 - [聊一聊Flutter线程管理与Dart Isolate机制](https://zhuanlan.zhihu.com/p/40069285)
-- [Flutter体系](/wiki/Flutter/Flutter体系/)
+
