@@ -15,6 +15,18 @@ Flutter官方提供[analyzer](https://pub.dev/packages/analyzer)来检测代码
 
 ### 使用步骤
 
+
+0. pubspec.yaml配置
+
+```yaml
+
+dev_dependencies:
+  lint:  # dart lint
+  flutter_lints: ^1.0.0 # flutter 代码检测工具
+
+
+```
+
 1. 新建analysis_options.yaml配置文件，放在项目的根目录。
 
 ```yaml

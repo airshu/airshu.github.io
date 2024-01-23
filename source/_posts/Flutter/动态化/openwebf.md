@@ -4,6 +4,8 @@ toc: true
 tags: Flutter 动态化
 ---
 
+Kraken的替代品
+
 
 ![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c67cc04d5f43471ab342d4e54a3bece6~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp)
 

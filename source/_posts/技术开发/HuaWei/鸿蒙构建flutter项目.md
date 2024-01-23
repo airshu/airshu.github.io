@@ -52,6 +52,6 @@ clone源码[https://gitee.com/openharmony-sig/flutter_engine](https://gitee.com/
 
 - [Flutter Love 鸿蒙](https://juejin.cn/post/7281948788483489804)
 - [https://gitee.com/openharmony-sig/flutter_engine](https://gitee.com/openharmony-sig/flutter_engine)
-- [https://gitee.com/openharmony-sig/flutter_flutter/tree/master](https://gitee.com/openharmony-sig/flutter_flutter/tree/master)
+- [https://gitee.com/openharmony-sig/flutter_flutter](https://gitee.com/openharmony-sig/flutter_flutter)
 - [每日构建地址](http://ci.openharmony.cn/workbench/cicd/dailybuild/dailylist)
 
