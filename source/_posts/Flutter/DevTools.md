@@ -4,16 +4,16 @@ toc: true
 tags: Flutter
 ---
 
-开发者工具的作用
+开发者工具介绍
 
-- 检查 Flutter 应用程序的 UI 组件布局和状态
-- 在 Flutter 应用程序中诊断 UI 性能过低的问题
-- Flutter 和 Dart 应用的 CPU 性能检测
-- 为 Flutter 应用进行网络性能检测
+- Flutter Inspector：检查 Flutter 应用程序的 UI 组件布局和状态
+- Performance View：在 Flutter 应用程序中诊断 UI 性能过低的问题
+- CPU Profiler View：Flutter 和 Dart 应用的 CPU 性能检测
+- Network View：为 Flutter 应用进行网络性能检测
 - 为 Flutter 或 Dart 应用进行源码级的调试
-- 在 Flutter 或 Dart 命令行应用中测试内存问题
-- 查看正在运行的 Flutter 或 Dart 的命令行应用程序相关的常规日志和诊断信息
-- 分析代码和应用的大小
+- Memory View：在 Flutter 或 Dart 命令行应用中测试内存问题
+- Logging View：查看正在运行的 Flutter 或 Dart 的命令行应用程序相关的常规日志和诊断信息
+- App Size Tool：分析代码和应用的大小
 
 
 
@@ -79,7 +79,7 @@ tags: Flutter
 2. 点击 Take Snapshot 生成快照。
 3. 查看不同图层和它们各自的渲染时间。
 
-![](./raster-stats-tab.webp)
+![Raster Stats Tab](./raster-stats-tab.webp)
 
 ### 时间线事件表 Timeline Events
 
@@ -193,11 +193,10 @@ tags: Flutter
 
 ## 参考
 
-
 - [Flutter 调试工具篇 | 壹 - 使用 Flutter Inspector 分析界面](https://juejin.cn/post/7260499321983893565)
 - [性能视图](https://flutter.cn/docs/tools/devtools/performance)
 - [https://flutter.cn/docs/tools/devtools/overview](https://flutter.cn/docs/tools/devtools/overview)
-- [](https://blog.csdn.net/qq_41818873/article/details/130618157)
+- [Flutter性能分析工具使用](https://blog.csdn.net/qq_41818873/article/details/130618157)
 - [Mastering Dart & Flutter DevTools — Part 6: CPU Profiler View](https://medium.com/@fluttergems/mastering-dart-flutter-devtools-cpu-profiler-view-part-6-of-8-31e24eae6bf8)
 - [Mastering Dart & Flutter DevTools — Part 7: Memory View](https://medium.com/@fluttergems/mastering-dart-flutter-devtools-part-7-memory-view-e7f5aaf07e15)
 - [Mastering Dart & Flutter DevTools — Part 8: Performance View](https://medium.com/@fluttergems/mastering-dart-flutter-devtools-performance-view-part-8-of-8-4ae762f91230)
