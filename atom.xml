@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Airshu&#39;s Blog</title>
+  
+  <subtitle>Hello World</subtitle>
+  <link href="http://airshu.github.io/atom.xml" rel="self"/>
+  
+  <link href="http://airshu.github.io/"/>
+  <updated>2024-01-26T13:01:08.846Z</updated>
+  <id>http://airshu.github.io/</id>
+  
+  <author>
+    <name>airshu</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>鸿蒙构建flutter项目</title>
+    <link href="http://airshu.github.io/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/HuaWei/%E9%B8%BF%E8%92%99%E6%9E%84%E5%BB%BAflutter%E9%A1%B9%E7%9B%AE/"/>
+    <id>http://airshu.github.io/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/HuaWei/%E9%B8%BF%E8%92%99%E6%9E%84%E5%BB%BAflutter%E9%A1%B9%E7%9B%AE/</id>
+    <published>2024-01-26T13:01:08.846Z</published>
+    <updated>2024-01-26T13:01:08.846Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="基础环境"><a href="#基础环境" class="headerlink" title="基础环境"></a>基础环境</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo apt install python3</span><br><span class="line">sudo apt install make</span><br><span class="line">sudo apt install pkg-config</span><br><span class="line">sudo apt install ninja-build</span><br><span class="line"></span><br><span class="line">git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git</span><br><span class="line">export PATH=&quot;$PATH:/home/ubuntu/work/depot_tools&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">nodejs</span></span><br><span class="line">export NODE_HOME=/home/uname/HuaWei/flutter/node-v14.19.1-mac-x64</span><br><span class="line">export PATH=$NODE_HOME/bin:$PATH</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">gradle</span></span><br><span class="line">export PATH=/Users/uname/HuaWei/flutter/gradle-7.1/bin:$PATH</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>构建flutter_engine</p><p>clone源码<a href="https://gitee.com/openharmony-sig/flutter_engine">https://gitee.com/openharmony-sig/flutter_engine</a></p><p>构建flutter_flutter</p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul><li><a href="https://juejin.cn/post/7281948788483489804">Flutter Love 鸿蒙</a></li><li><a href="https://gitee.com/openharmony-sig/flutter_engine">https://gitee.com/openharmony-sig/flutter_engine</a></li><li><a href="https://gitee.com/openharmony-sig/flutter_flutter">https://gitee.com/openharmony-sig/flutter_flutter</a></li><li><a href="http://ci.openharmony.cn/workbench/cicd/dailybuild/dailylist">每日构建地址</a></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;基础环境&quot;&gt;&lt;a href=&quot;#基础环境&quot; class=&quot;headerlink&quot; title=&quot;基础环境&quot;&gt;&lt;/a&gt;基础环境&lt;/h2&gt;&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pr</summary>
+      
+    
+    
+    
+    <category term="技术开发" scheme="http://airshu.github.io/categories/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/"/>
+    
+    <category term="HuaWei" scheme="http://airshu.github.io/categories/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/HuaWei/"/>
+    
+    
+    <category term="HuaWei harmonyOS" scheme="http://airshu.github.io/tags/HuaWei-harmonyOS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Flutter静态代码检测</title>
+    <link href="http://airshu.github.io/wiki/Flutter/%E6%9C%AA%E5%88%86%E7%B1%BB/Flutter%E9%9D%99%E6%80%81%E4%BB%A3%E7%A0%81%E6%A3%80%E6%B5%8B/"/>
+    <id>http://airshu.github.io/wiki/Flutter/%E6%9C%AA%E5%88%86%E7%B1%BB/Flutter%E9%9D%99%E6%80%81%E4%BB%A3%E7%A0%81%E6%A3%80%E6%B5%8B/</id>
+    <published>2024-01-26T13:01:08.845Z</published>
+    <updated>2024-01-26T13:01:08.845Z</updated>
+    
+    <content type="html"><![CDATA[<p>代码检测是规范写法，提高质量的一种重要方案，几乎所有的主流语言都有相关方案。在Flutter开发过程中，我们可以使用IDE自带的Inspect Code功能，也可以直接使用命令行dart analyze</p><h2 id="官方方案"><a href="#官方方案" class="headerlink" title="官方方案"></a>官方方案</h2><p>Flutter官方提供<a href="https://pub.dev/packages/analyzer">analyzer</a>来检测代码</p><h3 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h3><ol start="0"><li>pubspec.yaml配置</li></ol><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="attr">dev_dependencies:</span></span><br><span class="line">  <span class="attr">lint:</span>  <span class="comment"># dart lint</span></span><br><span class="line">  <span class="attr">flutter_lints:</span> <span class="string">^1.0.0</span> <span class="comment"># flutter 代码检测工具</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure><ol><li>新建analysis_options.yaml配置文件，放在项目的根目录。</li></ol><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># 使用 include: url 来从指定的 URL 引入选项 —— 在这种情况下，通常是引入来自 lints 包中的文件。由于 YAML 不支持多个重复的 key，你只能引入最多一个文件</span></span><br><span class="line"><span class="comment"># 常用的</span></span><br><span class="line"><span class="comment">#include: package:flutter_lints/flutter.yaml</span></span><br><span class="line"><span class="comment">#include: package:pedantic/analysis_options.1.9.0.yaml</span></span><br><span class="line"><span class="attr">include:</span> <span class="string">package:lints/recommended.yaml</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 analyzer: 入口来自定义静态分析： 启用更严格的类型检查, 排除文件, 忽略特定规则, 改变规则的警告等级, or 开启实验性功能</span></span><br><span class="line"><span class="attr">analyzer:</span></span><br><span class="line">  <span class="attr">exclude:</span> <span class="comment"># 不分析的文件和文件夹</span></span><br><span class="line">    <span class="bullet">-</span> [<span class="string">build/**</span>] </span><br><span class="line">    <span class="bullet">-</span> <span class="string">lib/*.g.dart</span></span><br><span class="line">  <span class="attr">language:</span> <span class="comment"># 启用更严格的类型检查</span></span><br><span class="line">    <span class="attr">strict-casts:</span> <span class="literal">true</span> <span class="comment"># 类型推理引擎不再将 dynamic 进行隐式类型转换</span></span><br><span class="line">    <span class="attr">strict-inference:</span> <span class="literal">true</span> <span class="comment"># 确保当类型推理引擎无法确定静态类型时，不再选择dynamic 类型</span></span><br><span class="line">    <span class="attr">strict-raw-types:</span> <span class="literal">true</span> <span class="comment"># 确保当类型推理引擎，由于省略类型参数而无法确定静态类型时，不再选择dynamic 类型</span></span><br><span class="line">  <span class="attr">errors:</span> <span class="comment"># 设置严重程度</span></span><br><span class="line">    <span class="attr">invalide_assignment:</span> <span class="string">warning</span></span><br><span class="line">    <span class="attr">missing_return:</span> <span class="string">error</span></span><br><span class="line">    <span class="attr">dead_code:</span> <span class="string">info</span></span><br><span class="line">  <span class="attr">strong-mode:</span> <span class="comment"># 强制模式</span></span><br><span class="line">    <span class="attr">implicit-casts:</span> <span class="literal">false</span> <span class="comment"># 强制使用废弃的选项</span></span><br><span class="line"><span class="comment"># 使用 linter: 入口来配置 linter 规则，可以单独启用或停用某条规则</span></span><br><span class="line"><span class="attr">linter:</span></span><br><span class="line">  <span class="attr">rules:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">cancel_subscriptions</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure><ol start="2"><li>执行命令</li></ol><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># </span><span class="language-bash">分析项目命令</span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">分析从根目录开始遍历，发现analysis_options.yaml配置文件，则执行自定义静态代码分析，若没有则默认配置(https://github.com/flutter/flutter/blob/master/analysis_options.yaml)</span></span><br><span class="line">dart analyze</span><br></pre></td></tr></table></figure><h3 id="自定义规则"><a href="#自定义规则" class="headerlink" title="自定义规则"></a>自定义规则</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="attr">include:</span> <span class="string">package:flutter_lints/flutter.yaml</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 analyzer: 入口来自定义静态分析： 启用更严格的类型检查, 排除文件, 忽略特定规则, 改变规则的警告等级, or 开启实验性功能</span></span><br><span class="line"><span class="attr">analyzer:</span></span><br><span class="line">  <span class="attr">exclude:</span> <span class="comment"># 不分析的文件和文件夹</span></span><br><span class="line">    <span class="bullet">-</span> [<span class="string">build/**</span>] </span><br><span class="line">    <span class="bullet">-</span> <span class="string">lib/*.g.dart</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">build/**</span> <span class="comment"># 排除整个build文件夹</span></span><br><span class="line">  <span class="attr">language:</span></span><br><span class="line">    <span class="attr">strict-casts:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">strict-raw-types:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">errors:</span> <span class="comment"># 设置严重程度 分为ignore、info、warning、error</span></span><br><span class="line">    <span class="attr">always_declare_return_types:</span> <span class="string">warning</span>  <span class="comment"># 方法必须声明返回类型</span></span><br><span class="line">    <span class="attr">null_closures:</span> <span class="string">warning</span>  <span class="comment"># 不要给闭包的参数传null</span></span><br><span class="line">    <span class="attr">invalide_assignment:</span> <span class="string">warning</span></span><br><span class="line">    <span class="attr">missing_return:</span> <span class="string">error</span> <span class="comment"># 返回值缺失</span></span><br><span class="line">    <span class="attr">unnecessary_statements:</span> <span class="string">warning</span> <span class="comment"># 无效的表达式</span></span><br><span class="line">    <span class="attr">prefer_typing_uninitialized_variables:</span> <span class="string">warning</span>  <span class="comment"># 未初始化的变量</span></span><br><span class="line">    <span class="attr">dead_code:</span> <span class="string">info</span></span><br><span class="line">    <span class="attr">prefer_interpolation_to_compose_strings:</span> <span class="string">ignore</span>  <span class="comment"># 字符串的写法，不要使用+拼接，使用引号</span></span><br><span class="line">    <span class="attr">use_key_in_widget_constructors:</span> <span class="string">error</span> <span class="comment"># Widget的构造方法中默认需要带上key</span></span><br><span class="line">    <span class="attr">control_flow_in_finally:</span> <span class="string">error</span> <span class="comment">#不要在finally中使用控制流（break、continue、return），可能会造成难以发现的问题</span></span><br><span class="line">    <span class="attr">no_logic_in_create_state:</span> <span class="string">error</span> <span class="comment"># 不要在createState方法中使用任何逻辑</span></span><br><span class="line">    <span class="attr">hash_and_equals:</span> <span class="string">error</span> <span class="comment"># 重写==的同时要重写hashCode</span></span><br><span class="line">    <span class="attr">unrelated_type_equality_checks:</span> <span class="string">error</span> <span class="comment"># 不相关的类型不要进行比较</span></span><br><span class="line">    <span class="attr">always_use_package_imports:</span> <span class="string">error</span> <span class="comment"># 使用包导入</span></span><br><span class="line">    <span class="attr">avoid_print:</span> <span class="string">error</span> <span class="comment"># 不使用print，可以用debugPrint、或者自己封装的log</span></span><br><span class="line">    <span class="attr">use_build_context_synchronously:</span> <span class="string">error</span> <span class="comment"># 不要在异步操作后使用context，使用的话需要添加mounted判断</span></span><br><span class="line">  <span class="attr">strong-mode:</span></span><br><span class="line">    <span class="attr">implicit-casts:</span> <span class="literal">false</span> <span class="comment"># 禁止隐式转换，可能会产生Null check异常，通常在Map&lt;String, dynamic&gt;取值、范型方法返回值的转换时易出现</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 linter: 入口来配置 linter 规则</span></span><br><span class="line"><span class="attr">linter:</span></span><br><span class="line">  <span class="attr">rules:</span></span><br><span class="line">    <span class="attr">cancel_subscriptions:</span> <span class="literal">true</span> <span class="comment"># 新增规范</span></span><br><span class="line">    <span class="attr">avoid_shadowing_type_parameters:</span> <span class="literal">false</span> <span class="comment"># 删除规范</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure><h2 id="使用sonarqube"><a href="#使用sonarqube" class="headerlink" title="使用sonarqube"></a>使用sonarqube</h2><p><a href="https://betterprogramming.pub/flutter-and-sonarqube-for-static-code-analysis-51368a85c51c">https://betterprogramming.pub/flutter-and-sonarqube-for-static-code-analysis-51368a85c51c</a></p><h3 id="安装sonarqube后台服务"><a href="#安装sonarqube后台服务" class="headerlink" title="安装sonarqube后台服务"></a>安装sonarqube后台服务</h3><h3 id="本地安装sonar-scanner工具"><a href="#本地安装sonar-scanner工具" class="headerlink" title="本地安装sonar-scanner工具"></a>本地安装sonar-scanner工具</h3><h3 id="本地项目配置"><a href="#本地项目配置" class="headerlink" title="本地项目配置"></a>本地项目配置</h3><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul><li><a href="https://dart.cn/guides/language/analysis-options">自定义静态分析</a></li><li><a href="https://github.com/flutter/flutter/blob/master/analysis_options.yaml">官方默认规则</a></li><li><a href="https://dart-lang.github.io/linter/lints/index.html">Linter for Dart</a></li><li><a href="https://pub.dev/packages/flutter_lints">flutter_lints</a></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;代码检测是规范写法，提高质量的一种重要方案，几乎所有的主流语言都有相关方案。在Flutter开发过程中，我们可以使用IDE自带的Inspect Code功能，也可以直接使用命令行dart analyze&lt;/p&gt;
+&lt;h2 id=&quot;官方方案&quot;&gt;&lt;a href=&quot;#官方方案&quot; c</summary>
+      
+    
+    
+    
+    <category term="Flutter" scheme="http://airshu.github.io/categories/Flutter/"/>
+    
+    <category term="未分类" scheme="http://airshu.github.io/categories/Flutter/%E6%9C%AA%E5%88%86%E7%B1%BB/"/>
+    
+    
+    <category term="Flutter" scheme="http://airshu.github.io/tags/Flutter/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>与JS通讯</title>
+    <link href="http://airshu.github.io/wiki/Flutter/%E6%9C%AA%E5%88%86%E7%B1%BB/%E4%B8%8EJS%E9%80%9A%E8%AE%AF/"/>
+    <id>http://airshu.github.io/wiki/Flutter/%E6%9C%AA%E5%88%86%E7%B1%BB/%E4%B8%8EJS%E9%80%9A%E8%AE%AF/</id>
+    <published>2024-01-26T13:01:08.845Z</published>
+    <updated>2024-01-26T13:01:08.845Z</updated>
+    
+    <content type="html"><![CDATA[<p>原生侧有许多库可以实现与JS直接通讯，而不需要使用webview容器。</p><p><a href="https://cloud.tencent.com/developer/article/1801742">V8、JSCore、Hermes、QuickJS，hybrid开发JS引擎怎么选</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;原生侧有许多库可以实现与JS直接通讯，而不需要使用webview容器。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://cloud.tencent.com/developer/article/1801742&quot;&gt;V8、JSCore、Hermes、QuickJS，hybrid开</summary>
+      
+    
+    
+    
+    <category term="Flutter" scheme="http://airshu.github.io/categories/Flutter/"/>
+    
+    <category term="未分类" scheme="http://airshu.github.io/categories/Flutter/%E6%9C%AA%E5%88%86%E7%B1%BB/"/>
+    
+    
+    <category term="Flutter" scheme="http://airshu.github.io/tags/Flutter/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>内存分析</title>
+    <link href="http://airshu.github.io/wiki/Flutter/%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/"/>
+    <id>http://airshu.github.io/wiki/Flutter/%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/</id>
+    <published>2024-01-26T13:01:08.844Z</published>
+    <updated>2024-01-26T13:01:08.844Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li><a href="https://github.com/bladeofgod/memory_detector_of_kit">https://github.com/bladeofgod/memory_detector_of_kit</a></li><li><a href="https://github.com/dart-lang/leak_tracker">https://github.com/dart-lang/leak_tracker</a></li><li><a href="https://docs.flutter.dev/tools/devtools/memory#basic-memory-concepts">https://docs.flutter.dev/tools/devtools/memory#basic-memory-concepts</a></li><li><a href="https://flutter.cn/community/tutorials/memory-leak-monitoring-on-flutter">Flutter上的内存泄漏监控</a></li><li><a href="https://blog.csdn.net/jdsjlzx/article/details/125919470">Flutter内存泄漏检测</a></li><li><a href="https://medium.com/flutter/flutter-dont-fear-the-garbage-collector-d69b3ff1ca30">Flutter: Don’t Fear the Garbage Collector</a></li><li><a href="https://github.com/liujiakuoyx/leak_detector/blob/main/README_zh-CN.md">https://github.com/liujiakuoyx/leak_detector&#x2F;blob&#x2F;main&#x2F;README_zh-CN.md</a></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/bladeofgod/memory_detector_of_kit&quot;&gt;https://github.com/bladeofgod/memory_detector_of_kit&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a</summary>
+      
+    
+    
+    
+    <category term="Flutter" scheme="http://airshu.github.io/categories/Flutter/"/>
+    
+    
+    <category term="Flutter" scheme="http://airshu.github.io/tags/Flutter/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>flutter_redux</title>
+    <link href="http://airshu.github.io/wiki/Flutter/%E5%BC%80%E6%BA%90%E5%BA%93/flutter_redux/"/>
+    <id>http://airshu.github.io/wiki/Flutter/%E5%BC%80%E6%BA%90%E5%BA%93/flutter_redux/</id>
+    <published>2024-01-26T13:01:08.844Z</published>
+    <updated>2024-01-26T13:01:08.844Z</updated>
+    
+    <content type="html"><![CDATA[<p>使用 Redux 的好处是：</p><ul><li>共享状态 </li><li>单一数据</li></ul><p>Redux 主要由三个部分组成：</p><ul><li>Action 用于定义数据变化的行为</li><li>Reducer 用于根据Action来产生新的状态，一般是一个方法</li><li>Store 用于存储和管理state</li></ul><p><img src="/wiki/Flutter/%E5%BC%80%E6%BA%90%E5%BA%93/flutter_redux/redux_1.png"></p><p>一般流程：</p><ol><li>Widget 绑定了 Store 中的 state 数据。</li><li>Widget 通过 Action 发布一个动作。</li><li>Reducer 根据 Action 更新 state。</li><li>更新 Store 中 state 绑定的 Widget。</li></ol><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul><li><a href="https://pub.dev/packages/flutter_redux">官网</a></li><li><a href="https://wizardforcel.gitbooks.io/gsyflutterbook/content/Flutter-4.html">Redux、主题、国际化</a></li></ul><hr><p>title: flutter_redux<br>toc: true<br>tags: Flutter</p><hr>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;使用 Redux 的好处是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;共享状态 &lt;/li&gt;
+&lt;li&gt;单一数据&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Redux 主要由三个部分组成：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Action 用于定义数据变化的行为&lt;/li&gt;
+&lt;li&gt;Reducer 用于根据Actio</summary>
+      
+    
+    
+    
+    <category term="Flutter" scheme="http://airshu.github.io/categories/Flutter/"/>
+    
+    <category term="开源库" scheme="http://airshu.github.io/categories/Flutter/%E5%BC%80%E6%BA%90%E5%BA%93/"/>
+    
+    
+    <category term="Flutter" scheme="http://airshu.github.io/tags/Flutter/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>资料收集</title>
+    <link href="http://airshu.github.io/wiki/Flutter/%E5%8A%A8%E6%80%81%E5%8C%96/%E8%B5%84%E6%96%99%E6%94%B6%E9%9B%86/"/>
+    <id>http://airshu.github.io/wiki/Flutter/%E5%8A%A8%E6%80%81%E5%8C%96/%E8%B5%84%E6%96%99%E6%94%B6%E9%9B%86/</id>
+    <published>2024-01-26T13:01:08.844Z</published>
+    <updated>2024-01-26T13:01:08.844Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li><a href="https://github.com/openkraken/kraken%EF%BC%9A%E9%98%BF%E9%87%8C%E5%87%BA%E5%93%81%EF%BC%8C%E5%B7%B2%E7%BB%8F%E4%B8%8D%E7%BB%B4%E6%8A%A4">https://github.com/openkraken/kraken：阿里出品，已经不维护</a></li><li><a href="https://github.com/ymm-tech/thresh%EF%BC%9A%E5%9F%BA%E4%BA%8EJS%E7%9A%84Flutter%E5%8A%A8%E6%80%81%E5%8C%96%E6%96%B9%E6%A1%88%EF%BC%8C%E5%B7%B2%E4%B8%8D%E7%BB%B4%E6%8A%A4">https://github.com/ymm-tech/thresh：基于JS的Flutter动态化方案，已不维护</a></li><li><a href="https://github.com/mxflutter/mxflutter%EF%BC%9A%E8%85%BE%E8%AE%AF%E5%87%BA%E5%93%81%EF%BC%8CMXFlutter">https://github.com/mxflutter/mxflutter：腾讯出品，MXFlutter</a> 是一套使用 TypeScript&#x2F;JavaScript 来开发 Flutter 应用的框架。已不维护</li><li><a href="https://hydro-sdk.io/%EF%BC%9A%E4%BD%BF%E7%94%A8JS%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF%E7%9A%84%E5%8A%A8%E6%80%81%E5%8C%96%E6%8A%80%E6%9C%AF%EF%BC%8C%E5%B7%B2%E4%B8%8D%E7%BB%B4%E6%8A%A4">https://hydro-sdk.io/：使用JS相关技术的动态化技术，已不维护</a></li><li><a href="https://github.com/ChimeraFlutter/Chimera-Flutter-Code-Push%EF%BC%9A%E5%B7%B2%E4%B8%8D%E7%BB%B4%E6%8A%A4%EF%BC%8C%E8%B2%8C%E4%BC%BC%E5%BE%88%E5%BC%BA%E5%A4%A7%E3%80%82%E5%8F%AA%E9%9C%80%E8%A6%81%E5%9F%BA%E4%BA%8Edart">https://github.com/ChimeraFlutter/Chimera-Flutter-Code-Push：已不维护，貌似很强大。只需要基于dart</a></li><li><a href="https://github.com/openwebf/webf%EF%BC%9AKraken%E6%9B%BF%E4%BB%A3%E5%93%81">https://github.com/openwebf/webf：Kraken替代品</a></li><li><a href="https://github.com/wuba/FairPushy%EF%BC%9A58%E5%90%8C%E5%9F%8E%E7%9A%84%E5%BC%80%E6%BA%90%E5%8A%A8%E6%80%81%E5%8C%96%E6%96%B9%E6%A1%88%EF%BC%8C%E7%9B%AE%E5%89%8D%E5%B8%82%E9%9D%A2%E4%B8%8A%E6%AF%94%E8%BE%83%E5%AE%8C%E5%96%84%E7%9A%84%E5%BC%80%E6%BA%90%E6%96%B9%E6%A1%88%E3%80%82">https://github.com/wuba/FairPushy：58同城的开源动态化方案，目前市面上比较完善的开源方案。</a></li><li><a href="https://zhaoshuming.github.io/2020/10/13/flutter-dynamic/">Flutter动态化方案</a></li><li><a href="https://alibaba.github.io/LuaViewSDK/index.html">https://alibaba.github.io/LuaViewSDK/index.html</a></li><li><a href="https://juejin.cn/post/6923060266003333133">UC Flutter技术沙龙分享：Aion - 拥抱 Flutter 生态的动态化方案</a></li><li><a href="https://tech.meituan.com/2020/06/23/meituan-flutter-flap.html">美团外卖Flutter动态化实践</a></li><li><a href="https://www.infoq.cn/article/mia5an2je51uor4jeipg">Flutter 动态化在最右 App 中的实践</a></li><li><a href="https://surface.syr.edu/cgi/viewcontent.cgi?article=1012&context=lcsmith_other">Definitional Interpreters for Higher-Order Programming Languages</a></li><li><a href="https://sites.cs.ucsb.edu/~ckrintz/papers/TCD-CS-2009-37.pdf">Dynamic Interpretation for Dynamic Scripting Languages</a></li><li><a href="https://hetu.dev/docs/zh-Hans/%EF%BC%9A%E6%B2%B3%E5%9B%BE%EF%BC%8C%E4%B8%93%E4%B8%BAFlutter%E6%89%93%E9%80%A0%E7%9A%84%E8%BD%BB%E9%87%8F%E5%9E%8B%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80">https://hetu.dev/docs/zh-Hans/：河图，专为Flutter打造的轻量型嵌入式脚本语言</a></li><li><a href="https://github.com/peiffer-innovations/json_dynamic_widget%EF%BC%9A%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BDjson%E6%96%87%E4%BB%B6%E7%9A%84UI">https://github.com/peiffer-innovations/json_dynamic_widget：动态加载json文件的UI</a></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/openkraken/kraken%EF%BC%9A%E9%98%BF%E9%87%8C%E5%87%BA%E5%93%81%EF%BC%8C%E5%B7%B2%E7%BB%8F%E4%B8%8D%E7%B</summary>
+      
+    
+    
+    
+    <category term="Flutter" scheme="http://airshu.github.io/categories/Flutter/"/>
+    
+    <category term="动态化" scheme="http://airshu.github.io/categories/Flutter/%E5%8A%A8%E6%80%81%E5%8C%96/"/>
+    
+    
+    <category term="Flutter 动态化" scheme="http://airshu.github.io/tags/Flutter-%E5%8A%A8%E6%80%81%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Flutter代码规范</title>
+    <link href="http://airshu.github.io/wiki/Flutter/Flutter%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/"/>
+    <id>http://airshu.github.io/wiki/Flutter/Flutter%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/</id>
+    <published>2024-01-26T13:01:08.844Z</published>
+    <updated>2024-01-26T13:01:08.844Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="项目中配置代码规范"><a href="#项目中配置代码规范" class="headerlink" title="项目中配置代码规范"></a>项目中配置代码规范</h2><p>参考 <a href="./%E6%9C%AA%E5%88%86%E7%B1%BB/Flutter%E9%9D%99%E6%80%81%E4%BB%A3%E7%A0%81%E6%A3%80%E6%B5%8B">Flutter静态代码检测</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;项目中配置代码规范&quot;&gt;&lt;a href=&quot;#项目中配置代码规范&quot; class=&quot;headerlink&quot; title=&quot;项目中配置代码规范&quot;&gt;&lt;/a&gt;项目中配置代码规范&lt;/h2&gt;&lt;p&gt;参考 &lt;a href=&quot;./%E6%9C%AA%E5%88%86%E7%B1%BB/</summary>
+      
+    
+    
+    
+    <category term="Flutter" scheme="http://airshu.github.io/categories/Flutter/"/>
+    
+    
+    <category term="Flutter" scheme="http://airshu.github.io/tags/Flutter/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kraken</title>
+    <link href="http://airshu.github.io/wiki/Flutter/%E5%8A%A8%E6%80%81%E5%8C%96/Kraken/"/>
+    <id>http://airshu.github.io/wiki/Flutter/%E5%8A%A8%E6%80%81%E5%8C%96/Kraken/</id>
+    <published>2024-01-26T13:01:08.844Z</published>
+    <updated>2024-01-26T13:01:08.844Z</updated>
+    
+    <content type="html"><![CDATA[<p>阿里出品</p><p>使用前端技术开发，Flutter渲染。</p><p>因为种种原因，Kraken不在维护，openwebf是其继任者。<a href="https://www.zhihu.com/question/534811524/answer/2595510449?utm_id=0">如何看待阿里北海Kraken项目即将弃坑？</a></p><ul><li><a href="https://juejin.cn/post/6998335494664749087">深入解析基于 Flutter 的 Web 渲染引擎「北海 Kraken 」技术原理</a></li><li><a href="https://openkraken.com/guide">官方文档</a></li><li><a href="https://github.com/openkraken/kraken">https://github.com/openkraken/kraken</a></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;阿里出品&lt;/p&gt;
+&lt;p&gt;使用前端技术开发，Flutter渲染。&lt;/p&gt;
+&lt;p&gt;因为种种原因，Kraken不在维护，openwebf是其继任者。&lt;a href=&quot;https://www.zhihu.com/question/534811524/answer/259551044</summary>
+      
+    
+    
+    
+    <category term="Flutter" scheme="http://airshu.github.io/categories/Flutter/"/>
+    
+    <category term="动态化" scheme="http://airshu.github.io/categories/Flutter/%E5%8A%A8%E6%80%81%E5%8C%96/"/>
+    
+    
+    <category term="Flutter 动态化" scheme="http://airshu.github.io/tags/Flutter-%E5%8A%A8%E6%80%81%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>dart_eval和flutter_eval</title>
+    <link href="http://airshu.github.io/wiki/Flutter/%E5%8A%A8%E6%80%81%E5%8C%96/dart_eval%E5%92%8Cflutter_eval/"/>
+    <id>http://airshu.github.io/wiki/Flutter/%E5%8A%A8%E6%80%81%E5%8C%96/dart_eval%E5%92%8Cflutter_eval/</id>
+    <published>2024-01-26T13:01:08.844Z</published>
+    <updated>2024-01-26T13:01:08.844Z</updated>
+    
+    <content type="html"><![CDATA[<p>dart_eval 是一种基于 Dart AOT 动态执行 Dart 代码的技术，能够实现动态化（CodePush），支持 Flutter。它包含编译器和解释器，均使用 Dart 语言编写，并支持可扩展（如扩展 Flutter 支持）。</p><p>dart_eval 由两个 Repo 构成：</p><ul><li>dart_eval：提供 dart 代码动态执行能力。<a href="https://github.com/ethanblake4/dart_eval">https://github.com/ethanblake4/dart_eval</a></li><li>flutter_eval：基于 dart_eval，扩展 Flutter 代码动态化执行能力。<a href="https://github.com/ethanblake4/flutter_eval">https://github.com/ethanblake4/flutter_eval</a></li></ul><ol><li>预埋位置</li><li>安装命令：dart pub global activate dart_eval，命令安装在$HOME&#x2F;.pub-cache&#x2F;bin&#x2F;目录</li><li>动态生成evc文件，dart_eval compile -o version_xxx.evc，上传服务器</li></ol><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.maxieewong.com/Dart%20eval%EF%BC%9ACompiler%20%E7%B1%BB.html">《Dart eval：Compiler 类》</a>、<br><a href="https://www.maxieewong.com/Dart%20Analyzer%EF%BC%9ADeclaration%20%E5%AE%9E%E4%BD%93.html">《Dart Analyzer：Declaration 实体》</a><br><a href="https://www.maxieewong.com/Dart%20eval%EF%BC%9ABridgeDeclaration%20%E5%AE%9E%E4%BD%93%E7%B1%BB.html">《Dart eval：BridgeDeclaration 实体类》</a><br><a href="https://www.maxieewong.com/Dart%20eval%EF%BC%9ADeclarationOrBridge%20%E5%AE%9E%E4%BD%93%E7%B1%BB.html">《Dart eval：DeclarationOrBridge 实体类》</a><br><a href="https://www.maxieewong.com/Dart%20eval%EF%BC%9ADartCompilationUnit%20%E5%AE%9E%E4%BD%93%E7%B1%BB.html">《Dart eval：DartCompilationUnit 实体类》</a><br><a href="https://www.maxieewong.com/Dart%20eval%EF%BC%9ALibrary%20%E5%AE%9E%E4%BD%93%E7%B1%BB.html">《Dart eval：Library 实体类》</a><br><a href="https://www.maxieewong.com/Dart%20import%20%E8%AF%AD%E6%B3%95.html">《Dart import 语法》</a><br><a href="https://www.maxieewong.com/Dart%20Analyzer%EF%BC%9AImportDirective%20%E5%AE%9E%E4%BD%93.html">《Dart Analyzer：ImportDirective 实体》</a><br><a href="https://www.maxieewong.com/Dart%20eval%EF%BC%9AexportGraph%20%E6%A6%82%E5%BF%B5.html">《Dart eval：exportGraph 概念》</a><br><a href="https://www.maxieewong.com/Dart%20eval%EF%BC%9AProgram%20%E7%B1%BB.html">《Dart eval：Program 类》</a><br><a href="https://www.maxieewong.com/Dart%20eval%EF%BC%9Acompile%20%E7%B3%BB%E5%88%97%E6%96%B9%E6%B3%95%E7%9A%84%E8%B0%83%E7%94%A8%E9%93%BE.html">《Dart eval：compile 系列方法的调用链》</a><br><a href="https://www.maxieewong.com/Dart%20eval%EF%BC%9ACompiler%20populateLookupTablesForDeclaration.html">《Dart eval：Compiler populateLookupTablesForDeclaration》</a><br><a href="https://www.maxieewong.com/Dart%20Analyzer%EF%BC%9ATopLevelVariableDeclaration.html">《Dart Analyzer：TopLevelVariableDeclaration》</a><br><a href="https://www.maxieewong.com/Dart%20eval%EF%BC%9AcompileIdentifierAsReference.html">《Dart eval：compileIdentifierAsReference》</a><br><a href="https://www.maxieewong.com/Dart%20eval%EF%BC%9ACompilerContext%20%E7%BC%96%E8%AF%91%E5%99%A8%E4%B8%8A%E4%B8%8B%E6%96%87.html">《Dart eval：CompilerContext 编译器上下文》</a><br><a href="https://www.maxieewong.com/Dart%20eval%EF%BC%9AcompileIdentifier.html">《Dart eval：compileIdentifier》</a><br><a href="https://www.maxieewong.com/Dart%20Analyzer%EF%BC%9AIdentifier.html">《Dart Analyzer：Identifier》</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;dart_eval 是一种基于 Dart AOT 动态执行 Dart 代码的技术，能够实现动态化（CodePush），支持 Flutter。它包含编译器和解释器，均使用 Dart 语言编写，并支持可扩展（如扩展 Flutter 支持）。&lt;/p&gt;
+&lt;p&gt;dart_eval 由</summary>
+      
+    
+    
+    
+    <category term="Flutter" scheme="http://airshu.github.io/categories/Flutter/"/>
+    
+    <category term="动态化" scheme="http://airshu.github.io/categories/Flutter/%E5%8A%A8%E6%80%81%E5%8C%96/"/>
+    
+    
+    <category term="Flutter 动态化" scheme="http://airshu.github.io/tags/Flutter-%E5%8A%A8%E6%80%81%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>openwebf</title>
+    <link href="http://airshu.github.io/wiki/Flutter/%E5%8A%A8%E6%80%81%E5%8C%96/openwebf/"/>
+    <id>http://airshu.github.io/wiki/Flutter/%E5%8A%A8%E6%80%81%E5%8C%96/openwebf/</id>
+    <published>2024-01-26T13:01:08.844Z</published>
+    <updated>2024-01-26T13:01:08.844Z</updated>
+    
+    <content type="html"><![CDATA[<p>Kraken的替代品</p><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c67cc04d5f43471ab342d4e54a3bece6~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp"></p><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ac0d1602481946de9d07a79cb37a2bcf~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp"></p><h2 id="Web端开发指导"><a href="#Web端开发指导" class="headerlink" title="Web端开发指导"></a>Web端开发指导</h2><p>开发流程</p><ol><li>使用Vue、React等进行开发</li><li>安装openwebf cli，<a href="https://github.com/openwebf/cli">https://github.com/openwebf/cli</a>，运行命令webf <a href="http://localhost:8080/%E5%8F%AF%E4%BB%A5%E8%BF%9B%E8%A1%8C%E7%AE%80%E5%8D%95%E8%B0%83%E8%AF%95">http://localhost:8080/可以进行简单调试</a></li></ol><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul><li><a href="https://openwebf.com/docs/tutorials/getting-started/introduction">官方文档</a></li><li><a href="https://github.com/openwebf/webf">https://github.com/openwebf/webf</a></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;Kraken的替代品&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c67cc04d5f43471ab342d4e54a3bece6~tplv-k3u1fbpfcp-zoom-in-cr</summary>
+      
+    
+    
+    
+    <category term="Flutter" scheme="http://airshu.github.io/categories/Flutter/"/>
+    
+    <category term="动态化" scheme="http://airshu.github.io/categories/Flutter/%E5%8A%A8%E6%80%81%E5%8C%96/"/>
+    
+    
+    <category term="Flutter 动态化" scheme="http://airshu.github.io/tags/Flutter-%E5%8A%A8%E6%80%81%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>fair</title>
+    <link href="http://airshu.github.io/wiki/Flutter/%E5%8A%A8%E6%80%81%E5%8C%96/fair/"/>
+    <id>http://airshu.github.io/wiki/Flutter/%E5%8A%A8%E6%80%81%E5%8C%96/fair/</id>
+    <published>2024-01-26T13:01:08.844Z</published>
+    <updated>2024-01-26T13:01:08.844Z</updated>
+    
+    <content type="html"><![CDATA[<p>58同城的开源动态化方案，目前市面上比较完善的开源方案。</p><p>将build方法内的代码使用dart2dsl转化成json，将非build方法里的代码使用dart2js转化成js。</p><h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><h3 id="FlatBuffers"><a href="#FlatBuffers" class="headerlink" title="FlatBuffers"></a>FlatBuffers</h3><p>将js转化成bin文件，好处是不用反序列化，大大提升Fair解析、加载资源的速度</p><h3 id="faircli"><a href="#faircli" class="headerlink" title="faircli"></a>faircli</h3><p>用来快捷创建动态化工程和载体工程</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">安装 Faircli 命令行工具</span></span><br><span class="line">dart pub global activate faircli</span><br><span class="line"><span class="meta"># </span><span class="language-bash"> 创建动态化工程</span></span><br><span class="line">faircli create -n dynamic_project_name</span><br><span class="line"><span class="meta"># </span><span class="language-bash"> 创建载体工程</span></span><br><span class="line">faircli create -k carrier -n carrier_project_name</span><br></pre></td></tr></table></figure><h3 id="开发流程"><a href="#开发流程" class="headerlink" title="开发流程"></a>开发流程</h3><ol><li><p>pubspec.yaml中配置依赖</p></li><li><p>入口添加FairApp</p></li></ol><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> main() &#123;</span><br><span class="line">  <span class="comment">// runApp(MyApp());</span></span><br><span class="line"></span><br><span class="line">  WidgetsFlutterBinding.ensureInitialized();</span><br><span class="line"></span><br><span class="line">  FairApp.runApplication(</span><br><span class="line">    _getApp(),</span><br><span class="line">    plugins: &#123;&#125;,</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">dynamic</span> _getApp() =&gt; FairApp(</span><br><span class="line">  modules: &#123;&#125;,</span><br><span class="line">  delegate: &#123;&#125;,</span><br><span class="line">  child: MyApp(),</span><br><span class="line">);</span><br><span class="line"></span><br></pre></td></tr></table></figure><ol start="3"><li><p>使用 @FairPatch() 注解标记需要动态化的 Widget</p></li><li><p>执行 build_runner 命令，编译生成下发产物</p></li><li><p>使用 FairWidget 加载 bundle 资源</p></li></ol><h2 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h2><h3 id="FairBinding的作用"><a href="#FairBinding的作用" class="headerlink" title="FairBinding的作用"></a>FairBinding的作用</h3><p>在某个 Widget 中引用了另一个本地自定义的 Widget。对于这样的情况，我们需要使用 @FairBinding 注解，为本地 Widget 生成映射关系。</p><h3 id="FairWell注解和FairDelegate"><a href="#FairWell注解和FairDelegate" class="headerlink" title="FairWell注解和FairDelegate"></a>FairWell注解和FairDelegate</h3><p>问题</p><p>如何运行js代码的？</p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul><li><a href="https://fair.58.com/zh/">https://fair.58.com/zh/</a></li><li><a href="https://juejin.cn/post/7228967938473394213">Flutter 热更新 Fair 真.体验</a></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;58同城的开源动态化方案，目前市面上比较完善的开源方案。&lt;/p&gt;
+&lt;p&gt;将build方法内的代码使用dart2dsl转化成json，将非build方法里的代码使用dart2js转化成js。&lt;/p&gt;
+&lt;h2 id=&quot;环境配置&quot;&gt;&lt;a href=&quot;#环境配置&quot; class=&quot;h</summary>
+      
+    
+    
+    
+    <category term="Flutter" scheme="http://airshu.github.io/categories/Flutter/"/>
+    
+    <category term="动态化" scheme="http://airshu.github.io/categories/Flutter/%E5%8A%A8%E6%80%81%E5%8C%96/"/>
+    
+    
+    <category term="Flutter 动态化" scheme="http://airshu.github.io/tags/Flutter-%E5%8A%A8%E6%80%81%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Flutter包体积优化</title>
+    <link href="http://airshu.github.io/wiki/Flutter/%E6%9C%AA%E5%88%86%E7%B1%BB/Flutter%E5%8C%85%E4%BD%93%E7%A7%AF%E4%BC%98%E5%8C%96/"/>
+    <id>http://airshu.github.io/wiki/Flutter/%E6%9C%AA%E5%88%86%E7%B1%BB/Flutter%E5%8C%85%E4%BD%93%E7%A7%AF%E4%BC%98%E5%8C%96/</id>
+    <published>2024-01-26T13:01:08.844Z</published>
+    <updated>2024-01-26T13:01:08.844Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="包的构成"><a href="#包的构成" class="headerlink" title="包的构成"></a>包的构成</h2><p><img src="/wiki/Flutter/%E6%9C%AA%E5%88%86%E7%B1%BB/Flutter%E5%8C%85%E4%BD%93%E7%A7%AF%E4%BC%98%E5%8C%96/apk_size_1.png"></p><p>主要组成部分：</p><ul><li>so库，包含第三方依赖，flutter打包后的libapp.so等</li><li>assets文件夹中的资源文件</li><li>dex文件</li><li>字体文件</li><li>resources.arsc文件</li></ul><h2 id="通过DevTool工具分析包体积"><a href="#通过DevTool工具分析包体积" class="headerlink" title="通过DevTool工具分析包体积"></a>通过DevTool工具分析包体积</h2><h3 id="生成包体积分析文件"><a href="#生成包体积分析文件" class="headerlink" title="生成包体积分析文件"></a>生成包体积分析文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">flutter build &lt;your target platform&gt; --analyze-size --target-platform=android-arm64</span><br><span class="line"></span><br><span class="line">A summary of your APK analysis can be found at: build/apk-code-size-analysis_01.json</span><br><span class="line"></span><br></pre></td></tr></table></figure><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p><img src="/wiki/Flutter/%E6%9C%AA%E5%88%86%E7%B1%BB/Flutter%E5%8C%85%E4%BD%93%E7%A7%AF%E4%BC%98%E5%8C%96/app_size_analysis.webp"></p><h2 id="优化措施"><a href="#优化措施" class="headerlink" title="优化措施"></a>优化措施</h2><ul><li><p>图片压缩，可以使用tinypng工具进行压缩</p></li><li><p>使用相关编译参数</p><ul><li>dwarf_stack_trace表示在生成的动态库文件中，不使用堆栈跟踪符号</li><li>obfuscate表示混淆，通过减少变量名&#x2F;方法名的方式减小代码体积</li></ul></li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//编译release包并打印size</span><br><span class="line">flutter build aot --release --extra-gen-snapshot-options=--print-snapshot-sizes</span><br><span class="line">//--dwarf_stack_traces， --&gt;减少6.2%大小</span><br><span class="line">flutter build aot --release --extra-gen-snapshot-options=&quot;--dwarf_stack_traces,--print-snapshot-sizes&quot;</span><br><span class="line">//--obsfuscation， --&gt;减少2.5%大小</span><br><span class="line">flutter build aot --release --extra-gen-snapshot-options=&quot;--dwarf_stack_traces,--print-snapshot-sizes,--obfuscate&quot;</span><br><span class="line"></span><br><span class="line">//总大小减少8.7%</span><br></pre></td></tr></table></figure><ul><li>iOS中，删除dSYM符号表信息文件</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RunCommand xcrun dsymutil -o &quot;$&#123;build_dir&#125;/aot/App.dSYM&quot; &quot;$&#123;app_framework&#125;/App&quot;</span><br><span class="line">RunCommand xcrun strip -x -S &quot;$&#123;derived_dir&#125;/App.framework/App&quot;</span><br></pre></td></tr></table></figure><ul><li>排除没有使用的so库</li></ul><p><a href="https://www.cnblogs.com/shenwenbo/p/16774540.html">gradle打包apk时排除指定的so文件</a></p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul><li><a href="https://www.yuque.com/xytech/flutter/hnxs1g">Flutter瘦身大作战</a></li><li><a href="https://flutter.cn/docs/tools/devtools/app-size">https://flutter.cn/docs/tools/devtools/app-size</a></li><li><a href="https://tech.meituan.com/2020/09/18/flutter-in-meituan.html">Flutter包大小治理上的探索与实践</a></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;包的构成&quot;&gt;&lt;a href=&quot;#包的构成&quot; class=&quot;headerlink&quot; title=&quot;包的构成&quot;&gt;&lt;/a&gt;包的构成&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;/wiki/Flutter/%E6%9C%AA%E5%88%86%E7%B1%BB/Flutter%E5</summary>
+      
+    
+    
+    
+    <category term="Flutter" scheme="http://airshu.github.io/categories/Flutter/"/>
+    
+    <category term="未分类" scheme="http://airshu.github.io/categories/Flutter/%E6%9C%AA%E5%88%86%E7%B1%BB/"/>
+    
+    
+    <category term="Flutter" scheme="http://airshu.github.io/tags/Flutter/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>shorebird</title>
+    <link href="http://airshu.github.io/wiki/Flutter/%E5%8A%A8%E6%80%81%E5%8C%96/shorebird/"/>
+    <id>http://airshu.github.io/wiki/Flutter/%E5%8A%A8%E6%80%81%E5%8C%96/shorebird/</id>
+    <published>2024-01-26T13:01:08.844Z</published>
+    <updated>2024-01-26T13:01:08.844Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://github.com/shorebirdtech/shorebird">https://github.com/shorebirdtech/shorebird</a></p><p>Flutter创始人之一打造，只支持Flutter侧的热更，patch包存放在google服务器，需要翻墙</p><p>[Flutter - 混编项目集成Shorebird热更新🐦（安卓篇）)][<a href="https://juejin.cn/post/7321049411852664882]">https://juejin.cn/post/7321049411852664882]</a><br><a href="https://juejin.cn/post/7293448897435271220?searchId=20231028183416C57292154E962B8B0ABE">研究基于 Flutter Shorebird 热更新支持中国区域的问题</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://github.com/shorebirdtech/shorebird&quot;&gt;https://github.com/shorebirdtech/shorebird&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Flutter创始人之一打造，只支持Flutter侧的热更，</summary>
+      
+    
+    
+    
+    <category term="Flutter" scheme="http://airshu.github.io/categories/Flutter/"/>
+    
+    <category term="动态化" scheme="http://airshu.github.io/categories/Flutter/%E5%8A%A8%E6%80%81%E5%8C%96/"/>
+    
+    
+    <category term="Flutter 动态化" scheme="http://airshu.github.io/tags/Flutter-%E5%8A%A8%E6%80%81%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>flutter_hooks</title>
+    <link href="http://airshu.github.io/wiki/Flutter/%E5%BC%80%E6%BA%90%E5%BA%93/flutter_hooks/"/>
+    <id>http://airshu.github.io/wiki/Flutter/%E5%BC%80%E6%BA%90%E5%BA%93/flutter_hooks/</id>
+    <published>2024-01-26T13:01:08.844Z</published>
+    <updated>2024-01-26T13:01:08.844Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="什么是Hook？"><a href="#什么是Hook？" class="headerlink" title="什么是Hook？"></a>什么是Hook？</h2><p>Hooks 是来自 React 的一个概念，flutter_hooks 只是 React 实现到 Flutter 的一个端口。</p><p><a href="https://zh-hans.legacy.reactjs.org/docs/hooks-intro.html">https://zh-hans.legacy.reactjs.org/docs/hooks-intro.html</a></p><h2 id="flutter-hooks"><a href="#flutter-hooks" class="headerlink" title="flutter_hooks"></a>flutter_hooks</h2><p><a href="https://github.com/rrousselGit/flutter_hooks/blob/master/packages/flutter_hooks/resources/translations/zh_cn/README.md">https://github.com/rrousselGit/flutter_hooks&#x2F;blob&#x2F;master&#x2F;packages&#x2F;flutter_hooks&#x2F;resources&#x2F;translations&#x2F;zh_cn&#x2F;README.md</a></p><p>React Hooks 的 Flutter 实现。</p><p>其触发UI刷新使用的是setState，可能存在性能问题。</p><h2 id="常用hooks"><a href="#常用hooks" class="headerlink" title="常用hooks"></a>常用hooks</h2><h3 id="useEffect"><a href="#useEffect" class="headerlink" title="useEffect"></a>useEffect</h3><blockquote><p>你之前可能已经在 React 组件中执行过数据获取、订阅或者手动修改过 DOM。我们统一把这些操作称为“副作用”，或者简称为“作用”。</p></blockquote><p>相当于 initState + didUpdateWidget + dispose。用于在组件挂载、更新、卸载时执行副作用。副作用可能是访问网络、访问本地存储、订阅事件等等。</p><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter_hooks/flutter_hooks.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:http/http.dart&#x27;</span> <span class="keyword">as</span> http;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NetworkRequest</span> <span class="keyword">extends</span> <span class="title">HookWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">final</span> response = useState(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    useEffect(() &#123;</span><br><span class="line">      http.<span class="keyword">get</span>(<span class="string">&#x27;https://jsonplaceholder.typicode.com/todos/1&#x27;</span>).then((res) &#123;</span><br><span class="line">        response.value = res.body;</span><br><span class="line">      &#125;);</span><br><span class="line">      <span class="keyword">return</span> () &#123;</span><br><span class="line">        <span class="comment">// 在组件卸载时取消订阅</span></span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;, []);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: Text(<span class="string">&#x27;Network Request&#x27;</span>),</span><br><span class="line">      ),</span><br><span class="line">      body: Center(</span><br><span class="line">        child: Text(response.value),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure><p>在上面的例子中，我们使用 useEffect Hook 订阅了一个网络事件。useEffect 接收两个参数，第一个参数是副作用函数，第二个参数是依赖数组。当依赖数组中的某个值发生变化时，useEffect 将重新执行副作用函数。如果依赖数组为空，useEffect 将只在组件挂载和卸载时执行副作用函数。</p><h3 id="useStream"><a href="#useStream" class="headerlink" title="useStream"></a>useStream</h3><p>useStream 接收一个 Stream 对象作为参数，并返回一个包含 Stream 数据的变量。</p><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;dart:async&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter_hooks/flutter_hooks.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StreamDemo</span> <span class="keyword">extends</span> <span class="title">HookWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">final</span> stream = Stream.periodic(<span class="built_in">Duration</span>(seconds: <span class="number">1</span>), (i) =&gt; i).take(<span class="number">10</span>);</span><br><span class="line">    <span class="keyword">final</span> data = useStream(stream);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: Text(<span class="string">&#x27;Stream Demo&#x27;</span>),</span><br><span class="line">      ),</span><br><span class="line">      body: Center(</span><br><span class="line">        child: Text(data.toString()),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><h3 id="useMemoized"><a href="#useMemoized" class="headerlink" title="useMemoized"></a>useMemoized</h3><p>用于缓存计算结果，避免重复计算。在生命周期中只会被调用一次</p><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter_hooks/flutter_hooks.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MemoizedDemo</span> <span class="keyword">extends</span> <span class="title">HookWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">final</span> data = useMemoized(() =&gt; expensiveCalculation());</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: Text(<span class="string">&#x27;Memoized Demo&#x27;</span>),</span><br><span class="line">      ),</span><br><span class="line">      body: Center(</span><br><span class="line">        child: Text(data.toString()),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">int</span> expensiveCalculation() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span> + <span class="number">2</span> + <span class="number">3</span> + <span class="number">4</span> + <span class="number">5</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul><li><a href="https://medium.com/@dan_abramov/making-sense-of-react-hooks-fdbde8803889">Making Sense of React Hooks</a></li><li><a href="https://juejin.cn/post/6854573214732025870">Flutter Hooks 使用及原理</a></li><li><a href="https://tehub.com/a/c0VpgkJsuX">掌握 Flutter 中的 Hooks🪝</a></li><li><a href="https://github.com/rrousselGit/flutter_hooks/blob/master/packages/flutter_hooks/resources/translations/zh_cn/README.md">https://github.com/rrousselGit/flutter_hooks&#x2F;blob&#x2F;master&#x2F;packages&#x2F;flutter_hooks&#x2F;resources&#x2F;translations&#x2F;zh_cn&#x2F;README.md</a></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;什么是Hook？&quot;&gt;&lt;a href=&quot;#什么是Hook？&quot; class=&quot;headerlink&quot; title=&quot;什么是Hook？&quot;&gt;&lt;/a&gt;什么是Hook？&lt;/h2&gt;&lt;p&gt;Hooks 是来自 React 的一个概念，flutter_hooks 只是 React 实</summary>
+      
+    
+    
+    
+    <category term="Flutter" scheme="http://airshu.github.io/categories/Flutter/"/>
+    
+    <category term="开源库" scheme="http://airshu.github.io/categories/Flutter/%E5%BC%80%E6%BA%90%E5%BA%93/"/>
+    
+    
+    <category term="Flutter" scheme="http://airshu.github.io/tags/Flutter/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>DevTools</title>
+    <link href="http://airshu.github.io/wiki/Flutter/DevTools/"/>
+    <id>http://airshu.github.io/wiki/Flutter/DevTools/</id>
+    <published>2024-01-26T13:01:08.843Z</published>
+    <updated>2024-01-26T13:01:08.843Z</updated>
+    
+    <content type="html"><![CDATA[<p>开发者工具介绍</p><ul><li>Flutter Inspector：检查 Flutter 应用程序的 UI 组件布局和状态</li><li>Performance View：在 Flutter 应用程序中诊断 UI 性能过低的问题</li><li>CPU Profiler View：Flutter 和 Dart 应用的 CPU 性能检测</li><li>Network View：为 Flutter 应用进行网络性能检测</li><li>为 Flutter 或 Dart 应用进行源码级的调试</li><li>Memory View：在 Flutter 或 Dart 命令行应用中测试内存问题</li><li>Logging View：查看正在运行的 Flutter 或 Dart 的命令行应用程序相关的常规日志和诊断信息</li><li>App Size Tool：分析代码和应用的大小</li></ul><h2 id="Flutter-inspector-工具"><a href="#Flutter-inspector-工具" class="headerlink" title="Flutter inspector 工具"></a>Flutter inspector 工具</h2><p><img src="/wiki/Flutter/DevTools/inspector_screenshot.webp"></p><p>查看 widget 树，诊断布局问题</p><h3 id="Select-Widget-Mode"><a href="#Select-Widget-Mode" class="headerlink" title="Select Widget Mode"></a>Select Widget Mode</h3><p>启动此按钮，可在应用中选中某个Widget进行查看。通过此工具可以快速定位UI的详细信息</p><h3 id="Slow-Animations"><a href="#Slow-Animations" class="headerlink" title="Slow Animations"></a>Slow Animations</h3><p>以五分之一的速度运行动画以便对它们进行优化</p><h3 id="Show-Guidelines-显示引导线"><a href="#Show-Guidelines-显示引导线" class="headerlink" title="Show Guidelines 显示引导线"></a>Show Guidelines 显示引导线</h3><p>覆盖一层引导线以帮助调整布局问题</p><h3 id="Show-Baselines-显示基线"><a href="#Show-Baselines-显示基线" class="headerlink" title="Show Baselines 显示基线"></a>Show Baselines 显示基线</h3><p>针对文字对齐展示文字的基线。对检查文字是否对齐有帮助。</p><h3 id="Highlight-Repaints-高亮重绘区域"><a href="#Highlight-Repaints-高亮重绘区域" class="headerlink" title="Highlight Repaints 高亮重绘区域"></a>Highlight Repaints 高亮重绘区域</h3><p>该选项会为所有的 RenderBox 绘制一层边框，在它们重新绘制时改变颜色。重新绘制时在图层上依次显示不同的颜色。例如，一个小动画可能会导致整个页面一直在重绘。将动画使用RepaintBoundary widget嵌套，可以保证动画只会导致其本身重绘。</p><h3 id="Highlight-Oversized-Images-高亮尺寸过大的图片"><a href="#Highlight-Oversized-Images-高亮尺寸过大的图片" class="headerlink" title="Highlight Oversized Images 高亮尺寸过大的图片"></a>Highlight Oversized Images 高亮尺寸过大的图片</h3><p>在运行的应用程序中高亮并反转消耗过多内存的图像。</p><h3 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h3><ul><li>对于loading、toast这种动画UI，使用RepaintBoundary包裹</li><li>对于大尺寸的图片，使用cacheHeight、cacheWidth等属性进行优化</li></ul><h2 id="性能视图-Performance-view"><a href="#性能视图-Performance-view" class="headerlink" title="性能视图 (Performance view)"></a>性能视图 (Performance view)</h2><ul><li>Flutter 帧图表（仅 Flutter 应用）</li><li>帧分析标签页（仅 Flutter 应用）</li><li>光栅统计标签页（仅 Flutter 应用）</li><li>时间轴事件跟踪查看器（所有原生 Dart 应用）</li><li>高级调试工具（仅 Flutter 应用）</li></ul><h3 id="Flutter-帧图表"><a href="#Flutter-帧图表" class="headerlink" title="Flutter 帧图表"></a>Flutter 帧图表</h3><h3 id="光栅统计标签页-Raster-Stats"><a href="#光栅统计标签页-Raster-Stats" class="headerlink" title="光栅统计标签页 Raster Stats"></a>光栅统计标签页 Raster Stats</h3><p>如果帧的卡顿来自光栅线程，这个工具也许能够帮助你诊断性能缓慢的原因。生成光栅统计的步骤：</p><ol><li>在应用程序中导航到你看见光栅线程卡顿的画面。</li><li>点击 Take Snapshot 生成快照。</li><li>查看不同图层和它们各自的渲染时间。</li></ol><p><img src="/wiki/Flutter/DevTools/raster-stats-tab.webp" alt="Raster Stats Tab"></p><h3 id="时间线事件表-Timeline-Events"><a href="#时间线事件表-Timeline-Events" class="headerlink" title="时间线事件表 Timeline Events"></a>时间线事件表 Timeline Events</h3><p>时间线事件图表显示了应用程序的所有事件追踪。 Flutter 底层框架在构建帧、绘制场景和跟踪其他活动（如 HTTP 请求时间和垃圾回收）时，会发出时间线事件。这些事件会在时间线中显示出来。你也可以使用 dart:developer Timeline 和 TimelineTask API 发送你自己的时间线事件</p><p><img src="/wiki/Flutter/DevTools/timeline-events-tab.webp"></p><h3 id="增强的追踪选项-Enhance-Tracing"><a href="#增强的追踪选项-Enhance-Tracing" class="headerlink" title="增强的追踪选项 Enhance Tracing"></a>增强的追踪选项 Enhance Tracing</h3><p><img src="/wiki/Flutter/DevTools/enhanced-tracing.webp"></p><p>你可以重复操作你想要追踪的行为来查看新的时间线事件，操作后可以在时间线中选择一个构建帧进行查看。</p><h4 id="追踪-widget-的构建-Track-Widget-Builds"><a href="#追踪-widget-的构建-Track-Widget-Builds" class="headerlink" title="追踪 widget 的构建 Track Widget Builds"></a>追踪 widget 的构建 Track Widget Builds</h4><p>想要在时间线中查看 build() 方法的事件，启用 Track Widget Builds 选项，时间线中将出现 widget 对应名称的事件。</p><p><img src="/wiki/Flutter/DevTools/track-widget-builds.webp"></p><h4 id="追踪布局-Track-Layouts"><a href="#追踪布局-Track-Layouts" class="headerlink" title="追踪布局 Track Layouts"></a>追踪布局 Track Layouts</h4><p>想要在时间线中查看 RenderObject 布局构建的事件，启用 Track Layouts 选项：</p><p><img src="/wiki/Flutter/DevTools/track-layouts.webp"></p><h4 id="追踪绘制-Track-Paints"><a href="#追踪绘制-Track-Paints" class="headerlink" title="追踪绘制 Track Paints"></a>追踪绘制 Track Paints</h4><p>想要在时间线中查看 RenderObject 的绘制事件，启用 Track Paints 选项：</p><p><img src="/wiki/Flutter/DevTools/track-paints.webp"></p><h3 id="更多调试选项-More-debugging-options"><a href="#更多调试选项-More-debugging-options" class="headerlink" title="更多调试选项 More debugging options"></a>更多调试选项 More debugging options</h3><p>想要诊断渲染图层相关的问题，请先关闭渲染层。下述的选项将会默认启动。</p><p>想要查看你的应用的性能影响，请尝试以相同的操作重现性能问题。在渲染层关闭的情况下，于构建帧图表里选择一个新的构建帧，查看它的时间线细节。如果光栅线程的时间消耗有显著降低，那么你禁用的效果的滥用可能是导致卡顿的主要原因。</p><h4 id="渲染裁剪的图层-Render-Clip-layers"><a href="#渲染裁剪的图层-Render-Clip-layers" class="headerlink" title="渲染裁剪的图层 Render Clip layers"></a>渲染裁剪的图层 Render Clip layers</h4><p>禁用该选项来检查已使用的裁剪图层是否影响了性能。如果禁用后性能有显著提升，请尝试减少你的应用中裁剪效果的使用。</p><h4 id="渲染透明度图层-Render-Opacity-layers"><a href="#渲染透明度图层-Render-Opacity-layers" class="headerlink" title="渲染透明度图层 Render Opacity layers"></a>渲染透明度图层 Render Opacity layers</h4><p>禁用该选项来检查已使用的透明度图层是否影响了性能。如果禁用后性能有显著提升，请尝试减少你的应用中透明度效果的使用。</p><h4 id="渲染物理形状图层-Render-Physical-Shape-layers"><a href="#渲染物理形状图层-Render-Physical-Shape-layers" class="headerlink" title="渲染物理形状图层 Render Physical Shape layers"></a>渲染物理形状图层 Render Physical Shape layers</h4><p>禁用该选项来检查已使用的物理形状图层是否影响了性能，例如阴影和背景特效。如果禁用后性能有显著提升，请尝试减少你的应用中物理效果的使用。</p><p><img src="/wiki/Flutter/DevTools/more-debugging-options.webp"></p><h2 id="CPU探测视图-CPU-profiler"><a href="#CPU探测视图-CPU-profiler" class="headerlink" title="CPU探测视图 CPU profiler"></a>CPU探测视图 CPU profiler</h2><p>单击“Record”开始记录 CPU 剖析。 当完成录制后，单击“Stop”。  此时，CPU 分析数据将从 VM 中提取并显示在分析器视图中（Call tree, Bottom up, Method table, and Flame chart）</p><h3 id="Bottom-Up"><a href="#Bottom-Up" class="headerlink" title="Bottom Up"></a>Bottom Up</h3><p>此表提供了 CPU 配置文件的自下而上表示。 这意味着自下而上表中的每个顶级方法或根实际上是一个或多个 CPU 样本的调用堆栈中的顶级方法。 换句话说，自下而上的表中的每个顶级方法都是自上而下的表（调用树）的叶节点。 在此表中，可以展开方法以显示其调用者。</p><h4 id="Total-Time"><a href="#Total-Time" class="headerlink" title="Total Time"></a>Total Time</h4><h4 id="Self-Time"><a href="#Self-Time" class="headerlink" title="Self Time"></a>Self Time</h4><h4 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h4><h3 id="Call-tree-调用树"><a href="#Call-tree-调用树" class="headerlink" title="Call tree 调用树"></a>Call tree 调用树</h3><p>自上而下的调用展示</p><h3 id="CPU-Flame-Chart-CPU火焰图"><a href="#CPU-Flame-Chart-CPU火焰图" class="headerlink" title="CPU Flame Chart CPU火焰图"></a>CPU Flame Chart CPU火焰图</h3><p><img src="/wiki/Flutter/DevTools/cpu-flame-chart.webp"></p><p>火焰图是一种可视化工具，用于显示方法调用的时间分布。 矩形的宽度表示方法的执行时间。 矩形的颜色表示方法的深度，即方法调用堆栈的深度。上面调用下面的方法。</p><h3 id="CPU-sampling-rate"><a href="#CPU-sampling-rate" class="headerlink" title="CPU sampling rate"></a>CPU sampling rate</h3><h2 id="内存视图-Memory-view"><a href="#内存视图-Memory-view" class="headerlink" title="内存视图 Memory view"></a>内存视图 Memory view</h2><p><img src="/wiki/Flutter/DevTools/memory_chart_anatomy.webp"></p><h3 id="Root-object-retaining-path-and-reachability"><a href="#Root-object-retaining-path-and-reachability" class="headerlink" title="Root object, retaining path, and reachability"></a>Root object, retaining path, and reachability</h3><h3 id="Shallow-size-vs-retained-size"><a href="#Shallow-size-vs-retained-size" class="headerlink" title="Shallow size vs retained size"></a>Shallow size vs retained size</h3><h3 id="Dart中的内存泄漏"><a href="#Dart中的内存泄漏" class="headerlink" title="Dart中的内存泄漏"></a>Dart中的内存泄漏</h3><h3 id="技巧-1"><a href="#技巧-1" class="headerlink" title="技巧"></a>技巧</h3><ul><li>小心闭包函数的使用</li><li>小心context的传递。如果闭包的生命周期在widget内，则可以传递</li><li>注意widget和state，state中不要引用widget中的context，widget是短生命的，而state是长生命的</li></ul><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul><li><a href="https://juejin.cn/post/7260499321983893565">Flutter 调试工具篇 | 壹 - 使用 Flutter Inspector 分析界面</a></li><li><a href="https://flutter.cn/docs/tools/devtools/performance">性能视图</a></li><li><a href="https://flutter.cn/docs/tools/devtools/overview">https://flutter.cn/docs/tools/devtools/overview</a></li><li><a href="https://blog.csdn.net/qq_41818873/article/details/130618157">Flutter性能分析工具使用</a></li><li><a href="https://medium.com/@fluttergems/mastering-dart-flutter-devtools-cpu-profiler-view-part-6-of-8-31e24eae6bf8">Mastering Dart &amp; Flutter DevTools — Part 6: CPU Profiler View</a></li><li><a href="https://medium.com/@fluttergems/mastering-dart-flutter-devtools-part-7-memory-view-e7f5aaf07e15">Mastering Dart &amp; Flutter DevTools — Part 7: Memory View</a></li><li><a href="https://medium.com/@fluttergems/mastering-dart-flutter-devtools-performance-view-part-8-of-8-4ae762f91230">Mastering Dart &amp; Flutter DevTools — Part 8: Performance View</a></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;开发者工具介绍&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Flutter Inspector：检查 Flutter 应用程序的 UI 组件布局和状态&lt;/li&gt;
+&lt;li&gt;Performance View：在 Flutter 应用程序中诊断 UI 性能过低的问题&lt;/li&gt;
+&lt;li&gt;CPU Pr</summary>
+      
+    
+    
+    
+    <category term="Flutter" scheme="http://airshu.github.io/categories/Flutter/"/>
+    
+    
+    <category term="Flutter" scheme="http://airshu.github.io/tags/Flutter/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Dart虚拟机</title>
+    <link href="http://airshu.github.io/wiki/Flutter/Dart/Dart%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
+    <id>http://airshu.github.io/wiki/Flutter/Dart/Dart%E8%99%9A%E6%8B%9F%E6%9C%BA/</id>
+    <published>2024-01-26T13:01:08.842Z</published>
+    <updated>2024-01-26T13:01:08.842Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li><a href="https://mrale.ph/dartvm/">Introduction to Dart VM</a></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://mrale.ph/dartvm/&quot;&gt;Introduction to Dart VM&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</summary>
+      
+    
+    
+    
+    <category term="Flutter" scheme="http://airshu.github.io/categories/Flutter/"/>
+    
+    <category term="Dart" scheme="http://airshu.github.io/categories/Flutter/Dart/"/>
+    
+    
+    <category term="Dart" scheme="http://airshu.github.io/tags/Dart/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Dart内存管理</title>
+    <link href="http://airshu.github.io/wiki/Flutter/Dart/Dart%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/"/>
+    <id>http://airshu.github.io/wiki/Flutter/Dart/Dart%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</id>
+    <published>2024-01-26T13:01:08.842Z</published>
+    <updated>2024-01-26T13:01:08.842Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Dart运行环境（VM）"><a href="#Dart运行环境（VM）" class="headerlink" title="Dart运行环境（VM）"></a>Dart运行环境（VM）</h2><p>和Android Art一样，Flutter也对Dart源码做了AOT编译，直接将Dart源码编译成了本地字节码，没有了解释执行的过程，提升执行性能。这里重点关注Dart VM内存分配(Allocate)和回收(GC)相关的部分。</p><p>和Java显著不同的是Dart的”线程”(Isolate)是不共享内存的，各自的堆(Heap)和栈(Stack)都是隔离的，并且是各自独立GC的，彼此之间通过消息通道来通信。Dart天然不存在数据竞争和变量状态同步的问题，整个Flutter Framework Widget的渲染过程都运行在一个isolate中。</p><p><img src="/wiki/Flutter/Dart/Dart%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/20191227152028853.jpg"></p><p>Dart VM将内存管理分为新生代(New Generation)和老年代(Old Generation)。</p><ul><li>新生代(New Generation): 通常初次分配的对象都位于新生代中，该区域主要是存放内存较小并且生命周期较短的对象，比如局部变量。新生代会频繁执行内存回收(GC)，回收采用“复制-清除”算法，将内存分为两块(图中的from 和 to)，运行时每次只使用其中的一块(图中的from)，另一块备用(图中的to)。当发生GC时，将当前使用的内存块中存活的对象拷贝到备用内存块中，然后清除当前使用内存块，最后，交换两块内存的角色。</li></ul><p><img src="/wiki/Flutter/Dart/Dart%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/1.jpg"></p><ul><li>老年代(Old Generation): 在新生代的GC中“幸存”下来的对象，它们会被转移到老年代中。老年代存放生命力周期较长，内存较大的对象。老年代通常比新生代要大很多。老年代的GC回收采用“标记-清除”算法，分成标记和清除两个阶段。在标记阶段会触发停顿(stop the world)，多线程并发的完成对垃圾对象的标记，降低标记阶段耗时。在清理阶段，由GC线程负责清理回收对象，和应用线程同时执行，不影响应用运行。</li></ul><p><img src="/wiki/Flutter/Dart/Dart%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/2.jpg"></p><h2 id="内存管理算法"><a href="#内存管理算法" class="headerlink" title="内存管理算法"></a>内存管理算法</h2><p>GC(Garbage Collection)，垃圾回收机制，简单地说就是程序中及时处理废弃不用的内存对象的机制，防止内存中废弃对象堆积过多造成内存泄漏</p><p>常见的垃圾回收算法有引用计数法（Reference Counting）、标注并清理（Mark and Sweep GC）、拷贝（Copying GC）和逐代回收（Generational GC）等算法。</p><p>Flutter使用了原生对应的垃圾回收机制。</p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul><li><a href="https://blog.csdn.net/rd_w_csdn/article/details/103732697">Dart 内存管理机制</a></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;Dart运行环境（VM）&quot;&gt;&lt;a href=&quot;#Dart运行环境（VM）&quot; class=&quot;headerlink&quot; title=&quot;Dart运行环境（VM）&quot;&gt;&lt;/a&gt;Dart运行环境（VM）&lt;/h2&gt;&lt;p&gt;和Android Art一样，Flutter也对Dart源码</summary>
+      
+    
+    
+    
+    <category term="Flutter" scheme="http://airshu.github.io/categories/Flutter/"/>
+    
+    <category term="Dart" scheme="http://airshu.github.io/categories/Flutter/Dart/"/>
+    
+    
+    <category term="Dart" scheme="http://airshu.github.io/tags/Dart/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Dart资料收集</title>
+    <link href="http://airshu.github.io/wiki/Flutter/Dart/Dart%E8%B5%84%E6%96%99%E6%94%B6%E9%9B%86/"/>
+    <id>http://airshu.github.io/wiki/Flutter/Dart/Dart%E8%B5%84%E6%96%99%E6%94%B6%E9%9B%86/</id>
+    <published>2024-01-26T13:01:08.842Z</published>
+    <updated>2024-01-26T13:01:08.843Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://dart.dev/guides/language/specifications/DartLangSpec-v2.2.pdf">Dart Programming Language Specification 5th edition draft</a><br><a href="https://blog.csdn.net/rd_w_csdn/article/details/121293353">dart pragma注解 vm:entry-point</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://dart.dev/guides/language/specifications/DartLangSpec-v2.2.pdf&quot;&gt;Dart Programming Language Specification 5th edition draft</summary>
+      
+    
+    
+    
+    <category term="Flutter" scheme="http://airshu.github.io/categories/Flutter/"/>
+    
+    <category term="Dart" scheme="http://airshu.github.io/categories/Flutter/Dart/"/>
+    
+    
+    <category term="Dart" scheme="http://airshu.github.io/tags/Dart/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>北京游玩攻略</title>
+    <link href="http://airshu.github.io/wiki/%E9%9A%8F%E7%AC%94/%E5%8C%97%E4%BA%AC%E6%B8%B8%E7%8E%A9%E6%94%BB%E7%95%A5/"/>
+    <id>http://airshu.github.io/wiki/%E9%9A%8F%E7%AC%94/%E5%8C%97%E4%BA%AC%E6%B8%B8%E7%8E%A9%E6%94%BB%E7%95%A5/</id>
+    <published>2024-01-07T08:50:41.259Z</published>
+    <updated>2024-01-07T08:50:41.259Z</updated>
+    
+    <content type="html"><![CDATA[<p>很小的时候就希望能去北京看看，看看古时候皇帝生活的地方，看看为了抵御外敌而修建的万里长城，看看皇帝的陵墓。那就做一份北京游玩攻略吧。以下从游住吃三个方面来介绍。推荐自由行</p><h2 id="门票预约"><a href="#门票预约" class="headerlink" title="门票预约"></a>门票预约</h2><p>!!!!!作为自由行，一定要提前预约门票，万一没约到门票，将会打乱所有计划。</p><p>北京各景区放票时间：</p><ul><li>毛记：提前6天12:00</li><li>国博：提前7天17:00</li><li>故宫：提前7天20:00</li><li>天坛：提前6天21：00</li><li>颐和园：提前7天21:00</li><li>恭王府：提前10天20:00</li><li>圆明园：提前7天0:00</li><li>科技馆：提前7天0:00</li><li>自然博物馆：提前3天11:00</li><li>天文馆：提前3天18:00</li><li>升旗：提前9天00:00</li><li>天安门城楼：提前7天17:00</li><li>军事博物馆：早上8点  中午12点  下午17点  三个点放票</li><li>孔庙国子监：提前7天</li><li>清华北大 提前7天</li></ul><p>预约之前，提前登记身份证信息，可以先提前在淡季的时间操作一遍。放票的时候，按照流程点击就好了。预约的时候如果界面卡住不动，不建议退回重进，重新的时候大概率预约不到了。</p><h2 id="游"><a href="#游" class="headerlink" title="游"></a>游</h2><h3 id="景点介绍"><a href="#景点介绍" class="headerlink" title="景点介绍"></a>景点介绍</h3><p><img src="/wiki/%E9%9A%8F%E7%AC%94/%E5%8C%97%E4%BA%AC%E6%B8%B8%E7%8E%A9%E6%94%BB%E7%95%A5/beijing_1.png"></p><h4 id="故宫"><a href="#故宫" class="headerlink" title="故宫"></a>故宫</h4><p>故宫是明清两代的皇宫，故宫占地面积72万平方米，建筑面积约15万平方米，共有殿宇9999间，是世界上现存规模最大、保存最为完整的木质结构古建筑之一。地址在东城区景山前街4号。详细的介绍可以参考官方公众号。</p><h5 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a><strong>注意事项</strong></h5><ul><li>注意周一不开关，门票分为上午和下午，可以提前七天预约，建议提早预约，热门景点门票很抢手。</li><li>北门后的景山公园是故宫的最佳观景点，可以看到故宫的全景。强烈推荐</li></ul><h5 id="建议游玩路线图"><a href="#建议游玩路线图" class="headerlink" title="建议游玩路线图"></a><strong>建议游玩路线图</strong></h5><h5 id="游玩后感受"><a href="#游玩后感受" class="headerlink" title="游玩后感受"></a>游玩后感受</h5><p>故宫很大，皇家宫殿确实很气派，很多宫殿内部现在已经不允许进入了，有点可惜。珍宝馆一定要去，里面有很多珍贵的文物，很值得一看。建议带上中午的干粮，里面的餐厅的饭菜不好吃。建议找个导游或者租一个讲解器，建议花一整天时间游玩，上午9点入宫，上午把除了珍宝馆以外的宫殿逛一遍，中午吃完饭休息一会，再进去珍宝馆，然后北门出来直奔景山公园顶部，遥看整个皇城。</p><p>故宫内的一些如钟表馆等建议去看看，看看皇家的生活用品，还有一些古代的科技成果，很有意思。建议购买一个电子讲解器，可以听到很多故事，很有意思。了解一些历史故事，然后去看看，会有不一样的感受。</p><h4 id="颐和园"><a href="#颐和园" class="headerlink" title="颐和园"></a>颐和园</h4><p>清朝帝王的行宫和花园，它以昆明湖、万寿山为基础，以杭州西湖为蓝本，汲取江南园林的设计手法而建成，被誉为“皇家园林博物馆”。以仁壽殿為中心的政治活動區；以玉瀾堂、樂壽堂為主體的帝后生活區；以長廊沿線、後山、西區為主的苑園遊覽區。万寿山、昆明湖、东宫门、十七孔桥、大戏楼。</p><h5 id="建议游玩路线图-1"><a href="#建议游玩路线图-1" class="headerlink" title="建议游玩路线图"></a><strong>建议游玩路线图</strong></h5><p><img src="/wiki/%E9%9A%8F%E7%AC%94/%E5%8C%97%E4%BA%AC%E6%B8%B8%E7%8E%A9%E6%94%BB%E7%95%A5/beijing_2.png"></p><h5 id="注意事项-1"><a href="#注意事项-1" class="headerlink" title="注意事项"></a><strong>注意事项</strong></h5><h3 id="路线规划"><a href="#路线规划" class="headerlink" title="路线规划"></a>路线规划</h3><h2 id="住"><a href="#住" class="headerlink" title="住"></a>住</h2><p>有条件的尽量住离天安门近一点的地方，去哪里都比较方便。这次选择了五道口，距离想去的景点都比较方便，去八达岭、十三陵、故宫、颐和园都比较方便。去八达岭长城坐清河站高铁半小时，加上地铁时间一个小时就够了。也可以到十三陵地铁站。</p><h3 id><a href="#" class="headerlink" title></a></h3><h2 id="吃"><a href="#吃" class="headerlink" title="吃"></a>吃</h2><p>北京是世界第八大“美食之城”，小吃历史悠久、品种繁多、用料讲究、制作精细，堪称有口皆碑。京味小吃的代表有豆汁儿、豆面酥糖、酸梅汤、茶汤、小窝头、茯苓夹饼、果脯蜜饯、冰糖葫芦、艾窝窝、豌豆黄、驴打滚、灌肠、爆肚、炒肝等。同时，北京也有不少老字号饭馆，涮羊肉、烤鸭、家常菜等等，种类丰富。</p><p>这次吃了方砖厂69号炸酱面、小吊梨汤、局气烤鸭、护国寺小吃。没有特别惊艳，可能南方人口味不同。需要注意的是如四季民福之类的店人气很旺，需要提前预约。要么一开始营业就在公众号上预约（到达一定数量之后只能现场排队），如果是现场预约，排队会很久。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;很小的时候就希望能去北京看看，看看古时候皇帝生活的地方，看看为了抵御外敌而修建的万里长城，看看皇帝的陵墓。那就做一份北京游玩攻略吧。以下从游住吃三个方面来介绍。推荐自由行&lt;/p&gt;
+&lt;h2 id=&quot;门票预约&quot;&gt;&lt;a href=&quot;#门票预约&quot; class=&quot;headerlink</summary>
+      
+    
+    
+    
+    <category term="随笔" scheme="http://airshu.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+    <category term="旅游" scheme="http://airshu.github.io/tags/%E6%97%85%E6%B8%B8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2023-2024年度总结</title>
+    <link href="http://airshu.github.io/wiki/%E9%9A%8F%E7%AC%94/2023-2024%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/"/>
+    <id>http://airshu.github.io/wiki/%E9%9A%8F%E7%AC%94/2023-2024%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/</id>
+    <published>2024-01-07T08:50:41.259Z</published>
+    <updated>2024-01-07T09:19:36.238Z</updated>
+    
+    <content type="html"><![CDATA[<p>时间过的真快啊，一年又要过完了。还是要记录一下这一年的成长和收获，以及对未来的展望。</p><p>今年的行情很不好，不管是就业还是A股市场。虽说疫情已经放开管控，可不见经济快速的复苏，身边讨论的更多的是裁员、领“大礼包”。年中，公司也经历了两次裁员，自己也在反思要保持什么样的状态才能在这个时代生存下去。</p><p>今年做了哪些事情呢？</p><h2 id="看电影"><a href="#看电影" class="headerlink" title="看电影"></a>看电影</h2><p>目前为数不多的爱好了，应该有三十几部。</p><ul><li><a href="https://movie.douban.com/subject/1293077/">苏菲的抉择</a></li><li><a href="https://movie.douban.com/subject/3813779/">剑雨</a></li><li><a href="https://movie.douban.com/subject/1295929/">安阳婴儿</a></li><li><a href="https://movie.douban.com/subject/27088750/">我身体里的那个家伙</a></li><li><a href="https://movie.douban.com/subject/4280770/">看见恶魔</a></li><li><a href="https://movie.douban.com/subject/1300618/">空中监狱</a></li><li><a href="https://movie.douban.com/subject/1309135/">虎兄虎弟</a></li><li><a href="https://movie.douban.com/subject/35311878/">正义回廊</a></li><li><a href="https://movie.douban.com/subject/1297880/">芙蓉镇</a></li><li><a href="https://movie.douban.com/subject/25823132/">暗杀</a></li><li><a href="https://movie.douban.com/subject/1291832/">低俗小说</a></li><li><a href="https://movie.douban.com/subject/1300117/">千钧一发</a></li><li><a href="https://movie.douban.com/subject/25815034/">湄公河行动</a></li><li><a href="https://movie.douban.com/subject/1292222/">出租车司机</a></li><li><a href="https://movie.douban.com/subject/26311973/">唐人街探案</a></li><li><a href="https://movie.douban.com/subject/1300555/">回到未来</a></li><li><a href="https://movie.douban.com/subject/1299131/">教父2</a></li><li><a href="https://movie.douban.com/subject/3992381/">不可饶恕</a></li><li><a href="https://movie.douban.com/subject/35312437/">奇迹·笨小孩</a></li><li><a href="https://movie.douban.com/subject/26728669/">风中有朵雨做的云</a></li><li><a href="https://movie.douban.com/subject/35766491/">满江红</a></li><li><a href="https://movie.douban.com/subject/35457272/">保你平安</a></li><li><a href="https://movie.douban.com/subject/1308751/">特洛伊</a></li><li><a href="https://movie.douban.com/subject/34941536/">宇宙探索编辑部</a></li><li><a href="https://movie.douban.com/subject/1301582/">苦月亮</a></li><li><a href="https://movie.douban.com/subject/35818074/">我爱你！</a></li><li><a href="https://movie.douban.com/subject/3313801/">非诚勿扰</a></li><li><a href="https://movie.douban.com/subject/10763164/">扫毒</a></li><li><a href="https://movie.douban.com/subject/35698284/">关于我和鬼变成家人的那件事</a></li><li><a href="https://movie.douban.com/subject/35660795/">消失的她</a></li><li><a href="https://movie.douban.com/subject/20515070/">军中乐园</a></li><li><a href="https://movie.douban.com/subject/1307528/">盲井</a></li><li><a href="https://movie.douban.com/subject/1296218/">过年</a></li><li><a href="https://movie.douban.com/subject/35765480/">八角笼中</a></li><li><a href="https://movie.douban.com/subject/35154957/">消失的情人节</a></li><li><a href="https://movie.douban.com/subject/25966085/">踏血寻梅</a></li><li><a href="https://movie.douban.com/subject/35372742/">无名</a></li><li><a href="https://movie.douban.com/subject/26862829/">芳华</a></li><li><a href="https://movie.douban.com/subject/10604086/">封神第一部：朝歌风云</a></li><li><a href="https://movie.douban.com/subject/35315950/">灌篮高手</a></li><li><a href="https://movie.douban.com/subject/34436452/">第八个嫌疑人</a></li><li><a href="https://movie.douban.com/subject/6786002/">触不可及</a></li><li><a href="https://movie.douban.com/subject/1947089/">投名状</a></li><li><a href="https://movie.douban.com/subject/26745332/">花月杀手</a></li></ul><h2 id="看书"><a href="#看书" class="headerlink" title="看书"></a>看书</h2><ul><li><a href="https://book.douban.com/subject/27096026/">中国经济增长的真实逻辑</a></li><li><a href="https://book.douban.com/subject/1041482/">万历十五年</a></li><li><a href="https://book.douban.com/subject/25761310/">汽车是怎样跑起来的</a></li><li><a href="https://book.douban.com/subject/27120243/">转型中的地方政府</a></li><li><a href="https://book.douban.com/subject/35546622/">置身事内</a></li><li><a href="https://book.douban.com/subject/26762440/">权力结构、政治激励和经济增长</a></li><li><a href="https://book.douban.com/subject/36035856/">人类之旅</a></li></ul><h2 id="旅行"><a href="#旅行" class="headerlink" title="旅行"></a>旅行</h2><p>今年去了涠洲岛、崇左、北京。终于去了心心念的北京。虽然是国庆去的，人很多，但体验还是深刻的，感受到了皇家的气派。24年准备去西站、洛阳，感受一下古都的魅力。</p><h2 id="投资"><a href="#投资" class="headerlink" title="投资"></a>投资</h2><p>结果跟预期差距很大，今年是亏损的一年，当整个环境不好的时候，想从股市赚钱很难。24年改变一下策略，将一部分资金投入到美、港股中。</p><h2 id="工作和学习"><a href="#工作和学习" class="headerlink" title="工作和学习"></a>工作和学习</h2><p>好好工作，好好学习，好好生活。继续增强自己的技术水平。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;时间过的真快啊，一年又要过完了。还是要记录一下这一年的成长和收获，以及对未来的展望。&lt;/p&gt;
+&lt;p&gt;今年的行情很不好，不管是就业还是A股市场。虽说疫情已经放开管控，可不见经济快速的复苏，身边讨论的更多的是裁员、领“大礼包”。年中，公司也经历了两次裁员，自己也在反思要保持什么</summary>
+      
+    
+    
+    
+    <category term="随笔" scheme="http://airshu.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+    <category term="总结" scheme="http://airshu.github.io/tags/%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
+  
+</feed>

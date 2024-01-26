@@ -1,0 +1,1809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    
+    <title>ReactiveX | Airshu&#39;s Blog</title>
+    
+    
+        <meta name="keywords" content="Rx">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Observables概述ReactiveX是Reactive Extensions的缩写，一般简写为Rx，最初是LINQ的一个扩展，由微软的架构师Erik Meijer领导的团队开发，在2012年11月开源，Rx是一个编程模型，目标是提供一致的编程接口，帮助开发者更方便的处理异步数据流，Rx库支持大部分主流语言。 使用这种方法的优点是，当你有一大堆的任务是不相互依赖，你就可以同时执行他们，而不是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ReactiveX">
+<meta property="og:url" content="http://airshu.github.io/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E6%9D%82%E9%A1%B9/ReactiveX/index.html">
+<meta property="og:site_name" content="Airshu&#39;s Blog">
+<meta property="og:description" content="Observables概述ReactiveX是Reactive Extensions的缩写，一般简写为Rx，最初是LINQ的一个扩展，由微软的架构师Erik Meijer领导的团队开发，在2012年11月开源，Rx是一个编程模型，目标是提供一致的编程接口，帮助开发者更方便的处理异步数据流，Rx库支持大部分主流语言。 使用这种方法的优点是，当你有一大堆的任务是不相互依赖，你就可以同时执行他们，而不是">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://airshu.github.io/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E6%9D%82%E9%A1%B9/ReactiveX/rx_legend.png">
+<meta property="og:image" content="http://airshu.github.io/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E6%9D%82%E9%A1%B9/ReactiveX/rx_schedulers.png">
+<meta property="article:published_time" content="2022-03-08T02:25:29.712Z">
+<meta property="article:modified_time" content="2022-03-08T02:25:29.712Z">
+<meta property="article:author" content="airshu">
+<meta property="article:tag" content="Rx">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://airshu.github.io/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E6%9D%82%E9%A1%B9/ReactiveX/rx_legend.png">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="Airshu&#39;s Blog" type="application/atom+xml">
+    
+
+    
+        <link rel="icon" href="/favicon.ico">
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+    
+        <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Airshu&#39;s Blog</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id="categories">
+        <h3 class="widget-title">
+            <!-- <span>categories</span> -->
+            &nbsp;
+            <a id="allExpand" href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+
+        
+        
+         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Android
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Jetpack
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/Android/Jetpack/LiveData%E5%8E%9F%E7%90%86/">LiveData原理</a></li>  <li class="file"><a href="/wiki/Android/Jetpack/WorkManager/">WorkManager</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            NDK
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/Android/NDK/JNI%E7%AC%94%E8%AE%B0/">JNI笔记</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            UI
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/Android/UI/ConstraintLayout/">ConstraintLayout</a></li>  <li class="file"><a href="/wiki/Android/UI/CoordinatorLayout/">CoordinatorLayout</a></li>  <li class="file"><a href="/wiki/Android/UI/RecyclerView%E4%B9%8BAdapter/">RecyclerView之Adapter</a></li>  <li class="file"><a href="/wiki/Android/UI/RecyclerView%E4%B9%8BDiffUtil/">RecyclerView之DiffUtil</a></li>  <li class="file"><a href="/wiki/Android/UI/RecyclerView%E4%B9%8BItemDecoration/">RecyclerView之ItemDecoration</a></li>  <li class="file"><a href="/wiki/Android/UI/RecyclerView%E4%B9%8BItemAnimator/">RecyclerView之ItemAnimator</a></li>  <li class="file"><a href="/wiki/Android/UI/RecyclerView%E4%B9%8BSnapHelper/">RecyclerView之SnapHelper</a></li>  <li class="file"><a href="/wiki/Android/UI/RecyclerView%E4%B9%8B%E6%A6%82%E8%BF%B0/">RecyclerView之概述</a></li>  <li class="file"><a href="/wiki/Android/UI/RecyclerView%E4%B9%8B%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/">RecyclerView之绘制流程</a></li>  <li class="file"><a href="/wiki/Android/UI/RecyclerView%E4%B9%8B%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5/">RecyclerView之缓存策略</a></li>  <li class="file"><a href="/wiki/Android/UI/ViewPager2/">ViewPager2</a></li>  <li class="file"><a href="/wiki/Android/UI/%E8%87%AA%E5%AE%9A%E4%B9%89View/">自定义View</a></li>  <li class="file"><a href="/wiki/Android/UI/%E8%87%AA%E5%AE%9A%E4%B9%89View%E4%B9%8BCanvas/">自定义View之Canvas</a></li>  <li class="file"><a href="/wiki/Android/UI/%E8%87%AA%E5%AE%9A%E4%B9%89View%E4%B9%8BPaint/">自定义View之Paint</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            基础
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/Android/%E5%9F%BA%E7%A1%80/Activity%E5%9F%BA%E7%A1%80/">Activity</a></li>  <li class="file"><a href="/wiki/Android/%E5%9F%BA%E7%A1%80/Android%20sdk%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/">Android sdk目录结构</a></li>  <li class="file"><a href="/wiki/Android/%E5%9F%BA%E7%A1%80/Android%20support%E5%8C%85/">Android中support的使用</a></li>  <li class="file"><a href="/wiki/Android/%E5%9F%BA%E7%A1%80/Activity%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B/">Activity工作过程</a></li>  <li class="file"><a href="/wiki/Android/%E5%9F%BA%E7%A1%80/AndroidManifest/">AndroidManifest描述文件</a></li>  <li class="file"><a href="/wiki/Android/%E5%9F%BA%E7%A1%80/AsyncTask%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/">AsyncTask原理解析</a></li>  <li class="file"><a href="/wiki/Android/%E5%9F%BA%E7%A1%80/Android%E7%9A%84%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6/">Android的消息机制</a></li>  <li class="file"><a href="/wiki/Android/%E5%9F%BA%E7%A1%80/ContentProvider/">ContentProvider</a></li>  <li class="file"><a href="/wiki/Android/%E5%9F%BA%E7%A1%80/BroadcastReceiver%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B/">BroadcastReceiver工作过程</a></li>  <li class="file"><a href="/wiki/Android/%E5%9F%BA%E7%A1%80/ContentProvider%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B/">ContentProvider工作过程</a></li>  <li class="file"><a href="/wiki/Android/%E5%9F%BA%E7%A1%80/Fragment/">Fragment</a></li>  <li class="file"><a href="/wiki/Android/%E5%9F%BA%E7%A1%80/Fragment%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B/">Fragment工作过程</a></li>  <li class="file"><a href="/wiki/Android/%E5%9F%BA%E7%A1%80/Handler%E5%8E%9F%E7%90%86/">Handler原理</a></li>  <li class="file"><a href="/wiki/Android/%E5%9F%BA%E7%A1%80/Handler%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/">Handler基本用法</a></li>  <li class="file"><a href="/wiki/Android/%E5%9F%BA%E7%A1%80/Intent/">Intent</a></li>  <li class="file"><a href="/wiki/Android/%E5%9F%BA%E7%A1%80/Service%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B/">Service工作过程</a></li>  <li class="file"><a href="/wiki/Android/%E5%9F%BA%E7%A1%80/View%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">View的基本概念</a></li>  <li class="file"><a href="/wiki/Android/%E5%9F%BA%E7%A1%80/View%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6/">View的事件分发机制</a></li>  <li class="file"><a href="/wiki/Android/%E5%9F%BA%E7%A1%80/WindowManager/">WindowManager</a></li>  <li class="file"><a href="/wiki/Android/%E5%9F%BA%E7%A1%80/View%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/">View的工作流程</a></li>  <li class="file"><a href="/wiki/Android/%E5%9F%BA%E7%A1%80/%E6%A0%B7%E5%BC%8F%E5%92%8C%E4%B8%BB%E9%A2%98/">样式和主题</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            开源库
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/Android/%E5%BC%80%E6%BA%90%E5%BA%93/ARouter/">ARouter</a></li>  <li class="file"><a href="/wiki/Android/%E5%BC%80%E6%BA%90%E5%BA%93/EventBus/">EventBus</a></li>  <li class="file"><a href="/wiki/Android/%E5%BC%80%E6%BA%90%E5%BA%93/Dagger2/">Dagger2学习笔记</a></li>  <li class="file"><a href="/wiki/Android/%E5%BC%80%E6%BA%90%E5%BA%93/Glide/">Glide</a></li>  <li class="file"><a href="/wiki/Android/%E5%BC%80%E6%BA%90%E5%BA%93/Glide%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/">Glide原理分析</a></li>  <li class="file"><a href="/wiki/Android/%E5%BC%80%E6%BA%90%E5%BA%93/GreenDao/">GreenDao</a></li>  <li class="file"><a href="/wiki/Android/%E5%BC%80%E6%BA%90%E5%BA%93/KOOM/">KOOM</a></li>  <li class="file"><a href="/wiki/Android/%E5%BC%80%E6%BA%90%E5%BA%93/LeakCanary/">LeakCanary</a></li>  <li class="file"><a href="/wiki/Android/%E5%BC%80%E6%BA%90%E5%BA%93/MMKV/">MMKV</a></li>  <li class="file"><a href="/wiki/Android/%E5%BC%80%E6%BA%90%E5%BA%93/OkHttp/">OkHttp</a></li>  <li class="file"><a href="/wiki/Android/%E5%BC%80%E6%BA%90%E5%BA%93/RePlugin/">RePlugin</a></li>  <li class="file"><a href="/wiki/Android/%E5%BC%80%E6%BA%90%E5%BA%93/RxAndroid/">RxAndroid</a></li>  <li class="file"><a href="/wiki/Android/%E5%BC%80%E6%BA%90%E5%BA%93/Small/">Small</a></li>  <li class="file"><a href="/wiki/Android/%E5%BC%80%E6%BA%90%E5%BA%93/WMRouter/">WMRouter</a></li>  <li class="file"><a href="/wiki/Android/%E5%BC%80%E6%BA%90%E5%BA%93/multitype/">multitype</a></li>  <li class="file"><a href="/wiki/Android/%E5%BC%80%E6%BA%90%E5%BA%93/tinker/">tinker</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            性能优化
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            OOM专题
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/Android/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/OOM%E4%B8%93%E9%A2%98/Bitmap%E9%80%A0%E6%88%90%E7%9A%84OOM%E7%9A%84%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F/">Bitmap造成的OOM的处理方式</a></li>  <li class="file"><a href="/wiki/Android/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/OOM%E4%B8%93%E9%A2%98/Handler%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%BD%93%E9%80%A0%E6%88%90%E7%9A%84OOM/">Handler使用不当造成的OOM</a></li>  <li class="file"><a href="/wiki/Android/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/OOM%E4%B8%93%E9%A2%98/%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E5%88%86%E6%9E%90/">内存溢出分析</a></li>  <li class="file"><a href="/wiki/Android/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/OOM%E4%B8%93%E9%A2%98/%E5%8A%A8%E7%94%BB%E9%80%A0%E6%88%90%E7%9A%84OOM%E7%9A%84%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F/">动画造成的OOM的处理方式</a></li>  </ul> 
+                    </li>
+                     <li class="file"><a href="/wiki/Android/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/APK%E6%89%93%E5%8C%85%E6%B5%81%E7%A8%8B/">Apk打包流程</a></li>  <li class="file"><a href="/wiki/Android/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/ANR%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90%E5%92%8C%E8%A7%A3%E5%86%B3/">ANR问题分析和解决</a></li>  <li class="file"><a href="/wiki/Android/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/Android%E4%B8%AD%E5%9B%BE%E7%89%87%E5%8D%A0%E7%94%A8%E5%86%85%E5%AD%98%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/">Android中图片占用内存计算方法</a></li>  <li class="file"><a href="/wiki/Android/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/WebView%E7%8B%AC%E7%AB%8B%E8%BF%9B%E7%A8%8B/">WebView独立进程</a></li>  <li class="file"><a href="/wiki/Android/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/native%20crash%E5%88%86%E6%9E%90/">native crash 分析</a></li>  <li class="file"><a href="/wiki/Android/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">内存管理</a></li>  <li class="file"><a href="/wiki/Android/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/%E5%8C%85%E4%BD%93%E7%A7%AF%E4%BC%98%E5%8C%96/">包体积优化</a></li>  <li class="file"><a href="/wiki/Android/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/%E5%90%AF%E5%8A%A8%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96/">启动速度优化</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            未分类
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/Android/%E6%9C%AA%E5%88%86%E7%B1%BB/Android%E4%B8%AD%E7%9A%84%E9%9B%86%E5%90%88/">Android中的集合</a></li>  <li class="file"><a href="/wiki/Android/%E6%9C%AA%E5%88%86%E7%B1%BB/Android%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%BB%8F%E9%AA%8C%E8%B0%88/">Android客户端经验谈</a></li>  <li class="file"><a href="/wiki/Android/%E6%9C%AA%E5%88%86%E7%B1%BB/Android%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5/">Android测试实践</a></li>  <li class="file"><a href="/wiki/Android/%E6%9C%AA%E5%88%86%E7%B1%BB/Android%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%95%B4%E7%90%86/">Android常见问题整理</a></li>  <li class="file"><a href="/wiki/Android/%E6%9C%AA%E5%88%86%E7%B1%BB/Android%E9%9D%A2%E8%AF%95%E9%A2%98%E6%94%B6%E9%9B%86/">Android面试题收集</a></li>  <li class="file"><a href="/wiki/Android/%E6%9C%AA%E5%88%86%E7%B1%BB/adb%E5%B7%A5%E5%85%B7/">adb工具</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            进阶知识
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/Android/%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/AIDL/">AIDL</a></li>  <li class="file"><a href="/wiki/Android/%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/APK%E6%96%87%E4%BB%B6%E6%89%93%E5%8C%85%E6%B5%81%E7%A8%8B/">APK打包流程</a></li>  <li class="file"><a href="/wiki/Android/%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/Android%E4%B8%AD%E7%9A%84ClassLoader/">Android中的ClassLoader</a></li>  <li class="file"><a href="/wiki/Android/%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/Binder/">Binder</a></li>  <li class="file"><a href="/wiki/Android/%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/Dalvik%E3%80%81ART%E8%99%9A%E6%8B%9F%E6%9C%BA/">Dalvik、ART虚拟机</a></li>  <li class="file"><a href="/wiki/Android/%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/Framework%E6%A6%82%E8%A6%81/">Framework概要</a></li>  <li class="file"><a href="/wiki/Android/%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/PackageManagerService%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">PackageManagerService工作原理</a></li>  <li class="file"><a href="/wiki/Android/%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/%E4%BB%A3%E7%A0%81%E6%B7%B7%E6%B7%86/">代码混淆</a></li>  <li class="file"><a href="/wiki/Android/%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/%E4%BF%9D%E6%B4%BB%E7%AD%96%E7%95%A5/">保活策略</a></li>  <li class="file"><a href="/wiki/Android/%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/%E5%8A%A8%E6%80%81%E6%8D%A2%E8%82%A4/">动态换肤</a></li>  <li class="file"><a href="/wiki/Android/%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/%E5%A4%9A%E6%B8%A0%E9%81%93%E6%89%93%E5%8C%85/">多渠道打包</a></li>  <li class="file"><a href="/wiki/Android/%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/%E5%A6%82%E4%BD%95%E6%8F%90%E5%8D%87%E7%BC%96%E8%AF%91%E9%80%9F%E5%BA%A6/">如何提升编译速度</a></li>  <li class="file"><a href="/wiki/Android/%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/%E7%A1%AC%E4%BB%B6%E5%8A%A0%E9%80%9F/">硬件加速</a></li>  <li class="file"><a href="/wiki/Android/%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/%E5%B1%8F%E5%B9%95%E9%80%82%E9%85%8D/">屏幕适配</a></li>  <li class="file"><a href="/wiki/Android/%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86/%E7%BB%84%E4%BB%B6%E5%8C%96%E4%B9%8B%E8%B7%AF/">组件化之路</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            逆向
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/Android/%E9%80%86%E5%90%91/Android%E9%80%86%E5%90%91%E4%B9%8BXposed/">Android逆向之Xposed</a></li>  <li class="file"><a href="/wiki/Android/%E9%80%86%E5%90%91/Android%E9%80%86%E5%90%91%E4%B9%8B%E8%84%B1%E5%A3%B3/">Android逆向之脱壳</a></li>  <li class="file"><a href="/wiki/Android/%E9%80%86%E5%90%91/Android%E9%80%86%E5%90%91%E8%AE%B0%E5%BD%95/">Android逆向记录</a></li>  <li class="file"><a href="/wiki/Android/%E9%80%86%E5%90%91/JEB%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/">JEB使用笔记</a></li>  <li class="file"><a href="/wiki/Android/%E9%80%86%E5%90%91/%E5%A6%82%E4%BD%95%E6%8F%90%E5%8D%87Android%E5%BA%94%E7%94%A8%E7%9A%84%E5%AE%89%E5%85%A8/">如何提升Android应用的安全</a></li>  </ul> 
+                    </li>
+                     <li class="file"><a href="/wiki/Android/Android%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/">Android系统架构</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Flutter
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Android端
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/Flutter/Android%E7%AB%AF/%E5%B5%8C%E5%85%A5Android%E5%8E%9F%E7%94%9FView/">嵌入Android原生View</a></li>  <li class="file"><a href="/wiki/Flutter/Android%E7%AB%AF/Flutter%E4%B8%8EAndroid%E9%80%9A%E4%BF%A1/">Flutter与Android通信</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Dart
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            基础
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/Flutter/Dart/%E5%9F%BA%E7%A1%80/Map/">Map</a></li>  <li class="file"><a href="/wiki/Flutter/Dart/%E5%9F%BA%E7%A1%80/Mixin/">Mixin</a></li>  <li class="file"><a href="/wiki/Flutter/Dart/%E5%9F%BA%E7%A1%80/%E5%87%BD%E6%95%B0/">函数</a></li>  <li class="file"><a href="/wiki/Flutter/Dart/%E5%9F%BA%E7%A1%80/%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">基本语法</a></li>  <li class="file"><a href="/wiki/Flutter/Dart/%E5%9F%BA%E7%A1%80/%E5%BC%82%E5%B8%B8/">异常</a></li>  <li class="file"><a href="/wiki/Flutter/Dart/%E5%9F%BA%E7%A1%80/%E6%8E%A5%E5%8F%A3/">接口</a></li>  <li class="file"><a href="/wiki/Flutter/Dart/%E5%9F%BA%E7%A1%80/%E6%B3%9B%E5%9E%8B/">泛型</a></li>  <li class="file"><a href="/wiki/Flutter/Dart/%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">数据类型</a></li>  <li class="file"><a href="/wiki/Flutter/Dart/%E5%9F%BA%E7%A1%80/%E7%B1%BB/">类</a></li>  <li class="file"><a href="/wiki/Flutter/Dart/%E5%9F%BA%E7%A1%80/%E8%BF%90%E7%AE%97%E7%AC%A6/">运算符</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            异步编程
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/Flutter/Dart/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/Future/">Future</a></li>  <li class="file"><a href="/wiki/Flutter/Dart/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/Stream/">Stream</a></li>  <li class="file"><a href="/wiki/Flutter/Dart/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/async_await/">async and await</a></li>  <li class="file"><a href="/wiki/Flutter/Dart/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/isolate/">isolate</a></li>  <li class="file"><a href="/wiki/Flutter/Dart/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a></li>  <li class="file"><a href="/wiki/Flutter/Dart/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6/">消息机制</a></li>  </ul> 
+                    </li>
+                     <li class="file"><a href="/wiki/Flutter/Dart/Dart%E8%99%9A%E6%8B%9F%E6%9C%BA/">Dart虚拟机</a></li>  <li class="file"><a href="/wiki/Flutter/Dart/%E7%A9%BA%E5%AE%89%E5%85%A8/">空安全</a></li>  <li class="file"><a href="/wiki/Flutter/Dart/Dart%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">Dart内存管理</a></li>  <li class="file"><a href="/wiki/Flutter/Dart/Dart%E8%B5%84%E6%96%99%E6%94%B6%E9%9B%86/">Dart资料收集</a></li>  <li class="file"><a href="/wiki/Flutter/Dart/dart%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7/">dart命令行工具</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            UI
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            标准库
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            material
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/Flutter/UI/%E6%A0%87%E5%87%86%E5%BA%93/material/AppBar/">AppBar</a></li>  <li class="file"><a href="/wiki/Flutter/UI/%E6%A0%87%E5%87%86%E5%BA%93/material/MaterialApp/">MaterialApp</a></li>  <li class="file"><a href="/wiki/Flutter/UI/%E6%A0%87%E5%87%86%E5%BA%93/material/Scaffold/">Scaffold</a></li>  <li class="file"><a href="/wiki/Flutter/UI/%E6%A0%87%E5%87%86%E5%BA%93/material/app_bar/">app_bar</a></li>  <li class="file"><a href="/wiki/Flutter/UI/%E6%A0%87%E5%87%86%E5%BA%93/material/tabs/">tabs</a></li>  <li class="file"><a href="/wiki/Flutter/UI/%E6%A0%87%E5%87%86%E5%BA%93/material/toggle_buttons/">toggle_buttons</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            widgets
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            framework
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/Flutter/UI/%E6%A0%87%E5%87%86%E5%BA%93/widgets/framework/Key/">Key、ValueKey、ObjectKey、UniqueKey、PageStorageKey、GlobalKey</a></li>  </ul> 
+                    </li>
+                     <li class="file"><a href="/wiki/Flutter/UI/%E6%A0%87%E5%87%86%E5%BA%93/widgets/Column%E3%80%81Row/">Column、Row</a></li>  <li class="file"><a href="/wiki/Flutter/UI/%E6%A0%87%E5%87%86%E5%BA%93/widgets/Overlay/">Overlay</a></li>  <li class="file"><a href="/wiki/Flutter/UI/%E6%A0%87%E5%87%86%E5%BA%93/widgets/async/">async</a></li>  <li class="file"><a href="/wiki/Flutter/UI/%E6%A0%87%E5%87%86%E5%BA%93/widgets/sliver_persistent_header/">SliverPersistentHeader</a></li>  <li class="file"><a href="/wiki/Flutter/UI/%E6%A0%87%E5%87%86%E5%BA%93/widgets/RepaintBoundary/">RepaintBoundary</a></li>  <li class="file"><a href="/wiki/Flutter/UI/%E6%A0%87%E5%87%86%E5%BA%93/widgets/media_query/">media_query</a></li>  <li class="file"><a href="/wiki/Flutter/UI/%E6%A0%87%E5%87%86%E5%BA%93/widgets/text/">text</a></li>  <li class="file"><a href="/wiki/Flutter/UI/%E6%A0%87%E5%87%86%E5%BA%93/widgets/scroll_view/">scroll_view</a></li>  </ul> 
+                    </li>
+                     <li class="file"><a href="/wiki/Flutter/UI/%E6%A0%87%E5%87%86%E5%BA%93/State/">State</a></li>  <li class="file"><a href="/wiki/Flutter/UI/%E6%A0%87%E5%87%86%E5%BA%93/CustomMultiChildLayout/">CustomMultiChildLayout</a></li>  </ul> 
+                    </li>
+                     <li class="file"><a href="/wiki/Flutter/UI/Widget/">Widget</a></li>  <li class="file"><a href="/wiki/Flutter/UI/%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86/">文本处理</a></li>  <li class="file"><a href="/wiki/Flutter/UI/%E8%A7%A6%E6%91%B8%E6%BB%91%E5%8A%A8%E5%8E%9F%E7%90%86/">触摸滑动原理</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            动态化
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/Flutter/%E5%8A%A8%E6%80%81%E5%8C%96/%E8%B5%84%E6%96%99%E6%94%B6%E9%9B%86/">资料收集</a></li>  <li class="file"><a href="/wiki/Flutter/%E5%8A%A8%E6%80%81%E5%8C%96/Kraken/">Kraken</a></li>  <li class="file"><a href="/wiki/Flutter/%E5%8A%A8%E6%80%81%E5%8C%96/dart_eval%E5%92%8Cflutter_eval/">dart_eval和flutter_eval</a></li>  <li class="file"><a href="/wiki/Flutter/%E5%8A%A8%E6%80%81%E5%8C%96/openwebf/">openwebf</a></li>  <li class="file"><a href="/wiki/Flutter/%E5%8A%A8%E6%80%81%E5%8C%96/fair/">fair</a></li>  <li class="file"><a href="/wiki/Flutter/%E5%8A%A8%E6%80%81%E5%8C%96/shorebird/">shorebird</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            单元测试
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/Flutter/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/Mockito/">Mockito</a></li>  <li class="file"><a href="/wiki/Flutter/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/bloc_test/">bloc_test</a></li>  <li class="file"><a href="/wiki/Flutter/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/%E9%9B%86%E6%88%90%E6%B5%8B%E8%AF%95/">集成测试</a></li>  <li class="file"><a href="/wiki/Flutter/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">单元测试</a></li>  <li class="file"><a href="/wiki/Flutter/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/flutter_test/">flutter_test</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            开源库
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            图片相关
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/Flutter/%E5%BC%80%E6%BA%90%E5%BA%93/%E5%9B%BE%E7%89%87%E7%9B%B8%E5%85%B3/extended_image/">extended_image</a></li>  <li class="file"><a href="/wiki/Flutter/%E5%BC%80%E6%BA%90%E5%BA%93/%E5%9B%BE%E7%89%87%E7%9B%B8%E5%85%B3/flutter_image_compress/">flutter_image_compress</a></li>  <li class="file"><a href="/wiki/Flutter/%E5%BC%80%E6%BA%90%E5%BA%93/%E5%9B%BE%E7%89%87%E7%9B%B8%E5%85%B3/image_cropper/">image_cropper</a></li>  <li class="file"><a href="/wiki/Flutter/%E5%BC%80%E6%BA%90%E5%BA%93/%E5%9B%BE%E7%89%87%E7%9B%B8%E5%85%B3/image%E5%9F%BA%E7%A1%80/">Image基础</a></li>  </ul> 
+                    </li>
+                     <li class="file"><a href="/wiki/Flutter/%E5%BC%80%E6%BA%90%E5%BA%93/AspectD/">AspectD</a></li>  <li class="file"><a href="/wiki/Flutter/%E5%BC%80%E6%BA%90%E5%BA%93/GetX/">GetX</a></li>  <li class="file"><a href="/wiki/Flutter/%E5%BC%80%E6%BA%90%E5%BA%93/flutter_redux/">flutter_redux</a></li>  <li class="file"><a href="/wiki/Flutter/%E5%BC%80%E6%BA%90%E5%BA%93/flutter_bloc/">flutter_bloc</a></li>  <li class="file"><a href="/wiki/Flutter/%E5%BC%80%E6%BA%90%E5%BA%93/flutterboost/">flutterboost</a></li>  <li class="file"><a href="/wiki/Flutter/%E5%BC%80%E6%BA%90%E5%BA%93/%E4%B8%8B%E6%8B%89%E4%B8%8A%E6%8B%89%E5%88%B7%E6%96%B0%E7%BB%84%E4%BB%B6/">pull_to_refresh</a></li>  <li class="file"><a href="/wiki/Flutter/%E5%BC%80%E6%BA%90%E5%BA%93/rtw/">rtw</a></li>  <li class="file"><a href="/wiki/Flutter/%E5%BC%80%E6%BA%90%E5%BA%93/%E5%B8%B8%E7%94%A8%E5%BC%80%E6%BA%90%E5%BA%93/">常用开源库</a></li>  <li class="file"><a href="/wiki/Flutter/%E5%BC%80%E6%BA%90%E5%BA%93/flutter_sound/">flutter_sound</a></li>  <li class="file"><a href="/wiki/Flutter/%E5%BC%80%E6%BA%90%E5%BA%93/flutter_hooks/">flutter_hooks</a></li>  <li class="file"><a href="/wiki/Flutter/%E5%BC%80%E6%BA%90%E5%BA%93/in_app_purchase/">in_app_purchase苹果内购</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            未分类
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/Flutter/%E6%9C%AA%E5%88%86%E7%B1%BB/Flutter%E9%9D%99%E6%80%81%E4%BB%A3%E7%A0%81%E6%A3%80%E6%B5%8B/">Flutter静态代码检测</a></li>  <li class="file"><a href="/wiki/Flutter/%E6%9C%AA%E5%88%86%E7%B1%BB/build_runner/">build_runner</a></li>  <li class="file"><a href="/wiki/Flutter/%E6%9C%AA%E5%88%86%E7%B1%BB/%E4%BE%9D%E8%B5%96%E5%86%B2%E7%AA%81%E5%A4%84%E7%90%86/">依赖冲突处理</a></li>  <li class="file"><a href="/wiki/Flutter/%E6%9C%AA%E5%88%86%E7%B1%BB/Path%E7%9A%84%E4%BD%BF%E7%94%A8/">Path的使用</a></li>  <li class="file"><a href="/wiki/Flutter/%E6%9C%AA%E5%88%86%E7%B1%BB/%E5%9B%BE%E7%89%87%E5%86%85%E5%AD%98%E4%BC%98%E5%8C%96/">图片内存优化</a></li>  <li class="file"><a href="/wiki/Flutter/%E6%9C%AA%E5%88%86%E7%B1%BB/%E6%89%93%E5%8C%85/">打包</a></li>  <li class="file"><a href="/wiki/Flutter/%E6%9C%AA%E5%88%86%E7%B1%BB/%E6%B2%89%E6%B5%B8%E5%BC%8F%E5%A4%84%E7%90%86/">沉浸式处理</a></li>  <li class="file"><a href="/wiki/Flutter/%E6%9C%AA%E5%88%86%E7%B1%BB/%E6%BB%9A%E5%8A%A8%E6%9D%A1/">滚动条</a></li>  <li class="file"><a href="/wiki/Flutter/%E6%9C%AA%E5%88%86%E7%B1%BB/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/">版本管理工具fvm</a></li>  <li class="file"><a href="/wiki/Flutter/%E6%9C%AA%E5%88%86%E7%B1%BB/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">生命周期</a></li>  <li class="file"><a href="/wiki/Flutter/%E6%9C%AA%E5%88%86%E7%B1%BB/%E5%B8%83%E5%B1%80%E7%AE%A1%E7%90%86/">布局管理</a></li>  <li class="file"><a href="/wiki/Flutter/%E6%9C%AA%E5%88%86%E7%B1%BB/%E7%BC%96%E8%AF%91Flutter%E6%BA%90%E7%A0%81/">编译Flutter源码</a></li>  <li class="file"><a href="/wiki/Flutter/%E6%9C%AA%E5%88%86%E7%B1%BB/%E9%80%9A%E8%AE%AF%E5%8E%9F%E7%90%86/">通讯原理</a></li>  <li class="file"><a href="/wiki/Flutter/%E6%9C%AA%E5%88%86%E7%B1%BB/%E8%B5%84%E6%BA%90%E4%BD%BF%E7%94%A8/">资源使用</a></li>  <li class="file"><a href="/wiki/Flutter/%E6%9C%AA%E5%88%86%E7%B1%BB/%E5%BC%82%E5%B8%B8%E5%88%86%E6%9E%90/">异常分析</a></li>  <li class="file"><a href="/wiki/Flutter/%E6%9C%AA%E5%88%86%E7%B1%BB/Flutter%E5%8C%85%E4%BD%93%E7%A7%AF%E4%BC%98%E5%8C%96/">Flutter包体积优化</a></li>  <li class="file"><a href="/wiki/Flutter/%E6%9C%AA%E5%88%86%E7%B1%BB/%E4%B8%8EJS%E9%80%9A%E8%AE%AF/">与JS通讯</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            源码分析
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/Flutter/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/Context/">Context</a></li>  <li class="file"><a href="/wiki/Flutter/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/Element/">Element</a></li>  <li class="file"><a href="/wiki/Flutter/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/InheritedWidget/">InheritedWidget</a></li>  <li class="file"><a href="/wiki/Flutter/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/ParentData/">ParentData</a></li>  <li class="file"><a href="/wiki/Flutter/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/PaintingContext/">PaintingContext</a></li>  <li class="file"><a href="/wiki/Flutter/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/RenderObject/">RenderObject</a></li>  <li class="file"><a href="/wiki/Flutter/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/RepaintBoundary/">RepaintBoundary</a></li>  <li class="file"><a href="/wiki/Flutter/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/flutter%20Android%E7%AB%AF%E7%BC%96%E8%AF%91%E6%B5%81%E7%A8%8B/">flutter Android端编译流程</a></li>  <li class="file"><a href="/wiki/Flutter/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90/">启动流程分析</a></li>  <li class="file"><a href="/wiki/Flutter/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E5%BC%95%E6%93%8E%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B(%E4%B8%80)/">引擎启动流程（一）</a></li>  <li class="file"><a href="/wiki/Flutter/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BB%91%E5%8A%A8%E5%8E%9F%E7%90%86/">滑动原理</a></li>  <li class="file"><a href="/wiki/Flutter/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E7%83%AD%E9%87%8D%E8%BD%BD%E5%8E%9F%E7%90%86/">热重载原理</a></li>  <li class="file"><a href="/wiki/Flutter/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E7%BB%98%E5%88%B6%E5%8E%9F%E7%90%86/">绘制原理</a></li>  <li class="file"><a href="/wiki/Flutter/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E8%B7%AF%E7%94%B1%E7%AE%A1%E7%90%86/">路由管理</a></li>  </ul> 
+                    </li>
+                     <li class="file"><a href="/wiki/Flutter/Flutter%E4%BD%93%E7%B3%BB/">Flutter体系</a></li>  <li class="file"><a href="/wiki/Flutter/Flutter%E5%8A%A8%E7%94%BB/">Flutter动画</a></li>  <li class="file"><a href="/wiki/Flutter/Flutter%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/">Flutter命令详解</a></li>  <li class="file"><a href="/wiki/Flutter/Flutter%E6%8F%92%E4%BB%B6/">Flutter插件</a></li>  <li class="file"><a href="/wiki/Flutter/Flutter%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90%E6%B1%87%E6%80%BB/">Flutter学习资源汇总</a></li>  <li class="file"><a href="/wiki/Flutter/Flutter%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84/">Flutter项目结构</a></li>  <li class="file"><a href="/wiki/Flutter/%E6%B7%B7%E5%90%88%E5%BC%80%E5%8F%91/">混合开发</a></li>  <li class="file"><a href="/wiki/Flutter/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/">状态管理</a></li>  <li class="file"><a href="/wiki/Flutter/%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/">内存分析</a></li>  <li class="file"><a href="/wiki/Flutter/%E6%9C%AA%E5%88%86%E7%B1%BB/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%B9%8B%E5%88%86%E5%B8%A7%E6%B8%B2%E6%9F%93/">性能优化之分帧渲染</a></li>  <li class="file"><a href="/wiki/Flutter/Flutter%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/">Flutter代码规范</a></li>  <li class="file"><a href="/wiki/Flutter/DevTools/">DevTools</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Java
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            基础
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/Java/%E5%9F%BA%E7%A1%80/IO/">IO</a></li>  <li class="file"><a href="/wiki/Java/%E5%9F%BA%E7%A1%80/Java%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8/">Java中的异常</a></li>  <li class="file"><a href="/wiki/Java/%E5%9F%BA%E7%A1%80/NIO/">NIO</a></li>  <li class="file"><a href="/wiki/Java/%E5%9F%BA%E7%A1%80/String/">String</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            并发编程
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/Java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/AQS%E8%A7%A3%E6%9E%90/">AQS解析</a></li>  <li class="file"><a href="/wiki/Java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/CAS%E5%8E%9F%E7%90%86/">CAS原理</a></li>  <li class="file"><a href="/wiki/Java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/CountDownLatch/">CountDownLatch</a></li>  <li class="file"><a href="/wiki/Java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/Java%E9%94%81/">Java锁</a></li>  <li class="file"><a href="/wiki/Java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/ReentrantLock/">ReentrantLock</a></li>  <li class="file"><a href="/wiki/Java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/Synchronized/">Synchronized</a></li>  <li class="file"><a href="/wiki/Java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/Thread/">Thread</a></li>  <li class="file"><a href="/wiki/Java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/ThreadLocal%E5%8E%9F%E7%90%86/">ThreadLocal原理</a></li>  <li class="file"><a href="/wiki/Java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/ThreadPoolExecutor/">ThreadPoolExecutor</a></li>  <li class="file"><a href="/wiki/Java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/ThreadPoolExecutor%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/">ThreadPoolExecutor原理分析</a></li>  <li class="file"><a href="/wiki/Java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/volatile%E8%AF%A6%E8%A7%A3%E4%BA%8C/">volatile详解二</a></li>  <li class="file"><a href="/wiki/Java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E9%97%B4%E9%80%9A%E8%AE%AF%E6%96%B9%E5%BC%8F/">线程间通讯方式</a></li>  <li class="file"><a href="/wiki/Java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/volatile/">volatile</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            开源库
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/Java/%E5%BC%80%E6%BA%90%E5%BA%93/ASM/">ASM</a></li>  <li class="file"><a href="/wiki/Java/%E5%BC%80%E6%BA%90%E5%BA%93/RxJava/">RxJava</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            未分类
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/Java/%E6%9C%AA%E5%88%86%E7%B1%BB/jenv/">jenv</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            虚拟机
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/Java/%E8%99%9A%E6%8B%9F%E6%9C%BA/Class%E6%96%87%E4%BB%B6/">Class文件</a></li>  <li class="file"><a href="/wiki/Java/%E8%99%9A%E6%8B%9F%E6%9C%BA/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/">垃圾回收机制</a></li>  <li class="file"><a href="/wiki/Java/%E8%99%9A%E6%8B%9F%E6%9C%BA/%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/">内存分配策略</a></li>  <li class="file"><a href="/wiki/Java/%E8%99%9A%E6%8B%9F%E6%9C%BA/%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%98%AF%E5%A6%82%E4%BD%95%E8%A3%85%E8%BD%BD%E4%B8%80%E4%B8%AA%E7%B1%BB%E7%9A%84/">虚拟机是如何装载一个类的</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            进阶
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/Java/%E8%BF%9B%E9%98%B6/ClassLoader/">ClassLoader</a></li>  <li class="file"><a href="/wiki/Java/%E8%BF%9B%E9%98%B6/%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/">内存模型</a></li>  <li class="file"><a href="/wiki/Java/%E8%BF%9B%E9%98%B6/JVMTI/">JVMTI</a></li>  <li class="file"><a href="/wiki/Java/%E8%BF%9B%E9%98%B6/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/">动态代理</a></li>  <li class="file"><a href="/wiki/Java/%E8%BF%9B%E9%98%B6/%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6/">双亲委派机制</a></li>  <li class="file"><a href="/wiki/Java/%E8%BF%9B%E9%98%B6/%E5%8F%8D%E5%B0%84/">反射</a></li>  <li class="file"><a href="/wiki/Java/%E8%BF%9B%E9%98%B6/%E6%B3%9B%E5%9E%8B/">泛型</a></li>  <li class="file"><a href="/wiki/Java/%E8%BF%9B%E9%98%B6/%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/">引用类型</a></li>  <li class="file"><a href="/wiki/Java/%E8%BF%9B%E9%98%B6/%E7%B1%BB%E5%8A%A0%E8%BD%BD/">类加载</a></li>  <li class="file"><a href="/wiki/Java/%E8%BF%9B%E9%98%B6/%E6%B3%A8%E8%A7%A3/">注解</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            集合
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/Java/%E9%9B%86%E5%90%88/ArrayDeque/">ArrayDeque</a></li>  <li class="file"><a href="/wiki/Java/%E9%9B%86%E5%90%88/LinkedList/">LinkedList</a></li>  <li class="file"><a href="/wiki/Java/%E9%9B%86%E5%90%88/Java_Collections/">Java容器</a></li>  <li class="file"><a href="/wiki/Java/%E9%9B%86%E5%90%88/%E9%9B%86%E5%90%88%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">集合知识点总结</a></li>  <li class="file"><a href="/wiki/Java/%E9%9B%86%E5%90%88/HashMap/">HashMap</a></li>  <li class="file"><a href="/wiki/Java/%E9%9B%86%E5%90%88/ConcurrentHashMap/">ConcurrentHashMap</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            面试题
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/Java/%E9%9D%A2%E8%AF%95%E9%A2%98/Synchronized%E4%B8%8EReentrantLock%E7%9A%84%E5%8C%BA%E5%88%AB/">Synchronized与ReentrantLock的区别</a></li>  <li class="file"><a href="/wiki/Java/%E9%9D%A2%E8%AF%95%E9%A2%98/Java%E7%AC%94%E8%AF%95%E9%A2%98%E6%94%B6%E9%9B%86/">Java笔试题收集</a></li>  </ul> 
+                    </li>
+                     </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JavaScript
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            React
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            基础知识
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/JavaScript/React/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/React%20Hooks/">React Hooks</a></li>  <li class="file"><a href="/wiki/JavaScript/React/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/React%E5%85%A5%E9%97%A8/">React入门</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            源码分析
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/JavaScript/React/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/reactjs%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">React JS源码分析</a></li>  </ul> 
+                    </li>
+                     <li class="file"><a href="/wiki/JavaScript/React/props%E5%92%8Cstate%E7%9A%84%E5%8C%BA%E5%88%AB/">props和stat的区别</a></li>  <li class="file"><a href="/wiki/JavaScript/React/redux/">Redux</a></li>  <li class="file"><a href="/wiki/JavaScript/React/%E5%A3%B0%E6%98%8E%E6%96%87%E4%BB%B6%E7%9A%84%E5%86%99%E6%B3%95%E5%92%8C%E5%8C%BA%E5%88%AB/">声明文件的写法的区别</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            ReactNative
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            属性参数
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/JavaScript/ReactNative/%E5%B1%9E%E6%80%A7%E5%8F%82%E6%95%B0/View%E5%8F%82%E6%95%B0/">View参数</a></li>  <li class="file"><a href="/wiki/JavaScript/ReactNative/%E5%B1%9E%E6%80%A7%E5%8F%82%E6%95%B0/%E5%9B%BE%E7%89%87%E5%8F%82%E6%95%B0/">图片参数</a></li>  <li class="file"><a href="/wiki/JavaScript/ReactNative/%E5%B1%9E%E6%80%A7%E5%8F%82%E6%95%B0/%E6%96%87%E6%9C%AC%E5%8F%82%E6%95%B0/">文本参数</a></li>  <li class="file"><a href="/wiki/JavaScript/ReactNative/%E5%B1%9E%E6%80%A7%E5%8F%82%E6%95%B0/%E5%B8%83%E5%B1%80%E5%8F%82%E6%95%B0/">布局参数</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            开源库
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/JavaScript/ReactNative/%E5%BC%80%E6%BA%90%E5%BA%93/react-native-elements/">react-native-elements</a></li>  </ul> 
+                    </li>
+                     <li class="file"><a href="/wiki/JavaScript/ReactNative/npm/">npm使用</a></li>  <li class="file"><a href="/wiki/JavaScript/ReactNative/Android%E5%8E%9F%E7%94%9FUI%E7%BB%84%E4%BB%B6/">Android原生UI组件</a></li>  <li class="file"><a href="/wiki/JavaScript/ReactNative/Android%E5%8E%9F%E7%94%9F%E6%A8%A1%E5%9D%97/">Android原生模块</a></li>  <li class="file"><a href="/wiki/JavaScript/ReactNative/package.json/">package.json说明</a></li>  <li class="file"><a href="/wiki/JavaScript/ReactNative/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">基础知识</a></li>  <li class="file"><a href="/wiki/JavaScript/ReactNative/%E7%83%AD%E6%9B%B4%E6%96%B0/">热更新</a></li>  <li class="file"><a href="/wiki/JavaScript/ReactNative/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a></li>  <li class="file"><a href="/wiki/JavaScript/ReactNative/%E8%B0%83%E8%AF%95%E6%96%B9%E5%BC%8F/">调试方式</a></li>  <li class="file"><a href="/wiki/JavaScript/ReactNative/%E9%9B%86%E6%88%90%E5%88%B0%E7%8E%B0%E6%9C%89Android%E5%BA%94%E7%94%A8/">集成到现有Android应用</a></li>  <li class="file"><a href="/wiki/JavaScript/ReactNative/%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84/">项目结构</a></li>  <li class="file"><a href="/wiki/JavaScript/ReactNative/%E5%8A%A8%E7%94%BB/">动画</a></li>  </ul> 
+                    </li>
+                     <li class="file"><a href="/wiki/JavaScript/JavaScript%E5%85%A5%E9%97%A8/">JavaScript入门</a></li>  <li class="file"><a href="/wiki/JavaScript/TypeScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">TypeScript入门</a></li>  <li class="file"><a href="/wiki/JavaScript/ES6/">ES6</a></li>  <li class="file"><a href="/wiki/JavaScript/tsconfig.json/">tsconfig.json</a></li>  <li class="file"><a href="/wiki/JavaScript/%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96%E6%A6%82%E5%BF%B5/">前端模块化概念</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Python
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            PyQt
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/Python/PyQt/PyQt5%E5%BC%80%E5%8F%91%E5%BF%83%E5%BE%97/">PyQt5开发心得</a></li>  <li class="file"><a href="/wiki/Python/PyQt/QListWidget/">QListWidget</a></li>  <li class="file"><a href="/wiki/Python/PyQt/emoji%E8%A1%A8%E6%83%85%E5%A4%84%E7%90%86/">emoji表情处理</a></li>  <li class="file"><a href="/wiki/Python/PyQt/%E5%9C%86%E5%BD%A2%E5%A4%B4%E5%83%8F/">Qt中圆形头像</a></li>  <li class="file"><a href="/wiki/Python/PyQt/%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%A4%84%E7%90%86/">快捷键处理</a></li>  <li class="file"><a href="/wiki/Python/PyQt/%E7%BC%96%E8%AF%91PyQt5/">编译PyQt5</a></li>  <li class="file"><a href="/wiki/Python/PyQt/%E7%BC%96%E8%AF%91QtWebEngine/">编译QtWebEngine</a></li>  <li class="file"><a href="/wiki/Python/PyQt/%E8%A7%86%E5%9B%BE%E6%A8%A1%E5%9E%8B/">Qt视图模型</a></li>  <li class="file"><a href="/wiki/Python/PyQt/%E8%B5%84%E6%BA%90%E5%A4%84%E7%90%86/">资源处理</a></li>  </ul> 
+                    </li>
+                     <li class="file"><a href="/wiki/Python/Pillow/">Pillow</a></li>  <li class="file"><a href="/wiki/Python/Python2%E8%B7%9FPython3%E7%9A%84%E5%8C%BA%E5%88%AB/">Pyhon2跟Python3的区别</a></li>  <li class="file"><a href="/wiki/Python/Python%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%BC%96%E7%A8%8B/">Python多线程</a></li>  <li class="file"><a href="/wiki/Python/Python%20Extending/">Python扩展</a></li>  <li class="file"><a href="/wiki/Python/Python%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">Python环境配置管理</a></li>  <li class="file"><a href="/wiki/Python/RxPy%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">RxPY学习笔记</a></li>  <li class="file"><a href="/wiki/Python/ctypes/">ctypes模块</a></li>  <li class="file"><a href="/wiki/Python/cffi%E7%AC%94%E8%AE%B0/">CFFI笔记</a></li>  <li class="file"><a href="/wiki/Python/json%E8%A7%A3%E6%9E%90%E5%BA%93%E9%80%89%E6%8B%A9%E5%92%8C%E4%BD%BF%E7%94%A8/">json解析库选择和使用</a></li>  <li class="file"><a href="/wiki/Python/pywin32%E6%A8%A1%E5%9D%97/">win32模块</a></li>  <li class="file"><a href="/wiki/Python/pandas/">pandas</a></li>  <li class="file"><a href="/wiki/Python/sqlalchemy/">sqlalchemy</a></li>  <li class="file"><a href="/wiki/Python/stockstats/">stockstats</a></li>  <li class="file"><a href="/wiki/Python/struct%E6%A8%A1%E5%9D%97/">struct模块</a></li>  <li class="file"><a href="/wiki/Python/tushare/">tushare</a></li>  <li class="file"><a href="/wiki/Python/tornado/">tornado</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            工具软件
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Mac
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E5%B7%A5%E5%85%B7%E8%BD%AF%E4%BB%B6/Mac/MacOS%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Mac OS常用命令</a></li>  <li class="file"><a href="/wiki/%E5%B7%A5%E5%85%B7%E8%BD%AF%E4%BB%B6/Mac/Mac%E7%98%A6%E8%BA%AB/">Mac瘦身</a></li>  <li class="file"><a href="/wiki/%E5%B7%A5%E5%85%B7%E8%BD%AF%E4%BB%B6/Mac/Mac%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/">Mac软件安装笔记</a></li>  <li class="file"><a href="/wiki/%E5%B7%A5%E5%85%B7%E8%BD%AF%E4%BB%B6/Mac/%E9%AB%98%E6%95%88%E7%9A%84%E4%BD%BF%E7%94%A8Mac/">高效的使用Mac</a></li>  </ul> 
+                    </li>
+                     <li class="file"><a href="/wiki/%E5%B7%A5%E5%85%B7%E8%BD%AF%E4%BB%B6/Alfred%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/">Alfred使用技巧</a></li>  <li class="file"><a href="/wiki/%E5%B7%A5%E5%85%B7%E8%BD%AF%E4%BB%B6/Gerrit%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/">Gerrit使用笔记</a></li>  <li class="file"><a href="/wiki/%E5%B7%A5%E5%85%B7%E8%BD%AF%E4%BB%B6/Chrome%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90/">Chrome插件推荐</a></li>  <li class="file"><a href="/wiki/%E5%B7%A5%E5%85%B7%E8%BD%AF%E4%BB%B6/Firefox%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90/">Firefox插件推荐</a></li>  <li class="file"><a href="/wiki/%E5%B7%A5%E5%85%B7%E8%BD%AF%E4%BB%B6/rbenv/">Ruby版本管理工具rbenv</a></li>  <li class="file"><a href="/wiki/%E5%B7%A5%E5%85%B7%E8%BD%AF%E4%BB%B6/Proxifier%E4%BD%BF%E7%94%A8/">Proxifier使用</a></li>  <li class="file"><a href="/wiki/%E5%B7%A5%E5%85%B7%E8%BD%AF%E4%BB%B6/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%E5%B7%A5%E5%85%B7/">屏幕截图工具</a></li>  <li class="file"><a href="/wiki/%E5%B7%A5%E5%85%B7%E8%BD%AF%E4%BB%B6/%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%B7%A5%E5%85%B7Sublime%20Text/">文本编辑工具Sublime Text</a></li>  <li class="file"><a href="/wiki/%E5%B7%A5%E5%85%B7%E8%BD%AF%E4%BB%B6/Windows%E4%BC%98%E7%A7%80%E7%9A%84%E5%B7%A5%E5%85%B7%E8%BD%AF%E4%BB%B6/">Windows优秀的工具软件</a></li>  <li class="file"><a href="/wiki/%E5%B7%A5%E5%85%B7%E8%BD%AF%E4%BB%B6/Mac/Mac%20M1%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/">Mac M1使用问题记录</a></li>  <li class="file"><a href="/wiki/%E5%B7%A5%E5%85%B7%E8%BD%AF%E4%BB%B6/Mac/Mac%E6%96%B0%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">Mac新系统环境配置</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            技术开发
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Git
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/Git/Git%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/">Git使用技巧</a></li>  <li class="file"><a href="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/Git/Git%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/">Git使用笔记</a></li>  <li class="file"><a href="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/Git/cherry-pick/">cherry-pick</a></li>  <li class="file"><a href="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/Git/githooks/">Git hooks</a></li>  <li class="file"><a href="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/Git/merge/">merge</a></li>  <li class="file"><a href="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/Git/rebase/">rebase</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            HuaWei
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/HuaWei/%E9%B8%BF%E8%92%99%E6%9E%84%E5%BB%BAflutter%E9%A1%B9%E7%9B%AE/">鸿蒙构建flutter项目</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Shell
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/Shell/Shell%E7%94%A8%E6%B3%95-awk/">Shell用法-awk</a></li>  <li class="file"><a href="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/Shell/Shell%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/">Shell基本用法</a></li>  <li class="file"><a href="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/Shell/Shell%E7%94%A8%E6%B3%95-sed/">Shell用法-sed</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            技术方案
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88/%E5%9F%8B%E7%82%B9%E6%96%B9%E6%A1%88/">数据埋点方案</a></li>  <li class="file"><a href="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88/App%E5%8D%87%E7%BA%A7%E6%96%B9%E6%A1%88/">数据埋点方案</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            技术管理
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E6%8A%80%E6%9C%AF%E7%AE%A1%E7%90%86/%E5%85%B3%E4%BA%8EKPI/">关于KPI</a></li>  <li class="file"><a href="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E6%8A%80%E6%9C%AF%E7%AE%A1%E7%90%86/%E5%85%B3%E4%BA%8E%E5%BB%BA%E8%AE%BE%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F%E7%9A%84%E6%80%9D%E8%80%83/">关于建设技术团队的思考</a></li>  <li class="file"><a href="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E6%8A%80%E6%9C%AF%E7%AE%A1%E7%90%86/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B%E7%9A%84%E6%80%9D%E8%80%83/">开发流程的思考</a></li>  <li class="file"><a href="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E6%8A%80%E6%9C%AF%E7%AE%A1%E7%90%86/%E5%A6%82%E4%BD%95%E5%AE%A2%E8%A7%82%E7%9A%84%E8%AF%84%E4%BC%B0%E5%BC%80%E5%8F%91%E4%BA%BA%E5%91%98%E7%9A%84%E7%BB%A9%E6%95%88/">如何客观的评估开发人员的绩效</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            服务端
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E6%9C%8D%E5%8A%A1%E7%AB%AF/Connection%20reset%20by%20peer/">Connection reset by peer) while reading response header from upstream</a></li>  <li class="file"><a href="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E6%9C%8D%E5%8A%A1%E7%AB%AF/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Linux常用命令</a></li>  <li class="file"><a href="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E6%9C%8D%E5%8A%A1%E7%AB%AF/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9/">MySQL知识点</a></li>  <li class="file"><a href="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E6%9C%8D%E5%8A%A1%E7%AB%AF/RabbitMQ%E7%AC%94%E8%AE%B0/">RabbitMQ笔记</a></li>  <li class="file"><a href="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E6%9C%8D%E5%8A%A1%E7%AB%AF/redis%E7%AC%94%E8%AE%B0/">Redis笔记</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            杂项
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E6%9D%82%E9%A1%B9/Charles%20SSL%E8%AF%81%E4%B9%A6/">Windows下Charles支持HTTPS</a></li>  <li class="file"><a href="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E6%9D%82%E9%A1%B9/Docker%E7%AC%94%E8%AE%B0/">Docker笔记</a></li>  <li class="file"><a href="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E6%9D%82%E9%A1%B9/Linux%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/">Linux常用操作</a></li>  <li class="file"><a href="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E6%9D%82%E9%A1%B9/Nexus%E7%AC%94%E8%AE%B0/">Nexus笔记</a></li>  <li class="file"><a href="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E6%9D%82%E9%A1%B9/PC%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88%E5%88%86%E6%9E%90/">PC客户端技术方案分析</a></li>  <li class="file active"><a href="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E6%9D%82%E9%A1%B9/ReactiveX/">ReactiveX</a></li>  <li class="file"><a href="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E6%9D%82%E9%A1%B9/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/">字符编码</a></li>  <li class="file"><a href="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E6%9D%82%E9%A1%B9/%E6%8C%89%E9%94%AE%E7%B2%BE%E7%81%B5%E7%9A%84%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/">按键精灵的使用记录</a></li>  <li class="file"><a href="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E6%9D%82%E9%A1%B9/%E5%B8%B8%E7%94%A8ffmpeg%E5%91%BD%E4%BB%A4/">FFMpeg常用命令</a></li>  <li class="file"><a href="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E6%9D%82%E9%A1%B9/%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E7%9A%84%E7%8E%A9%E6%B3%95/">虚拟主机的玩法</a></li>  </ul> 
+                    </li>
+                     </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            操作系统
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            未分类
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%9C%AA%E5%88%86%E7%B1%BB/IO%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8/">IO多路复用</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            线程
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            进程
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%BF%9B%E7%A8%8B/%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/">基础概念</a></li>  </ul> 
+                    </li>
+                     </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            服务端
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E6%9C%8D%E5%8A%A1%E7%AB%AF/%E5%AF%B9%E4%BA%8E%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%BC%80%E5%8F%91%E7%9A%84%E7%90%86%E8%A7%A3/">对于服务端开发的理解</a></li>  <li class="file"><a href="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E6%9C%8D%E5%8A%A1%E7%AB%AF/%E6%95%B0%E6%8D%AE%E7%9B%91%E6%8E%A7%E6%96%B9%E6%A1%88/">数据监控方案</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            程序语言
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            C++
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/C++/C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">C++学习笔记</a></li>  <li class="file"><a href="/wiki/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/C++/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">C语言学习笔记</a></li>  <li class="file"><a href="/wiki/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/C++/cef/">cef笔记</a></li>  <li class="file"><a href="/wiki/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/C++/socket%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/">socket编程笔记</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Kotlin
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/Kotlin/reified/">reified</a></li>  <li class="file"><a href="/wiki/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/Kotlin/%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%87%BD%E6%95%B0/">作用域函数</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            PHP
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/PHP/PHP%E4%B8%ADopcodes%E7%9A%84%E5%8E%9F%E7%90%86/">PHP中opcodes的原理</a></li>  <li class="file"><a href="/wiki/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/PHP/symfony%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/">Symfony使用记录</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            iOS
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/iOS/%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0iOS/">开始学习iOS</a></li>  <li class="file"><a href="/wiki/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/iOS/%E8%AF%81%E4%B9%A6%E7%9A%84%E5%9D%91/">证书的坑</a></li>  <li class="file"><a href="/wiki/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/iOS/%E7%90%86%E8%A7%A3%E6%89%93%E5%8C%85%E6%B5%81%E7%A8%8B/">理解打包流程</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            数据结构
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/B%E6%A0%91/">B树、B+树</a></li>  <li class="file"><a href="/wiki/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91AVL/">平衡二叉树AVL</a></li>  <li class="file"><a href="/wiki/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%9B%BE/">图</a></li>  <li class="file"><a href="/wiki/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/">栈和队列</a></li>  <li class="file"><a href="/wiki/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%91/">树</a></li>  <li class="file"><a href="/wiki/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%A2%E9%BB%91%E6%A0%91/">红黑树</a></li>  <li class="file"><a href="/wiki/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%A8%80%E7%96%8F%E7%9F%A9%E9%98%B5%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8/">稀疏矩阵和广义表</a></li>  <li class="file"><a href="/wiki/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E8%A1%A8/">线性表</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            算法
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">动态规划</a></li>  <li class="file"><a href="/wiki/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/%E7%AE%97%E6%B3%95/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/">回溯算法</a></li>  <li class="file"><a href="/wiki/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/%E7%AE%97%E6%B3%95/%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%AE%9A%E4%B9%89/">复杂度定义</a></li>  <li class="file"><a href="/wiki/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/%E7%AE%97%E6%B3%95/%E6%9F%A5%E6%89%BE/">查找算法</a></li>  <li class="file"><a href="/wiki/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/">排序算法</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            网络编程
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/HTTPS/">HTTPS</a></li>  <li class="file"><a href="/wiki/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/HTTP%E5%8D%8F%E8%AE%AE/">HTTP协议</a></li>  <li class="file"><a href="/wiki/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">计算机网络知识总结</a></li>  </ul> 
+                    </li>
+                     </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            设计模式
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            创建型模式
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">单例模式</a></li>  <li class="file"><a href="/wiki/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/">原型模式</a></li>  <li class="file"><a href="/wiki/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/">工厂方法模式</a></li>  <li class="file"><a href="/wiki/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/">抽象工厂模式</a></li>  <li class="file"><a href="/wiki/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/">建造者模式</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            结构型模式
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F/">享元模式</a></li>  <li class="file"><a href="/wiki/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/">代理模式</a></li>  <li class="file"><a href="/wiki/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F/">组合模式</a></li>  <li class="file"><a href="/wiki/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/%E5%A4%96%E8%A7%82%E6%A8%A1%E5%BC%8F/">外观模式</a></li>  <li class="file"><a href="/wiki/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F/">装饰模式</a></li>  <li class="file"><a href="/wiki/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F/">桥接模式</a></li>  <li class="file"><a href="/wiki/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/">适配器模式</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            行为型模式
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F/">中介者模式</a></li>  <li class="file"><a href="/wiki/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F/">备忘录模式</a></li>  <li class="file"><a href="/wiki/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/">模板方法模式</a></li>  <li class="file"><a href="/wiki/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F/">命令模式</a></li>  <li class="file"><a href="/wiki/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/">状态模式</a></li>  <li class="file"><a href="/wiki/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/">策略模式</a></li>  <li class="file"><a href="/wiki/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/">观察者模式</a></li>  <li class="file"><a href="/wiki/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/%E8%AE%BF%E9%97%AE%E8%80%85%E6%A8%A1%E5%BC%8F/">访问者模式</a></li>  <li class="file"><a href="/wiki/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/%E8%A7%A3%E9%87%8A%E5%99%A8%E6%A8%A1%E5%BC%8F/">解释器模式</a></li>  <li class="file"><a href="/wiki/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F/">责任链模式</a></li>  <li class="file"><a href="/wiki/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/">迭代器模式</a></li>  </ul> 
+                    </li>
+                     <li class="file"><a href="/wiki/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/UML%E7%9F%A5%E8%AF%86/">UML知识</a></li>  <li class="file"><a href="/wiki/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/">设计原则</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            读书笔记
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Java编程思想
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/Java%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/Java%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/">《Java编程思想》读书笔记</a></li>  <li class="file"><a href="/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/Java%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/%E7%AC%AC15%E7%AB%A0%EF%BC%9A%E6%B3%9B%E5%9E%8B/">第15章：泛型</a></li>  <li class="file"><a href="/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/Java%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/%E7%AC%AC20%E7%AB%A0%EF%BC%9A%E6%B3%A8%E8%A7%A3/">第20章：注解</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            深入理解计算机
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B01-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E6%B8%B8/">读书笔记1：计算机系统漫游</a></li>  <li class="file"><a href="/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B010-%E7%B3%BB%E7%BB%9F%E7%BA%A7IO/">读书笔记10：系统级I/O</a></li>  <li class="file"><a href="/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B011-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">读书笔记11：网络编程</a></li>  <li class="file"><a href="/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B012-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">读书笔记12：并发编程</a></li>  <li class="file"><a href="/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B02-%E4%BF%A1%E6%81%AF%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%92%8C%E5%A4%84%E7%90%86/">读书笔记2：信息的表示和处理</a></li>  <li class="file"><a href="/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B03-%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA/">读书笔记3：程序的机器级表示</a></li>  <li class="file"><a href="/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B04-%E5%A4%84%E7%90%86%E5%99%A8%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/">读书笔记3：处理器体系结构</a></li>  <li class="file"><a href="/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B05-%E4%BC%98%E5%8C%96%E7%A8%8B%E5%BA%8F%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84/">读书笔记5：优化程序性能</a></li>  <li class="file"><a href="/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B06-%E5%AD%98%E5%82%A8%E5%99%A8%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84/">读书笔记6：存储器层次结构</a></li>  <li class="file"><a href="/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B07-%E9%93%BE%E6%8E%A5/">读书笔记7：链接</a></li>  <li class="file"><a href="/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B08-%E5%BC%82%E5%B8%B8%E6%B5%81%E6%8E%A7%E5%88%B6/">读书笔记8：异常流控制</a></li>  <li class="file"><a href="/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B09-%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98/">读书笔记9：虚拟内存</a></li>  </ul> 
+                    </li>
+                     <li class="file"><a href="/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/Kotlin%E5%AE%9E%E6%88%98/">《Kotlin实战》读书笔记</a></li>  <li class="file"><a href="/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E4%B8%87%E5%8E%86%E5%8D%81%E4%BA%94%E5%B9%B4/">《万历十五年》读书笔记</a></li>  <li class="file"><a href="/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E5%9B%BE%E8%A7%A3TCPIP/">《图解TCP/IP》读书笔记</a></li>  <li class="file"><a href="/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E4%BA%BA%E7%B1%BB%E4%B9%8B%E6%97%85/">人类之旅</a></li>  <li class="file"><a href="/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E5%B9%B2%E5%B0%B1%E5%AF%B9%E4%BA%86/">《干就对了：业绩增长九大关键》读书笔记</a></li>  <li class="file"><a href="/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E6%9D%83%E5%8A%9B%E7%BB%93%E6%9E%84%E3%80%81%E6%94%BF%E6%B2%BB%E6%BF%80%E5%8A%B1%E5%92%8C%E7%BB%8F%E6%B5%8E%E5%A2%9E%E5%A4%A7/">权力结构、政治激励和经济增大</a></li>  <li class="file"><a href="/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E6%94%B6%E9%9B%86%E7%9A%84%E7%94%B5%E5%AD%90%E4%B9%A6/">收集的电子书</a></li>  <li class="file"><a href="/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E6%B1%BD%E8%BD%A6%E6%98%AF%E6%80%8E%E6%A0%B7%E8%B7%91%E8%B5%B7%E6%9D%A5%E7%9A%84/">汽车是怎样跑起来的</a></li>  <li class="file"><a href="/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Android%E5%8D%B72/">《深入理解Android卷2》读书笔记</a></li>  <li class="file"><a href="/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E6%B8%90%E8%A1%8C%E6%B8%90%E8%BF%9C%E7%9A%84%E7%BA%A2%E5%88%A9/">《渐行渐远的红利》读书笔记</a></li>  <li class="file"><a href="/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E7%8E%B0%E4%BB%A3%E4%B8%AD%E5%9B%BD%E7%9A%84%E5%BD%A2%E6%88%90/">《现代中国的形成》读书笔记</a></li>  <li class="file"><a href="/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E7%BD%91%E7%BB%9C%E6%98%AF%E5%A6%82%E4%BD%95%E8%BF%9E%E6%8E%A5%E7%9A%84/">《网络是如何连接的》读书笔记</a></li>  <li class="file"><a href="/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E7%BD%AE%E8%BA%AB%E4%BA%8B%E5%86%85/">《置身事内》读书笔记</a></li>  <li class="file"><a href="/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%98%AF%E6%80%8E%E6%A0%B7%E8%B7%91%E8%B5%B7%E6%9D%A5%E7%9A%84/">《计算机是怎么跑起来的》读书笔记</a></li>  <li class="file"><a href="/wiki/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Android%E5%8D%B71/">《深入理解Android卷1》读书笔记</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            随笔
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Car
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E9%9A%8F%E7%AC%94/Car/%E5%A4%A7%E4%BC%97%E6%B1%BD%E8%BD%A6/">大众汽车</a></li>  <li class="file"><a href="/wiki/%E9%9A%8F%E7%AC%94/Car/%E4%B8%B0%E7%94%B0%E6%B1%BD%E8%BD%A6/">丰田汽车</a></li>  <li class="file"><a href="/wiki/%E9%9A%8F%E7%AC%94/Car/%E6%B1%BD%E8%BD%A6%E5%8F%91%E5%B1%95%E5%8F%B2%E7%AC%94%E8%AE%B0/">汽车发展史笔记</a></li>  <li class="file"><a href="/wiki/%E9%9A%8F%E7%AC%94/Car/%E7%A6%8F%E7%89%B9%E6%B1%BD%E8%BD%A6/">福特汽车</a></li>  </ul> 
+                    </li>
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            北京游玩攻略
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/wiki/%E9%9A%8F%E7%AC%94/%E5%8C%97%E4%BA%AC%E6%B8%B8%E7%8E%A9%E6%94%BB%E7%95%A5/%E4%BD%8F/"></a></li>  <li class="file"><a href="/wiki/%E9%9A%8F%E7%AC%94/%E5%8C%97%E4%BA%AC%E6%B8%B8%E7%8E%A9%E6%94%BB%E7%95%A5/%E5%90%83/"></a></li>  </ul> 
+                    </li>
+                     <li class="file"><a href="/wiki/%E9%9A%8F%E7%AC%94/%E3%80%8A%E5%A4%A7%E6%98%8E%E7%8E%8B%E6%9C%9D1566%E3%80%8B%E7%BB%8F%E5%85%B8%E8%AF%AD%E5%BD%95/">《大明王朝1566》经典语录</a></li>  <li class="file"><a href="/wiki/%E9%9A%8F%E7%AC%94/%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%9A%84%E6%88%90%E9%95%BF/">工程师的成长</a></li>  <li class="file"><a href="/wiki/%E9%9A%8F%E7%AC%94/%E7%81%AB%E8%BD%A6%E7%A5%A8%E9%BB%84%E7%89%9B/">火车票黄牛</a></li>  <li class="file"><a href="/wiki/%E9%9A%8F%E7%AC%94/%E5%8C%97%E4%BA%AC%E6%B8%B8%E7%8E%A9%E6%94%BB%E7%95%A5/">北京游玩攻略</a></li>  <li class="file"><a href="/wiki/%E9%9A%8F%E7%AC%94/%E5%8C%97%E4%BA%AC%E6%B8%B8%E7%8E%A9%E6%94%BB%E7%95%A5/%E5%8D%81%E4%B8%89%E9%99%B5/">北京游玩攻略：十三陵</a></li>  <li class="file"><a href="/wiki/%E9%9A%8F%E7%AC%94/%E5%8C%97%E4%BA%AC%E6%B8%B8%E7%8E%A9%E6%94%BB%E7%95%A5/%E5%A4%A9%E5%9D%9B/">北京游玩攻略：天坛</a></li>  <li class="file"><a href="/wiki/%E9%9A%8F%E7%AC%94/%E5%8C%97%E4%BA%AC%E6%B8%B8%E7%8E%A9%E6%94%BB%E7%95%A5/%E6%81%AD%E7%8E%8B%E5%BA%9C/">北京游玩攻略：恭王府</a></li>  <li class="file"><a href="/wiki/%E9%9A%8F%E7%AC%94/%E5%8C%97%E4%BA%AC%E6%B8%B8%E7%8E%A9%E6%94%BB%E7%95%A5/%E6%95%85%E5%AE%AB/">北京游玩攻略：故宫</a></li>  <li class="file"><a href="/wiki/%E9%9A%8F%E7%AC%94/%E5%8C%97%E4%BA%AC%E6%B8%B8%E7%8E%A9%E6%94%BB%E7%95%A5/%E6%B8%85%E5%8D%8E%E5%8C%97%E5%A4%A7/">北京游玩攻略：清华北大</a></li>  <li class="file"><a href="/wiki/%E9%9A%8F%E7%AC%94/%E5%8C%97%E4%BA%AC%E6%B8%B8%E7%8E%A9%E6%94%BB%E7%95%A5/%E9%95%BF%E5%9F%8E/">北京游玩攻略：长城</a></li>  <li class="file"><a href="/wiki/%E9%9A%8F%E7%AC%94/%E5%8C%97%E4%BA%AC%E6%B8%B8%E7%8E%A9%E6%94%BB%E7%95%A5/%E9%A2%90%E5%92%8C%E5%9B%AD/">北京游玩攻略：颐和园</a></li>  <li class="file"><a href="/wiki/%E9%9A%8F%E7%AC%94/2023-2024%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/">2023-2024年度总结</a></li>  </ul> 
+                    </li>
+                     <li class="file"><a href="/wiki/index/">Welcome Shjlone's Blog</a></li>  </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });
+
+        });
+    </script>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-技术开发/杂项/ReactiveX" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/">技术开发</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E6%9D%82%E9%A1%B9/">杂项</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Rx/" rel="tag">Rx</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E6%9D%82%E9%A1%B9/ReactiveX/">
+            <time datetime="2022-03-08T02:25:29.712Z" itemprop="datePublished">2022-03-08</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            ReactiveX
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article" style="position:fixed;right:28px;top:30px;">
+                <strong class="toc-title">Catalogue</strong>
+                &nbsp;&nbsp;
+                <a id="toc-allexpand" href="javascript:void(0);" style="display:none">
+                    <i class="fa fa-angle-double-down fa-2x"></i>
+                </a>
+                <a id="toc-allhide" href="javascript:void(0);">
+                    <i class="fa fa-angle-double-up fa-2x"></i>
+                </a>
+                <div id="toc-content">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Observables"><span class="toc-number">1.</span> <span class="toc-text">Observables</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86"><span class="toc-number">1.2.</span> <span class="toc-text">背景知识</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%A7%82%E5%AF%9F%E8%80%85"><span class="toc-number">1.3.</span> <span class="toc-text">创建观察者</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#onNext%EF%BC%8ConCompleted%EF%BC%8ConError%E5%9B%9E%E8%B0%83"><span class="toc-number">1.4.</span> <span class="toc-text">onNext，onCompleted，onError回调</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%96%E6%B6%88%E8%AE%A2%E9%98%85%EF%BC%88Ubsubscribing%EF%BC%89"><span class="toc-number">1.5.</span> <span class="toc-text">取消订阅（Ubsubscribing）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E5%91%BD%E5%90%8D%E7%BA%A6%E5%AE%9A"><span class="toc-number">1.6.</span> <span class="toc-text">关于命名约定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Observables%E7%9A%84%E2%80%9D%E7%83%AD%E2%80%9D%E5%92%8C%E2%80%9D%E5%86%B7%E2%80%9D"><span class="toc-number">1.7.</span> <span class="toc-text">Observables的”热”和”冷”</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E6%93%8D%E4%BD%9C%E7%AC%A6%E7%BB%84%E5%90%88Ovservable"><span class="toc-number">1.8.</span> <span class="toc-text">用操作符组合Ovservable</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Single"><span class="toc-number">2.</span> <span class="toc-text">Single</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Single%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">2.1.</span> <span class="toc-text">Single操作符</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Subject"><span class="toc-number">3.</span> <span class="toc-text">Subject</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Subject%E7%A7%8D%E7%B1%BB"><span class="toc-number">3.1.</span> <span class="toc-text">Subject种类</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#AsyncSubject"><span class="toc-number">3.1.1.</span> <span class="toc-text">AsyncSubject</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#BehaviorSubject"><span class="toc-number">3.1.2.</span> <span class="toc-text">BehaviorSubject</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#PublishSubject"><span class="toc-number">3.1.3.</span> <span class="toc-text">PublishSubject</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ReplaySubject"><span class="toc-number">3.1.4.</span> <span class="toc-text">ReplaySubject</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Scheduler"><span class="toc-number">4.</span> <span class="toc-text">Scheduler</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#RxJava%E7%A4%BA%E4%BE%8B"><span class="toc-number">4.1.</span> <span class="toc-text">RxJava示例</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6%E5%99%A8%E7%9A%84%E7%A7%8D%E7%B1%BB"><span class="toc-number">4.1.1.</span> <span class="toc-text">调度器的种类</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E8%B0%83%E5%BA%A6%E5%99%A8"><span class="toc-number">4.1.2.</span> <span class="toc-text">默认调度器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%B0%83%E5%BA%A6%E5%99%A8"><span class="toc-number">4.1.3.</span> <span class="toc-text">使用调度器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%80%92%E5%BD%92%E8%B0%83%E5%BA%A6%E5%99%A8"><span class="toc-number">4.1.4.</span> <span class="toc-text">递归调度器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5%E6%88%96%E8%AE%BE%E7%BD%AE%E5%8F%96%E6%B6%88%E8%AE%A2%E9%98%85%E7%8A%B6%E6%80%81"><span class="toc-number">4.1.5.</span> <span class="toc-text">检查或设置取消订阅状态</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BB%B6%E6%97%B6%E5%92%8C%E5%91%A8%E6%9C%9F%E8%B0%83%E5%BA%A6%E5%99%A8"><span class="toc-number">4.1.6.</span> <span class="toc-text">延时和周期调度器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E8%B0%83%E5%BA%A6%E5%99%A8"><span class="toc-number">4.1.7.</span> <span class="toc-text">测试调度器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Operators"><span class="toc-number">5.</span> <span class="toc-text">Operators</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%93%8D%E4%BD%9C"><span class="toc-number">5.1.</span> <span class="toc-text">创建操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%98%E6%8D%A2%E6%93%8D%E4%BD%9C"><span class="toc-number">5.2.</span> <span class="toc-text">变换操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%87%E6%BB%A4%E6%93%8D%E4%BD%9C"><span class="toc-number">5.3.</span> <span class="toc-text">过滤操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%93%E5%90%88%E6%93%8D%E4%BD%9C"><span class="toc-number">5.4.</span> <span class="toc-text">结合操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E6%93%8D%E4%BD%9C"><span class="toc-number">5.5.</span> <span class="toc-text">错误操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%85%E5%8A%A9%E6%93%8D%E4%BD%9C"><span class="toc-number">5.6.</span> <span class="toc-text">辅助操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E5%92%8C%E5%B8%83%E5%B0%94%E6%93%8D%E4%BD%9C"><span class="toc-number">5.7.</span> <span class="toc-text">条件和布尔操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%97%E6%95%B0%E5%92%8C%E8%81%9A%E5%90%88%E6%93%8D%E4%BD%9C"><span class="toc-number">5.8.</span> <span class="toc-text">算数和聚合操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5%E6%93%8D%E4%BD%9C"><span class="toc-number">5.9.</span> <span class="toc-text">异步操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E6%93%8D%E4%BD%9C"><span class="toc-number">5.10.</span> <span class="toc-text">连接操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BD%AC%E6%8D%A2%E6%93%8D%E4%BD%9C"><span class="toc-number">5.11.</span> <span class="toc-text">转换操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%98%BB%E5%A1%9E%E6%93%8D%E4%BD%9C"><span class="toc-number">5.12.</span> <span class="toc-text">阻塞操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C"><span class="toc-number">5.13.</span> <span class="toc-text">字符串操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">6.</span> <span class="toc-text">参考</span></a></li></ol>
+                </div>
+                </div>
+
+            
+        
+        
+            <h3 id="Observables"><a href="#Observables" class="headerlink" title="Observables"></a>Observables</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>ReactiveX是Reactive Extensions的缩写，一般简写为Rx，最初是LINQ的一个扩展，由微软的架构师Erik Meijer领导的团队开发，在2012年11月开源，Rx是一个编程模型，目标是提供一致的编程接口，帮助开发者更方便的处理异步数据流，Rx库支持大部分主流语<br>言。</p>
+<p>使用这种方法的优点是，当你有一大堆的任务是不相互依赖，你就可以同时执行他们，而不是等待每一个类启动下一个前完成，这样你的整个任务包只需要花最长的任务时间。</p>
+<p>在ReactiveX中，一个观察者(Observer)订阅一个可观察对象(Observable)。观察者对Observable发射的数据或数据序列作出响应。这种模式可以极大地简化并发操作，因为它创建了一个处于待命状态的观察者哨兵，在未来某个时刻响应Observable的通知，不需要阻塞等待Observable发射数据。</p>
+<p><img src="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E6%9D%82%E9%A1%B9/ReactiveX/rx_legend.png"></p>
+<h4 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h4><p>在很多软件编程任务中，或多或少你都会期望你写的代码能按照编写的顺序，一次一个的顺序执行和完成。但是在ReactiveX中，很多指令可能是并行执行的，之后他们的执行结果才会被观察者捕获，顺序是不确定的。为达到这个目的，你定义一种获取和变换数据的机制，而不是调用一个方法。在这种机制下，存在一个可观察对象(Observable)，观察者(Observer)订阅(Subscribe)它，当数据就绪时，之前定义的机制就会分发数据给一直处于等待状态的观察者哨兵。</p>
+<p>这种方法的优点是，如果你有大量的任务要处理，它们互相之间没有依赖关系。你可以同时开始执行它们，不用等待一个完成再开始下一个（用这种方式，你的整个任务队列能耗费的最长时间，不会超过任务里最耗时的那个）。</p>
+<p>有很多术语可用于描述这种异步编程和设计模式，在在本文里我们使用这些术语：一个观察者订阅一个可观察对象 (An observer subscribes to an Observable)。通过调用观察者的方法，Observable发射数据或通知给它的观察者。</p>
+<p>在其它的文档和场景里，有时我们也将Observer叫做Subscriber、Watcher、Reactor。这个模型通常被称作Reactor模式。</p>
+<h4 id="创建观察者"><a href="#创建观察者" class="headerlink" title="创建观察者"></a>创建观察者</h4><p>关于Observers的创建</p>
+<p><strong>同步方式：</strong></p>
+<ol>
+<li>调用一个方法</li>
+<li>用一个变量存储方法返回值</li>
+<li>使用这个变量作为一个新的值做其他事情</li>
+</ol>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//写一个回调</span><br><span class="line">returnVal = someMethod(paramters);</span><br><span class="line">//做新的事情</span><br></pre></td></tr></table></figure>
+
+<p><strong>异步方式：</strong></p>
+<ol>
+<li>定义一个方法，此方法是做一些事情并带有来之于异步调用的返回值；这个方法也是observer的一部分</li>
+<li>定义异步调用自身作为一个Observable</li>
+<li>通过订阅的方式连接observer到Observable</li>
+<li>执行你的业务</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def myOnNext = &#123;it-&gt;do something useful with it&#125;;</span><br><span class="line">def myObservable = someOvservable(itsParamters);</span><br><span class="line">myObservable.subscribe(myOnNext);</span><br></pre></td></tr></table></figure>
+
+<h4 id="onNext，onCompleted，onError回调"><a href="#onNext，onCompleted，onError回调" class="headerlink" title="onNext，onCompleted，onError回调"></a>onNext，onCompleted，onError回调</h4><ul>
+<li>onNext：每当Observable广播数据时将会调用该方法，这个方法将会被作为Observable的一个广播项目参数被发送</li>
+<li>onError：表示内部已经发生异常</li>
+<li>onCompleted：成功调用onNext</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def myOnNext     = &#123; item -&gt; /* 任务执行 */ &#125;;</span><br><span class="line">def myError      = &#123; throwable -&gt; /* 失败时的响应 */ &#125;;</span><br><span class="line">def myComplete   = &#123; /* 成功后的响应 */ &#125;;</span><br><span class="line">def myObservable = someMethod(itsParameters);</span><br><span class="line">myObservable.subscribe(myOnNext, myError, myComplete);</span><br><span class="line">// 继续执行相应的业务逻辑</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="取消订阅（Ubsubscribing）"><a href="#取消订阅（Ubsubscribing）" class="headerlink" title="取消订阅（Ubsubscribing）"></a>取消订阅（Ubsubscribing）</h4><p>在一些ReactiveX实现中，有一个特殊的观察者接口Subscriber，它有一个unsubscribe方法。调用这个方法表示你不关心当前订阅的Observable了，因此Observable可以选择停止发射新的数据项（如果没有其它观察者订阅）。</p>
+<p>取消订阅的结果会传递给这个Observable的操作符链，而且会导致这个链条上的每个环节都停止发射数据项。这些并不保证会立即发生，然而，对一个Observable来说，即使没有观察者了，它也可以在一个while循环中继续生成并尝试发射数据项。</p>
+<h4 id="关于命名约定"><a href="#关于命名约定" class="headerlink" title="关于命名约定"></a>关于命名约定</h4><p>ReactiveX的每种特定语言的实现都有自己的命名偏好，虽然不同的实现之间有很多共同点，但并不存在一个统一的命名标准。</p>
+<p>而且，在某些场景中，一些名字有不同的隐含意义，或者在某些语言看来比较怪异。</p>
+<p>例如，有一个onEvent命名模式(onNext, onCompleted, onError)，在一些场景中，这些名字可能意味着事件处理器已经注册。然而在ReactiveX里，他们是事件处理器的名字。</p>
+<h4 id="Observables的”热”和”冷”"><a href="#Observables的”热”和”冷”" class="headerlink" title="Observables的”热”和”冷”"></a>Observables的”热”和”冷”</h4><p>Observable什么时候开始发射数据序列？这取决于Observable的实现，一个”热”的Observable可能一创建完就开始发射数据，因此所有后续订阅它的观察者可能从序列中间的某个位置开始接受数据（有一些数据错过了）。一个”冷”的Observable会一直等待，直到有观察者订阅它才开始发射数据，因此这个观察者可以确保会收到整个数据序列。</p>
+<p>在一些ReactiveX实现里，还存在一种被称作Connectable的Observable，不管有没有观察者订阅它，这种Observable都不会开始发射数据，除非Connect方法被调用。</p>
+<h4 id="用操作符组合Ovservable"><a href="#用操作符组合Ovservable" class="headerlink" title="用操作符组合Ovservable"></a>用操作符组合Ovservable</h4><p><strong>创建新的Observables的操作符：</strong></p>
+<ul>
+<li>Create</li>
+<li>Defer</li>
+<li>Empty&#x2F;Never&#x2F;Throw</li>
+<li>From</li>
+<li>Interval</li>
+<li>Just</li>
+<li>Range</li>
+<li>Repeat</li>
+<li>Start</li>
+<li>Timer</li>
+</ul>
+<p><strong>转换被一个Observable发送的项目的操作付</strong></p>
+<ul>
+<li>Buffer</li>
+<li>FlatMap：进行一对多或多对多转换</li>
+<li>GroupBy</li>
+<li>Map:进行一对一转换</li>
+<li>Scan</li>
+<li>Window</li>
+</ul>
+<p><strong>过滤被Observable发送的项目的操作符</strong></p>
+<ul>
+<li>Debounce</li>
+<li>Distinct</li>
+<li>ElementAt</li>
+<li>Filter</li>
+<li>First</li>
+<li>IgnoreElements</li>
+<li>Last</li>
+<li>Sample</li>
+<li>Skip</li>
+<li>SkipLast</li>
+<li>Take</li>
+<li>TakeLast</li>
+</ul>
+<p><strong>将多个Observable合并成单个Observable的操作符</strong></p>
+<ul>
+<li>And&#x2F;Then&#x2F;When</li>
+<li>CombineLatest</li>
+<li>Join</li>
+<li>Merge</li>
+<li>StartWith</li>
+<li>Switch</li>
+<li>Zip</li>
+</ul>
+<p><strong>错误处理操作符</strong></p>
+<ul>
+<li>Catch</li>
+<li>Retry</li>
+</ul>
+<p><strong>实用工具操作符</strong></p>
+<ul>
+<li>Delay</li>
+<li>Do</li>
+<li>Materialize&#x2F;Dematerialize</li>
+<li>ObserveOn</li>
+<li>Serialize</li>
+<li>Subscribe</li>
+<li>SubscribeOn</li>
+<li>TimeInterval</li>
+<li>Timeout</li>
+<li>Timestamp</li>
+<li>Using</li>
+</ul>
+<p><strong>条件和布尔运算操作符</strong></p>
+<ul>
+<li>All</li>
+<li>Amb</li>
+<li>Contains</li>
+<li>DefaultIfEmpty</li>
+<li>SequenceEqual</li>
+<li>SkipUntil</li>
+<li>SkipWhile</li>
+<li>TakeUntil</li>
+<li>TakeWhile</li>
+</ul>
+<p><strong>算术和集合操作符</strong></p>
+<ul>
+<li>Average</li>
+<li>Concat</li>
+<li>Count</li>
+<li>Max</li>
+<li>Min</li>
+<li>Reduce</li>
+<li>Sum</li>
+</ul>
+<p><strong>转换操作符</strong></p>
+<ul>
+<li>To</li>
+</ul>
+<p><strong>可连接Obervable的操作符</strong></p>
+<ul>
+<li>Connect</li>
+<li>Publish</li>
+<li>RefCount</li>
+<li>Replay</li>
+</ul>
+<h3 id="Single"><a href="#Single" class="headerlink" title="Single"></a>Single</h3><p>RxJava（以及它派生出来的RxGroovy和RxScala）中有一个名为Single的Observable变种。</p>
+<p>Single类似于Observable，不同的是，它总是只发射一个值，或者一个错误通知，而不是发射一系列的值。</p>
+<p>因此，不同于Observable需要三个方法onNext, onError, onCompleted，订阅Single只需要两个方法：</p>
+<pre><code>onSuccess - Single发射单个的值到这个方法
+onError - 如果无法发射需要的值，Single发射一个Throwable对象到这个方法
+</code></pre>
+<p>Single只会调用这两个方法中的一个，而且只会调用一次，调用了任何一个方法之后，订阅关系终止。</p>
+<h4 id="Single操作符"><a href="#Single操作符" class="headerlink" title="Single操作符"></a>Single操作符</h4><table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>返回值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>compose</td>
+<td>Single</td>
+<td>创建一个自定义的操作符</td>
+</tr>
+<tr>
+<td>concat and concatWith</td>
+<td>Observable</td>
+<td>连接多个Single和Observable发射的数据</td>
+</tr>
+<tr>
+<td>create</td>
+<td>Single</td>
+<td>调用观察者的create方法创建一个Single</td>
+</tr>
+<tr>
+<td>error</td>
+<td>Single</td>
+<td>返回一个立即给订阅者发射错误通知的Single</td>
+</tr>
+<tr>
+<td>flatMap</td>
+<td>Single</td>
+<td>返回一个Single，它发射对原Single的数据执行flatMap操作后的结果</td>
+</tr>
+<tr>
+<td>flatMapObservable</td>
+<td>Observable</td>
+<td>返回一个Observable，它发射对原Single的数据执行flatMap操作后的结果</td>
+</tr>
+<tr>
+<td>from</td>
+<td>Single</td>
+<td>将Future转换成Single</td>
+</tr>
+<tr>
+<td>just</td>
+<td>Single</td>
+<td>返回一个发射一个指定值的Single</td>
+</tr>
+<tr>
+<td>map</td>
+<td>Single</td>
+<td>返回一个Single，它发射对原Single的数据执行map操作后的结果</td>
+</tr>
+<tr>
+<td>merge</td>
+<td>Single</td>
+<td>将一个Single(它发射的数据是另一个Single，假设为B)转换成另一个Single(它发射来自另一个Single(B)的数据)</td>
+</tr>
+<tr>
+<td>merge and mergeWith</td>
+<td>Observable</td>
+<td>合并发射来自多个Single的数据</td>
+</tr>
+<tr>
+<td>observeOn</td>
+<td>Single</td>
+<td>指示Single在指定的调度程序上调用订阅者的方法</td>
+</tr>
+<tr>
+<td>onErrorReturn</td>
+<td>Single</td>
+<td>将一个发射错误通知的Single转换成一个发射指定数据项的Single</td>
+</tr>
+<tr>
+<td>subscribeOn</td>
+<td>Single</td>
+<td>指示Single在指定的调度程序上执行操作</td>
+</tr>
+<tr>
+<td>timeout</td>
+<td>Single</td>
+<td>它给原有的Single添加超时控制，如果超时了就发射一个错误通知</td>
+</tr>
+<tr>
+<td>toSingle</td>
+<td>Single</td>
+<td>将一个发射单个值的Observable转换为一个Single</td>
+</tr>
+<tr>
+<td>zip and zipWith</td>
+<td>Single</td>
+<td>将多个Single转换为一个，后者发射的数据是对前者应用一个函数后的结果</td>
+</tr>
+</tbody></table>
+<h3 id="Subject"><a href="#Subject" class="headerlink" title="Subject"></a>Subject</h3><p>Subject可以看成是一个桥梁或者代理，在某些ReactiveX实现中（如RxJava），它同时充当了Observer和Observable的角色。因为它是一个Observer，它可以订阅一个或多个Observable；又因为它是一个Observable，它可以转发它收到(Observe)的数据，也可以发射新的数据。</p>
+<p>由于一个Subject订阅一个Observable，它可以触发这个Observable开始发射数据（如果那个Observable是”冷”的–就是说，它等待有订阅才开始发射数据）。因此有这样的效果，Subject可以把原来那个”冷”的Observable变成”热”的。</p>
+<h4 id="Subject种类"><a href="#Subject种类" class="headerlink" title="Subject种类"></a>Subject种类</h4><h5 id="AsyncSubject"><a href="#AsyncSubject" class="headerlink" title="AsyncSubject"></a>AsyncSubject</h5><h5 id="BehaviorSubject"><a href="#BehaviorSubject" class="headerlink" title="BehaviorSubject"></a>BehaviorSubject</h5><h5 id="PublishSubject"><a href="#PublishSubject" class="headerlink" title="PublishSubject"></a>PublishSubject</h5><h5 id="ReplaySubject"><a href="#ReplaySubject" class="headerlink" title="ReplaySubject"></a>ReplaySubject</h5><h3 id="Scheduler"><a href="#Scheduler" class="headerlink" title="Scheduler"></a>Scheduler</h3><p>如果你想给Observable操作符链添加多线程功能，你可以指定操作符（或者特定的Observable）在特定的调度器(Scheduler)上执行。</p>
+<p>某些ReactiveX的Observable操作符有一些变体，它们可以接受一个Scheduler参数。这个参数指定操作符将它们的部分或全部任务放在一个特定的调度器上执行。</p>
+<p>默认情况下，可观察对象和观察者的订阅方法是在同一个线程中运行的。使用ObserveOn和SubscribeOn操作符，你可以让Observable在一个特定的调度器上执行，ObserveOn指示一个Observable在一个特定的调度器上调用观察者的onNext, onError和onCompleted方法，SubscribeOn更进一步，它指示Observable将全部的处理过程（包括发射数据和通知）放在特定的调度器上执行。</p>
+<p><img src="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E6%9D%82%E9%A1%B9/ReactiveX/rx_schedulers.png"></p>
+<h4 id="RxJava示例"><a href="#RxJava示例" class="headerlink" title="RxJava示例"></a>RxJava示例</h4><h5 id="调度器的种类"><a href="#调度器的种类" class="headerlink" title="调度器的种类"></a>调度器的种类</h5><p>下表展示了RxJava中可用的调度器种类：</p>
+<table>
+<thead>
+<tr>
+<th>调度器类型</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Schedulers.computation( )</td>
+<td>用于计算任务，如事件循环或和回调处理，不要用于IO操作(IO操作请使用Schedulers.io())；默认线程数等于处理器的数量</td>
+</tr>
+<tr>
+<td>Schedulers.from(executor)</td>
+<td>使用指定的Executor作为调度器</td>
+</tr>
+<tr>
+<td>Schedulers.immediate( )</td>
+<td>在当前线程立即开始执行任务</td>
+</tr>
+<tr>
+<td>Schedulers.io( )</td>
+<td>用于IO密集型任务，如异步阻塞IO操作，这个调度器的线程池会根据需要增长；对于普通的计算任务，请使用Schedulers.computation()；Schedulers.io( )默认是一个CachedThreadScheduler，很像一个有线程缓存的新线程调度器</td>
+</tr>
+<tr>
+<td>Schedulers.newThread( )</td>
+<td>为每个任务创建一个新线程</td>
+</tr>
+<tr>
+<td>Schedulers.trampoline( )</td>
+<td>当其它排队的任务完成后，在当前线程排队开始执行</td>
+</tr>
+</tbody></table>
+<h5 id="默认调度器"><a href="#默认调度器" class="headerlink" title="默认调度器"></a>默认调度器</h5><p>在RxJava中，某些Observable操作符的变体允许你设置用于操作执行的调度器，其它的则不在任何特定的调度器上执行，或者在一个指定的默认调度器上执行。下面的表格个列出了一些操作符的默认调度器：</p>
+<table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>调度器</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>buffer(timespan)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>buffer(timespan, count)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>buffer(timespan, timeshift)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>debounce(timeout, unit)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>delay(delay, unit)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>delaySubscription(delay, unit)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>interval</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>repeat</td>
+<td>trampoline</td>
+</tr>
+<tr>
+<td>replay(time, unit)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>replay(buffersize, time, unit)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>replay(selector, time, unit)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>replay(selector, buffersize, time, unit)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>retry</td>
+<td>trampoline</td>
+</tr>
+<tr>
+<td>sample(period, unit)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>skip(time, unit)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>skipLast(time, unit)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>take(time, unit)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>takeLast(time, unit)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>takeLast(count, time, unit)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>takeLastBuffer(time, unit)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>takeLastBuffer(count, time, unit)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>throttleFirst</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>throttleLast</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>throttleWithTimeout</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>timeInterval</td>
+<td>immediate</td>
+</tr>
+<tr>
+<td>timeout(timeoutSelector)</td>
+<td>immediate</td>
+</tr>
+<tr>
+<td>timeout(firstTimeoutSelector, timeoutSelector)</td>
+<td>immediate</td>
+</tr>
+<tr>
+<td>timeout(timeoutSelector, other)</td>
+<td>immediate</td>
+</tr>
+<tr>
+<td>timeout(timeout, timeUnit)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>timeout(firstTimeoutSelector, timeoutSelector, other)</td>
+<td>immediate</td>
+</tr>
+<tr>
+<td>timeout(timeout, timeUnit, other)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>timer</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>immediate</td>
+</tr>
+<tr>
+<td>window(timespan)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>window(timespan, count)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>window(timespan, timeshift)</td>
+<td>computation</td>
+</tr>
+</tbody></table>
+<h5 id="使用调度器"><a href="#使用调度器" class="headerlink" title="使用调度器"></a>使用调度器</h5><p>除了将这些调度器传递给RxJava的Observable操作符，你也可以用它们调度你自己的任务。下面的示例展示了Scheduler.Worker的用法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">worker = Schedulers.newThread().createWorker();</span><br><span class="line">worker.schedule(<span class="keyword">new</span> <span class="title class_">Action0</span>() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">call</span><span class="params">()</span> &#123;</span><br><span class="line">        yourWork();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// some time later...</span></span><br><span class="line">worker.unsubscribe();</span><br></pre></td></tr></table></figure>
+
+<h5 id="递归调度器"><a href="#递归调度器" class="headerlink" title="递归调度器"></a>递归调度器</h5><p>要调度递归的方法调用，你可以使用schedule，然后再用schedule(this)，示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">worker = Schedulers.newThread().createWorker();</span><br><span class="line">worker.schedule(<span class="keyword">new</span> <span class="title class_">Action0</span>() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">call</span><span class="params">()</span> &#123;</span><br><span class="line">        yourWork();</span><br><span class="line">        <span class="comment">// recurse until unsubscribed (schedule will do nothing if unsubscribed)</span></span><br><span class="line">        worker.schedule(<span class="built_in">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// some time later...</span></span><br><span class="line">worker.unsubscribe();</span><br></pre></td></tr></table></figure>
+
+
+<h5 id="检查或设置取消订阅状态"><a href="#检查或设置取消订阅状态" class="headerlink" title="检查或设置取消订阅状态"></a>检查或设置取消订阅状态</h5><p>Worker类的对象实现了Subscription接口，使用它的isUnsubscribed和unsubscribe方法，所以你可以在订阅取消时停止任务，或者从正在调度的任务内部取消订阅，示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Worker</span> <span class="variable">worker</span> <span class="operator">=</span> Schedulers.newThread().createWorker();</span><br><span class="line"><span class="type">Subscription</span> <span class="variable">mySubscription</span> <span class="operator">=</span> worker.schedule(<span class="keyword">new</span> <span class="title class_">Action0</span>() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">call</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">while</span>(!worker.isUnsubscribed()) &#123;</span><br><span class="line">            status = yourWork();</span><br><span class="line">            <span class="keyword">if</span>(QUIT == status) &#123; worker.unsubscribe(); &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h5 id="延时和周期调度器"><a href="#延时和周期调度器" class="headerlink" title="延时和周期调度器"></a>延时和周期调度器</h5><p>你可以使用schedule(action,delayTime,timeUnit)在指定的调度器上延时执行你的任务，下面例子中的任务将在500毫秒之后开始执行：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">someScheduler.schedule(someAction, <span class="number">500</span>, TimeUnit.MILLISECONDS);</span><br></pre></td></tr></table></figure>
+
+<p>使用另一个版本的schedule，schedulePeriodically(action,initialDelay,period,timeUnit)方法让你可以安排一个定期执行的任务，下面例子的任务将在500毫秒之后执行，然后每250毫秒执行一次：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">someScheduler.schedulePeriodically(someAction, <span class="number">500</span>, <span class="number">250</span>, TimeUnit.MILLISECONDS);</span><br></pre></td></tr></table></figure>
+
+<h5 id="测试调度器"><a href="#测试调度器" class="headerlink" title="测试调度器"></a>测试调度器</h5><p>TestScheduler让你可以对调度器的时钟表现进行手动微调。这对依赖精确时间安排的任务的测试很有用处。这个调度器有三个额外的方法：</p>
+<ul>
+<li>advanceTimeTo(time,unit) 向前波动调度器的时钟到一个指定的时间点</li>
+<li>advanceTimeBy(time,unit) 将调度器的时钟向前拨动一个指定的时间段</li>
+<li>triggerActions( ) 开始执行任何计划中的但是未启动的任务，如果它们的计划时间等于或者早于调度器时钟的当前时间</li>
+</ul>
+<h3 id="Operators"><a href="#Operators" class="headerlink" title="Operators"></a>Operators</h3><h4 id="创建操作"><a href="#创建操作" class="headerlink" title="创建操作"></a>创建操作</h4><ul>
+<li>just( ) — 将一个或多个对象转换成发射这个或这些对象的一个Observable</li>
+<li>from( ) — 将一个Iterable, 一个Future, 或者一个数组转换成一个Observable</li>
+<li>repeat( ) — 创建一个重复发射指定数据或数据序列的Observable</li>
+<li>repeatWhen( ) — 创建一个重复发射指定数据或数据序列的Observable，它依赖于另一个Observable发射的数据</li>
+<li>create( ) — 使用一个函数从头创建一个Observable</li>
+<li>defer( ) — 只有当订阅者订阅才创建Observable；为每个订阅创建一个新的Observable</li>
+<li>range( ) — 创建一个发射指定范围的整数序列的Observable</li>
+<li>interval( ) — 创建一个按照给定的时间间隔发射整数序列的Observable</li>
+<li>timer( ) — 创建一个在给定的延时之后发射单个数据的Observable</li>
+<li>empty( ) — 创建一个什么都不做直接通知完成的Observable</li>
+<li>error( ) — 创建一个什么都不做直接通知错误的Observable</li>
+<li>never( ) — 创建一个不发射任何数据的Observable</li>
+</ul>
+<h4 id="变换操作"><a href="#变换操作" class="headerlink" title="变换操作"></a>变换操作</h4><ul>
+<li>map( ) — 对序列的每一项都应用一个函数来变换Observable发射的数据序列</li>
+<li>flatMap( ), concatMap( ), and flatMapIterable( ) — 将Observable发射的数据集合变换为Observables集合，然后将这些Observable发射的数据平坦化的放进一个单独的Observable</li>
+<li>switchMap( ) — 将Observable发射的数据集合变换为Observables集合，然后只发射这些Observables最近发射的数据</li>
+<li>scan( ) — 对Observable发射的每一项数据应用一个函数，然后按顺序依次发射每一个值</li>
+<li>groupBy( ) — 将Observable分拆为Observable集合，将原始Observable发射的数据按Key分组，每一个Observable发射一组不同的数据</li>
+<li>buffer( ) — 它定期从Observable收集数据到一个集合，然后把这些数据集合打包发射，而不是一次发射一个</li>
+<li>window( ) — 定期将来自Observable的数据分拆成一些Observable窗口，然后发射这些窗口，而不是每次发射一项</li>
+<li>cast( ) — 在发射之前强制将Observable发射的所有数据转换为指定类型</li>
+</ul>
+<h4 id="过滤操作"><a href="#过滤操作" class="headerlink" title="过滤操作"></a>过滤操作</h4><ul>
+<li>filter( ) — 过滤数据</li>
+<li>takeLast( ) — 只发射最后的N项数据</li>
+<li>last( ) — 只发射最后的一项数据</li>
+<li>lastOrDefault( ) — 只发射最后的一项数据，如果Observable为空就发射默认值</li>
+<li>takeLastBuffer( ) — 将最后的N项数据当做单个数据发射</li>
+<li>skip( ) — 跳过开始的N项数据</li>
+<li>skipLast( ) — 跳过最后的N项数据</li>
+<li>take( ) — 只发射开始的N项数据</li>
+<li>first( ) and takeFirst( ) — 只发射第一项数据，或者满足某种条件的第一项数据</li>
+<li>firstOrDefault( ) — 只发射第一项数据，如果Observable为空就发射默认值</li>
+<li>elementAt( ) — 发射第N项数据</li>
+<li>elementAtOrDefault( ) — 发射第N项数据，如果Observable数据少于N项就发射默认值</li>
+<li>sample( ) or throttleLast( ) — 定期发射Observable最近的数据</li>
+<li>throttleFirst( ) — 定期发射Observable发射的第一项数据</li>
+<li>throttleWithTimeout( ) or debounce( ) — 只有当Observable在指定的时间后还没有发射数据时，才发射一个数据</li>
+<li>timeout( ) — 如果在一个指定的时间段后还没发射数据，就发射一个异常</li>
+<li>distinct( ) — 过滤掉重复数据</li>
+<li>distinctUntilChanged( ) — 过滤掉连续重复的数据</li>
+<li>ofType( ) — 只发射指定类型的数据</li>
+<li>ignoreElements( ) — 丢弃所有的正常数据，只发射错误或完成通知</li>
+</ul>
+<h4 id="结合操作"><a href="#结合操作" class="headerlink" title="结合操作"></a>结合操作</h4><ul>
+<li>startWith( ) — 在数据序列的开头增加一项数据</li>
+<li>merge( ) — 将多个Observable合并为一个</li>
+<li>mergeDelayError( ) — 合并多个Observables，让没有错误的Observable都完成后再发射错误通知</li>
+<li>zip( ) — 使用一个函数组合多个Observable发射的数据集合，然后再发射这个结果</li>
+<li>and( ), then( ), and when( ) — (rxjava-joins) 通过模式和计划组合多个Observables发射的数据集合</li>
+<li>combineLatest( ) — 当两个Observables中的任何一个发射了一个数据时，通过一个指定的函数组合每个Observable发射的最新数据（一共两个数据），然后发射这个函数的结果</li>
+<li>join( ) and groupJoin( ) — 无论何时，如果一个Observable发射了一个数据项，只要在另一个Observable发射的数据项定义的时间窗口内，就将两个Observable发射的数据合并发射</li>
+<li>switchOnNext( ) — 将一个发射Observables的Observable转换成另一个Observable，后者发射这些Observables最近发射的数据</li>
+</ul>
+<h4 id="错误操作"><a href="#错误操作" class="headerlink" title="错误操作"></a>错误操作</h4><p>很多操作符可用于对Observable发射的onError通知做出响应或者从错误中恢复，例如，你可以：</p>
+<ul>
+<li>吞掉这个错误，切换到一个备用的Observable继续发射数据</li>
+<li>吞掉这个错误然后发射默认值</li>
+<li>吞掉这个错误并立即尝试重启这个Observable</li>
+<li>吞掉这个错误，在一些回退间隔后重启这个Observable</li>
+</ul>
+<p>这是操作符列表：</p>
+<ul>
+<li>onErrorResumeNext( ) — 指示Observable在遇到错误时发射一个数据序列</li>
+<li>onErrorReturn( ) — 指示Observable在遇到错误时发射一个特定的数据</li>
+<li>onExceptionResumeNext( ) — instructs an Observable to continue emitting items after it encounters an exception (but not another variety of throwable)指示Observable遇到错误时继续发射数据</li>
+<li>retry( ) — 指示Observable遇到错误时重试</li>
+<li>retryWhen( ) — 指示Observable遇到错误时，将错误传递给另一个Observable来决定是否要重新给订阅这个Observable</li>
+</ul>
+<h4 id="辅助操作"><a href="#辅助操作" class="headerlink" title="辅助操作"></a>辅助操作</h4><ul>
+<li>materialize( ) — 将Observable转换成一个通知列表convert an Observable into a list of Notifications</li>
+<li>dematerialize( ) — 将上面的结果逆转回一个Observable</li>
+<li>timestamp( ) — 给Observable发射的每个数据项添加一个时间戳</li>
+<li>serialize( ) — 强制Observable按次序发射数据并且要求功能是完好的</li>
+<li>cache( ) — 记住Observable发射的数据序列并发射相同的数据序列给后续的订阅者</li>
+<li>observeOn( ) — 指定观察者观察Observable的调度器</li>
+<li>subscribeOn( ) — 指定Observable执行任务的调度器</li>
+<li>doOnEach( ) — 注册一个动作，对Observable发射的每个数据项使用</li>
+<li>doOnCompleted( ) — 注册一个动作，对正常完成的Observable使用</li>
+<li>doOnError( ) — 注册一个动作，对发生错误的Observable使用</li>
+<li>doOnTerminate( ) — 注册一个动作，对完成的Observable使用，无论是否发生错误</li>
+<li>doOnSubscribe( ) — 注册一个动作，在观察者订阅时使用</li>
+<li>doOnUnsubscribe( ) — 注册一个动作，在观察者取消订阅时使用</li>
+<li>finallyDo( ) — 注册一个动作，在Observable完成时使用</li>
+<li>delay( ) — 延时发射Observable的结果</li>
+<li>delaySubscription( ) — 延时处理订阅请求</li>
+<li>timeInterval( ) — 定期发射数据</li>
+<li>using( ) — 创建一个只在Observable生命周期存在的资源</li>
+<li>single( ) — 强制返回单个数据，否则抛出异常</li>
+<li>singleOrDefault( ) — 如果Observable完成时返回了单个数据，就返回它，否则返回默认数据</li>
+<li>toFuture( ), toIterable( ), toList( ) — 将Observable转换为其它对象或数据结构</li>
+</ul>
+<h4 id="条件和布尔操作"><a href="#条件和布尔操作" class="headerlink" title="条件和布尔操作"></a>条件和布尔操作</h4><p><strong>条件操作符</strong></p>
+<ul>
+<li>amb( ) — 给定多个Observable，只让第一个发射数据的Observable发射全部数据</li>
+<li>defaultIfEmpty( ) — 发射来自原始Observable的数据，如果原始Observable没有发射数据，就发射一个默认数据</li>
+<li>(rxjava-computation-expressions) doWhile( ) — 发射原始Observable的数据序列，然后重复发射这个序列直到不满足这个条件为止</li>
+<li>(rxjava-computation-expressions) ifThen( ) — 只有当某个条件为真时才发射原始Observable的数据序列，否则发射一个空的或默认的序列</li>
+<li>skipUntil( ) — 丢弃原始Observable发射的数据，直到第二个Observable发射了一个数据，然后发射原始Observable的剩余数据</li>
+<li>skipWhile( ) — 丢弃原始Observable发射的数据，直到一个特定的条件为假，然后发射原始Observable剩余的数据</li>
+<li>(rxjava-computation-expressions) switchCase( ) — 基于一个计算结果，发射一个指定Observable的数据序列</li>
+<li>takeUntil( ) — 发射来自原始Observable的数据，直到第二个Observable发射了一个数据或一个通知</li>
+<li>takeWhile( ) and takeWhileWithIndex( ) — 发射原始Observable的数据，直到一个特定的条件为真，然后跳过剩余的数据</li>
+</ul>
+<p><strong>布尔操作符</strong></p>
+<ul>
+<li>all( ) — 判断是否所有的数据项都满足某个条件</li>
+<li>contains( ) — 判断Observable是否会发射一个指定的值</li>
+<li>exists( ) and isEmpty( ) — 判断Observable是否发射了一个值</li>
+<li>sequenceEqual( ) — 判断两个Observables发射的序列是否相等</li>
+</ul>
+<h4 id="算数和聚合操作"><a href="#算数和聚合操作" class="headerlink" title="算数和聚合操作"></a>算数和聚合操作</h4><p><strong>rxjava-math 模块的操作符</strong></p>
+<ul>
+<li>averageInteger( ) — 求序列平均数并发射</li>
+<li>averageLong( ) — 求序列平均数并发射</li>
+<li>averageFloat( ) — 求序列平均数并发射</li>
+<li>averageDouble( ) — 求序列平均数并发射</li>
+<li>max( ) — 求序列最大值并发射</li>
+<li>maxBy( ) — 求最大key对应的值并发射</li>
+<li>min( ) — 求最小值并发射</li>
+<li>minBy( ) — 求最小Key对应的值并发射</li>
+<li>sumInteger( ) — 求和并发射</li>
+<li>sumLong( ) — 求和并发射</li>
+<li>sumFloat( ) — 求和并发射</li>
+<li>sumDouble( ) — 求和并发射</li>
+</ul>
+<p><strong>其它聚合操作符</strong></p>
+<ul>
+<li>concat( ) — 顺序连接多个Observables</li>
+<li>count( ) and countLong( ) — 计算数据项的个数并发射结果</li>
+<li>reduce( ) — 对序列使用reduce()函数并发射最终的结果</li>
+<li>collect( ) — 将原始Observable发射的数据放到一个单一的可变的数据结构中，然后返回一个发射这个数据结构的Observable</li>
+<li>toList( ) — 收集原始Observable发射的所有数据到一个列表，然后返回这个列表</li>
+<li>toSortedList( ) — 收集原始Observable发射的所有数据到一个有序列表，然后返回这个列表</li>
+<li>toMap( ) — 将序列数据转换为一个Map，Map的key是根据一个函数计算的</li>
+<li>toMultiMap( ) — 将序列数据转换为一个列表，同时也是一个Map，Map的key是根据一个函数计算的</li>
+</ul>
+<h4 id="异步操作"><a href="#异步操作" class="headerlink" title="异步操作"></a>异步操作</h4><p>下面的这些操作符属于单独的rxjava-async模块，它们用于将同步对象转换为Observable。</p>
+<ul>
+<li>start( ) — 创建一个Observable，它发射一个函数的返回值</li>
+<li>toAsync( ) or asyncAction( ) or asyncFunc( ) — 将一个函数或者Action转换为已Observable，它执行这个函数并发射函数的返回值</li>
+<li>startFuture( ) — 将一个返回Future的函数转换为一个Observable，它发射Future的返回值</li>
+<li>deferFuture( ) — 将一个返回Observable的Future转换为一个Observable，但是并不尝试获取这个Future返回的Observable，直到有订阅者订阅它</li>
+<li>forEachFuture( ) — 传递Subscriber方法给一个Subscriber，但是同时表现得像一个Future一样阻塞直到它完成</li>
+<li>fromAction( ) — 将一个Action转换为Observable，当一个订阅者订阅时，它执行这个action并发射它的返回值</li>
+<li>fromCallable( ) — 将一个Callable转换为Observable，当一个订阅者订阅时，它执行这个Callable并发射Callable的返回值，或者发射异常</li>
+<li>fromRunnable( ) — convert a Runnable into an Observable that invokes the runable and emits its result when a Subscriber subscribes将一个Runnable转换为Observable，当一个订阅者订阅时，它执行这个Runnable并发射Runnable的返回值</li>
+<li>runAsync( ) — 返回一个StoppableObservable，它发射某个Scheduler上指定的Action生成的多个actions</li>
+</ul>
+<h4 id="连接操作"><a href="#连接操作" class="headerlink" title="连接操作"></a>连接操作</h4><ul>
+<li>ConnectableObservable.connect( ) — 指示一个可连接的Observable开始发射数据</li>
+<li>Observable.publish( ) — 将一个Observable转换为一个可连接的Observable</li>
+<li>Observable.replay( ) — 确保所有的订阅者看到相同的数据序列，即使它们在Observable开始发射数据之后才订阅</li>
+<li>ConnectableObservable.refCount( ) — 让一个可连接的Observable表现得像一个普通的Observable</li>
+</ul>
+<h4 id="转换操作"><a href="#转换操作" class="headerlink" title="转换操作"></a>转换操作</h4><h4 id="阻塞操作"><a href="#阻塞操作" class="headerlink" title="阻塞操作"></a>阻塞操作</h4><p>要将普通的Observable 转换为 BlockingObservable，可以使用 Observable.toBlocking( )) 方法或者BlockingObservable.from( )) 方法。</p>
+<ul>
+<li>forEach( ) — 对Observable发射的每一项数据调用一个方法，会阻塞直到Observable完成</li>
+<li>first( ) — 阻塞直到Observable发射了一个数据，然后返回第一项数据</li>
+<li>firstOrDefault( ) — 阻塞直到Observable发射了一个数据或者终止，返回第一项数据，或者返回默认值</li>
+<li>last( ) — 阻塞直到Observable终止，然后返回最后一项数据</li>
+<li>lastOrDefault( ) — 阻塞直到Observable终止，然后返回最后一项的数据，或者返回默认值</li>
+<li>mostRecent( ) — 返回一个总是返回Observable最近发射的数据的iterable</li>
+<li>next( ) — 返回一个Iterable，会阻塞直到Observable发射了另一个值，然后返回那个值</li>
+<li>latest( ) — 返回一个iterable，会阻塞直到或者除非Observable发射了一个iterable没有返回的值，然后返回这个值</li>
+<li>single( ) — 如果Observable终止时只发射了一个值，返回那个值，否则抛出异常</li>
+<li>singleOrDefault( ) — 如果Observable终止时只发射了一个值，返回那个值，否则否好默认值</li>
+<li>toFuture( ) — 将Observable转换为一个Future</li>
+<li>toIterable( ) — 将一个发射数据序列的Observable转换为一个Iterable</li>
+<li>getIterator( ) — 将一个发射数据序列的Observable转换为一个Iterator</li>
+</ul>
+<h4 id="字符串操作"><a href="#字符串操作" class="headerlink" title="字符串操作"></a>字符串操作</h4><ul>
+<li>byLine( ) — 将一个字符串的Observable转换为一个行序列的Observable，这个Observable将原来的序列当做流处理，然后按换行符分割</li>
+<li>decode( ) — 将一个多字节的字符流转换为一个Observable，它按字符边界发射字节数组</li>
+<li>encode( ) — 对一个发射字符串的Observable执行变换操作，变换后的Observable发射一个在原始字符串中表示多字节字符边界的字节数组</li>
+<li>from( ) — 将一个字符流或者Reader转换为一个发射字节数组或者字符串的Observable</li>
+<li>join( ) — 将一个发射字符串序列的Observable转换为一个发射单个字符串的Observable，后者用一个指定的字符串连接所有的字符串</li>
+<li>split( ) — 将一个发射字符串的Observable转换为另一个发射字符串的Observable，后者使用一个指定的正则表达式边界分割前者发射的所有字符串</li>
+<li>stringConcat( ) — 将一个发射字符串序列的Observable转换为一个发射单个字符串的Observable，后者连接前者发射的所有字符串</li>
+</ul>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a href="reactivex.io">reactivex.io</a></li>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/ReactiveX">https://github.com/ReactiveX</a></li>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://mcxiaoke.gitbooks.io/rxdocs/content/topics/Getting-Started.html">https://mcxiaoke.gitbooks.io/rxdocs/content/topics/Getting-Started.html</a></li>
+</ul>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E6%9D%82%E9%A1%B9/PC%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88%E5%88%86%E6%9E%90/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    PC客户端技术方案分析
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91/%E6%9C%8D%E5%8A%A1%E7%AB%AF/Connection%20reset%20by%20peer/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">Connection reset by peer) while reading response header from upstream</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+        <section id="comments"> 
+    <div id="valine-comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+    <script>
+        new Valine({
+            el: '#valine-comments',
+            app_id: "oHebxNy7EUKpUp7DNX4YoYcp-gzGzoHsz",
+            app_key: "iSoFxGq6O5Ee9F0xh2GeORyU",
+            placeholder: "留下一个脚印吧~" ,
+        })
+    </script>
+ </section>
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            airshu &copy; 2024 
+            <a rel="external nofollow noopener noreferrer" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png"></a>
+            <br> Powered by <a href="http://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a>. Theme - <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a>
+            
+                <br><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span></span> | 
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"><span id="busuanzi_value_site_uv"></span></i></span>
+            
+        </div>
+    </div>
+</footer>
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+</body>
+</html>
