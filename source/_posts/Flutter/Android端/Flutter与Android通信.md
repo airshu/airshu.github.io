@@ -27,7 +27,7 @@ Codec 是消息编解码器，主要用于将二进制格式的数据转化为 H
 Flutter 定义了三种类型的 Handler，它们与 PlatformChannel 类型一一对应，分别是 MessageHandler、MethodHandler、StreamHandler。在使用 PlatformChannel 时，会为它注册一个 Handler，PlatformChannel 会将该二进制数据通过 Codec 解码为转化为 Handler 能够识别的数据，并交给 Handler 处理。当 Handler 处理完消息之后，会通过回调函数返回 result，将 result 通过编解码器编码为二进制格式数据，通过 BinaryMessenger 发送回 Flutter 端
 
 ## MethodChannel
- 
+
 ### Flutter侧写法
 
 ```dart
@@ -55,7 +55,7 @@ if(call.method == 'callDart') {
 override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
 
     val channel = MethodChannel(flutterEngine.dartExecutor, "methodChannelDemo")
-                .setMethodCallHandler { call, result ->
+    channel.setMethodCallHandler { call, result ->
                     val count: Int? = call.argument<Int>("count")
 
                     if (count == null) {
@@ -69,7 +69,7 @@ override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
                     }
                 }
 
-    //调用dart侧的方法 参数分别为方法、参数、回调
+    //调用dart侧的方法 参数分别为方法、参数、回调，需要在主线程中调用
     channel.invokeMethod("callDart", "Hello",  object: MethodChannel.Result {
             override fun success(result: Any?) {
                 
@@ -90,10 +90,7 @@ override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
 
 ```
 
-
 ## EventChannel
-
-
 
 ### Flutter侧写法
 
@@ -163,7 +160,6 @@ class AccelerometerReadings {
 
 ```
 
-
 ### Native侧写法
 
 ```java
@@ -207,8 +203,6 @@ class AccelerometerStreamHandler(sManager: SensorManager, s: Sensor) : EventChan
 }
 
 ```
-
-
 
 ## BasicMessageChannel
 
@@ -262,8 +256,6 @@ BasicMessageChannel(flutterEngine.dartExecutor, "platformImageDemo", StandardMes
 
 
 ```
-
-
 
 ## 参考
 

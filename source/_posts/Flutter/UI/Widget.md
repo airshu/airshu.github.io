@@ -74,7 +74,7 @@ StatefulWidget是通过State来管理状态，State的生命周期也就是State
 
 通过key
 
-```
+```dart
 ...
 GlobalKey<MyStatefulWidgetState> myWidgetStateKey = new GlobalKey<MyStatefulWidgetState>();
 ...
@@ -92,7 +92,7 @@ myWidgetStateKey.currentState
 
 ### 访问父Widget
 
-```
+```dart
 class MyExposingWidgetState extends State<MyExposingWidget>{
    Color _color;
 

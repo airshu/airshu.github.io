@@ -39,6 +39,9 @@ d2 0000000000000000 d3 0000000000000000
 
 <b>signal指定异常类型。如果pid等于tid，则说明程序是在主线程中崩溃。</b>
 
+- signal下一行为寄存器快照
+- backtrace下面为异常调用堆栈
+
 ### **信号类型:**
 
 软中断信号（signal，又简称为信号）用来通知进程发生了事件。进程之间可以通过调用kill库函数发送软中断信号。Linux内核也可能给进程发送信号，
@@ -136,6 +139,10 @@ backtrace:
 
 ## 如何定位崩溃位置
 
+
+
+完整的so文件包含代码和一些debug信息，release版的so文件需要经过一个strip操作，debug信息会被剥离，整个so文件的大小会变小。要定位具体位置，则需要使用debug版本的so文件
+
 ### 常用工具
 
 
@@ -147,6 +154,8 @@ nm -D libName.so
 ```
 
 #### **addr2line**
+
+用来分析单个pc地址对应的源码行数
 
 ```
 Usage: /Users/loneqd/Android/sdk/ndk-bundle/toolchains/aarch64-linux-android-4.9/prebuilt/darwin-x86_64/bin/aarch64-linux-android-addr2line [option(s)] [addr(s)]
@@ -222,7 +231,7 @@ native异常日志文件的格式
 
 <br/>
 
-### 参考
+## 参考
 
 - [http://gityuan.com/2016/06/25/android-native-crash/](http://gityuan.com/2016/06/25/android-native-crash/)
 - [https://toutiao.io/posts/jflx6c/preview](https://toutiao.io/posts/jflx6c/preview)

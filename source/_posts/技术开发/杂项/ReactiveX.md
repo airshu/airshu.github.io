@@ -8,15 +8,12 @@ toc: true
 
 #### 概述
 
-
 ReactiveX是Reactive Extensions的缩写，一般简写为Rx，最初是LINQ的一个扩展，由微软的架构师Erik Meijer领导的团队开发，在2012年11月开源，Rx是一个编程模型，目标是提供一致的编程接口，帮助开发者更方便的处理异步数据流，Rx库支持大部分主流语
 言。
 
 使用这种方法的优点是，当你有一大堆的任务是不相互依赖，你就可以同时执行他们，而不是等待每一个类启动下一个前完成，这样你的整个任务包只需要花最长的任务时间。
 
-
 在ReactiveX中，一个观察者(Observer)订阅一个可观察对象(Observable)。观察者对Observable发射的数据或数据序列作出响应。这种模式可以极大地简化并发操作，因为它创建了一个处于待命状态的观察者哨兵，在未来某个时刻响应Observable的通知，不需要阻塞等待Observable发射数据。
-
 
 ![](./rx_legend.png)
 
@@ -26,7 +23,7 @@ ReactiveX是Reactive Extensions的缩写，一般简写为Rx，最初是LINQ的�
 
 这种方法的优点是，如果你有大量的任务要处理，它们互相之间没有依赖关系。你可以同时开始执行它们，不用等待一个完成再开始下一个（用这种方式，你的整个任务队列能耗费的最长时间，不会超过任务里最耗时的那个）。
 
-有很多术语可用于描述这种异步编程和设计模式，在在本文里我们使用这些术语：一个观察者订阅一个可观察对象 (An observer subscribes to an Observable)。通过调用观察者的方法，Observable发射数据或通知给它的观察者。
+有很多术语可用于描述这种异步编程和设计模式，在本文里我们使用这些术语：一个观察者订阅一个可观察对象 (An observer subscribes to an Observable)。通过调用观察者的方法，Observable发射数据或通知给它的观察者。
 
 在其它的文档和场景里，有时我们也将Observer叫做Subscriber、Watcher、Reactor。这个模型通常被称作Reactor模式。
 
@@ -40,7 +37,6 @@ ReactiveX是Reactive Extensions的缩写，一般简写为Rx，最初是LINQ的�
 2. 用一个变量存储方法返回值
 3. 使用这个变量作为一个新的值做其他事情
 
-例如：
 ```
 //写一个回调
 returnVal = someMethod(paramters);
@@ -75,7 +71,6 @@ myObservable.subscribe(myOnNext, myError, myComplete);
 // 继续执行相应的业务逻辑
 ```
 
-
 #### 取消订阅（Ubsubscribing）
 
 在一些ReactiveX实现中，有一个特殊的观察者接口Subscriber，它有一个unsubscribe方法。调用这个方法表示你不关心当前订阅的Observable了，因此Observable可以选择停止发射新的数据项（如果没有其它观察者订阅）。
@@ -90,7 +85,6 @@ ReactiveX的每种特定语言的实现都有自己的命名偏好，虽然不�
 
 例如，有一个onEvent命名模式(onNext, onCompleted, onError)，在一些场景中，这些名字可能意味着事件处理器已经注册。然而在ReactiveX里，他们是事件处理器的名字。
 
-
 #### Observables的"热"和"冷"
 
 Observable什么时候开始发射数据序列？这取决于Observable的实现，一个"热"的Observable可能一创建完就开始发射数据，因此所有后续订阅它的观察者可能从序列中间的某个位置开始接受数据（有一些数据错过了）。一个"冷"的Observable会一直等待，直到有观察者订阅它才开始发射数据，因此这个观察者可以确保会收到整个数据序列。
@@ -98,7 +92,6 @@ Observable什么时候开始发射数据序列？这取决于Observable的实现
 在一些ReactiveX实现里，还存在一种被称作Connectable的Observable，不管有没有观察者订阅它，这种Observable都不会开始发射数据，除非Connect方法被调用。
 
 #### 用操作符组合Ovservable
-
 
 **创建新的Observables的操作符：**
 
@@ -113,7 +106,7 @@ Observable什么时候开始发射数据序列？这取决于Observable的实现
 - Start
 - Timer
 
-**转换被一个Observable发送的项目的操作付**
+**转换被一个Observable发送的项目的操作符**
 
 - Buffer
 - FlatMap：进行一对多或多对多转换
@@ -199,8 +192,6 @@ Observable什么时候开始发射数据序列？这取决于Observable的实现
 - RefCount
 - Replay
 
-
-
 ### Single
 
 RxJava（以及它派生出来的RxGroovy和RxScala）中有一个名为Single的Observable变种。
@@ -209,32 +200,32 @@ Single类似于Observable，不同的是，它总是只发射一个值，或者�
 
 因此，不同于Observable需要三个方法onNext, onError, onCompleted，订阅Single只需要两个方法：
 
-    onSuccess - Single发射单个的值到这个方法
-    onError - 如果无法发射需要的值，Single发射一个Throwable对象到这个方法
+- onSuccess - Single发射单个的值到这个方法
+- onError - 如果无法发射需要的值，Single发射一个Throwable对象到这个方法
 
 Single只会调用这两个方法中的一个，而且只会调用一次，调用了任何一个方法之后，订阅关系终止。
 
 #### Single操作符
 
-操作符 |	返回值 |	说明
+操作符 | 返回值 | 说明
 ----|----|----
-compose 	|Single 	|创建一个自定义的操作符
-concat and concatWith |	Observable |	连接多个Single和Observable发射的数据
-create |	Single 	|调用观察者的create方法创建一个Single
-error |	Single |	返回一个立即给订阅者发射错误通知的Single
-flatMap |	Single |	返回一个Single，它发射对原Single的数据执行flatMap操作后的结果
-flatMapObservable |	Observable |	返回一个Observable，它发射对原Single的数据执行flatMap操作后的结果
-from 	|Single |	将Future转换成Single
-just |	Single |	返回一个发射一个指定值的Single
-map 	|Single |	返回一个Single，它发射对原Single的数据执行map操作后的结果
-merge |	Single |	将一个Single(它发射的数据是另一个Single，假设为B)转换成另一个Single(它发射来自另一个Single(B)的数据)
-merge and mergeWith| 	Observable |	合并发射来自多个Single的数据
-observeOn |	Single |	指示Single在指定的调度程序上调用订阅者的方法
-onErrorReturn |	Single| 	将一个发射错误通知的Single转换成一个发射指定数据项的Single
-subscribeOn |	Single| 	指示Single在指定的调度程序上执行操作
-timeout |	Single| 	它给原有的Single添加超时控制，如果超时了就发射一个错误通知
-toSingle |	Single |	将一个发射单个值的Observable转换为一个Single
-zip and zipWith |	Single 	|将多个Single转换为一个，后者发射的数据是对前者应用一个函数后的结果
+compose  |Single  |创建一个自定义的操作符
+concat and concatWith | Observable | 连接多个Single和Observable发射的数据
+create | Single  |调用观察者的create方法创建一个Single
+error | Single | 返回一个立即给订阅者发射错误通知的Single
+flatMap | Single | 返回一个Single，它发射对原Single的数据执行flatMap操作后的结果
+flatMapObservable | Observable | 返回一个Observable，它发射对原Single的数据执行flatMap操作后的结果
+from  |Single | 将Future转换成Single
+just | Single | 返回一个发射一个指定值的Single
+map  |Single | 返回一个Single，它发射对原Single的数据执行map操作后的结果
+merge | Single | 将一个Single(它发射的数据是另一个Single，假设为B)转换成另一个Single(它发射来自另一个Single(B)的数据)
+merge and mergeWith|  Observable | 合并发射来自多个Single的数据
+observeOn | Single | 指示Single在指定的调度程序上调用订阅者的方法
+onErrorReturn | Single|  将一个发射错误通知的Single转换成一个发射指定数据项的Single
+subscribeOn | Single|  指示Single在指定的调度程序上执行操作
+timeout | Single|  它给原有的Single添加超时控制，如果超时了就发射一个错误通知
+toSingle | Single | 将一个发射单个值的Observable转换为一个Single
+zip and zipWith | Single  |将多个Single转换为一个，后者发射的数据是对前者应用一个函数后的结果
 
 ### Subject
 
@@ -244,11 +235,17 @@ Subject可以看成是一个桥梁或者代理，在某些ReactiveX实现中（�
 
 #### Subject种类
 
-
 ##### AsyncSubject
+
 ##### BehaviorSubject
+
+每一个新添加的监听，接收到的第一个数据都是上一个数据
+
 ##### PublishSubject
+
 ##### ReplaySubject
+
+监听能接收所有数据
 
 ### Scheduler
 
@@ -279,45 +276,44 @@ Subject可以看成是一个桥梁或者代理，在某些ReactiveX实现中（�
 
 在RxJava中，某些Observable操作符的变体允许你设置用于操作执行的调度器，其它的则不在任何特定的调度器上执行，或者在一个指定的默认调度器上执行。下面的表格个列出了一些操作符的默认调度器：
 
-操作符 |	调度器
+操作符 | 调度器
 ---- | ----
-buffer(timespan)| 	computation
-buffer(timespan, count) |	computation
-buffer(timespan, timeshift) |	computation
-debounce(timeout, unit) |	computation
-delay(delay, unit) |	computation
-delaySubscription(delay, unit) |	computation
-interval 	|computation
-repeat| 	trampoline
-replay(time, unit) |	computation
-replay(buffersize, time, unit)| 	computation
-replay(selector, time, unit) |	computation
-replay(selector, buffersize, time, unit) |	computation
-retry |	trampoline
-sample(period, unit) |	computation
-skip(time, unit) |	computation
-skipLast(time, unit) |	computation
-take(time, unit) |	computation
-takeLast(time, unit) |	computation
-takeLast(count, time, unit) |	computation
-takeLastBuffer(time, unit) |	computation
-takeLastBuffer(count, time, unit) |	computation
-throttleFirst |	computation
-throttleLast |	computation
-throttleWithTimeout |	computation
-timeInterval |	immediate
-timeout(timeoutSelector) |	immediate
-timeout(firstTimeoutSelector, timeoutSelector) |	immediate
-timeout(timeoutSelector, other) |	immediate
-timeout(timeout, timeUnit) |	computation
-timeout(firstTimeoutSelector, timeoutSelector, other) |	immediate
-timeout(timeout, timeUnit, other) |	computation
-timer |	computation
-timestamp |	immediate
-window(timespan) |	computation
-window(timespan, count) |	computation
-window(timespan, timeshift) |	computation
-
+buffer(timespan)|  computation
+buffer(timespan, count) | computation
+buffer(timespan, timeshift) | computation
+debounce(timeout, unit) | computation
+delay(delay, unit) | computation
+delaySubscription(delay, unit) | computation
+interval  |computation
+repeat|  trampoline
+replay(time, unit) | computation
+replay(buffersize, time, unit)|  computation
+replay(selector, time, unit) | computation
+replay(selector, buffersize, time, unit) | computation
+retry | trampoline
+sample(period, unit) | computation
+skip(time, unit) | computation
+skipLast(time, unit) | computation
+take(time, unit) | computation
+takeLast(time, unit) | computation
+takeLast(count, time, unit) | computation
+takeLastBuffer(time, unit) | computation
+takeLastBuffer(count, time, unit) | computation
+throttleFirst | computation
+throttleLast | computation
+throttleWithTimeout | computation
+timeInterval | immediate
+timeout(timeoutSelector) | immediate
+timeout(firstTimeoutSelector, timeoutSelector) | immediate
+timeout(timeoutSelector, other) | immediate
+timeout(timeout, timeUnit) | computation
+timeout(firstTimeoutSelector, timeoutSelector, other) | immediate
+timeout(timeout, timeUnit, other) | computation
+timer | computation
+timestamp | immediate
+window(timespan) | computation
+window(timespan, count) | computation
+window(timespan, timeshift) | computation
 
 ##### 使用调度器
 
@@ -341,7 +337,6 @@ worker.unsubscribe();
 
 要调度递归的方法调用，你可以使用schedule，然后再用schedule(this)，示例：
 
-
 ```Java
 worker = Schedulers.newThread().createWorker();
 worker.schedule(new Action0() {
@@ -357,7 +352,6 @@ worker.schedule(new Action0() {
 // some time later...
 worker.unsubscribe();
 ```
-
 
 ##### 检查或设置取消订阅状态
 
@@ -400,16 +394,9 @@ TestScheduler让你可以对调度器的时钟表现进行手动微调。这对�
 - advanceTimeBy(time,unit) 将调度器的时钟向前拨动一个指定的时间段
 - triggerActions( ) 开始执行任何计划中的但是未启动的任务，如果它们的计划时间等于或者早于调度器时钟的当前时间
 
-
-
-
-
-
-
 ### Operators
 
 #### 创建操作
-
 
 - just( ) — 将一个或多个对象转换成发射这个或这些对象的一个Observable
 - from( ) — 将一个Iterable, 一个Future, 或者一个数组转换成一个Observable
@@ -425,7 +412,6 @@ TestScheduler让你可以对调度器的时钟表现进行手动微调。这对�
 - never( ) — 创建一个不发射任何数据的Observable
 
 #### 变换操作
-
 
 - map( ) — 对序列的每一项都应用一个函数来变换Observable发射的数据序列
 - flatMap( ), concatMap( ), and flatMapIterable( ) — 将Observable发射的数据集合变换为Observables集合，然后将这些Observable发射的数据平坦化的放进一个单独的Observable
@@ -472,8 +458,6 @@ TestScheduler让你可以对调度器的时钟表现进行手动微调。这对�
 
 #### 错误操作
 
-
-
 很多操作符可用于对Observable发射的onError通知做出响应或者从错误中恢复，例如，你可以：
 
 - 吞掉这个错误，切换到一个备用的Observable继续发射数据
@@ -489,9 +473,7 @@ TestScheduler让你可以对调度器的时钟表现进行手动微调。这对�
 - retry( ) — 指示Observable遇到错误时重试
 - retryWhen( ) — 指示Observable遇到错误时，将错误传递给另一个Observable来决定是否要重新给订阅这个Observable
 
-
 #### 辅助操作
-
 
 - materialize( ) — 将Observable转换成一个通知列表convert an Observable into a list of Notifications
 - dematerialize( ) — 将上面的结果逆转回一个Observable
@@ -515,7 +497,6 @@ TestScheduler让你可以对调度器的时钟表现进行手动微调。这对�
 - singleOrDefault( ) — 如果Observable完成时返回了单个数据，就返回它，否则返回默认数据
 - toFuture( ), toIterable( ), toList( ) — 将Observable转换为其它对象或数据结构
 
-
 #### 条件和布尔操作
 
 **条件操作符**
@@ -529,7 +510,6 @@ TestScheduler让你可以对调度器的时钟表现进行手动微调。这对�
 - (rxjava-computation-expressions) switchCase( ) — 基于一个计算结果，发射一个指定Observable的数据序列
 - takeUntil( ) — 发射来自原始Observable的数据，直到第二个Observable发射了一个数据或一个通知
 - takeWhile( ) and takeWhileWithIndex( ) — 发射原始Observable的数据，直到一个特定的条件为真，然后跳过剩余的数据
-    
 
 **布尔操作符**
 
@@ -537,7 +517,6 @@ TestScheduler让你可以对调度器的时钟表现进行手动微调。这对�
 - contains( ) — 判断Observable是否会发射一个指定的值
 - exists( ) and isEmpty( ) — 判断Observable是否发射了一个值
 - sequenceEqual( ) — 判断两个Observables发射的序列是否相等
-
 
 #### 算数和聚合操作
 
@@ -569,7 +548,6 @@ TestScheduler让你可以对调度器的时钟表现进行手动微调。这对�
 
 #### 异步操作
 
-
 下面的这些操作符属于单独的rxjava-async模块，它们用于将同步对象转换为Observable。
 
 - start( ) — 创建一个Observable，它发射一个函数的返回值
@@ -593,8 +571,6 @@ TestScheduler让你可以对调度器的时钟表现进行手动微调。这对�
 
 #### 阻塞操作
 
-
-
 要将普通的Observable 转换为 BlockingObservable，可以使用 Observable.toBlocking( )) 方法或者BlockingObservable.from( )) 方法。
 
 - forEach( ) — 对Observable发射的每一项数据调用一个方法，会阻塞直到Observable完成
@@ -611,9 +587,7 @@ TestScheduler让你可以对调度器的时钟表现进行手动微调。这对�
 - toIterable( ) — 将一个发射数据序列的Observable转换为一个Iterable
 - getIterator( ) — 将一个发射数据序列的Observable转换为一个Iterator
 
-
 #### 字符串操作
-
 
 - byLine( ) — 将一个字符串的Observable转换为一个行序列的Observable，这个Observable将原来的序列当做流处理，然后按换行符分割
 - decode( ) — 将一个多字节的字符流转换为一个Observable，它按字符边界发射字节数组
@@ -622,9 +596,6 @@ TestScheduler让你可以对调度器的时钟表现进行手动微调。这对�
 - join( ) — 将一个发射字符串序列的Observable转换为一个发射单个字符串的Observable，后者用一个指定的字符串连接所有的字符串
 - split( ) — 将一个发射字符串的Observable转换为另一个发射字符串的Observable，后者使用一个指定的正则表达式边界分割前者发射的所有字符串
 - stringConcat( ) — 将一个发射字符串序列的Observable转换为一个发射单个字符串的Observable，后者连接前者发射的所有字符串
-
-
-
 
 ### 参考
 
