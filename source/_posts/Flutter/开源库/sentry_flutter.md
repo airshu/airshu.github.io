@@ -20,7 +20,7 @@ dependencies:
 
 sentry:
   upload_debug_symbols: true
-  upload_source_maps: false
+  upload_source_maps: false # flutter_web使用
   upload_sources: false
   project: ...
   org: ...

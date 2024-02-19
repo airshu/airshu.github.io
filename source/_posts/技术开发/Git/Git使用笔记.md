@@ -80,7 +80,9 @@ git stash clear 清除暂存
 #为了撤销更改并分享给别人，我们需要使用 git revert。新提交记录 C2' 引入了更改 —— 这些更改刚好是用来撤销 C2 这个提交的。也就是说 C2' 的状态与 C1 是相同的。
 
 git reset --hard HEAD^ #回退到上一个版本
-git reset --hard ahdhs1(commit_id) #回退到某个版本
+git reset --hard ahdhs1(commit_id) #回退到某个版本，撤销git commit，撤销git add，删除编辑器改动代码
+git reset --soft (commit id) #撤销git commit，不撤销git add，保留编辑器改动代码
+git reset --mixed (commit id) #撤销git commit，撤销git add，保留编辑器改动代码
 git checkout -- file  #撤销修改的文件(如果文件加入到了暂存区，则回退到暂存区的，如果文件加入到了版本库，则还原至加入版本库之后的状态)
 git reset HEAD file #撤回暂存区的文件修改到工作区
 git revert HEAD

@@ -26,6 +26,73 @@ tags: Flutter
 ### 基本使用
 
 ```dart
+List<String> items = ["1", "2", "3", "4", "5", "6", "7", "8"];
+  RefreshController _refreshController =
+      RefreshController(initialRefresh: false);
+
+  void _onRefresh() async{
+    // monitor network fetch
+    await Future.delayed(Duration(milliseconds: 1000));
+    // if failed,use refreshFailed()
+    _refreshController.refreshCompleted();
+  }
+
+  void _onLoading() async{
+    // monitor network fetch
+    await Future.delayed(Duration(milliseconds: 1000));
+    // if failed,use loadFailed(),if no data return,use LoadNodata()
+    items.add((items.length+1).toString());
+    if(mounted)
+    setState(() {
+
+    });
+    _refreshController.loadComplete();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SmartRefresher(
+        enablePullDown: true,
+        enablePullUp: true,
+        header: WaterDropHeader(),
+        footer: CustomFooter(
+          builder: (BuildContext context,LoadStatus mode){
+            Widget body ;
+            if(mode==LoadStatus.idle){
+              body =  Text("pull up load");
+            }
+            else if(mode==LoadStatus.loading){
+              body =  CupertinoActivityIndicator();
+            }
+            else if(mode == LoadStatus.failed){
+              body = Text("Load Failed!Click retry!");
+            }
+            else if(mode == LoadStatus.canLoading){
+                body = Text("release to load more");
+            }
+            else{
+              body = Text("No more Data");
+            }
+            return Container(
+              height: 55.0,
+              child: Center(child:body),
+            );
+          },
+        ),
+        controller: _refreshController,
+        onRefresh: _onRefresh,
+        onLoading: _onLoading,
+        child: ListView.builder(
+          itemBuilder: (c, i) => Card(child: Center(child: Text(items[i]))),
+          itemExtent: 100.0,
+          itemCount: items.length,
+        ),
+      ),
+    );
+  }
+
+
 // 全局配置子树下的SmartRefresher,下面列举几个特别重要的属性
 RefreshConfiguration(
  headerBuilder: () => WaterDropHeader(),        // 配置默认头部指示器,假如你每个页面的头部指示器都一样的话,你需要设置这个
@@ -59,6 +126,38 @@ RefreshConfiguration(
 - 支持页面启动时刷新，并自定义视图
 - 支持安全区域，不再有遮挡
 - 自定义滚动参数，让列表具有不同的滚动反馈和惯性
+
+
+### 基本使用
+
+```dart
+  EasyRefresh(
+    //顶部指示器
+    header: Header(
+      position: IndicatorPosition.locator,
+    ),
+    footer: Footer(
+      position: IndicatorPosition.locator,
+    ),
+    //刷新
+    onRefresh: () async {
+      ....
+    },
+    //翻页
+    onLoad: () async {
+      ....
+      return IndicatorResult.noMore;
+    },
+    child: CustomScrollView(
+      slivers: [
+        SliverAppBar(),
+        const HeaderLocator.sliver(),
+        ...
+        const FooterLocator.sliver(),
+        ],
+      ),
+  )
+```
 
 ## 参考
 
