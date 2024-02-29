@@ -20,7 +20,7 @@ tags: Flutter
 - 注意输入框类型，如果是数字或者邮箱则设置默认键盘类型
 - 监听器的使用，注意不要在调用多次方法中使用（比如didChangeDependencies），记得不需要时移除监听
 - 尽量不用print，使用封装的Log工具，设置合适的level。release版本统一去掉print
-- catch的异常，上报详细信息用于分析具体原因
+- catch(e, s)的异常，上报详细信息用于分析具体原因
 - 异步使用setState前需要判断mounted
 
 ```dart
@@ -62,3 +62,5 @@ double points = (resutl['name']? as num?)?.toDouble() ?? 2.1;
 ```
 
 - 注意代码分层，不要把UI和业务逻辑全部堆叠在一个文件中，使用状态管理框架，将业务逻辑和UI分离
+
+- dispose方法中注意会不会出现因为代码异常造成后面释放资源的代码不执行而造成内存泄漏

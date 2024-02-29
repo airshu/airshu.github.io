@@ -10,7 +10,7 @@ Android编译源码流程
 
 `settings.gradle`配置
 
-```
+```dart
 // 当前 app module
 include ':app'
 
@@ -33,7 +33,7 @@ apply from: "$flutterSdkPath/packages/flutter_tools/gradle/app_plugin_loader.gra
 
 查看`app_plugin_loader.gradle`文件
 
-```
+```dart
 import groovy.json.JsonSlurper
 //得到自己新建的 flutter 项目的根路径，因为已经被自己新建的 project apply，所以这里是项目根路径哦
 def flutterProjectRoot = rootProject.projectDir.parentFile
@@ -83,7 +83,7 @@ subprojects {
 
 然后看app模块下的`build.gradle`
 
-```
+```groovy
 /**
  * 1、读取local.properties配置信息。
  * 2、获取flutter.sdk路径。
@@ -146,7 +146,7 @@ flutter {
 看看重点1`flutter.gradle`文件，它实际上运行了`flutter.groovy`这个文件
 
 
-```
+```groovy
 //......省略一堆import头文件
 /**
  * 常规脚本配置：脚本依赖仓库及依赖的 AGP 版本
@@ -279,7 +279,7 @@ class FlutterExtension {
 
 接下来看看addFluterTasks方法，这是整个编译的重点：
 
-```
+```groovy
 private void addFlutterTasks(Project project) {
 	//gradle项目配置评估失败则返回，常规操作，忽略
     if (project.state.failure) {
@@ -350,7 +350,7 @@ private void addFlutterTasks(Project project) {
 
 可以看到，addFlutterTasks 方法的第一部分比较简单，基本都是从 Project 中读取各自配置属性供后续步骤使用。所以我们接着继续看 addFlutterTasks 这个方法步骤 1 之后的部分
 
-```
+```groovy
 private void addFlutterTasks(Project project) {
     //一堆属性获取与赋值操作
     //......
@@ -490,7 +490,7 @@ private void addFlutterTasks(Project project) {
 
 以上大部分代码只是为了执行以下脚本时准备配置参数
 
-```
+```shell
 flutter assemble --no-version-check \
 --depfile build/app/intermediates/flutter/release/flutter_build.d \
 --output build/app/intermediates/flutter/release/ \
