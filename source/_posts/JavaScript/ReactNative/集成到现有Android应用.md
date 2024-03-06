@@ -191,10 +191,11 @@ public class MyReactActivity extends Activity implements DefaultHardwareBackBtnH
                 //设置上下文
                 .setApplication(getApplication())
                 .setCurrentActivity(this)
+                //设置js产物的名字
                 .setBundleAssetName("index.android.bundle")
-                //JS bundle主入口的文件名
+                //JS bundle主入口的文件名，js文件的名字
                 .setJSMainModulePath("index")
-                .addPackages(packages)
+                .addPackages(packages)//注册自定义的Package
                 .setUseDeveloperSupport(BuildConfig.DEBUG)
                 //设置创建时机
                 .setInitialLifecycleState(LifecycleState.RESUMED)
@@ -323,7 +324,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+//Package用于将原生模块和视图管理器添加到RN中
 public class IndexPackage implements ReactPackage {
+
+  //返回原生模块列表
     @NonNull
     @Override
     public List<NativeModule> createNativeModules(@NonNull ReactApplicationContext reactContext) {
@@ -332,6 +336,7 @@ public class IndexPackage implements ReactPackage {
         return modules;
     }
 
+//返回包含原生视图管理器的列表
     @NonNull
     @Override
     public List<ViewManager> createViewManagers(@NonNull ReactApplicationContext reactContext) {
