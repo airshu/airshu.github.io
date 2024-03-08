@@ -38,6 +38,9 @@ tags: React Native
         "react": "18.2.0",
         "react-native": "0.71.7"
     },
+    "resolutions":{ /* 强制依赖， 只在yarn中有效，npm不支持此字段 */
+        "@types/react": "^17"
+    },
     "devDependencies": {//开发的时候依赖
 
     }

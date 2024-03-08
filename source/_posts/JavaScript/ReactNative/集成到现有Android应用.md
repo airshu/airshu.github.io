@@ -11,7 +11,8 @@ tags: React Native
 ## 2. 安装JavaScript依赖包
 
 在项目根目录创建package.json空文件，填入以下内容；
-```
+
+```json
 {
   "name": "MyReactNativeApp",
   "version": "0.0.1",
@@ -24,7 +25,7 @@ tags: React Native
 
 然后运行：yarn add react-native@0.62.1，如果不写版本号会默认安装最新版本的React Native，同时会出现类似以下的警告信息：
 
-```
+```shell
 warning "react-native@0.52.2" has unmet peer dependency "react@16.2.0".
 ```
 
@@ -36,7 +37,7 @@ warning "react-native@0.52.2" has unmet peer dependency "react@16.2.0".
 
 ### 3.1 根目录build.gradle文件配置仓库地址
 
-```
+```gradle
 
 def REACT_NATIVE_VERSION = new File(['node', '--print',"JSON.parse(require('fs').readFileSync(require.resolve('react-native/package.json'), 'utf-8')).version"].execute(null, rootDir).text.trim())
 
@@ -66,7 +67,7 @@ allprojects {
 
 ### 3.2 配置依赖
 
-```
+```gradle
 dependencies {
     implementation "com.android.support:appcompat-v7:27.1.1"
     ...
@@ -79,7 +80,7 @@ dependencies {
 
 ### 3.3 启动原生模块的自动链接
 
-```
+```gradle
 
 //settings.gradle文件配置
 apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
@@ -462,10 +463,6 @@ public class LQDApplication extends Application implements ReactApplication {
 npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
 
 ```
-
-> 开发环境会自动编译bundle？
-
-
 
 ## 5. 运行Android端
 
