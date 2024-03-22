@@ -13,6 +13,15 @@ tags: React Native
 
 ## ReactMethod
 
+
+
+注意，@ReactMethod 注解的方法必须满足以下条件：
+
+- 方法必须是公开的（public）。
+- 方法不能是静态的（static）。
+- 方法的返回类型必须是 void。
+- 方法的参数类型必须是 React 支持的类型，例如 String、ReadableMap、Callback、Promise 等。
+
 在module中定义可以被JS调用的函数
 
 ### 1. 使用`集成到现有Android应用`中的IndexModule文件，添加一个ReactMethod
@@ -115,18 +124,30 @@ Callback可以在JS调用原生的方法里回调JS方法
 
 使用Promise，可以在声明了async的异步函数内使用await关键字来调用
 
+
+
 ```Java
     @ReactMethod
     public void testPromise(String param1, Promise promise) {
-        promise.resolve(param1);
+        WritableMap map = Arguments.createMap();
+        map.putDouble("relativeX",1);
+        map.putDouble("relativeY", 1);
+        map.putDouble("width", 2);
+        map.putDouble("height",3);
+
+        promise.resolve(map);
     }
 ```
 
 ```JavaScript
 <Button onPress={
 async ()=> {
-
-    var result = await NativeModules.IndexModule.testPromise('Awesome');
+    var {
+        relativeX,
+        relativeY,
+        width,
+        height,
+    } = await NativeModules.IndexModule.testPromise('Awesome');
     NativeModules.IndexModule.show(result, NativeModules.IndexModule.SHORT);
 
 }} title={"测试Promise"}></Button>

@@ -3,8 +3,7 @@ title: Android原生UI组件
 tags: React Native 
 ---
 
-
-提供原生视图的流程：
+RN中可以直接使用原生自定义UI组件 ，提供原生视图的流程：
 
 1. 创建一个ViewManager子类
 2. 实现createViewInstance

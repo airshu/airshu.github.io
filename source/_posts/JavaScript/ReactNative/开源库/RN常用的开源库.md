@@ -204,6 +204,24 @@ react-native-code-push是一个用于React Native应用的开源库，它允许�
 
 React Native Elements是一个用于React Native应用的UI组件库，它提供了一套丰富的UI组件，包括按钮、图标、输入框、列表、卡片、轮播图等。这些组件都遵循了Material Design的设计规范，具有一致的视觉样式和交互行为。
 
+
+## react-native-fs
+
+
+## react-native-permissions
+
+权限管理库
+
+## react-native-device-info
+
+获取硬件设备信息
+
+react-native-fs是一个用于React Native应用的文件系统库，它提供了一套简单的API，可以帮助你在React Native应用中读写文件、创建目录、删除文件等。
+
+## react-native-share
+
+系统分享库，支持本地、网络文件。[https://www.npmjs.com/package/react-native-share](https://www.npmjs.com/package/react-native-share)
+
 ### @rneui/base
 
 ### @rneui/envinfo

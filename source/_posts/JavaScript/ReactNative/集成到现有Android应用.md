@@ -194,7 +194,7 @@ public class MyReactActivity extends Activity implements DefaultHardwareBackBtnH
                 .setCurrentActivity(this)
                 //设置js产物的名字
                 .setBundleAssetName("index.android.bundle")
-                //JS bundle主入口的文件名，js文件的名字
+                //JS bundle主入口的文件名，js文件的名字，dev模式下使用
                 .setJSMainModulePath("index")
                 .addPackages(packages)//注册自定义的Package
                 .setUseDeveloperSupport(BuildConfig.DEBUG)
@@ -474,14 +474,21 @@ npx react-native bundle --platform android --dev false --entry-file index.js --b
 #1.先启动Metro服务器
 #如果自定义端口，则需要在开发者菜单中配置对应的ip:port
 npm run start --verbose -- --port 8088 
+
+# 设置端口转发
+adb reverse tcp:8088 tcp:8088
+
+
+
 #或yarn start
 
 #2.运行程序
-yarn react-native run-android
+npm react-native start --reset-cache --port 8088
 
 
 #3.打开开发者工具，配置ip:port
 
+# 打开应用中的RN开发菜单，配置Dev Settings中的Debug server host & port for device，设置成自己的ip:port
 
 #生产环境
 #通过codepush进行热更新或者编译bundle到assets目录下
