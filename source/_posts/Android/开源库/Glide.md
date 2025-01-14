@@ -81,6 +81,25 @@ public final class OkHttpLibraryGlideModule extends LibraryGlideModule {
 }
 ```
 
+## 加载大图
+
+
+### 设置加载图片格式
+
+```java
+@Override
+public void applyOptions(@NonNull Context context, @NonNull GlideBuilder builder) {
+    builder.setDefaultRequestOptions(new RequestOptions().format(DecodeFormat.PREFER_RGB_565));
+}
+```
+
+### 裁剪压缩图片
+
+```java
+Glide.with(imageView).load(url).override(targetWidth, targetHeight).centerCrop().into(imageView)
+```
+
+
 ## 注意点
 
 - 使用时尽量传生命周期所对应的Context（比如Activity、Fragment）

@@ -119,6 +119,12 @@ git reflog --relative-date
 git clean #删除未跟踪的文件
 git clean -n #查看将要删除的文件
 
+
+# 将修改的文件从暂存区撤销
+git restore --staged .
+
+# 将readme.md的修改移除暂存区
+git restore --staged readme.md
 ```
 
 
