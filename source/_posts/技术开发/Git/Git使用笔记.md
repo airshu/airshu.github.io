@@ -24,8 +24,7 @@ git commit -m "提交注释" #提交到仓库    把暂存区的所有修改提�
 git push remote_branch local_branch #将本地库提交到远程库
 git status #查看修改状态
 
-git log #显示从最近到最远的提交日志
-git log -2： #查看最近几条记录
+
 
 git clone git@github.com:xxx/gitskills.git #克隆仓库
 
@@ -67,11 +66,13 @@ git push origin :<branchName>     #删除远程分支
 
 #暂存操作：
 git stash 暂存当前修改
+git stash -u 暂存当前修改，包括未跟踪的文件
 git stash apply 恢复最近的一次暂存
 git stash pop 恢复暂存并删除暂存记录
 git stash list 查看暂存列表
 git stash drop 暂存名(例：stash@{0}) 移除某次暂存
 git stash clear 清除暂存
+git stash show -p 查看完整的差异
 
 #回退操作：
 #Git服务有一个叫HEAD的版本指针，当用户申请还原数据时，其实就是将HEAD指针指向到某个特定的提交版本。
@@ -110,6 +111,14 @@ git reflog
 
 # 取消xxx的修改内容
 git restore xxx
+
+
+# 显示本地的引用日志
+git reflog --relative-date
+
+git clean #删除未跟踪的文件
+git clean -n #查看将要删除的文件
+
 ```
 
 
@@ -134,6 +143,62 @@ git branch -d 功能1   # 删除功能1分支（当前不能在功能1分支、�
 
 <br/>
 
+
+### rebase
+
+变基的主要优势在于您可以获得更干净的项目历史记录。
+
+git rebase 的黄金法则是永远不要在公有分支上使用它。
+
+您运行 git rebase 之前，一定要问问自己：“还有其他人在看这个分支吗？”如果答案是肯定的，请暂停操作。
+
+
+```shell
+
+# 切换分支
+git checkout feature
+# 将main分支的提交记录添加到feature分支上
+git rebase main
+
+# 跟上面的命令等价
+git checkout feature main
+
+
+
+```
+
+
+
+### log
+
+```shell
+
+git log #显示从最近到最远的提交日志
+git log -2： #查看最近几条记录
+
+git log --oneline # 一行显示,commit id和提交信息
+git log --oneline --decorate #会格式化提交历史记录
+git log --oneline --graph #显示分支合并图
+git log --stat #选项显示每次提交修改的每个文件的插入和删除次数（请注意，修改一行表示为 1 次插入和 1 次删除）
+git log -p # 查看每次提交引入的实际变更
+git shortlog # 按提交者分组显示提交信息
+git log -3 # 查看最近的3次提交
+git log --after="2014-7-1" --before="2014-7-4"
+git log --author="John"
+git log --grep="JRA-224:"
+
+
+
+
+
+
+
+
+
+
+
+```
+
 ### gitignore文件
 
 用来存储不需要进行版本管理的文件
@@ -152,7 +217,7 @@ git branch -d 功能1   # 删除功能1分支（当前不能在功能1分支、�
 
 ## 拉取体积很大的仓库
 
-```
+```shell
 
 git clone --depth 1 仓库地址
 git fetch --unshallow
