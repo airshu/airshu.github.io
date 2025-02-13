@@ -59,3 +59,82 @@ Future<void> main() async {
 ```shell
 flutter packages pub run sentry_dart_plugin 
 ```
+
+## 性能分析
+
+Sentry可以通过“性能”模块来监控整个页面的加载性能，网络请求监控。监控dio可以参考sentry_dio这个库。
+
+
+```dart
+Dio dio = Dio(options);
+dio.interceptors.add(SentryDioInterceptor());
+dio.addSentry();
+
+// dio的拦截器，自定义事物
+class SentryDioInterceptor extends BaseInterceptor {
+  @override
+  Future<void> onRequest(
+      RequestOptions options,
+      RequestInterceptorHandler handler,
+      ) async {
+    final transaction = Sentry.startTransaction(
+      'dio-web-request',
+      'request',
+      bindToScope: true,
+    );
+    options.extra['sentryTransaction'] = transaction;
+    final span = transaction.startChild(
+      'dio-request',
+      description: 'Sending request to ${options.uri}',
+    );
+    options.extra['sentrySpan'] = span;
+    super.onRequest(options, handler);
+  }
+
+  @override
+  Future<void> onResponse(
+      Response response,
+      ResponseInterceptorHandler handler,
+      ) async {
+    final span = response.requestOptions.extra['sentrySpan'] as SentrySpan?;
+    final transaction =
+    response.requestOptions.extra['sentryTransaction'] as ISentrySpan?;
+    if (span != null) {
+      span.status = const SpanStatus.ok();
+      await span.finish();
+    }
+    if (transaction != null) {
+      await transaction.finish();
+    }
+    super.onResponse(response, handler);
+  }
+
+  @override
+  Future<void> onError(
+      DioException err,
+      ErrorInterceptorHandler handler,
+      ) async {
+    final span = err.requestOptions.extra['sentrySpan'] as SentrySpan?;
+    final transaction =
+    err.requestOptions.extra['sentryTransaction'] as ISentrySpan?;
+    if (span != null) {
+      span.throwable = err;
+      span.status = const SpanStatus.internalError();
+      await span.finish();
+    }
+    if (transaction != null) {
+      await transaction.finish();
+    }
+    await Sentry.captureException(err);
+    super.onError(err, handler);
+  }
+}
+
+```
+
+注意本地版本与服务端版本的对应关系，否则某些功能可能无法使用。（比如transaction_info: Discarded unknown attribute）
+
+## 参考
+
+- [Sentry Docs: Set Up Tracing](https://docs.sentry.io/platforms/flutter/tracing/)
+- [使用 Sentry 做性能监控 - 分析优化篇](https://juejin.cn/post/7151753139052347399)
