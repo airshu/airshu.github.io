@@ -6,7 +6,7 @@ toc: true
 
 
 
-```
+```shell
 
 #格式转换
 ffmpeg -i input.avi output.mp4

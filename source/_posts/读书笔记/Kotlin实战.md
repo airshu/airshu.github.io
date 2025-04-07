@@ -14,7 +14,7 @@ toc: true
 - fun声明函数
 - 函数可以定义在文件的最外层
 
-```Kotlin
+```java
 fun max(a: Int, b: Int): Int {
     return if(a>b) a else b
 }
@@ -22,23 +22,24 @@ fun max(a: Int, b: Int): Int {
 
 **表达式函数体**
 
-    fun max(a: Int, b: Int): Int = if(a>b) a else b
-
+```java
+fun max(a: Int, b: Int): Int = if(a>b) a else b
+```
 
 表达式函数体可以省略返回类型，Kotlin会进行类型推导
 
-    fun max(a: Int, b: Int)= if(a>b) a else b
+```java
+fun max(a: Int, b: Int)= if(a>b) a else b
+```
 
 数组就是类
-
-
 
 ##### 变量
 
 - var表示可写属性
 - val表示只读属性
 
-```Kotlin
+```java
 val answer = 42 //这个变量永不为null
 var answer1:Int? = 40 // 这个变量可以为null
 val answer:Int = 42
@@ -50,54 +51,51 @@ answer = "no " 这样是错误的
 
 **字符串模板**
 
-```kotlin
-    $name
-    ${name}
+```java
+$name
+${name}
 ```
-
 
 **类**
 
-```kotlin
-    class Person(val name:String)
+```java
+class Person(val name:String)
 
-    class Person(val name:String, var isMarried:Boolean)
+class Person(val name:String, var isMarried:Boolean)
 ```
-
 
 **自定义访问器**
 
-```kotlin
-    class Rectangle(val height:Int, val width:Int) {
-        val isSquare:Boolean
-            get() {
-                return height == width
-            }
-        //或者
-        get() = height == width
-    }
+```java
+class Rectangle(val height:Int, val width:Int) {
+    val isSquare:Boolean
+        get() {
+            return height == width
+        }
+    //或者
+    get() = height == width
+}
 ```
 
 包层级结构不需要遵守目录层级结构
 
 **枚举**
 
-```kotlin
-    enum class Color(val r:Int, val g:Int, val b:Int) {
-    RED(255,0,0),GREEN(0,255,0);
+```java
+enum class Color(val r:Int, val g:Int, val b:Int) {
+RED(255,0,0),GREEN(0,255,0);
 
-    fun rgb() = (r*256 + g)*256 + b
+fun rgb() = (r*256 + g)*256 + b
+}
+println(Color.GREEN.rgb())
+
+
+fun getMnumonic(color: Color) = 
+    when(color) {
+        Color.RED -> "Richard"
+        Color.GREEN -> "Gave"
     }
-    println(Color.GREEN.rgb())
-
-
-    fun getMnumonic(color: Color) = 
-        when(color) {
-            Color.RED -> "Richard"
-            Color.GREEN -> "Gave"
-        }
 ```
-
 
 @JvmOverloads， 会生成Java重载函数
 
@@ -126,7 +124,6 @@ lateinit
 - 对象声明是定义单例的一种方式
 - 伴生对象可以持有工厂方法和其他与整个类相关，但在调用时并不依赖类实例的方法。
 - 对象表达式用来替代Java的匿名内部类
-
 
 ```Java
 object DataProviderManager {
@@ -163,58 +160,58 @@ val x = MyClass.Companion
 
 匿名对象可以实现多个接口或者不实现接口
 
-
 lamdba表达式始终用花括号包围
 
-    val sum = {x: Int, y: Int -> x+y}
-    println(sum(1,2))
-
+```java
+val sum = {x: Int, y: Int -> x+y}
+println(sum(1,2))
+```
 
 允许lamdba内部访问非final变量甚至修改它们
 
 成员引用
 
-    val getAge = Person::age
-
+```java
+val getAge = Person::age
+```
 
 all any  count  find  对集合应用判断式
 
 with函数
 apply
 
-
-
 类型系统
 
 可空性
-```kotlin
-    fun strLen(s:String) = s.length
-    fun strLen(s:String?) = s.length
+
+```java
+fun strLen(s:String) = s.length
+fun strLen(s:String?) = s.length
 ```
 
 安全调用运算符 ?.，只要链式中一个值为null，则整个表达式都返回null
 
-```kotlin
-    s?.toUpperCase()
+```java
+s?.toUpperCase()
 
-    val testStr : String? = null
-    val result = testStr?.length?.plus(5)?.minus(10)
-    println(result)
+val testStr : String? = null
+val result = testStr?.length?.plus(5)?.minus(10)
+println(result)
 ```
 
 ?:
 
 当一个函数有返回值时，如果方法中的代码使用?.去返回一个值，那么方法的返回值的类型后面也要加上?符号
 
-```kotlin
-    fun funNullMethod() : Int? {
-        val str : String? = "123456"
-        return str?.length
-    }
+```java
+fun funNullMethod() : Int? {
+    val str : String? = "123456"
+    return str?.length
+}
 ```
 
 as?
- 
+
 非空断言  "!!"    显示地抛出异常
 
 ##### let函数
@@ -223,21 +220,21 @@ as?
 
 用法：变量?.let{...}
 
-```kotlin
-    val arrTest : Array<Int?> = arrayOf(1,2,null,3,null,5,6,null)
+```java
+val arrTest : Array<Int?> = arrayOf(1,2,null,3,null,5,6,null)
 
-    // 传统写法
-    for (index in arrTest) {
-        if (index == null){
-            continue
-        }
-        println("index => $index")
+// 传统写法
+for (index in arrTest) {
+    if (index == null){
+        continue
     }
+    println("index => $index")
+}
 
-    // let写法
-    for (index in arrTest) {
-        index?.let { println("index => $it") }
-    }
+// let写法
+for (index in arrTest) {
+    index?.let { println("index => $it") }
+}
 ```
 
 ##### Evils操作符
@@ -246,32 +243,31 @@ as?
 
 判断一个可空类型时，会返回一个我们自己设定好的默认值
 
-```kotlin
-    val testStr : String? = null
-    var length = 0
-    // ?: 写法
-    length = testStr?.length ?: -1
-    println(length)
+```java
+val testStr : String? = null
+var length = 0
+// ?: 写法
+length = testStr?.length ?: -1
+println(length)
 ```
 
 **!!**
 
 判断一个可空类型时，会显示的抛出空引用异常
 
-```kotlin
-    val testStr : String? = null
-    println(testStr!!.length)
+```java
+val testStr : String? = null
+println(testStr!!.length)
 ```
 
 **as?**
 
 安全的类型转换
 
-```kotlin
-    val num2 : Int? = "Koltin" as? Int
-    println("nun2 = $num2)
+```java
+val num2 : Int? = "Koltin" as? Int
+println("nun2 = $num2)
 ```
-
 
 基本类型、包装类型的转换需要通过API
 
@@ -279,10 +275,10 @@ Any  kotlin基类
 Unit  kotlin中的void
 Nothing    这个函数永不返回
 
-List    listOf    mutableListOf、arrayListOf
-Set    setOf    mutableSetOf、hashSetOf、linkedSetOf、sortedSetOf
-Map    mapOf    mutableMapOf、hashMapOf、linkedMapOf、sortedMapOf
-
+-- | -- | --
+List   | listOf  |  mutableListOf、arrayListOf
+Set  |  setOf  |  mutableSetOf、hashSetOf、linkedSetOf、sortedSetOf
+Map  |  mapOf  |  mutableMapOf、hashMapOf、linkedMapOf、sortedMapOf
 
 重载二元算术运算
 operator
@@ -291,9 +287,7 @@ operator
 
 kotlin允许使用对应名称的函数来重载一些标准的数学运算，但不能定义自己的运算符。
 
-
 函数类型
-
 
 内联函数
 
@@ -302,7 +296,6 @@ kotlin允许使用对应名称的函数来重载一些标准的数学运算，�
 @JvmStatic
 @JvmOverloads
 @JvmField
-
 
 注解类：用来定义关联到声明和表达式的元数据的结构，它们不能包含任何代码
 

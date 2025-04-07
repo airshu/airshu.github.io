@@ -4,6 +4,8 @@ tags: Android
 toc: true
 ---
 
+Binder的名字是因为，open binder的作者加入了google，带来了这套机制。
+
 
 ![](./binder_1.png)
 
@@ -35,3 +37,4 @@ Socket|功能强大|
 ## 参考
 
 - [https://www.jianshu.com/p/719fc4758813](https://www.jianshu.com/p/719fc4758813)
+- [彻底理解Android Binder通信架构](https://gityuan.com/2016/09/04/binder-start-service/)
