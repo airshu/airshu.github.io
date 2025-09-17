@@ -17,7 +17,6 @@ Flutter中的一切都是Widget。关于Flutter的UI绘制原理可以参考[纷
 - Render Widget：渲染类Widget，参与layout、paint流程，有与之对应的Render Object；
 - Proxy Widget：代理类Widget，提供一些附加的功能，比如InheritedWidget用于共享信息，ParentDataWidget用于为其他Widget提供信息；
 
-
 ### context
 
 如果 widget `A` 拥有子 widget，那么 widget `A` 的 context 将成为其直接关联子 context 的父 context。
@@ -31,7 +30,7 @@ Widget主要有两种类型：
 - StatelessWidget：只有在创建的时候绘制一次
 - StatefulWidget：根据状态会发生变化
 
-感觉这样设计还是处于性能考虑，当某些控件不需要改变UI时，使用StatelessWidget就不会重绘。
+感觉这样设计还是出于性能考虑，当某些控件不需要改变UI时，使用StatelessWidget就不会重绘。
 
 ## Widget
 
@@ -51,11 +50,9 @@ abstract class Widget extends DiagnosticableTree {
 }
 ```
 
-
 `为什么widget都是immutable?`
 
 @immutable 代表 Widget 是不可变的，这会限制 Widget 中定义的属性（即配置信息）必须是不可变的（final），为什么不允许 Widget 中定义的属性变化呢？这是因为，Flutter 中如果属性发生变化则会重新构建Widget树，即重新创建新的 Widget 实例来替换旧的 Widget 实例，所以允许 Widget 的属性变化是没有意义的，因为一旦 Widget 自己的属性变了自己就会被替换。这也是为什么 Widget 中定义的属性必须是 final 的原因。
-
 
 ## StatelessWidget
 
@@ -116,13 +113,13 @@ class MyChildWidget extends StatelessWidget {
 
 ```
 
-### StatelessWidget、StatefulWidget选择策略：
+### StatelessWidget、StatefulWidget选择策略
 
-* 优先使用 StatelessWidget
-* 含有大量子 Widget（如根布局、次根布局）慎用 StatefulWidget
-* 尽量在叶子节点使用 StatefulWidget
-* 将会调用到setState((){}) 的代码尽可能的和要更新的视图封装在一个尽可能小的模块里。
-* 如果一个Widget需要reBuild，那么它的子节点、兄弟节点、兄弟节点的子节点应该尽可能少
+- 优先使用 StatelessWidget
+- 含有大量子 Widget（如根布局、次根布局）慎用 StatefulWidget
+- 尽量在叶子节点使用 StatefulWidget
+- 将会调用到setState((){}) 的代码尽可能的和要更新的视图封装在一个尽可能小的模块里。
+- 如果一个Widget需要reBuild，那么它的子节点、兄弟节点、兄弟节点的子节点应该尽可能少
 
 ## InheritedWidget
 
@@ -131,8 +128,6 @@ class MyChildWidget extends StatelessWidget {
 InheritedWidget 组件的所有子组件都可以直接通过 BuildContext.dependOnInheritedWidgetOfExactType 获取数据。
 
 updateShouldNotify方法来决定是否通知子树中依赖data的Widget。 如果返回true，则子树中依赖(build函数中有调用)本widget的子widget的`state.didChangeDependencies`会被调用
-
-
 
 ## 参考
 
