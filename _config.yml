@@ -53,6 +53,7 @@ marked:
   pedantic: false
   sanitize: false
   tables: true
+  autolink: false
   breaks: true
   smartLists: true
   smartypants: true

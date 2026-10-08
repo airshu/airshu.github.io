@@ -1,10 +1,11 @@
 <% if (site.categories.length) { %>
     <div class="widget-wrap" id='categories'>
         <h3 class="widget-title">
-            <!-- <span><%= __('widget.categories') %></span> -->
-            &nbsp;
+            <a id='sidebar-toggle' href="javascript:;" title="收起侧栏">
+                <i class="fa fa-angle-double-left"></i>
+            </a>
             <a id='allExpand' href="#">
-                <i class="fa fa-angle-double-<%- theme.customize.category_perExpand ? 'up' : 'down' %> fa-2x"></i>
+                <i class="fa fa-angle-double-<%- theme.customize.category_perExpand ? 'up' : 'down' %>"></i>
             </a>
         </h3>
 
@@ -46,6 +47,7 @@
                       var now_category = {
                           "_id": cat._id,
                           "name": cat.name,
+                          "path": cat.path,
                           "children": [],
                           "articles": classifiedArticles[cat._id]
                       };
@@ -72,7 +74,7 @@
                     branch.children.forEach(function(category){
                     %>
                     <li class="directory<%- category.selected ? ' open' : '' %>">
-                        <a href="#" data-role="directory">
+                        <a href="<%- url_for(category.path) %>" data-role="directory">
                             <i class="fa fa-folder<%- (perExpand || category.selected) ? '-open' : '' %>"></i>
                             &nbsp;
                             <%- category.name %>

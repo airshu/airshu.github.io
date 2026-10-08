@@ -11,14 +11,14 @@ tags: Flutter
 经过Build流程，Render Tree中绘制相关的基础信息已经完成更新；经过Layout流程，Render Tree中每个节点的大小和位置完成计算与存储，接下来进入Paint流程：基于Layout的信息生成绘制指令。
 
 
-![](./paint.png)
+![](./paint.jpg)
 
 Render Tree和Layer Tree的对应关系
 
 使用Layer Tree的好处是可以做Paint流程的局部更新。Render Tree中，每个RenderObject对象都拥有一个needsCompositing属性，用于判断自身及子节点是否有一个要去合成的图层，同是还有一个_needsCompositingBitsUpdate字段
 用于标记该属性是否需要更新。Flutter在Paint开始前首先会完成needsCompositing属性的更新，然后开始正式绘制。
 
-![](./layer1.png)
+![](./layer1.jpg)
 
 
 

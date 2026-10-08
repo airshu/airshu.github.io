@@ -7,6 +7,7 @@
   },
   "scripts": {
     "build": "hexo clean && hexo g && gulp",
+    "deploy": "hexo clean && hexo g && gulp && hexo d",
     "build-dev": "hexo clean && hexo g",
     "new": "hexo new draft",
     "post": "hexo publish",

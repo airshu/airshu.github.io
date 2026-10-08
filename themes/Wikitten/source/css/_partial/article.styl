@@ -1,7 +1,6 @@
 article
-    padding: 3px
-    border-radius: 4px
-    background-color: color-border-stretch
+    padding: 0
+    background-color: transparent
 .article
     margin: block-margin 0
 
@@ -9,8 +8,9 @@ article
     @extend $block
     overflow: hidden
     background: white
-    border-radius: 4px
-    border: 1px solid #BBB
+    border-radius: 6px
+    border: 1px solid #e3e7ec
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05)
 
 .article-banner
     width:100%
@@ -65,16 +65,13 @@ div.article-meta-button
             background: #333
             
 .article-inner .article-meta
-        line-height: 20px
         background: color-meta-head
-        margin: 0px -21px 20px -21px
-        padding: 0 20px;
+        margin: 0 -20px 20px -20px
+        padding: 0 20px
         line-height: 30px
-        border: 1px solid #666
-        border-radius: 4px 4px 0 0
         color: #fff
         a
-            color: #fff 
+            color: #fff
             
 .article-category
     .fa-angle-right
@@ -91,6 +88,28 @@ div.article-meta-button
     color: color-default
     padding: 0 article-padding
     line-height: line-height
+    figure.highlight, > pre
+        position: relative
+    .code-copy-btn
+        position: absolute
+        top: 0
+        right: 0
+        padding: 2px 8px
+        font-size: 0.8em
+        line-height: 1.4
+        color: color-grey
+        background: transparent
+        border: 1px solid color-border
+        border-radius: 3px
+        cursor: pointer
+        opacity: 0
+        transition: opacity 0.2s
+        user-select: none
+    figure.highlight:hover .code-copy-btn, > pre:hover .code-copy-btn
+        opacity: 1
+    .code-copy-btn:hover
+        color: color-default
+        border-color: color-default
     p, table
         line-height: line-height
         margin: line-height 0
@@ -402,30 +421,55 @@ $article-share-link
 
 /* topic section */
 .toc-article
-    background #F9F9F9
     margin 2em 0 0 0.2em
-    padding 1em
-    border: 1px solid #000
-    border-radius 0px
-    .toc-title
-        font-size 120%
-    strong
-        padding 0.3em 1
 
 ol.toc
     width 100%
     margin 1em 2em 0 0
 
 #toc
-    line-height 1em
+    line-height 1.4em
     font-size 0.8em
     float right
+    position sticky
+    top 60px
+    max-height calc(100vh - 100px)
+    overflow-y auto
+    z-index 1
+    padding-left 12px
     .toc
         padding 0
+        margin 0.5em 0 0
         li
             list-style-type none
+            white-space nowrap
+            overflow hidden
+            text-overflow ellipsis
+        a
+            color color-grey
+            &:hover
+                color color-link
+                text-decoration none
+            &.active
+                color color-link
+                font-weight bold
     .toc-child
-        padding-left 0em
+        padding-left 1em
+    // 宽屏三栏布局：TOC 固定在视口右侧，首行与侧栏/文章卡灰色标题带（top 60）的文字行对齐
+    @media mq-normal
+        position fixed
+        top 57px
+        right 24px
+        width 216px
+        max-height calc(100vh - 120px)
+        float none
+        margin-top 0
+    @media mq-tablet
+        float right
+        position sticky
+        top 60px
+        width auto
+        transform none
 
 #toc.toc-aside
     display none

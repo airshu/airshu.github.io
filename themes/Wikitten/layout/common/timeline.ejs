@@ -33,7 +33,8 @@
     <nav id="page-nav">
         <%- paginator({
             prev_text: '&laquo; ' + __('nav.prev'),
-            next_text: __('nav.next') + ' &raquo;'
+            next_text: __('nav.next') + ' &raquo;',
+            escape: false
         }) %>
     </nav>
 <% } %>

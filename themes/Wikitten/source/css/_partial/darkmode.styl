@@ -1,0 +1,292 @@
+// Dark mode overrides - all rules scoped under html.dark
+// Palette: page bg #1e2229, surface #2a2f3a, text #c9d1d9, secondary #8b949e, border #3d4450
+
+html.dark
+    body
+        background: #1e2229
+        color: #c9d1d9
+    a
+        color: #4cc2ff
+        &:visited
+            color: #4cc2ff
+
+// surfaces that extend $block (background #fff)
+html.dark
+    .article-inner,
+    .archive-article,
+    #comments,
+    .timeline-row .content,
+    #profile .inner
+        background: #2a2f3a
+    .article-inner,
+    .widget-wrap,
+    #profile .inner
+        border-color: #3d4450
+
+// header
+html.dark #header
+    background: #2a2f3a
+    a, a:visited
+        color: #c9d1d9
+
+// inline code
+html.dark code
+    color: #ff9d5c
+    background-color: #333a46
+
+// article
+html.dark
+    .article-title,
+    .article-title:visited,
+    .article-entry,
+    .article-meta a,
+    .article-footer a:hover,
+    .article-nav-caption
+        color: #c9d1d9
+    .article-meta a
+        &:hover
+            color: #4cc2ff
+    .article-footer
+        color: #8b949e
+        a
+            color: #8b949e
+            &:hover
+                color: #c9d1d9
+    .article-nav-link-wrap
+        color: #8b949e
+        &:hover
+            color: #c9d1d9
+    blockquote
+        background: #262b35
+        border-left-color: #3d4450
+        &:before
+            color: #3d4450
+    .article-share-box
+        background: #2a2f3a
+        border: 1px solid #3d4450
+    .article-share-links
+        background: #262b35
+    .article-share-link
+        color: #8b949e
+        text-shadow: none
+    .toc-article
+        background: transparent
+        border-color: transparent
+    .article-entry table
+        th, td
+            border-bottom-color: #3d4450
+    .article-entry h1, .article-entry h2, .article-entry h3,
+    .article-entry h4, .article-entry h5, .article-entry h6
+        &:before
+            background: #4cc2ff
+    .code-copy-btn
+        color: #8b949e
+        border-color: #3d4450
+        &:hover
+            color: #c9d1d9
+            border-color: #8b949e
+
+// hr / base-style
+html.dark
+    hr
+        border-color: #3d4450
+
+// sidebar widgets
+html.dark
+    .widget-wrap
+        background-color: #2a2f3a
+        border-color: #3d4450
+    .widget-title
+        color: #c9d1d9
+        border-bottom-color: #3d4450
+    .widget a
+        color: #9aa4b2
+        &:hover
+            color: #c9d1d9
+    .widget ul li, .widget ol li
+        border-bottom-color: #3d4450
+    .layout-wrap-inner.list-categories li a:before
+        color: #556070
+        &:hover
+            color: #c9d1d9
+    #categories
+        text-shadow: none
+        li.directory > a
+            color: #c9d1d9
+    .category-list-count, .tag-list-count, .archive-list-count
+        color: #8b949e
+    #recent-post .item-date
+        color: #8b949e
+// footer
+html.dark #footer
+    border-top-color: #3d4450
+    color: #8b949e
+
+// timeline
+html.dark .timeline-row
+    .content
+        &:after
+            border-right-color: #2a2f3a
+        &:before
+            border-right-color: rgba(0, 0, 0, 0.4)
+        .article-meta
+            color: #8b949e
+            border-top-color: #3d4450
+            background: transparent
+    .content h1 a,
+    .content h1 a:visited
+        color: #c9d1d9
+        &:hover
+            color: #4cc2ff
+
+html.dark .timeline-wrap
+    border-left-color: #3d4450
+
+// insight search
+html.dark
+    .ins-search-input
+        background: #2a2f3a
+        color: #c9d1d9
+        border-bottom-color: #3d4450
+    .ins-search-container
+        background: #262b35
+    .ins-search-container,
+    .ins-section-container
+        background: #262b35
+    .ins-search-item
+        color: #c9d1d9
+        .ins-search-preview,
+        header .ins-slug
+            color: #8b949e
+        .search-keyword
+            color: #c9d1d9
+            border-bottom-color: #8b949e
+    .ins-section-header
+        color: #8b949e
+        border-bottom-color: #3d4450
+    .ins-close
+        color: #8b949e
+
+// search form in header
+html.dark
+    .search-form-input
+        color: #c9d1d9
+        border-color: #3d4450 !important
+
+// theme toggle button: bare icon like the search magnifier, same muted grey,
+// centered like sibling header items (40px row + 4px vertical padding)
+#theme-toggle
+    float: right
+    display: block
+    padding: 4px 15px
+    height: logo-height
+    line-height: logo-height
+    font-size: font-size + 2
+    cursor: pointer
+
+// header icons (theme toggle, search submit) share one muted color
+#theme-toggle .fa,
+.search-form-submit
+    color: #8b949e
+    transition: 0.2s ease
+#theme-toggle:hover .fa,
+.search-form-submit:hover
+    color: #c9d1d9
+
+// sidebar title buttons: plain icons inside the grey title band (matches the
+// article meta band style), vertically centered, no chip border
+#sidebar-toggle,
+#allExpand
+    float: right
+    margin: 0 0 0 10px
+    width: 24px
+    height: 30px
+    line-height: 30px
+    text-align: center
+    background: none
+    vertical-align: top
+    text-decoration: none
+#sidebar-toggle .fa,
+#allExpand .fa
+    font-size: 15px
+    color: rgba(255, 255, 255, 0.75)
+    transition: 0.2s ease
+#sidebar-toggle:hover .fa,
+#allExpand:hover .fa
+    color: #fff
+
+// collapsed: the same button floats at the left edge, top-aligned with the
+// article/sidebar grey title bands (header 48 + block-margin 12 = 60)
+#sidebar-toggle.sidebar-toggle-float
+    position: fixed
+    top: 60px
+    left: 8px
+    z-index: 50
+    margin: 0
+    width: 30px
+    height: 30px
+    line-height: 30px
+    text-align: center
+    border-radius: 4px
+    background: color-meta-head
+    color: #fff
+    opacity: 0.55
+    transition: opacity 0.2s
+    &:hover
+        opacity: 1
+html.dark #sidebar-toggle.sidebar-toggle-float
+    background: #2a2f3a
+    color: #c9d1d9
+    border: 1px solid #3d4450
+
+// collapsed sidebar: hide sidebar, let main take the full grid row
+// (98.42% = main+sidebar columns, keeps the same outer margin, no overflow).
+// Reserve a strip for the floating re-open button so it never overlaps the card.
+html.sidebar-collapsed
+    #sidebar
+        display: none
+    #container > .outer
+        padding-left: 42px
+        @media mq-mini
+            padding-left: 0
+    #main
+        @media mq-normal
+            width: 98.42105263157895%
+        @media mq-tablet
+            width: 96.92307692307692%
+
+// three-column layout: uniform 12px gaps between header / cards / TOC.
+// grid % margins (~13px at 1900px) become fixed 6px per side → 12px gutter;
+// on narrower screens % margins shrink, so fix them too.
+#main,
+#sidebar
+    @media mq-normal
+        margin: 0 6px
+    @media mq-tablet
+        margin: 0 6px
+
+// right TOC: 12px gap to article card, 12px to viewport edge
+#toc
+    @media mq-normal
+        right 12px
+
+// code highlight gutter line numbers (monokai dark bg)
+html.dark .highlight .gutter pre
+    color: #6e7681
+
+// right TOC panel: dim the left divider line
+// scrollbars in dark mode (WebKit + Firefox)
+html.dark
+    scrollbar-color: #4a5160 #1e2229
+    *
+        scrollbar-width: thin
+    ::-webkit-scrollbar
+        width: 8px
+        height: 8px
+    ::-webkit-scrollbar-track
+        background: transparent
+    ::-webkit-scrollbar-thumb
+        background: #4a5160
+        border-radius: 4px
+        &:hover
+            background: #5a6272

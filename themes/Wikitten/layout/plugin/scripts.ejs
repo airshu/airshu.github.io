@@ -15,7 +15,18 @@
         <%- partial('plugin/baidu-analytics') %>
     <% } %>
 <% } else { %>
-    <% if (theme.plugins.lightgallery) { %>
+    <%
+        // 只在页面真正有图片时才加载 lightgallery / justified-gallery（阻塞脚本，按需省加载）
+        var hasImgs = false;
+        if (page.content) {
+            hasImgs = page.content.indexOf('<img') > -1;
+        } else if (page.posts && page.posts.length) {
+            for (var i = 0; i < page.posts.length; i++) {
+                if (page.posts.data[i].content && page.posts.data[i].content.indexOf('<img') > -1) { hasImgs = true; break; }
+            }
+        }
+    %>
+    <% if (theme.plugins.lightgallery && hasImgs) { %>
         <%- js('libs/lightgallery/js/lightgallery.min') %>
         <%- js('libs/lightgallery/js/lg-thumbnail.min') %>
         <%- js('libs/lightgallery/js/lg-pager.min') %>
@@ -26,7 +37,7 @@
         <%- js('libs/lightgallery/js/lg-share.min') %>
         <%- js('libs/lightgallery/js/lg-video.min') %>
     <% } %>
-    <% if (theme.plugins.justifiedgallery) { %>
+    <% if (theme.plugins.justifiedgallery && hasImgs) { %>
         <%- js('libs/justified-gallery/jquery.justifiedGallery.min.js') %>
     <% } %>
     <% if (theme.plugins.mathjax) { %>

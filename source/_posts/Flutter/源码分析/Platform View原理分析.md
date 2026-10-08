@@ -4,7 +4,7 @@ toc: true
 tags: Flutter
 ---
 
-![](./platform1.png)
+![](./platform1.jpg)
 
 AndroidView、PlatformViewLink、UiKitView是表示Platform View的Widget接口，它们底层分别对应的RenderObject是RenderAndroidView、PlatformViewRenderBox、RenderUiKitView，前者基于TextureLayer进行真正的绘制，后两者给予PlatformViewLayer进行绘制。使用TextureLayer方式被称为Virtual Display，仅Android支持。使用PlatformViewLayer被称为Hybrid Composition，Android和iOS都支持。PlatformViewController和UiKitViewController时对Platform View中使用的Platform Channel的抽象封装，用于控制Platform View在Embedder中的各种属性和表现。
 

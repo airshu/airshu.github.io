@@ -41,31 +41,20 @@
 .widget-wrap
     margin: block-margin 0
     background-color: color-background + 20%
-    border: 4px solid color-border-stretch
-    border-radius: 4px
+    border: 1px solid #e3e7ec
+    border-radius: 6px
     padding: 20px
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04)
     h3
-        line-height: 20px
+        clearfix()
         background: color-meta-head
         margin: -21px -21px 10px -21px
         padding: 0 20px
         line-height: 30px
-        border: 1px solid #666
-        border-radius: 4px 4px 0 0
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08)
+        border-radius: 6px 6px 0 0
         a
-            margin-top: 5px
             float: right
-        a,
-        span
-            border-radius: 4px 4px 0 0
-            background: color-background + 20%
-            font-size: 15px
-            line-height: 18px
-            padding: 5px 10px
-            vertical-align:bottom
-            i
-                font-size: 20px
-                vertical-align:bottom
 
 .widget-title
     @extend $block-caption
@@ -100,14 +89,7 @@
     ul:not(#recent-post), ol:not(#recent-post)
         li
             a
-                &:before
-                    color: #ccc
-                    content: "\f0da"
-                    font-size: 12px
-                    margin-right: 6px
-                    font-family: FontAwesome
-                    transition: 0.2s ease
-                &:hover:before
+                &:hover
                     color: color-sidebar-text-dark
 
 #toTop
@@ -227,10 +209,6 @@
         a:hover
             display: block
             text-decoration: none
-        a:focus:before
-            content: "↪"
-            float: left
-            margin-left: -13px
-            font-weight: bold
-            color: #333
+        a:focus
+            outline: none
                     

@@ -10,9 +10,9 @@
                         <%- partial('post/category') %>
                         <%- partial('post/tag') %>
                         <%- partial('post/date', { class_name: 'article-date', date_format: null }) %>
-                        <% if (theme.plugins.busuanzi_count) { %>
+                        <% if (!index && theme.plugins.busuanzi_count) { %>
                             <i class="fa fa-bar-chart"></i>
-                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                            <span id="lc-pageview"></span>
                         <% } %>
                         <% if (theme.history_control.enable) { 
                             let repertory_address = `${theme.history_control.server_link}/${theme.history_control.user}/${theme.history_control.repertory}`;
@@ -47,22 +47,18 @@
                 <% } %>
                 <% if(br_position > 0) { %>
                     <% show_all_content = false %>
-                    <p><%- post.content.substring(0, br_position + 1) %><p>
+                    <% /* cut back to the last complete block tag so excerpts never split mid-element */ %>
+                    <% var excerpt = post.content.substring(0, br_position + 1) %>
+                    <% var blockEnd = Math.max(excerpt.lastIndexOf('</p>'), excerpt.lastIndexOf('</h1>'), excerpt.lastIndexOf('</h2>'), excerpt.lastIndexOf('</h3>'), excerpt.lastIndexOf('</blockquote>'), excerpt.lastIndexOf('</figure>'), excerpt.lastIndexOf('</ul>'), excerpt.lastIndexOf('</ol>'), excerpt.lastIndexOf('</table>')) %>
+                    <% if (blockEnd > 0) { excerpt = excerpt.substring(0, blockEnd) } %>
+                    <div class="article-excerpt"><%- excerpt %></div>
                 <% } %>
             <% } %>
         <% } else { %>
             <% if (post.toc) { %>
-                <div id="toc" class="toc-article" style="position:fixed;right:28px;top:30px;">
-                <strong class="toc-title"><%= __('article.catalogue') %></strong>
-                &nbsp;&nbsp;
-                <a id='toc-allexpand' href="javascript:void(0);" style="display:none">
-                    <i class="fa fa-angle-double-down fa-2x"></i>
-                </a>
-                <a id='toc-allhide' href="javascript:void(0);" >
-                    <i class="fa fa-angle-double-up fa-2x"></i>
-                </a>
+                <div id="toc" class="toc-article">
                 <div id="toc-content">
-                    <%- toc(post.content) %>
+                    <%- toc(post.content, {list_number: false}) %>
                 </div>
                 </div>
 

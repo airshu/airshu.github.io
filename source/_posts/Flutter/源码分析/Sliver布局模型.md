@@ -17,7 +17,7 @@ Flutter常见的列表类最终都有Scrollable类实现，而该类内部包含
 
 RenderViewport关键类及其关系
 
-![](./sliver1.png)
+![](./sliver1.jpg)
 
 Viewport的大小（主轴方法）为1250（每个Sliver的大小为250），即图中深灰色部分。Viewport前后存在一定长度的缓冲区，用于提升列表滑动的流畅度，即图中浅灰色部分，大小为250。center参数被设置为第4个子节点，但是因为anchor为0.2，所以子节点会向下偏移1/5主轴长度的距离，因此图中第1个显示的为sliver-3.
 
@@ -148,7 +148,7 @@ class RenderViewport {
 
 ```
 
-![](./sliver2.png)
+![](./sliver2.jpg)
 
 ```dart
 
@@ -265,7 +265,7 @@ class SliverConstraints {
 ```
 
 
-![](./sliver3.png)
+![](./sliver3.jpg)
 
 
 
@@ -332,7 +332,7 @@ class RenderViewport {
 }
 ```
 
-![](./sliver4.png)
+![](./sliver4.jpg)
 
 
 
@@ -451,7 +451,7 @@ class RenderSliverSingleBoxAdapter {
 
 ```
 
-![](./sliver6.png)
+![](./sliver6.jpg)
 
 如图，对完全处于Viewport内的Sliver而言，constraints.scrollOffset为0，子节点的paintOffset为(0,0)。此时子节点从Sliver的左上角开始绘制。
 

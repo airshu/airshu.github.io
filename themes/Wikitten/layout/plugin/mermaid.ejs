@@ -20,7 +20,12 @@
             }
         }
         if (!targets.length) return;
-        mermaid.initialize({ startOnLoad: false });
+        var dark = document.documentElement.classList.contains('dark');
+        mermaid.initialize({
+            startOnLoad: false,
+            theme: dark ? 'dark' : 'default',
+            themeVariables: dark ? { backgroundColor: '#2a2f3a' } : {}
+        });
         targets.forEach(function (fig) {
             var codeEl = fig.querySelector('td.code') || fig.querySelector('code');
             var raw = codeEl.textContent.replace(/^\s*\d+\s*/, '');

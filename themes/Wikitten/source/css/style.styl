@@ -15,6 +15,10 @@ input, button
 html, body, #container
     height: 100%
 
+// smooth anchor scrolling (TOC / heading anchors)
+html
+    scroll-behavior: smooth
+
 body
     color: color-default
     background: color-background
@@ -77,6 +81,30 @@ code
         width: 100%
     @media mq-mini
         width: 100%
+    // 宽屏三栏：带目录的文章页，整列（正文/上下篇导航/评论区）给右侧 fixed TOC 腾位
+    @media mq-normal
+        body.has-toc &
+            padding-right 240px
+            box-sizing border-box
+
+// On mobile the sidebar (category tree) renders before #main in DOM;
+// push it below the article instead of making readers scroll past it first.
+@media mq-mini
+    #container > .outer
+        display: flex
+        flex-direction: column
+        #main
+            order: 0
+        #sidebar
+            order: 1
+@media mq-mobile
+    #container > .outer
+        display: flex
+        flex-direction: column
+        #main
+            order: 0
+        #sidebar
+            order: 1
 
 @import "_extend"
 @import "_partial/header"
@@ -88,6 +116,7 @@ code
 @import "_partial/footer"
 @import "_partial/sidebar"
 @import "_partial/insight"
+@import "_partial/darkmode"
 @import "_highlight/index"
 
 if sidebar is left

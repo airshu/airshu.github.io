@@ -5,9 +5,48 @@
             <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
             <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a>
             <% if (theme.plugins.busuanzi_count) { %>
-                <br><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span></span> | 
-                <span id="busuanzi_container_site_pv"><i class="fa fa-user"><span id="busuanzi_value_site_uv"></span></span>
+                <br><i class="fa fa-eye"></i> <span id="lc-site-pv"></span> | <i class="fa fa-user"></i> <span id="lc-site-uv"></span>
             <% } %>
         </div>
     </div>
 </footer>
+<% if (theme.plugins.busuanzi_count && theme.comment.valine) { %>
+<script>
+(function () {
+    function ready(fn) {
+        if (window.AV) { fn(); } else { window.addEventListener('load', fn); }
+    }
+    ready(function () {
+        if (!AV.applicationId) {
+            AV.init({
+                appId: "<%= theme.comment.valine.leancloud_appid %>",
+                appKey: "<%= theme.comment.valine.leancloud_appkey %>",
+                serverURLs: 'https://ohebxny7.lc-cn-n1-shared.com'
+            });
+        }
+        function fill(id, v) { var el = document.getElementById(id); if (el) el.textContent = v; }
+        // site PV: sum(time) over all Counter rows
+        new AV.Query('Counter').limit(1000).find().then(function (rows) {
+            fill('lc-site-pv', rows.reduce(function (s, r) { return s + (r.get('time') || 0); }, 0));
+        }).catch(function () {});
+        // site UV: one Visitor row per browser (uuid in localStorage)
+        var uuid = null;
+        try { uuid = localStorage.getItem('lc-visitor-uuid'); } catch (e) {}
+        if (!uuid) {
+            uuid = 'v-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);
+            try { localStorage.setItem('lc-visitor-uuid', uuid); } catch (e) {}
+        }
+        new AV.Query('Visitor').equalTo('uuid', uuid).first().then(function (row) {
+            if (row) return null;
+            var v = new AV.Object('Visitor');
+            v.set('uuid', uuid);
+            return v.save();
+        }).then(function () {
+            return new AV.Query('Visitor').count();
+        }).then(function (n) {
+            fill('lc-site-uv', n);
+        }).catch(function () {});
+    });
+})();
+</script>
+<% } %>
