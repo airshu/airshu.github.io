@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js"></script>
+<script>
+    // hexo highlight 不识别 mermaid（auto_detect: false），渲染为 figure.highlight.plaintext；
+    // 只认内容以 flowchart/sequenceDiagram/graph 等开头的块，避免误伤普通 plaintext 代码块
+    function isMermaid(text) {
+        var t = text.replace(/^\s*\d+\s*/, '').trim();
+        return /^(flowchart|graph|sequenceDiagram|classDiagram|stateDiagram|erDiagram|journey|gantt|pie|mindmap|timeline|gitGraph)\b/.test(t);
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+        var figs = document.querySelectorAll('figure.highlight.plaintext, figure.highlight.mermaid');
+        var targets = [];
+        for (var i = 0; i < figs.length; i++) {
+            var fig = figs[i];
+            var codeEl = fig.querySelector('td.code') || fig.querySelector('code');
+            var raw = codeEl ? codeEl.textContent : fig.textContent;
+            if (codeEl && !raw.trim()) raw = fig.textContent;
+            if (raw && isMermaid(raw)) {
+                targets.push(fig);
+            }
+        }
+        if (!targets.length) return;
+        mermaid.initialize({ startOnLoad: false });
+        targets.forEach(function (fig) {
+            var codeEl = fig.querySelector('td.code') || fig.querySelector('code');
+            var raw = codeEl.textContent.replace(/^\s*\d+\s*/, '');
+            // 去掉行号列（hexo line_number: true 会把行号渲染进 code td）
+            var lineEls = codeEl.querySelectorAll('.line');
+            var text = lineEls.length
+                ? Array.from(lineEls).map(function (l) { return l.textContent; }).join('\n')
+                : raw;
+            var container = document.createElement('div');
+            container.className = 'mermaid';
+            container.textContent = text;
+            fig.parentNode.replaceChild(container, fig);
+        });
+        mermaid.run({ querySelector: '.mermaid' });
+    });
+</script>
