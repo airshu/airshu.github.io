@@ -216,16 +216,26 @@
         }
     }
 
-    $.getJSON(CONFIG.CONTENT_URL, function (json) {
-        if (location.hash.trim() === '#ins-search') {
-            $main.addClass('show');
-        }
-        $input.on('input', function () {
-            var keywords = $(this).val();
-            searchResultToDOM(keywords, search(json, keywords));
+    var searchIndex = null;
+
+    function ensureSearchIndex() {
+        if (searchIndex) return;
+        $.getJSON(CONFIG.CONTENT_URL, function (json) {
+            searchIndex = json;
+            if (location.hash.trim() === '#ins-search') {
+                $main.addClass('show');
+            }
+            $input.trigger('input');
         });
-        $input.trigger('input');
+    }
+
+    $input.on('input', function () {
+        var keywords = $(this).val();
+        if (!searchIndex) return;
+        searchResultToDOM(keywords, search(searchIndex, keywords));
     });
+
+    ensureSearchIndex();
 
 
     $(document).on('click focus', '.search-form-input', function () {
