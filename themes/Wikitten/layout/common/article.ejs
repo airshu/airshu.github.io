@@ -70,9 +70,12 @@
                             if (!window.matchMedia('(min-width: 1200px)').matches) return;
                             var card = document.querySelector('.article-inner');
                             if (!card) return;
-                            var right = document.documentElement.clientWidth
-                                - card.getBoundingClientRect().right - 228;
-                            document.documentElement.style.setProperty('--toc-right', right + 'px');
+                            // gap 12 on each side of the TOC; width shrinks when the
+                            // space between card and viewport edge is tight
+                            var width = Math.min(300, document.documentElement.clientWidth
+                                - card.getBoundingClientRect().right - 24);
+                            document.documentElement.style.setProperty('--toc-right', '12px');
+                            document.documentElement.style.setProperty('--toc-width', width + 'px');
                         }
                         alignToc();
                         window.addEventListener('resize', alignToc);

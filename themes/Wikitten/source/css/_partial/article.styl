@@ -425,7 +425,7 @@ $article-share-link
 
 ol.toc
     width 100%
-    margin 1em 2em 0 0
+    margin 1em 0 0 0
 
 #toc
     line-height 1.4em
@@ -436,7 +436,7 @@ ol.toc
     max-height calc(100vh - 100px)
     overflow-y auto
     z-index 1
-    padding-left 12px
+    padding-left 6px
 // 作用域用 #toc-content 而非 .toc li：hexo toc() 在标题层级先 h2 后 h1 时会产出
 // 畸形 HTML（顶级 li 散落在 ol 外），游离 li 不在 .toc 内，会带出默认 disc 圆点
 #toc-content li
@@ -453,15 +453,15 @@ ol.toc
             color color-link
             font-weight bold
 .toc-child
-    padding-left 1em
+    padding-left 0.75em
 // 宽屏三栏布局：TOC 固定在视口右侧，首行与侧栏/文章卡灰色标题带（top 60）的文字行对齐
 // right 由 main.js 按文章卡右缘计算（--toc-right），保证与侧栏↔卡片间隙一致
 #toc
     @media mq-normal
         position fixed
         top 57px
-        right var(--toc-right, 340px)
-        width 216px
+        right var(--toc-right, 12px)
+        width var(--toc-width, 260px)
         max-height calc(100vh - 120px)
         float none
         margin-top 0
