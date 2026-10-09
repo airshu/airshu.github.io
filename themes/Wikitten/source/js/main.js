@@ -72,25 +72,6 @@
         tocScrollspy();
     }
 
-    // TOC is position:fixed, so its viewport-right anchor drifts away from the
-    // article card as the window widens. Anchor it to the card instead: left
-    // edge 12px right of the card (same gutter as sidebar↔card). The CSS uses
-    // right: var(--toc-right) directly.
-    var $tocEl = $('#toc');
-    if ($tocEl.length && window.matchMedia) {
-        var alignToc = function () {
-            if (!window.matchMedia('(min-width: 1200px)').matches) return;
-            var card = document.querySelector('.article-inner');
-            if (!card) return;
-            var right = document.documentElement.clientWidth
-                - card.getBoundingClientRect().right - 228;
-            document.documentElement.style.setProperty('--toc-right', right + 'px');
-        };
-        alignToc();
-        $(window).on('resize', alignToc);
-        $(document).on('click', '#sidebar-toggle', alignToc);
-    }
-
     // To Top
     if ($('#sidebar').length) {
         $(document).on('scroll', function () {
