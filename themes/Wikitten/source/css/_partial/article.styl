@@ -437,29 +437,30 @@ ol.toc
     overflow-y auto
     z-index 1
     padding-left 12px
-    .toc
-        padding 0
-        margin 0.5em 0 0
-        li
-            list-style-type none
-            white-space nowrap
-            overflow hidden
-            text-overflow ellipsis
-        a
-            color color-grey
-            &:hover
-                color color-link
-                text-decoration none
-            &.active
-                color color-link
-                font-weight bold
-    .toc-child
-        padding-left 1em
-    // 宽屏三栏布局：TOC 固定在视口右侧，首行与侧栏/文章卡灰色标题带（top 60）的文字行对齐
+// 作用域用 #toc-content 而非 .toc li：hexo toc() 在标题层级先 h2 后 h1 时会产出
+// 畸形 HTML（顶级 li 散落在 ol 外），游离 li 不在 .toc 内，会带出默认 disc 圆点
+#toc-content li
+    list-style-type none
+    white-space nowrap
+    overflow hidden
+    text-overflow ellipsis
+    a
+        color color-grey
+        &:hover
+            color color-link
+            text-decoration none
+        &.active
+            color color-link
+            font-weight bold
+.toc-child
+    padding-left 1em
+// 宽屏三栏布局：TOC 固定在视口右侧，首行与侧栏/文章卡灰色标题带（top 60）的文字行对齐
+// right 由 main.js 按文章卡右缘计算（--toc-right），保证与侧栏↔卡片间隙一致
+#toc
     @media mq-normal
         position fixed
         top 57px
-        right 24px
+        right var(--toc-right, 340px)
         width 216px
         max-height calc(100vh - 120px)
         float none

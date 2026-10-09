@@ -265,10 +265,8 @@ html.sidebar-collapsed
     @media mq-tablet
         margin: 0 6px
 
-// right TOC: 12px gap to article card, 12px to viewport edge
-#toc
-    @media mq-normal
-        right 12px
+// right TOC: right is computed by main.js (--toc-right), anchored to the
+// article card edge so the gap matches the sidebar gutter on wide screens.
 
 // code highlight gutter line numbers (monokai dark bg)
 html.dark .highlight .gutter pre
