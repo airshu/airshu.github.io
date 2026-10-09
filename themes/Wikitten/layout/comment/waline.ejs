@@ -1,0 +1,17 @@
+<% if (typeof(script) !== 'undefined' && script) { %>
+<% } else { %>
+    <div id="waline-comments"></div>
+    <script type="module">
+        import { init } from 'https://unpkg.com/@waline/client@3.0.0/dist/waline.js';
+        init({
+            el: '#waline-comments',
+            serverURL: '<%= theme.comment.waline.serverURL %>',
+            placeholder: '<%= theme.comment.waline.placeholder %>',
+            pageview: false,
+            dark: 'html.dark',
+            locale: {
+                placeholder: '<%= theme.comment.waline.placeholder %>',
+            },
+        });
+    </script>
+<% } %>
