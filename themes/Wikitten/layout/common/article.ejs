@@ -10,9 +10,9 @@
                         <%- partial('post/category') %>
                         <%- partial('post/tag') %>
                         <%- partial('post/date', { class_name: 'article-date', date_format: null }) %>
-                        <% if (!index && theme.plugins.busuanzi_count) { %>
+                        <% if (!index && theme.plugins.busuanzi_count && theme.comment.waline) { %>
                             <i class="fa fa-bar-chart"></i>
-                            <span id="lc-pageview"></span>
+                            <span class="waline-pageview-count" data-path="<%- url_for(post.path) %>"></span>
                         <% } %>
                         <% if (theme.history_control.enable) { 
                             let repertory_address = `${theme.history_control.server_link}/${theme.history_control.user}/${theme.history_control.repertory}`;
@@ -63,8 +63,7 @@
                 </div>
                 <script>
                     // Anchor the fixed TOC to the article card edge immediately,
-                    // before jQuery/CDN scripts load (main.js re-runs this on
-                    // resize/sidebar-toggle). Prevents the initial overlap frame.
+                    // before jQuery/CDN scripts load. Prevents the initial overlap frame.
                     (function () {
                         function alignToc() {
                             if (!window.matchMedia('(min-width: 1200px)').matches) return;
@@ -79,9 +78,14 @@
                         }
                         alignToc();
                         window.addEventListener('resize', alignToc);
-                        document.addEventListener('click', function (e) {
-                            if (e.target.closest && e.target.closest('#sidebar-toggle')) alignToc();
-                        });
+                        // main.js calls this after toggling the sidebar so the TOC
+                        // re-measures against the post-toggle card position
+                        window.__alignToc = alignToc;
+                        // re-measure whenever the card box actually changes (sidebar
+                        // collapse/expand, window resize, font load)
+                        if (window.ResizeObserver) {
+                            new ResizeObserver(alignToc).observe(document.querySelector('.article-inner'));
+                        }
                     })();
                 </script>
 

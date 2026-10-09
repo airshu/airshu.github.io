@@ -163,6 +163,8 @@
         } else if (wasFloating && $('#categories').length) {
             $btn.insertBefore('#allExpand');
         }
+        // card box changed → TOC must re-anchor (see inline script in article.ejs)
+        if (window.__alignToc) window.__alignToc();
     }
     var sidebarCollapsed = false;
     try { sidebarCollapsed = localStorage.getItem('sidebar-collapsed') === '1'; } catch (e) {}
