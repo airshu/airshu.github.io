@@ -1,5 +1,69 @@
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js"></script>
+<style>
+    .mermaid {
+        cursor: zoom-in;
+        overflow-x: auto;
+    }
+    .mermaid-box {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: rgba(0, 0, 0, 0.78);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: grab;
+    }
+    .mermaid-box.dragging {
+        cursor: grabbing;
+    }
+    .mermaid-stage {
+        width: 92vw;
+        height: 84vh;
+        background: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+    }
+    html.dark .mermaid-stage {
+        background: #2a2f3a;
+    }
+    .mermaid-stage svg {
+        transform-origin: 0 0;
+    }
+    .mermaid-ctrl {
+        position: fixed;
+        top: 14px;
+        right: 16px;
+        display: flex;
+        gap: 8px;
+    }
+    .mermaid-ctrl button {
+        width: 32px;
+        height: 32px;
+        border: none;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.9);
+        color: #333;
+        font-size: 16px;
+        line-height: 1;
+        cursor: pointer;
+    }
+    .mermaid-ctrl button:hover {
+        background: #fff;
+    }
+    .mermaid-hint {
+        position: fixed;
+        bottom: 14px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 12px;
+        user-select: none;
+        pointer-events: none;
+    }
+</style>
 <script>
     // hexo highlight 不识别 mermaid（auto_detect: false），渲染为 figure.highlight.plaintext；
     // 只认内容以 flowchart/sequenceDiagram/graph 等开头的块，避免误伤普通 plaintext 代码块
@@ -7,6 +71,103 @@
         var t = text.replace(/^\s*\d+\s*/, '').trim();
         return /^(flowchart|graph|sequenceDiagram|classDiagram|stateDiagram|erDiagram|journey|gantt|pie|mindmap|timeline|gitGraph)\b/.test(t);
     }
+    // 全屏预览：滚轮缩放、拖动平移、双击重置、Esc/×关闭
+    function openMermaidBox(sourceSvg) {
+        var box = document.createElement('div');
+        box.className = 'mermaid-box';
+        var stage = document.createElement('div');
+        stage.className = 'mermaid-stage';
+        var svg = sourceSvg.cloneNode(true);
+        svg.removeAttribute('style');
+        svg.setAttribute('width', '100%');
+        svg.setAttribute('height', '100%');
+        stage.appendChild(svg);
+        box.appendChild(stage);
+
+        var ctrl = document.createElement('div');
+        ctrl.className = 'mermaid-ctrl';
+        [['+', zoomCenter.bind(null, 1.25)], ['−', zoomCenter.bind(null, 0.8)], ['✕', close]].forEach(function (item) {
+            var b = document.createElement('button');
+            b.textContent = item[0];
+            b.addEventListener('click', function (e) { e.stopPropagation(); item[1](); });
+            ctrl.appendChild(b);
+        });
+        box.appendChild(ctrl);
+
+        var hint = document.createElement('div');
+        hint.className = 'mermaid-hint';
+        hint.textContent = '滚轮缩放 · 拖动平移 · 双击重置 · Esc 关闭';
+        box.appendChild(hint);
+
+        var scale = 1, tx = 0, ty = 0, moved = 0;
+        function apply() {
+            svg.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + scale + ')';
+        }
+        function zoomAt(f, mx, my) {
+            var s2 = Math.min(20, Math.max(0.2, scale * f));
+            f = s2 / scale;
+            tx = mx - f * (mx - tx);
+            ty = my - f * (my - ty);
+            scale = s2;
+            apply();
+        }
+        function zoomCenter(f) {
+            zoomAt(f, stage.clientWidth / 2, stage.clientHeight / 2);
+        }
+        function close() {
+            document.removeEventListener('keydown', onKey);
+            box.remove();
+        }
+        function onKey(e) {
+            if (e.key === 'Escape') close();
+        }
+
+        box.addEventListener('wheel', function (e) {
+            e.preventDefault();
+            var r = stage.getBoundingClientRect();
+            zoomAt(e.deltaY < 0 ? 1.12 : 1 / 1.12, e.clientX - r.left, e.clientY - r.top);
+        }, { passive: false });
+
+        var px = 0, py = 0;
+        box.addEventListener('pointerdown', function (e) {
+            if (e.target.closest('.mermaid-ctrl')) return;
+            px = e.clientX; py = e.clientY; moved = 0;
+            box.classList.add('dragging');
+            box.setPointerCapture(e.pointerId);
+        });
+        box.addEventListener('pointermove', function (e) {
+            if (!box.classList.contains('dragging')) return;
+            var dx = e.clientX - px, dy = e.clientY - py;
+            moved += Math.abs(dx) + Math.abs(dy);
+            tx += dx; ty += dy;
+            px = e.clientX; py = e.clientY;
+            apply();
+        });
+        box.addEventListener('pointerup', function (e) {
+            box.classList.remove('dragging');
+            if (moved < 4 && e.target === box) close(); // 点空白处关闭（拖动不算）
+        });
+        box.addEventListener('dblclick', function (e) {
+            e.preventDefault();
+            scale = 1; tx = 0; ty = 0;
+            apply();
+        });
+
+        document.addEventListener('keydown', onKey);
+        document.body.appendChild(box);
+    }
+
+    function bindMermaidZoom() {
+        document.querySelectorAll('.mermaid').forEach(function (el) {
+            if (el.dataset.zoomBound || !el.querySelector('svg')) return;
+            el.dataset.zoomBound = '1';
+            el.title = '点击放大';
+            el.addEventListener('click', function () {
+                openMermaidBox(el.querySelector('svg'));
+            });
+        });
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
         var figs = document.querySelectorAll('figure.highlight.plaintext, figure.highlight.mermaid');
         var targets = [];
@@ -39,6 +200,7 @@
             container.textContent = text;
             fig.parentNode.replaceChild(container, fig);
         });
-        mermaid.run({ querySelector: '.mermaid' });
+        var run = mermaid.run({ querySelector: '.mermaid' });
+        (run && typeof run.then === 'function' ? run : Promise.resolve()).then(bindMermaidZoom);
     });
 </script>
