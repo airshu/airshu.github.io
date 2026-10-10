@@ -70,7 +70,6 @@ comment:
     disqus: # enter disqus shortname here
     duoshuo: # enter duoshuo shortname here
     youyan: # enter youyan uid here
-    valine: # enter leancloud app_id here (legacy, no longer used)
     waline:
         # Waline 服务端地址(Netlify Functions)
         serverURL: https://ubiquitous-muffin-e23ad2.netlify.app/.netlify/functions/comment
